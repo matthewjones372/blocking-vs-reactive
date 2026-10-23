@@ -5,7 +5,9 @@ import io.github.matthewjones372.lark.stream.Forks
 import io.github.matthewjones372.lark.stream.Stream
 import io.github.matthewjones372.lark.stream.from
 import io.github.matthewjones372.lark.stream.mapAsync
+import io.github.matthewjones372.lark.stream.mapAsyncUnordered
 import io.github.matthewjones372.lark.stream.mapPar
+import io.github.matthewjones372.lark.stream.mapParUnordered
 import io.github.matthewjones372.lark.stream.run
 import io.github.matthewjones372.lark.stream.runFold
 import org.apache.pekko.actor.ActorSystem
@@ -124,6 +126,28 @@ fun larkAsync(p: IoParams, probe: Probe): Long {
 }
 // endregion
 
+// region lark-unordered
+fun larkUnordered(p: IoParams, probe: Probe): Long {
+    val exit = Stream.from(Iterable { counted(p.items, probe) })
+        .mapParUnordered(p.concurrency) { x -> blockingIo(x, p) }
+        .runFold(0L) { sum, x -> probe.completed(); sum + x }
+        .run(Forks())
+        .toCompletableFuture().join()
+    return (exit as Exit.Done).value
+}
+// endregion
+
+// region lark-async-unordered
+fun larkAsyncUnordered(p: IoParams, probe: Probe): Long {
+    val exit = Stream.from(Iterable { counted(p.items, probe) })
+        .mapAsyncUnordered(p.concurrency) { x -> stageIo(x, p) }
+        .runFold(0L) { sum, x -> probe.completed(); sum + x }
+        .run(Forks())
+        .toCompletableFuture().join()
+    return (exit as Exit.Done).value
+}
+// endregion
+
 // region reactor
 fun reactor(p: IoParams, probe: Probe): Long =
     Flux.range(0, p.items)
@@ -151,6 +175,8 @@ val ioContestants: Map<String, IoContestant> = linkedMapOf(
     "vt-naive" to IoContestant(::vtNaive),
     "lark" to IoContestant(::lark),
     "lark-async" to IoContestant(::larkAsync),
+    "lark-unordered" to IoContestant(::larkUnordered),
+    "lark-async-unordered" to IoContestant(::larkAsyncUnordered),
     "reactor" to IoContestant(::reactor),
     "pekko" to IoContestant(::pekko),
 )

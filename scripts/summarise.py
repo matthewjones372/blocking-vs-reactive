@@ -34,7 +34,7 @@ scenarios = []
 for s, _ in rows:
     if s not in scenarios:
         scenarios.append(s)
-for s in scenarios:
+for s in [x for x in scenarios if x != "overload"]:
     out.append(f"\n#### `{s}`\n")
     out.append("| contestant | ops/s | CPU µs/op | alloc B/op | max outstanding | live B per in-flight | RSS peak MB |")
     out.append("|---|--:|--:|--:|--:|--:|--:|")
@@ -47,6 +47,18 @@ for s in scenarios:
             f"| {c} | {fmt(med(key, 'opsPerSec'))} | {fmt(med(key, 'cpuUsPerOp'), 2)} | {fmt(med(key, 'allocBytesPerOp'))} "
             f"| {fmt(max(mo) if mo else None)} | {fmt(med(key, 'liveBytesPerInFlight'))} | {fmt(med(key, 'rssHighWaterMb'))} |"
         )
+
+if "overload" in scenarios:
+    out.append("\n#### `overload`: capacity drops from 500 to 100 halfway\n")
+    out.append("| contestant | seconds | ops/s | p50 before ms | p99 before ms | p50 after ms | p99 after ms |")
+    out.append("|---|--:|--:|--:|--:|--:|--:|")
+    for (s2, c), _ in rows.items():
+        if s2 == "overload":
+            key = (s2, c)
+            out.append(
+                f"| {c} | {fmt(med(key, 'seconds'), 2)} | {fmt(med(key, 'opsPerSec'))} | {fmt(med(key, 'p50BeforeMs'), 1)} "
+                f"| {fmt(med(key, 'p99BeforeMs'), 1)} | {fmt(med(key, 'p50AfterMs'), 1)} | {fmt(med(key, 'p99AfterMs'), 1)} |"
+            )
 
 jmh = root / "results/jmh.json"
 if jmh.exists():

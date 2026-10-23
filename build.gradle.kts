@@ -4,9 +4,13 @@ plugins {
     application
 }
 
-repositories { mavenCentral() }
+// mavenLocal for a Lark snapshot under test: `-PlarkVersion=0.0.0-cand-SNAPSHOT` after `publishToMavenLocal`.
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
 
-val larkVersion = "0.10.0"
+val larkVersion = providers.gradleProperty("larkVersion").getOrElse("0.10.0")
 
 dependencies {
     // The contestants. Each is the latest stable release on the day the hypotheses were written.
