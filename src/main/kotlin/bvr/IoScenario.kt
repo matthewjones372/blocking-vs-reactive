@@ -4,6 +4,7 @@ import io.github.matthewjones372.lark.stream.Exit
 import io.github.matthewjones372.lark.stream.Forks
 import io.github.matthewjones372.lark.stream.Stream
 import io.github.matthewjones372.lark.stream.from
+import io.github.matthewjones372.lark.stream.mapAsync
 import io.github.matthewjones372.lark.stream.mapPar
 import io.github.matthewjones372.lark.stream.run
 import io.github.matthewjones372.lark.stream.runFold
@@ -112,6 +113,17 @@ fun lark(p: IoParams, probe: Probe): Long {
 }
 // endregion
 
+// region lark-async
+fun larkAsync(p: IoParams, probe: Probe): Long {
+    val exit = Stream.from(Iterable { counted(p.items, probe) })
+        .mapAsync(p.concurrency) { x -> stageIo(x, p) }
+        .runFold(0L) { sum, x -> probe.completed(); sum + x }
+        .run(Forks())
+        .toCompletableFuture().join()
+    return (exit as Exit.Done).value
+}
+// endregion
+
 // region reactor
 fun reactor(p: IoParams, probe: Probe): Long =
     Flux.range(0, p.items)
@@ -138,6 +150,7 @@ val ioContestants: Map<String, IoContestant> = linkedMapOf(
     "vt-plain-vt" to IoContestant(::vtPlainOnVt),
     "vt-naive" to IoContestant(::vtNaive),
     "lark" to IoContestant(::lark),
+    "lark-async" to IoContestant(::larkAsync),
     "reactor" to IoContestant(::reactor),
     "pekko" to IoContestant(::pekko),
 )
