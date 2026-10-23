@@ -24,7 +24,7 @@ so it can be proven false.
 | `vt-naive` | a negative control: one virtual thread per element and no bound |
 | `lark` | `lark-stream` on its `Forks()` backend (virtual threads) |
 | `reactor` | Project Reactor `reactor-core`, idiomatic, with tuned prefetch |
-| `pekko` | Pekko Streams `javadsl`, idiomatic, with a 1 ms scheduler tick |
+| `pekko` | Pekko Streams `javadsl`, idiomatic, with default settings |
 
 Every contestant uses the same fake I/O device: a `CompletableFuture`
 completed by a shared `ScheduledThreadPoolExecutor`. Reactive contestants

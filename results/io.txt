@@ -1,0 +1,391 @@
+# Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=38507 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+# 4
+# 6.18.44-fc-v140
+RESULT scenario=backpressure contestant=vt-plain iteration=0 wallMs=1557.7 opsPerSec=12839 cpuMs=610.0 cpuUsPerOp=30.50 allocMb=25.1 allocBytesPerOp=1255 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=vt-plain iteration=1 wallMs=1532.7 opsPerSec=13049 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=24.0 allocBytesPerOp=1200 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=vt-plain iteration=2 wallMs=1528.5 opsPerSec=13085 cpuMs=490.0 cpuUsPerOp=24.50 allocMb=24.0 allocBytesPerOp=1198 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=vt-plain iteration=3 wallMs=1527.3 opsPerSec=13095 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=23.8 allocBytesPerOp=1190 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=vt-plain rssHighWaterMb=213 fork=1
+RESULT scenario=backpressure contestant=vt-plain iteration=0 wallMs=1571.1 opsPerSec=12730 cpuMs=710.0 cpuUsPerOp=35.50 allocMb=27.1 allocBytesPerOp=1353 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=vt-plain iteration=1 wallMs=1531.3 opsPerSec=13061 cpuMs=570.0 cpuUsPerOp=28.50 allocMb=23.8 allocBytesPerOp=1190 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=vt-plain iteration=2 wallMs=1527.7 opsPerSec=13091 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=23.8 allocBytesPerOp=1189 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=vt-plain iteration=3 wallMs=1531.3 opsPerSec=13061 cpuMs=590.0 cpuUsPerOp=29.50 allocMb=23.6 allocBytesPerOp=1178 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=vt-plain rssHighWaterMb=204 fork=2
+RESULT scenario=backpressure contestant=lark iteration=0 wallMs=1528.7 opsPerSec=13083 cpuMs=570.0 cpuUsPerOp=28.50 allocMb=27.2 allocBytesPerOp=1358 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=lark iteration=1 wallMs=1538.3 opsPerSec=13001 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=28.6 allocBytesPerOp=1430 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=lark iteration=2 wallMs=1501.7 opsPerSec=13318 cpuMs=520.0 cpuUsPerOp=26.00 allocMb=32.5 allocBytesPerOp=1625 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=lark iteration=3 wallMs=1494.4 opsPerSec=13383 cpuMs=470.0 cpuUsPerOp=23.50 allocMb=29.0 allocBytesPerOp=1448 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=lark rssHighWaterMb=238 fork=1
+RESULT scenario=backpressure contestant=lark iteration=0 wallMs=1495.6 opsPerSec=13372 cpuMs=460.0 cpuUsPerOp=23.00 allocMb=30.0 allocBytesPerOp=1500 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=lark iteration=1 wallMs=1493.3 opsPerSec=13394 cpuMs=420.0 cpuUsPerOp=21.00 allocMb=30.2 allocBytesPerOp=1510 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure contestant=lark iteration=2 wallMs=1507.9 opsPerSec=13264 cpuMs=500.0 cpuUsPerOp=25.00 allocMb=31.1 allocBytesPerOp=1554 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=lark iteration=3 wallMs=1492.6 opsPerSec=13400 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=31.6 allocBytesPerOp=1579 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=lark rssHighWaterMb=237 fork=2
+RESULT scenario=backpressure contestant=reactor iteration=0 wallMs=1400.4 opsPerSec=14281 cpuMs=160.0 cpuUsPerOp=8.00 allocMb=8.0 allocBytesPerOp=398 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=reactor iteration=1 wallMs=1391.2 opsPerSec=14376 cpuMs=130.0 cpuUsPerOp=6.50 allocMb=7.8 allocBytesPerOp=388 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=reactor iteration=2 wallMs=1394.8 opsPerSec=14339 cpuMs=140.0 cpuUsPerOp=7.00 allocMb=7.8 allocBytesPerOp=388 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=reactor iteration=3 wallMs=1395.7 opsPerSec=14330 cpuMs=150.0 cpuUsPerOp=7.50 allocMb=7.7 allocBytesPerOp=385 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure contestant=reactor rssHighWaterMb=175 fork=1
+RESULT scenario=backpressure contestant=reactor iteration=0 wallMs=1407.2 opsPerSec=14213 cpuMs=210.0 cpuUsPerOp=10.50 allocMb=7.1 allocBytesPerOp=355 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure contestant=reactor iteration=1 wallMs=1406.0 opsPerSec=14224 cpuMs=170.0 cpuUsPerOp=8.50 allocMb=6.9 allocBytesPerOp=346 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure contestant=reactor iteration=2 wallMs=1404.7 opsPerSec=14238 cpuMs=140.0 cpuUsPerOp=7.00 allocMb=7.0 allocBytesPerOp=348 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure contestant=reactor iteration=3 wallMs=1405.2 opsPerSec=14233 cpuMs=150.0 cpuUsPerOp=7.50 allocMb=6.9 allocBytesPerOp=346 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure contestant=reactor rssHighWaterMb=178 fork=2
+RESULT scenario=backpressure contestant=pekko iteration=0 wallMs=1491.4 opsPerSec=13410 cpuMs=400.0 cpuUsPerOp=20.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=pekko iteration=1 wallMs=1498.0 opsPerSec=13351 cpuMs=400.0 cpuUsPerOp=20.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=pekko iteration=2 wallMs=1482.5 opsPerSec=13491 cpuMs=360.0 cpuUsPerOp=18.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=pekko iteration=3 wallMs=1497.1 opsPerSec=13359 cpuMs=410.0 cpuUsPerOp=20.50 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure contestant=pekko rssHighWaterMb=246 fork=1
+RESULT scenario=backpressure contestant=pekko iteration=0 wallMs=1497.9 opsPerSec=13352 cpuMs=400.0 cpuUsPerOp=20.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=pekko iteration=1 wallMs=1496.8 opsPerSec=13362 cpuMs=420.0 cpuUsPerOp=21.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=pekko iteration=2 wallMs=1494.6 opsPerSec=13382 cpuMs=360.0 cpuUsPerOp=18.00 allocMb=8.6 allocBytesPerOp=432 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=pekko iteration=3 wallMs=1482.1 opsPerSec=13494 cpuMs=380.0 cpuUsPerOp=19.00 allocMb=8.7 allocBytesPerOp=433 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure contestant=pekko rssHighWaterMb=256 fork=2
+RESULT scenario=backpressure contestant=vt-naive iteration=0 wallMs=88.6 opsPerSec=225619 cpuMs=320.0 cpuUsPerOp=16.00 allocMb=41.3 allocBytesPerOp=2064 gcCount=0 gcMs=0 maxOutstanding=19775 fork=1
+RESULT scenario=backpressure contestant=vt-naive iteration=1 wallMs=58.6 opsPerSec=341013 cpuMs=230.0 cpuUsPerOp=11.50 allocMb=48.3 allocBytesPerOp=2413 gcCount=0 gcMs=0 maxOutstanding=14294 fork=1
+RESULT scenario=backpressure contestant=vt-naive iteration=2 wallMs=60.6 opsPerSec=330123 cpuMs=230.0 cpuUsPerOp=11.50 allocMb=34.1 allocBytesPerOp=1703 gcCount=0 gcMs=0 maxOutstanding=15219 fork=1
+RESULT scenario=backpressure contestant=vt-naive iteration=3 wallMs=51.2 opsPerSec=390500 cpuMs=190.0 cpuUsPerOp=9.50 allocMb=26.5 allocBytesPerOp=1325 gcCount=0 gcMs=0 maxOutstanding=19989 fork=1
+RESULT scenario=backpressure contestant=vt-naive rssHighWaterMb=272 fork=1
+RESULT scenario=backpressure contestant=vt-naive iteration=0 wallMs=83.7 opsPerSec=239034 cpuMs=320.0 cpuUsPerOp=16.00 allocMb=42.8 allocBytesPerOp=2142 gcCount=0 gcMs=0 maxOutstanding=19853 fork=2
+RESULT scenario=backpressure contestant=vt-naive iteration=1 wallMs=44.4 opsPerSec=450092 cpuMs=160.0 cpuUsPerOp=8.00 allocMb=39.0 allocBytesPerOp=1949 gcCount=0 gcMs=0 maxOutstanding=14974 fork=2
+RESULT scenario=backpressure contestant=vt-naive iteration=2 wallMs=44.4 opsPerSec=450882 cpuMs=170.0 cpuUsPerOp=8.50 allocMb=24.2 allocBytesPerOp=1211 gcCount=0 gcMs=0 maxOutstanding=19740 fork=2
+RESULT scenario=backpressure contestant=vt-naive iteration=3 wallMs=106.9 opsPerSec=187084 cpuMs=310.0 cpuUsPerOp=15.50 allocMb=23.4 allocBytesPerOp=1170 gcCount=0 gcMs=0 maxOutstanding=18281 fork=2
+RESULT scenario=backpressure contestant=vt-naive rssHighWaterMb=261 fork=2
+RESULT scenario=backpressure-native contestant=vt-plain iteration=0 wallMs=1555.6 opsPerSec=12856 cpuMs=670.0 cpuUsPerOp=33.50 allocMb=17.5 allocBytesPerOp=875 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=vt-plain iteration=1 wallMs=1539.5 opsPerSec=12991 cpuMs=520.0 cpuUsPerOp=26.00 allocMb=17.5 allocBytesPerOp=875 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=vt-plain iteration=2 wallMs=1559.1 opsPerSec=12828 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=17.5 allocBytesPerOp=875 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=vt-plain iteration=3 wallMs=1559.3 opsPerSec=12826 cpuMs=540.0 cpuUsPerOp=27.00 allocMb=17.3 allocBytesPerOp=867 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=vt-plain rssHighWaterMb=191 fork=1
+RESULT scenario=backpressure-native contestant=vt-plain iteration=0 wallMs=1554.8 opsPerSec=12863 cpuMs=590.0 cpuUsPerOp=29.50 allocMb=18.3 allocBytesPerOp=915 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=vt-plain iteration=1 wallMs=1527.2 opsPerSec=13096 cpuMs=540.0 cpuUsPerOp=27.00 allocMb=18.3 allocBytesPerOp=915 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=vt-plain iteration=2 wallMs=1572.5 opsPerSec=12719 cpuMs=580.0 cpuUsPerOp=29.00 allocMb=18.3 allocBytesPerOp=915 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=vt-plain iteration=3 wallMs=1549.5 opsPerSec=12908 cpuMs=590.0 cpuUsPerOp=29.50 allocMb=18.1 allocBytesPerOp=907 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=vt-plain rssHighWaterMb=196 fork=2
+RESULT scenario=backpressure-native contestant=lark iteration=0 wallMs=1509.6 opsPerSec=13248 cpuMs=720.0 cpuUsPerOp=36.00 allocMb=22.9 allocBytesPerOp=1145 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=lark iteration=1 wallMs=1494.0 opsPerSec=13387 cpuMs=410.0 cpuUsPerOp=20.50 allocMb=22.9 allocBytesPerOp=1147 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=lark iteration=2 wallMs=1514.3 opsPerSec=13208 cpuMs=500.0 cpuUsPerOp=25.00 allocMb=23.1 allocBytesPerOp=1154 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=lark iteration=3 wallMs=1513.2 opsPerSec=13217 cpuMs=480.0 cpuUsPerOp=24.00 allocMb=22.7 allocBytesPerOp=1135 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=lark rssHighWaterMb=224 fork=1
+RESULT scenario=backpressure-native contestant=lark iteration=0 wallMs=1495.4 opsPerSec=13374 cpuMs=600.0 cpuUsPerOp=30.00 allocMb=23.6 allocBytesPerOp=1181 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=lark iteration=1 wallMs=1509.6 opsPerSec=13249 cpuMs=480.0 cpuUsPerOp=24.00 allocMb=23.5 allocBytesPerOp=1173 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=lark iteration=2 wallMs=1515.2 opsPerSec=13200 cpuMs=490.0 cpuUsPerOp=24.50 allocMb=24.6 allocBytesPerOp=1231 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=lark iteration=3 wallMs=1537.3 opsPerSec=13010 cpuMs=530.0 cpuUsPerOp=26.50 allocMb=24.4 allocBytesPerOp=1221 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=lark rssHighWaterMb=217 fork=2
+RESULT scenario=backpressure-native contestant=reactor iteration=0 wallMs=1373.7 opsPerSec=14560 cpuMs=410.0 cpuUsPerOp=20.50 allocMb=9.6 allocBytesPerOp=481 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=reactor iteration=1 wallMs=1366.6 opsPerSec=14635 cpuMs=300.0 cpuUsPerOp=15.00 allocMb=9.8 allocBytesPerOp=491 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=reactor iteration=2 wallMs=1367.7 opsPerSec=14623 cpuMs=350.0 cpuUsPerOp=17.50 allocMb=10.0 allocBytesPerOp=498 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=reactor iteration=3 wallMs=1372.5 opsPerSec=14572 cpuMs=410.0 cpuUsPerOp=20.50 allocMb=9.7 allocBytesPerOp=486 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=reactor rssHighWaterMb=198 fork=1
+RESULT scenario=backpressure-native contestant=reactor iteration=0 wallMs=1391.9 opsPerSec=14369 cpuMs=390.0 cpuUsPerOp=19.50 allocMb=9.7 allocBytesPerOp=485 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=reactor iteration=1 wallMs=1379.8 opsPerSec=14495 cpuMs=510.0 cpuUsPerOp=25.50 allocMb=9.6 allocBytesPerOp=482 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=reactor iteration=2 wallMs=1380.4 opsPerSec=14488 cpuMs=360.0 cpuUsPerOp=18.00 allocMb=9.9 allocBytesPerOp=495 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=reactor iteration=3 wallMs=1370.7 opsPerSec=14591 cpuMs=400.0 cpuUsPerOp=20.00 allocMb=9.2 allocBytesPerOp=461 gcCount=0 gcMs=0 maxOutstanding=16 fork=2
+RESULT scenario=backpressure-native contestant=reactor rssHighWaterMb=191 fork=2
+RESULT scenario=backpressure-native contestant=pekko iteration=0 wallMs=4051.9 opsPerSec=4936 cpuMs=530.0 cpuUsPerOp=26.50 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=pekko iteration=1 wallMs=4063.5 opsPerSec=4922 cpuMs=610.0 cpuUsPerOp=30.50 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=pekko iteration=2 wallMs=4059.5 opsPerSec=4927 cpuMs=620.0 cpuUsPerOp=31.00 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=1
+RESULT scenario=backpressure-native contestant=pekko iteration=3 wallMs=4068.2 opsPerSec=4916 cpuMs=560.0 cpuUsPerOp=28.00 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=16 fork=1
+RESULT scenario=backpressure-native contestant=pekko rssHighWaterMb=255 fork=1
+RESULT scenario=backpressure-native contestant=pekko iteration=0 wallMs=4085.0 opsPerSec=4896 cpuMs=680.0 cpuUsPerOp=34.00 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=pekko iteration=1 wallMs=4060.7 opsPerSec=4925 cpuMs=570.0 cpuUsPerOp=28.50 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=pekko iteration=2 wallMs=4092.6 opsPerSec=4887 cpuMs=580.0 cpuUsPerOp=29.00 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=pekko iteration=3 wallMs=4051.8 opsPerSec=4936 cpuMs=550.0 cpuUsPerOp=27.50 allocMb=10.7 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=17 fork=2
+RESULT scenario=backpressure-native contestant=pekko rssHighWaterMb=247 fork=2
+RESULT scenario=backpressure-native contestant=vt-naive iteration=0 wallMs=38.5 opsPerSec=518864 cpuMs=150.0 cpuUsPerOp=7.50 allocMb=26.0 allocBytesPerOp=1298 gcCount=0 gcMs=0 maxOutstanding=10204 fork=1
+RESULT scenario=backpressure-native contestant=vt-naive iteration=1 wallMs=24.0 opsPerSec=832021 cpuMs=90.0 cpuUsPerOp=4.50 allocMb=18.1 allocBytesPerOp=903 gcCount=0 gcMs=0 maxOutstanding=10040 fork=1
+RESULT scenario=backpressure-native contestant=vt-naive iteration=2 wallMs=33.0 opsPerSec=606013 cpuMs=120.0 cpuUsPerOp=6.00 allocMb=18.4 allocBytesPerOp=922 gcCount=0 gcMs=0 maxOutstanding=14799 fork=1
+RESULT scenario=backpressure-native contestant=vt-naive iteration=3 wallMs=45.1 opsPerSec=443810 cpuMs=160.0 cpuUsPerOp=8.00 allocMb=17.9 allocBytesPerOp=897 gcCount=0 gcMs=0 maxOutstanding=5541 fork=1
+RESULT scenario=backpressure-native contestant=vt-naive rssHighWaterMb=243 fork=1
+RESULT scenario=backpressure-native contestant=vt-naive iteration=0 wallMs=31.0 opsPerSec=644657 cpuMs=110.0 cpuUsPerOp=5.50 allocMb=22.2 allocBytesPerOp=1112 gcCount=0 gcMs=0 maxOutstanding=7274 fork=2
+RESULT scenario=backpressure-native contestant=vt-naive iteration=1 wallMs=28.6 opsPerSec=700005 cpuMs=110.0 cpuUsPerOp=5.50 allocMb=18.3 allocBytesPerOp=915 gcCount=0 gcMs=0 maxOutstanding=9337 fork=2
+RESULT scenario=backpressure-native contestant=vt-naive iteration=2 wallMs=33.6 opsPerSec=594902 cpuMs=130.0 cpuUsPerOp=6.50 allocMb=18.1 allocBytesPerOp=906 gcCount=0 gcMs=0 maxOutstanding=18959 fork=2
+RESULT scenario=backpressure-native contestant=vt-naive iteration=3 wallMs=30.6 opsPerSec=654539 cpuMs=120.0 cpuUsPerOp=6.00 allocMb=18.1 allocBytesPerOp=906 gcCount=0 gcMs=0 maxOutstanding=12242 fork=2
+RESULT scenario=backpressure-native contestant=vt-naive rssHighWaterMb=235 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain iteration=0 wallMs=2080.5 opsPerSec=96131 cpuMs=2540.0 cpuUsPerOp=12.70 allocMb=239.6 allocBytesPerOp=1198 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain iteration=1 wallMs=2079.8 opsPerSec=96164 cpuMs=2610.0 cpuUsPerOp=13.05 allocMb=239.2 allocBytesPerOp=1196 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain iteration=2 wallMs=2085.3 opsPerSec=95911 cpuMs=2380.0 cpuUsPerOp=11.90 allocMb=238.9 allocBytesPerOp=1195 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain iteration=3 wallMs=2111.1 opsPerSec=94735 cpuMs=2750.0 cpuUsPerOp=13.75 allocMb=239.4 allocBytesPerOp=1197 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain liveBytesPerInFlight=776 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain rssHighWaterMb=470 fork=1
+RESULT scenario=fanout-1k contestant=vt-plain iteration=0 wallMs=2069.7 opsPerSec=96635 cpuMs=2170.0 cpuUsPerOp=10.85 allocMb=242.7 allocBytesPerOp=1214 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain iteration=1 wallMs=2073.2 opsPerSec=96470 cpuMs=2330.0 cpuUsPerOp=11.65 allocMb=245.4 allocBytesPerOp=1227 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain iteration=2 wallMs=2068.6 opsPerSec=96682 cpuMs=2110.0 cpuUsPerOp=10.55 allocMb=244.7 allocBytesPerOp=1224 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain iteration=3 wallMs=2084.4 opsPerSec=95949 cpuMs=2470.0 cpuUsPerOp=12.35 allocMb=246.4 allocBytesPerOp=1232 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain liveBytesPerInFlight=499 fork=2
+RESULT scenario=fanout-1k contestant=vt-plain rssHighWaterMb=401 fork=2
+RESULT scenario=fanout-1k contestant=lark iteration=0 wallMs=2065.2 opsPerSec=96845 cpuMs=2440.0 cpuUsPerOp=12.20 allocMb=274.3 allocBytesPerOp=1371 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=lark iteration=1 wallMs=2067.9 opsPerSec=96715 cpuMs=1930.0 cpuUsPerOp=9.65 allocMb=274.0 allocBytesPerOp=1370 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=lark iteration=2 wallMs=2059.3 opsPerSec=97120 cpuMs=2310.0 cpuUsPerOp=11.55 allocMb=289.8 allocBytesPerOp=1449 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=lark iteration=3 wallMs=2063.0 opsPerSec=96946 cpuMs=2230.0 cpuUsPerOp=11.15 allocMb=283.3 allocBytesPerOp=1416 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=lark liveBytesPerInFlight=727 fork=1
+RESULT scenario=fanout-1k contestant=lark rssHighWaterMb=441 fork=1
+RESULT scenario=fanout-1k contestant=lark iteration=0 wallMs=2076.8 opsPerSec=96301 cpuMs=2460.0 cpuUsPerOp=12.30 allocMb=310.9 allocBytesPerOp=1554 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=lark iteration=1 wallMs=2090.6 opsPerSec=95667 cpuMs=2320.0 cpuUsPerOp=11.60 allocMb=314.1 allocBytesPerOp=1571 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=lark iteration=2 wallMs=2081.4 opsPerSec=96090 cpuMs=1970.0 cpuUsPerOp=9.85 allocMb=315.5 allocBytesPerOp=1577 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=lark iteration=3 wallMs=2097.8 opsPerSec=95337 cpuMs=2040.0 cpuUsPerOp=10.20 allocMb=336.6 allocBytesPerOp=1683 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=lark liveBytesPerInFlight=1650 fork=2
+RESULT scenario=fanout-1k contestant=lark rssHighWaterMb=485 fork=2
+RESULT scenario=fanout-1k contestant=reactor iteration=0 wallMs=2070.0 opsPerSec=96618 cpuMs=1190.0 cpuUsPerOp=5.95 allocMb=178.4 allocBytesPerOp=892 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k contestant=reactor iteration=1 wallMs=2048.9 opsPerSec=97616 cpuMs=1250.0 cpuUsPerOp=6.25 allocMb=177.6 allocBytesPerOp=888 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k contestant=reactor iteration=2 wallMs=2044.1 opsPerSec=97842 cpuMs=1020.0 cpuUsPerOp=5.10 allocMb=178.7 allocBytesPerOp=894 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k contestant=reactor iteration=3 wallMs=2042.4 opsPerSec=97923 cpuMs=1050.0 cpuUsPerOp=5.25 allocMb=176.7 allocBytesPerOp=883 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k contestant=reactor liveBytesPerInFlight=348 fork=1
+RESULT scenario=fanout-1k contestant=reactor rssHighWaterMb=353 fork=1
+RESULT scenario=fanout-1k contestant=reactor iteration=0 wallMs=2053.5 opsPerSec=97393 cpuMs=1240.0 cpuUsPerOp=6.20 allocMb=178.6 allocBytesPerOp=893 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k contestant=reactor iteration=1 wallMs=2047.5 opsPerSec=97680 cpuMs=990.0 cpuUsPerOp=4.95 allocMb=179.4 allocBytesPerOp=897 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k contestant=reactor iteration=2 wallMs=2050.6 opsPerSec=97531 cpuMs=1180.0 cpuUsPerOp=5.90 allocMb=177.2 allocBytesPerOp=886 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k contestant=reactor iteration=3 wallMs=2070.8 opsPerSec=96579 cpuMs=1130.0 cpuUsPerOp=5.65 allocMb=178.9 allocBytesPerOp=895 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k contestant=reactor liveBytesPerInFlight=348 fork=2
+RESULT scenario=fanout-1k contestant=reactor rssHighWaterMb=348 fork=2
+RESULT scenario=fanout-1k contestant=pekko iteration=0 wallMs=2063.7 opsPerSec=96913 cpuMs=1740.0 cpuUsPerOp=8.70 allocMb=85.6 allocBytesPerOp=428 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=pekko iteration=1 wallMs=2069.6 opsPerSec=96639 cpuMs=1610.0 cpuUsPerOp=8.05 allocMb=85.6 allocBytesPerOp=428 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=pekko iteration=2 wallMs=2060.2 opsPerSec=97077 cpuMs=1980.0 cpuUsPerOp=9.90 allocMb=85.7 allocBytesPerOp=429 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=pekko iteration=3 wallMs=2066.8 opsPerSec=96769 cpuMs=1980.0 cpuUsPerOp=9.90 allocMb=85.8 allocBytesPerOp=429 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k contestant=pekko liveBytesPerInFlight=309 fork=1
+RESULT scenario=fanout-1k contestant=pekko rssHighWaterMb=389 fork=1
+RESULT scenario=fanout-1k contestant=pekko iteration=0 wallMs=2065.6 opsPerSec=96823 cpuMs=1610.0 cpuUsPerOp=8.05 allocMb=85.6 allocBytesPerOp=428 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=pekko iteration=1 wallMs=2063.8 opsPerSec=96907 cpuMs=1740.0 cpuUsPerOp=8.70 allocMb=85.7 allocBytesPerOp=428 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=pekko iteration=2 wallMs=2059.6 opsPerSec=97107 cpuMs=2060.0 cpuUsPerOp=10.30 allocMb=85.8 allocBytesPerOp=429 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=pekko iteration=3 wallMs=2057.0 opsPerSec=97227 cpuMs=1890.0 cpuUsPerOp=9.45 allocMb=85.7 allocBytesPerOp=429 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k contestant=pekko liveBytesPerInFlight=310 fork=2
+RESULT scenario=fanout-1k contestant=pekko rssHighWaterMb=389 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=0 wallMs=2079.5 opsPerSec=96178 cpuMs=1420.0 cpuUsPerOp=7.10 allocMb=186.9 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=1 wallMs=2082.1 opsPerSec=96057 cpuMs=1510.0 cpuUsPerOp=7.55 allocMb=193.8 allocBytesPerOp=969 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=2 wallMs=2066.0 opsPerSec=96805 cpuMs=1130.0 cpuUsPerOp=5.65 allocMb=193.6 allocBytesPerOp=968 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=3 wallMs=2121.1 opsPerSec=94291 cpuMs=1100.0 cpuUsPerOp=5.50 allocMb=192.1 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain liveBytesPerInFlight=1023 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain rssHighWaterMb=343 fork=1
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=0 wallMs=2098.6 opsPerSec=95300 cpuMs=1400.0 cpuUsPerOp=7.00 allocMb=193.8 allocBytesPerOp=969 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=1 wallMs=2072.4 opsPerSec=96505 cpuMs=1430.0 cpuUsPerOp=7.15 allocMb=193.8 allocBytesPerOp=969 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=2 wallMs=2076.3 opsPerSec=96327 cpuMs=1430.0 cpuUsPerOp=7.15 allocMb=192.2 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain iteration=3 wallMs=2085.1 opsPerSec=95919 cpuMs=1350.0 cpuUsPerOp=6.75 allocMb=192.2 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain liveBytesPerInFlight=771 fork=2
+RESULT scenario=fanout-1k-native contestant=vt-plain rssHighWaterMb=342 fork=2
+RESULT scenario=fanout-1k-native contestant=lark iteration=0 wallMs=2060.4 opsPerSec=97067 cpuMs=1490.0 cpuUsPerOp=7.45 allocMb=238.6 allocBytesPerOp=1193 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=lark iteration=1 wallMs=2056.4 opsPerSec=97256 cpuMs=1460.0 cpuUsPerOp=7.30 allocMb=238.7 allocBytesPerOp=1193 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=lark iteration=2 wallMs=2060.7 opsPerSec=97054 cpuMs=1380.0 cpuUsPerOp=6.90 allocMb=237.7 allocBytesPerOp=1188 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=lark iteration=3 wallMs=2065.7 opsPerSec=96818 cpuMs=1500.0 cpuUsPerOp=7.50 allocMb=236.6 allocBytesPerOp=1183 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=lark liveBytesPerInFlight=835 fork=1
+RESULT scenario=fanout-1k-native contestant=lark rssHighWaterMb=435 fork=1
+RESULT scenario=fanout-1k-native contestant=lark iteration=0 wallMs=2062.2 opsPerSec=96982 cpuMs=1220.0 cpuUsPerOp=6.10 allocMb=238.5 allocBytesPerOp=1193 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=lark iteration=1 wallMs=2057.0 opsPerSec=97230 cpuMs=1440.0 cpuUsPerOp=7.20 allocMb=238.9 allocBytesPerOp=1194 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=lark iteration=2 wallMs=2063.5 opsPerSec=96922 cpuMs=1670.0 cpuUsPerOp=8.35 allocMb=250.1 allocBytesPerOp=1251 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=lark iteration=3 wallMs=2060.0 opsPerSec=97089 cpuMs=1290.0 cpuUsPerOp=6.45 allocMb=246.6 allocBytesPerOp=1233 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=lark liveBytesPerInFlight=3297 fork=2
+RESULT scenario=fanout-1k-native contestant=lark rssHighWaterMb=449 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor iteration=0 wallMs=2038.6 opsPerSec=98108 cpuMs=2170.0 cpuUsPerOp=10.85 allocMb=166.0 allocBytesPerOp=830 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor iteration=1 wallMs=2033.9 opsPerSec=98334 cpuMs=2010.0 cpuUsPerOp=10.05 allocMb=165.4 allocBytesPerOp=827 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor iteration=2 wallMs=2037.2 opsPerSec=98174 cpuMs=1970.0 cpuUsPerOp=9.85 allocMb=167.7 allocBytesPerOp=838 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor iteration=3 wallMs=2035.5 opsPerSec=98258 cpuMs=1700.0 cpuUsPerOp=8.50 allocMb=169.4 allocBytesPerOp=847 gcCount=0 gcMs=0 maxOutstanding=1000 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor liveBytesPerInFlight=381 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor rssHighWaterMb=366 fork=1
+RESULT scenario=fanout-1k-native contestant=reactor iteration=0 wallMs=2036.5 opsPerSec=98209 cpuMs=2290.0 cpuUsPerOp=11.45 allocMb=163.1 allocBytesPerOp=815 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor iteration=1 wallMs=2045.0 opsPerSec=97798 cpuMs=1830.0 cpuUsPerOp=9.15 allocMb=169.2 allocBytesPerOp=846 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor iteration=2 wallMs=2052.9 opsPerSec=97424 cpuMs=1750.0 cpuUsPerOp=8.75 allocMb=167.6 allocBytesPerOp=838 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor iteration=3 wallMs=2036.4 opsPerSec=98210 cpuMs=1940.0 cpuUsPerOp=9.70 allocMb=167.3 allocBytesPerOp=837 gcCount=0 gcMs=0 maxOutstanding=1000 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor liveBytesPerInFlight=381 fork=2
+RESULT scenario=fanout-1k-native contestant=reactor rssHighWaterMb=371 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko iteration=0 wallMs=2468.5 opsPerSec=81022 cpuMs=820.0 cpuUsPerOp=4.10 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko iteration=1 wallMs=2465.6 opsPerSec=81116 cpuMs=840.0 cpuUsPerOp=4.20 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko iteration=2 wallMs=2479.9 opsPerSec=80647 cpuMs=780.0 cpuUsPerOp=3.90 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko iteration=3 wallMs=2464.9 opsPerSec=81140 cpuMs=930.0 cpuUsPerOp=4.65 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko liveBytesPerInFlight=309 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko rssHighWaterMb=390 fork=1
+RESULT scenario=fanout-1k-native contestant=pekko iteration=0 wallMs=2461.7 opsPerSec=81246 cpuMs=930.0 cpuUsPerOp=4.65 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko iteration=1 wallMs=2465.7 opsPerSec=81113 cpuMs=820.0 cpuUsPerOp=4.10 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko iteration=2 wallMs=2467.7 opsPerSec=81049 cpuMs=760.0 cpuUsPerOp=3.80 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko iteration=3 wallMs=2459.6 opsPerSec=81312 cpuMs=740.0 cpuUsPerOp=3.70 allocMb=107.2 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=1001 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko liveBytesPerInFlight=309 fork=2
+RESULT scenario=fanout-1k-native contestant=pekko rssHighWaterMb=389 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain iteration=0 wallMs=4018.6 opsPerSec=248846 cpuMs=12160.0 cpuUsPerOp=12.16 allocMb=1215.1 allocBytesPerOp=1215 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain iteration=1 wallMs=3119.5 opsPerSec=320564 cpuMs=9630.0 cpuUsPerOp=9.63 allocMb=1221.6 allocBytesPerOp=1222 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain iteration=2 wallMs=4139.1 opsPerSec=241596 cpuMs=12630.0 cpuUsPerOp=12.63 allocMb=1236.3 allocBytesPerOp=1236 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain iteration=3 wallMs=4079.5 opsPerSec=245129 cpuMs=12500.0 cpuUsPerOp=12.50 allocMb=1234.9 allocBytesPerOp=1235 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain liveBytesPerInFlight=663 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain rssHighWaterMb=1741 fork=1
+RESULT scenario=fanout-10k contestant=vt-plain iteration=0 wallMs=4193.7 opsPerSec=238454 cpuMs=12620.0 cpuUsPerOp=12.62 allocMb=1221.3 allocBytesPerOp=1221 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain iteration=1 wallMs=3294.4 opsPerSec=303543 cpuMs=9820.0 cpuUsPerOp=9.82 allocMb=1222.8 allocBytesPerOp=1223 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain iteration=2 wallMs=3331.3 opsPerSec=300187 cpuMs=9960.0 cpuUsPerOp=9.96 allocMb=1218.9 allocBytesPerOp=1219 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain iteration=3 wallMs=4393.7 opsPerSec=227599 cpuMs=13380.0 cpuUsPerOp=13.38 allocMb=1224.7 allocBytesPerOp=1225 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain liveBytesPerInFlight=1246 fork=2
+RESULT scenario=fanout-10k contestant=vt-plain rssHighWaterMb=1982 fork=2
+RESULT scenario=fanout-10k contestant=lark iteration=0 wallMs=3042.7 opsPerSec=328661 cpuMs=8910.0 cpuUsPerOp=8.91 allocMb=1568.4 allocBytesPerOp=1568 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=lark iteration=1 wallMs=3046.5 opsPerSec=328251 cpuMs=9200.0 cpuUsPerOp=9.20 allocMb=1565.0 allocBytesPerOp=1565 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=lark iteration=2 wallMs=3894.7 opsPerSec=256760 cpuMs=11290.0 cpuUsPerOp=11.29 allocMb=1459.9 allocBytesPerOp=1460 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=lark iteration=3 wallMs=3274.4 opsPerSec=305402 cpuMs=9650.0 cpuUsPerOp=9.65 allocMb=1448.8 allocBytesPerOp=1449 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=lark liveBytesPerInFlight=1290 fork=1
+RESULT scenario=fanout-10k contestant=lark rssHighWaterMb=2358 fork=1
+RESULT scenario=fanout-10k contestant=lark iteration=0 wallMs=3366.0 opsPerSec=297088 cpuMs=10140.0 cpuUsPerOp=10.14 allocMb=1421.5 allocBytesPerOp=1421 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=lark iteration=1 wallMs=3043.8 opsPerSec=328534 cpuMs=8730.0 cpuUsPerOp=8.73 allocMb=1421.5 allocBytesPerOp=1422 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=lark iteration=2 wallMs=3221.3 opsPerSec=310430 cpuMs=9310.0 cpuUsPerOp=9.31 allocMb=1397.1 allocBytesPerOp=1397 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=lark iteration=3 wallMs=3189.0 opsPerSec=313581 cpuMs=9330.0 cpuUsPerOp=9.33 allocMb=1378.4 allocBytesPerOp=1378 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=lark liveBytesPerInFlight=964 fork=2
+RESULT scenario=fanout-10k contestant=lark rssHighWaterMb=2051 fork=2
+RESULT scenario=fanout-10k contestant=reactor iteration=0 wallMs=2059.5 opsPerSec=485562 cpuMs=2760.0 cpuUsPerOp=2.76 allocMb=946.6 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k contestant=reactor iteration=1 wallMs=1670.2 opsPerSec=598735 cpuMs=2130.0 cpuUsPerOp=2.13 allocMb=946.3 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k contestant=reactor iteration=2 wallMs=2011.0 opsPerSec=497275 cpuMs=2620.0 cpuUsPerOp=2.62 allocMb=946.4 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k contestant=reactor iteration=3 wallMs=1793.3 opsPerSec=557646 cpuMs=2330.0 cpuUsPerOp=2.33 allocMb=946.4 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k contestant=reactor liveBytesPerInFlight=319 fork=1
+RESULT scenario=fanout-10k contestant=reactor rssHighWaterMb=1054 fork=1
+RESULT scenario=fanout-10k contestant=reactor iteration=0 wallMs=2392.5 opsPerSec=417981 cpuMs=3500.0 cpuUsPerOp=3.50 allocMb=946.4 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k contestant=reactor iteration=1 wallMs=1808.9 opsPerSec=552831 cpuMs=2320.0 cpuUsPerOp=2.32 allocMb=946.4 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k contestant=reactor iteration=2 wallMs=1836.2 opsPerSec=544594 cpuMs=2390.0 cpuUsPerOp=2.39 allocMb=946.4 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k contestant=reactor iteration=3 wallMs=1808.4 opsPerSec=552972 cpuMs=2370.0 cpuUsPerOp=2.37 allocMb=945.9 allocBytesPerOp=946 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k contestant=reactor liveBytesPerInFlight=310 fork=2
+RESULT scenario=fanout-10k contestant=reactor rssHighWaterMb=1053 fork=2
+RESULT scenario=fanout-10k contestant=pekko iteration=0 wallMs=2210.2 opsPerSec=452451 cpuMs=3840.0 cpuUsPerOp=3.84 allocMb=425.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=pekko iteration=1 wallMs=2692.3 opsPerSec=371432 cpuMs=4870.0 cpuUsPerOp=4.87 allocMb=425.6 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=pekko iteration=2 wallMs=2198.9 opsPerSec=454770 cpuMs=3840.0 cpuUsPerOp=3.84 allocMb=425.4 allocBytesPerOp=425 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=pekko iteration=3 wallMs=1942.2 opsPerSec=514869 cpuMs=3240.0 cpuUsPerOp=3.24 allocMb=425.5 allocBytesPerOp=425 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k contestant=pekko liveBytesPerInFlight=278 fork=1
+RESULT scenario=fanout-10k contestant=pekko rssHighWaterMb=651 fork=1
+RESULT scenario=fanout-10k contestant=pekko iteration=0 wallMs=2374.0 opsPerSec=421233 cpuMs=4300.0 cpuUsPerOp=4.30 allocMb=425.4 allocBytesPerOp=425 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=pekko iteration=1 wallMs=2268.0 opsPerSec=440921 cpuMs=3980.0 cpuUsPerOp=3.98 allocMb=425.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=pekko iteration=2 wallMs=2466.1 opsPerSec=405503 cpuMs=4330.0 cpuUsPerOp=4.33 allocMb=425.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=pekko iteration=3 wallMs=2546.4 opsPerSec=392713 cpuMs=4480.0 cpuUsPerOp=4.48 allocMb=425.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k contestant=pekko liveBytesPerInFlight=299 fork=2
+RESULT scenario=fanout-10k contestant=pekko rssHighWaterMb=608 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=0 wallMs=1546.9 opsPerSec=646461 cpuMs=5240.0 cpuUsPerOp=5.24 allocMb=928.5 allocBytesPerOp=928 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=1 wallMs=1255.8 opsPerSec=796320 cpuMs=4590.0 cpuUsPerOp=4.59 allocMb=928.6 allocBytesPerOp=929 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=2 wallMs=1166.3 opsPerSec=857402 cpuMs=3730.0 cpuUsPerOp=3.73 allocMb=928.6 allocBytesPerOp=929 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=3 wallMs=1202.5 opsPerSec=831584 cpuMs=3950.0 cpuUsPerOp=3.95 allocMb=928.6 allocBytesPerOp=929 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain liveBytesPerInFlight=725 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain rssHighWaterMb=1031 fork=1
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=0 wallMs=1260.2 opsPerSec=793529 cpuMs=3660.0 cpuUsPerOp=3.66 allocMb=856.4 allocBytesPerOp=856 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=1 wallMs=1117.8 opsPerSec=894586 cpuMs=3380.0 cpuUsPerOp=3.38 allocMb=856.5 allocBytesPerOp=857 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=2 wallMs=1302.5 opsPerSec=767734 cpuMs=4710.0 cpuUsPerOp=4.71 allocMb=856.7 allocBytesPerOp=857 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain iteration=3 wallMs=1233.2 opsPerSec=810869 cpuMs=4270.0 cpuUsPerOp=4.27 allocMb=856.6 allocBytesPerOp=857 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain liveBytesPerInFlight=1596 fork=2
+RESULT scenario=fanout-10k-native contestant=vt-plain rssHighWaterMb=964 fork=2
+RESULT scenario=fanout-10k-native contestant=lark iteration=0 wallMs=1187.7 opsPerSec=841961 cpuMs=3890.0 cpuUsPerOp=3.89 allocMb=1147.7 allocBytesPerOp=1148 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=lark iteration=1 wallMs=1304.7 opsPerSec=766467 cpuMs=4660.0 cpuUsPerOp=4.66 allocMb=1141.0 allocBytesPerOp=1141 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=lark iteration=2 wallMs=1332.1 opsPerSec=750696 cpuMs=4850.0 cpuUsPerOp=4.85 allocMb=1139.5 allocBytesPerOp=1140 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=lark iteration=3 wallMs=1165.9 opsPerSec=857698 cpuMs=3910.0 cpuUsPerOp=3.91 allocMb=1145.4 allocBytesPerOp=1145 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=lark liveBytesPerInFlight=1022 fork=1
+RESULT scenario=fanout-10k-native contestant=lark rssHighWaterMb=1385 fork=1
+RESULT scenario=fanout-10k-native contestant=lark iteration=0 wallMs=1318.4 opsPerSec=758487 cpuMs=4800.0 cpuUsPerOp=4.80 allocMb=1216.4 allocBytesPerOp=1216 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=lark iteration=1 wallMs=1299.2 opsPerSec=769681 cpuMs=4810.0 cpuUsPerOp=4.81 allocMb=1217.3 allocBytesPerOp=1217 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=lark iteration=2 wallMs=1246.5 opsPerSec=802226 cpuMs=4200.0 cpuUsPerOp=4.20 allocMb=1181.9 allocBytesPerOp=1182 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=lark iteration=3 wallMs=1318.6 opsPerSec=758352 cpuMs=4620.0 cpuUsPerOp=4.62 allocMb=1173.3 allocBytesPerOp=1173 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=lark liveBytesPerInFlight=806 fork=2
+RESULT scenario=fanout-10k-native contestant=lark rssHighWaterMb=1450 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor iteration=0 wallMs=3511.9 opsPerSec=284747 cpuMs=5910.0 cpuUsPerOp=5.91 allocMb=960.2 allocBytesPerOp=960 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor iteration=1 wallMs=3050.8 opsPerSec=327788 cpuMs=5190.0 cpuUsPerOp=5.19 allocMb=960.6 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor iteration=2 wallMs=4044.4 opsPerSec=247255 cpuMs=6190.0 cpuUsPerOp=6.19 allocMb=957.4 allocBytesPerOp=957 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor iteration=3 wallMs=3769.8 opsPerSec=265268 cpuMs=5940.0 cpuUsPerOp=5.94 allocMb=958.8 allocBytesPerOp=959 gcCount=0 gcMs=0 maxOutstanding=10000 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor liveBytesPerInFlight=355 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor rssHighWaterMb=1085 fork=1
+RESULT scenario=fanout-10k-native contestant=reactor iteration=0 wallMs=3245.3 opsPerSec=308135 cpuMs=5280.0 cpuUsPerOp=5.28 allocMb=960.9 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor iteration=1 wallMs=2970.7 opsPerSec=336616 cpuMs=4780.0 cpuUsPerOp=4.78 allocMb=960.1 allocBytesPerOp=960 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor iteration=2 wallMs=2778.1 opsPerSec=359955 cpuMs=4780.0 cpuUsPerOp=4.78 allocMb=961.4 allocBytesPerOp=961 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor iteration=3 wallMs=3290.8 opsPerSec=303878 cpuMs=5360.0 cpuUsPerOp=5.36 allocMb=960.0 allocBytesPerOp=960 gcCount=0 gcMs=0 maxOutstanding=10000 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor liveBytesPerInFlight=354 fork=2
+RESULT scenario=fanout-10k-native contestant=reactor rssHighWaterMb=1271 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko iteration=0 wallMs=1390.7 opsPerSec=719062 cpuMs=3400.0 cpuUsPerOp=3.40 allocMb=536.1 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko iteration=1 wallMs=1426.0 opsPerSec=701278 cpuMs=2950.0 cpuUsPerOp=2.95 allocMb=536.0 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko iteration=2 wallMs=1406.2 opsPerSec=711113 cpuMs=3060.0 cpuUsPerOp=3.06 allocMb=536.0 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko iteration=3 wallMs=1541.1 opsPerSec=648889 cpuMs=2710.0 cpuUsPerOp=2.71 allocMb=536.0 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko liveBytesPerInFlight=291 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko rssHighWaterMb=705 fork=1
+RESULT scenario=fanout-10k-native contestant=pekko iteration=0 wallMs=1325.1 opsPerSec=754665 cpuMs=2560.0 cpuUsPerOp=2.56 allocMb=536.1 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko iteration=1 wallMs=1363.5 opsPerSec=733425 cpuMs=3210.0 cpuUsPerOp=3.21 allocMb=536.0 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko iteration=2 wallMs=1317.9 opsPerSec=758772 cpuMs=2490.0 cpuUsPerOp=2.49 allocMb=536.0 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko iteration=3 wallMs=1400.2 opsPerSec=714199 cpuMs=3060.0 cpuUsPerOp=3.06 allocMb=536.1 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=10001 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko liveBytesPerInFlight=269 fork=2
+RESULT scenario=fanout-10k-native contestant=pekko rssHighWaterMb=795 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain iteration=0 wallMs=9638.6 opsPerSec=207500 cpuMs=30340.0 cpuUsPerOp=15.17 allocMb=2548.0 allocBytesPerOp=1274 gcCount=6 gcMs=575 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain iteration=1 wallMs=10313.6 opsPerSec=193919 cpuMs=31310.0 cpuUsPerOp=15.66 allocMb=2566.6 allocBytesPerOp=1283 gcCount=4 gcMs=366 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain iteration=2 wallMs=10243.9 opsPerSec=195238 cpuMs=30830.0 cpuUsPerOp=15.42 allocMb=2576.2 allocBytesPerOp=1288 gcCount=2 gcMs=132 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain iteration=3 wallMs=9715.2 opsPerSec=205863 cpuMs=30440.0 cpuUsPerOp=15.22 allocMb=2555.4 allocBytesPerOp=1278 gcCount=6 gcMs=523 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain liveBytesPerInFlight=1115 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain rssHighWaterMb=3468 fork=1
+RESULT scenario=inflight-100k contestant=vt-plain iteration=0 wallMs=9561.8 opsPerSec=209166 cpuMs=29960.0 cpuUsPerOp=14.98 allocMb=2363.9 allocBytesPerOp=1182 gcCount=7 gcMs=595 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain iteration=1 wallMs=8793.6 opsPerSec=227438 cpuMs=27190.0 cpuUsPerOp=13.60 allocMb=2366.9 allocBytesPerOp=1183 gcCount=6 gcMs=533 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain iteration=2 wallMs=9619.4 opsPerSec=207913 cpuMs=29660.0 cpuUsPerOp=14.83 allocMb=2358.7 allocBytesPerOp=1179 gcCount=4 gcMs=414 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain iteration=3 wallMs=8660.6 opsPerSec=230930 cpuMs=26270.0 cpuUsPerOp=13.14 allocMb=2382.2 allocBytesPerOp=1191 gcCount=3 gcMs=221 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain liveBytesPerInFlight=970 fork=2
+RESULT scenario=inflight-100k contestant=vt-plain rssHighWaterMb=3198 fork=2
+RESULT scenario=inflight-100k contestant=lark iteration=0 wallMs=9976.2 opsPerSec=200476 cpuMs=29500.0 cpuUsPerOp=14.75 allocMb=2942.1 allocBytesPerOp=1471 gcCount=10 gcMs=855 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=lark iteration=1 wallMs=10600.2 opsPerSec=188676 cpuMs=29450.0 cpuUsPerOp=14.73 allocMb=2955.2 allocBytesPerOp=1478 gcCount=3 gcMs=231 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=lark iteration=2 wallMs=8993.8 opsPerSec=222376 cpuMs=24940.0 cpuUsPerOp=12.47 allocMb=2999.6 allocBytesPerOp=1500 gcCount=2 gcMs=161 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=lark iteration=3 wallMs=10085.6 opsPerSec=198303 cpuMs=29540.0 cpuUsPerOp=14.77 allocMb=3093.3 allocBytesPerOp=1547 gcCount=4 gcMs=498 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=lark liveBytesPerInFlight=1136 fork=1
+RESULT scenario=inflight-100k contestant=lark rssHighWaterMb=4239 fork=1
+RESULT scenario=inflight-100k contestant=lark iteration=0 wallMs=9009.3 opsPerSec=221992 cpuMs=27770.0 cpuUsPerOp=13.89 allocMb=4007.2 allocBytesPerOp=2004 gcCount=11 gcMs=993 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=lark iteration=1 wallMs=9875.2 opsPerSec=202528 cpuMs=28230.0 cpuUsPerOp=14.12 allocMb=4119.0 allocBytesPerOp=2059 gcCount=3 gcMs=261 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=lark iteration=2 wallMs=9568.4 opsPerSec=209021 cpuMs=26280.0 cpuUsPerOp=13.14 allocMb=2944.8 allocBytesPerOp=1472 gcCount=1 gcMs=78 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=lark iteration=3 wallMs=9180.6 opsPerSec=217851 cpuMs=25260.0 cpuUsPerOp=12.63 allocMb=2911.6 allocBytesPerOp=1456 gcCount=1 gcMs=72 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=lark liveBytesPerInFlight=999 fork=2
+RESULT scenario=inflight-100k contestant=lark rssHighWaterMb=4242 fork=2
+RESULT scenario=inflight-100k contestant=reactor iteration=0 wallMs=3434.1 opsPerSec=582397 cpuMs=7740.0 cpuUsPerOp=3.87 allocMb=1895.0 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=51440 fork=1
+RESULT scenario=inflight-100k contestant=reactor iteration=1 wallMs=3971.9 opsPerSec=503540 cpuMs=8870.0 cpuUsPerOp=4.44 allocMb=1894.6 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=63032 fork=1
+RESULT scenario=inflight-100k contestant=reactor iteration=2 wallMs=3937.5 opsPerSec=507938 cpuMs=8730.0 cpuUsPerOp=4.37 allocMb=1894.8 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=65111 fork=1
+RESULT scenario=inflight-100k contestant=reactor iteration=3 wallMs=4079.3 opsPerSec=490280 cpuMs=9070.0 cpuUsPerOp=4.54 allocMb=1894.7 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=64920 fork=1
+RESULT scenario=inflight-100k contestant=reactor liveBytesPerInFlight=NaN fork=1
+RESULT scenario=inflight-100k contestant=reactor rssHighWaterMb=2603 fork=1
+RESULT scenario=inflight-100k contestant=reactor iteration=0 wallMs=3524.2 opsPerSec=567507 cpuMs=7830.0 cpuUsPerOp=3.92 allocMb=1894.8 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=57315 fork=2
+RESULT scenario=inflight-100k contestant=reactor iteration=1 wallMs=5691.5 opsPerSec=351403 cpuMs=12740.0 cpuUsPerOp=6.37 allocMb=1896.4 allocBytesPerOp=948 gcCount=0 gcMs=0 maxOutstanding=53151 fork=2
+RESULT scenario=inflight-100k contestant=reactor iteration=2 wallMs=3696.0 opsPerSec=541120 cpuMs=8240.0 cpuUsPerOp=4.12 allocMb=1894.9 allocBytesPerOp=947 gcCount=0 gcMs=0 maxOutstanding=44654 fork=2
+RESULT scenario=inflight-100k contestant=reactor iteration=3 wallMs=4740.9 opsPerSec=421861 cpuMs=10580.0 cpuUsPerOp=5.29 allocMb=1895.0 allocBytesPerOp=948 gcCount=0 gcMs=0 maxOutstanding=50204 fork=2
+RESULT scenario=inflight-100k contestant=reactor liveBytesPerInFlight=NaN fork=2
+RESULT scenario=inflight-100k contestant=reactor rssHighWaterMb=2598 fork=2
+RESULT scenario=inflight-100k contestant=pekko iteration=0 wallMs=5674.8 opsPerSec=352438 cpuMs=10170.0 cpuUsPerOp=5.09 allocMb=852.0 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=pekko iteration=1 wallMs=4384.0 opsPerSec=456204 cpuMs=7810.0 cpuUsPerOp=3.91 allocMb=851.4 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=pekko iteration=2 wallMs=3677.5 opsPerSec=543849 cpuMs=6510.0 cpuUsPerOp=3.26 allocMb=851.0 allocBytesPerOp=425 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=pekko iteration=3 wallMs=4483.6 opsPerSec=446072 cpuMs=7870.0 cpuUsPerOp=3.94 allocMb=851.4 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k contestant=pekko liveBytesPerInFlight=179 fork=1
+RESULT scenario=inflight-100k contestant=pekko rssHighWaterMb=1022 fork=1
+RESULT scenario=inflight-100k contestant=pekko iteration=0 wallMs=5263.8 opsPerSec=379953 cpuMs=9760.0 cpuUsPerOp=4.88 allocMb=852.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=pekko iteration=1 wallMs=6356.7 opsPerSec=314630 cpuMs=11360.0 cpuUsPerOp=5.68 allocMb=852.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=pekko iteration=2 wallMs=4361.8 opsPerSec=458527 cpuMs=7750.0 cpuUsPerOp=3.88 allocMb=851.3 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=pekko iteration=3 wallMs=5187.0 opsPerSec=385578 cpuMs=9350.0 cpuUsPerOp=4.68 allocMb=851.5 allocBytesPerOp=426 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k contestant=pekko liveBytesPerInFlight=210 fork=2
+RESULT scenario=inflight-100k contestant=pekko rssHighWaterMb=1021 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=0 wallMs=2024.4 opsPerSec=987932 cpuMs=7840.0 cpuUsPerOp=3.92 allocMb=2153.7 allocBytesPerOp=1077 gcCount=1 gcMs=9 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=1 wallMs=1911.1 opsPerSec=1046491 cpuMs=7320.0 cpuUsPerOp=3.66 allocMb=2147.4 allocBytesPerOp=1074 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=2 wallMs=1777.9 opsPerSec=1124931 cpuMs=6930.0 cpuUsPerOp=3.47 allocMb=2147.1 allocBytesPerOp=1074 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=3 wallMs=1326.1 opsPerSec=1508180 cpuMs=5100.0 cpuUsPerOp=2.55 allocMb=2147.4 allocBytesPerOp=1074 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain liveBytesPerInFlight=723 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain rssHighWaterMb=2463 fork=1
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=0 wallMs=3335.6 opsPerSec=599596 cpuMs=11830.0 cpuUsPerOp=5.92 allocMb=1793.3 allocBytesPerOp=897 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=1 wallMs=1674.9 opsPerSec=1194101 cpuMs=6530.0 cpuUsPerOp=3.27 allocMb=1795.4 allocBytesPerOp=898 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=2 wallMs=1691.1 opsPerSec=1182644 cpuMs=6680.0 cpuUsPerOp=3.34 allocMb=1795.1 allocBytesPerOp=898 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain iteration=3 wallMs=1890.5 opsPerSec=1057940 cpuMs=7430.0 cpuUsPerOp=3.72 allocMb=1794.9 allocBytesPerOp=897 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain liveBytesPerInFlight=720 fork=2
+RESULT scenario=inflight-100k-native contestant=vt-plain rssHighWaterMb=1917 fork=2
+RESULT scenario=inflight-100k-native contestant=lark iteration=0 wallMs=2057.2 opsPerSec=972183 cpuMs=8020.0 cpuUsPerOp=4.01 allocMb=2559.7 allocBytesPerOp=1280 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=lark iteration=1 wallMs=2227.9 opsPerSec=897692 cpuMs=8740.0 cpuUsPerOp=4.37 allocMb=2560.0 allocBytesPerOp=1280 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=lark iteration=2 wallMs=2244.9 opsPerSec=890919 cpuMs=8660.0 cpuUsPerOp=4.33 allocMb=2344.7 allocBytesPerOp=1172 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=lark iteration=3 wallMs=2172.7 opsPerSec=920503 cpuMs=8450.0 cpuUsPerOp=4.23 allocMb=2334.0 allocBytesPerOp=1167 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=lark liveBytesPerInFlight=876 fork=1
+RESULT scenario=inflight-100k-native contestant=lark rssHighWaterMb=2746 fork=1
+RESULT scenario=inflight-100k-native contestant=lark iteration=0 wallMs=2065.0 opsPerSec=968520 cpuMs=8050.0 cpuUsPerOp=4.03 allocMb=2494.1 allocBytesPerOp=1247 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=lark iteration=1 wallMs=2027.1 opsPerSec=986632 cpuMs=7910.0 cpuUsPerOp=3.96 allocMb=2498.4 allocBytesPerOp=1249 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=lark iteration=2 wallMs=1574.4 opsPerSec=1270316 cpuMs=6130.0 cpuUsPerOp=3.07 allocMb=2567.0 allocBytesPerOp=1284 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=lark iteration=3 wallMs=2421.5 opsPerSec=825920 cpuMs=9420.0 cpuUsPerOp=4.71 allocMb=2592.6 allocBytesPerOp=1296 gcCount=1 gcMs=226 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=lark liveBytesPerInFlight=555 fork=2
+RESULT scenario=inflight-100k-native contestant=lark rssHighWaterMb=2845 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=0 wallMs=164149.5 opsPerSec=12184 cpuMs=170170.0 cpuUsPerOp=85.09 allocMb=1868.0 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=1 wallMs=163081.3 opsPerSec=12264 cpuMs=168880.0 cpuUsPerOp=84.44 allocMb=1868.0 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=2 wallMs=65533.1 opsPerSec=30519 cpuMs=70310.0 cpuUsPerOp=35.16 allocMb=1896.0 allocBytesPerOp=948 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=3 wallMs=9218.7 opsPerSec=216950 cpuMs=12550.0 cpuUsPerOp=6.28 allocMb=1923.6 allocBytesPerOp=962 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor liveBytesPerInFlight=342 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor rssHighWaterMb=2608 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=0 wallMs=165601.4 opsPerSec=12077 cpuMs=171900.0 cpuUsPerOp=85.95 allocMb=1868.5 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=1 wallMs=167019.6 opsPerSec=11975 cpuMs=173170.0 cpuUsPerOp=86.59 allocMb=1868.4 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=2 wallMs=162061.6 opsPerSec=12341 cpuMs=168430.0 cpuUsPerOp=84.22 allocMb=1868.1 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=3 wallMs=164753.2 opsPerSec=12139 cpuMs=170800.0 cpuUsPerOp=85.40 allocMb=1868.3 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor liveBytesPerInFlight=342 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor rssHighWaterMb=2104 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=0 wallMs=1827.2 opsPerSec=1094558 cpuMs=6180.0 cpuUsPerOp=3.09 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=1 wallMs=1741.7 opsPerSec=1148290 cpuMs=5870.0 cpuUsPerOp=2.94 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=2 wallMs=2051.1 opsPerSec=975102 cpuMs=6980.0 cpuUsPerOp=3.49 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=3 wallMs=2091.3 opsPerSec=956361 cpuMs=7060.0 cpuUsPerOp=3.53 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko liveBytesPerInFlight=146 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko rssHighWaterMb=1222 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=0 wallMs=1773.5 opsPerSec=1127744 cpuMs=6180.0 cpuUsPerOp=3.09 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=1 wallMs=1381.8 opsPerSec=1447396 cpuMs=4530.0 cpuUsPerOp=2.27 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=2 wallMs=1892.8 opsPerSec=1056660 cpuMs=6580.0 cpuUsPerOp=3.29 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=3 wallMs=1981.7 opsPerSec=1009213 cpuMs=6740.0 cpuUsPerOp=3.37 allocMb=1072.9 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko liveBytesPerInFlight=153 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko rssHighWaterMb=1332 fork=2

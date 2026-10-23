@@ -1,0 +1,85 @@
+Picked up JAVA_TOOL_OPTIONS: 
+===== vt-plain
+java.util.concurrent.ExecutionException: java.io.IOException: connection reset
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:124)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:193)
+	at bvr.StackTracesKt.handleRequestVt(StackTraces.kt:61)
+	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:28)
+	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:28)
+	at bvr.StackTracesKt.stackTraces(StackTraces.kt:36)
+	at bvr.MainKt.main(Main.kt:15)
+Caused by: java.io.IOException: connection reset
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:49)
+	at bvr.StackTracesKt.handleRequestVt$lambda$0$0$0(StackTraces.kt:59)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ThreadPerTaskExecutor$ThreadBoundFuture.run(ThreadPerTaskExecutor.java:323)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+
+----- names handleRequest: true, names fetchOrder: true, lines: 15
+===== lark
+2026-10-22T23:19:24.967080484Z ERROR lark-stream: mapPar died on 3, built at StackTraces.kt:66: java.io.IOException: connection reset
+java.io.IOException: connection reset
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:49)
+	at bvr.StackTracesKt.handleRequestLark$lambda$0(StackTraces.kt:66)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:144)
+	at io.github.matthewjones372.lark.stream.DefectKt.guard(Defect.kt:46)
+	at io.github.matthewjones372.lark.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:150)
+	at io.github.matthewjones372.lark.stream.InFlight._init_$lambda$0(Window.kt:93)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapPar died on 3, built at StackTraces.kt:66
+java.io.IOException: connection reset
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:49)
+	at bvr.StackTracesKt.handleRequestLark$lambda$0(StackTraces.kt:66)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:144)
+	at io.github.matthewjones372.lark.stream.DefectKt.guard(Defect.kt:46)
+	at io.github.matthewjones372.lark.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:150)
+	at io.github.matthewjones372.lark.stream.InFlight._init_$lambda$0(Window.kt:93)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapPar died on 3, built at StackTraces.kt:66
+
+----- names handleRequest: true, names fetchOrder: true, lines: 11
+===== reactor
+java.lang.IllegalStateException: connection reset
+	at bvr.FakeIo.failing$lambda$0(Harness.kt:27)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:309)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:104)
+		at reactor.core.publisher.Mono.block(Mono.java:1773)
+		at bvr.StackTracesKt.handleRequestReactor(StackTraces.kt:77)
+		at bvr.StackTracesKt$stackTraces$handlers$3.invoke(StackTraces.kt:30)
+		at bvr.StackTracesKt$stackTraces$handlers$3.invoke(StackTraces.kt:30)
+		at bvr.StackTracesKt.stackTraces(StackTraces.kt:36)
+		at bvr.MainKt.main(Main.kt:15)
+
+----- names handleRequest: true, names fetchOrder: false, lines: 17
+===== pekko
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.apache.pekko.util.Unsafe (file:/home/user/blocking-vs-reactive/build/install/blocking-vs-reactive/lib/pekko-actor_2.13-1.2.1.jar)
+WARNING: Please consider reporting this to the maintainers of class org.apache.pekko.util.Unsafe
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+java.util.concurrent.CompletionException: java.lang.IllegalStateException: connection reset
+	at java.base/java.util.concurrent.CompletableFuture.wrapInCompletionException(CompletableFuture.java:323)
+	at java.base/java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:457)
+	at java.base/java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2139)
+	at bvr.StackTracesKt.handleRequestPekko(StackTraces.kt:81)
+	at bvr.StackTracesKt$stackTraces$handlers$4.invoke(StackTraces.kt:31)
+	at bvr.StackTracesKt$stackTraces$handlers$4.invoke(StackTraces.kt:31)
+	at bvr.StackTracesKt.stackTraces(StackTraces.kt:36)
+	at bvr.MainKt.main(Main.kt:15)
+Caused by: java.lang.IllegalStateException: connection reset
+	at bvr.FakeIo.failing$lambda$0(Harness.kt:27)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:309)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+----- names handleRequest: true, names fetchOrder: false, lines: 18
