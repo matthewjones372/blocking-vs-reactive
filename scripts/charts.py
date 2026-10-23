@@ -28,6 +28,18 @@ for line in (root / "results/io.txt").read_text().splitlines():
                 pass
 
 
+# The real-network scenario; a run under other scheduler settings is filed as `<contestant>@<config>`.
+net_file = root / "results/net.txt"
+for line in (net_file.read_text().splitlines() if net_file.exists() else []):
+    if not line.startswith("RESULT"):
+        continue
+    kv = dict(re.findall(r"(\w+)=(\S+)", line))
+    who = kv["contestant"] + (f"@{kv['config']}" if "config" in kv else "")
+    for k, v in kv.items():
+        if k not in ("scenario", "contestant", "iteration", "fork", "config"):
+            rows[(kv["scenario"], who)][k].append(float(v))
+
+
 def med(scenario, contestant, metric):
     values = [v for v in rows[(scenario, contestant)].get(metric, []) if not math.isnan(v)]
     return statistics.median(values) if values else None
@@ -306,5 +318,59 @@ for y, label, v in ends:
     svg(W, H, body, "Throughput as calls in flight grow",
         "Ops per second at 1k, 10k and 100k calls in flight for Lark mapAsync, Reactor, Pekko, Lark mapPar and "
         "plain virtual threads"))
+
+# The real network: HTTP/1.1 over loopback to a server in its own JVM, on its own core.
+NET = [
+    ("lark-async", "Lark mapAsync, JDK client", "lark"),
+    ("lark", "Lark mapPar, JDK client", "lark"),
+    ("lark-socket", "Lark mapPar, socket", "lark"),
+    ("reactor-netty", "Reactor Netty", "reactor"),
+    ("reactor-jdk", "Reactor, JDK client", "reactor"),
+    ("pekko", "Pekko, JDK client", "pekko"),
+    ("vt-plain", "Virtual threads, JDK client", "vt"),
+    ("vt-socket", "Virtual threads, socket", "vt"),
+]
+if any(s == "net-1k" for s, _ in rows):
+    def net_items(scenario, metric):
+        return [(label, med(scenario, key, metric), cls) for key, label, cls in NET]
+    us = lambda v: f"{v:.1f} µs"
+    panels(
+        "net.svg",
+        "Real network",
+        "Throughput and CPU per call for 16, 1,000 and 10,000 HTTP calls in flight over loopback, each answered after "
+        "10 ms by a server on its own core",
+        [[dict(title="CPU per call, 16 in flight", subtitle="µs of client process CPU per call, lower is better",
+               items=net_items("net-16", "cpuUsPerOp"), fmt=us),
+          dict(title="Throughput, 16 in flight", subtitle="ops/s, higher is better (ceiling 1.6k)",
+               items=net_items("net-16", "opsPerSec"))],
+         [dict(title="CPU per call, 1,000 in flight", subtitle="µs of client process CPU per call, lower is better",
+               items=net_items("net-1k", "cpuUsPerOp"), fmt=us),
+          dict(title="Throughput, 1,000 in flight", subtitle="ops/s, higher is better (ceiling 100k; server's lower)",
+               items=net_items("net-1k", "opsPerSec"))],
+         [dict(title="CPU per call, 10,000 in flight", subtitle="µs of client process CPU per call, lower is better",
+               items=net_items("net-10k", "cpuUsPerOp"), fmt=us),
+          dict(title="Throughput, 10,000 in flight", subtitle="ops/s, higher is better (ceiling 1M; server's lower)",
+               items=net_items("net-10k", "opsPerSec"))]],
+        headline="Real sockets: HTTP/1.1 over loopback, 10 ms answers",
+    )
+
+    # Scheduler settings, for the blocking contestants: one panel per contestant and level, one bar per setting.
+    settings = [("", "default"), ("@parallelism-2", "parallelism=2"), ("@poller-1", "pollerMode=1"),
+                ("@poller-2", "pollerMode=2")]
+    blocking = [("vt-plain", "Virtual threads, JDK client", "vt"), ("lark", "Lark mapPar, JDK client", "lark"),
+                ("vt-socket", "Virtual threads, socket", "vt"), ("lark-socket", "Lark mapPar, socket", "lark")]
+    grid = []
+    for key, label, cls in blocking:
+        grid.append([dict(title=f"{label}, {n}", subtitle="µs of client CPU per call, lower is better",
+                          items=[(name, med(level, key + suffix, "cpuUsPerOp"), cls) for suffix, name in settings],
+                          fmt=us)
+                     for level, n in (("net-1k", "1,000 in flight"), ("net-10k", "10,000 in flight"))])
+    panels(
+        "net-scheduler.svg",
+        "Scheduler settings on the real network",
+        "CPU per call for the blocking contestants under the default scheduler, parallelism 2, and each poller mode",
+        grid,
+        headline="Blocking contestants under other scheduler settings",
+    )
 
 print("\n".join(sorted(p.name for p in out_dir.glob("*.svg"))))

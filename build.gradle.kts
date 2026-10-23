@@ -17,6 +17,8 @@ dependencies {
     implementation("io.github.matthewjones372:lark-stream-forks:$larkVersion")
     implementation("io.projectreactor:reactor-core:3.8.8")
     implementation("org.apache.pekko:pekko-stream_2.13:1.2.1")
+    // The real-network scenario: Reactor Netty's client, and the Netty it brings serves the delayed answers.
+    implementation("io.projectreactor.netty:reactor-netty-http:1.3.7")
 }
 
 kotlin { jvmToolchain(25) }
