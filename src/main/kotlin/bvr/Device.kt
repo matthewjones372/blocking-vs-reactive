@@ -249,12 +249,20 @@ class HeldDevice(private val holds: (Int) -> Boolean = { true }) : Device {
     /** Whether every held call has been let go of by its caller: cancelled, or completed by its own timeout. */
     fun allHeldDone(): Boolean = synchronized(this) { (0 until size).all { futures[it]!!.isDone } }
 
-    /** Answers every held call, and every later one at once. */
+    /**
+     * Answers every held call, and every later one at once. The held calls are answered from four threads, as
+     * completions arrive from several threads under load: answered from one, Reactor's `flatMap` drains once per
+     * answer and visits every inner each time, which at 100,000 held takes minutes (AUDIT A3). It happens after
+     * every measurement, so it costs time, not accuracy.
+     */
     fun release() {
         val (fs, xs, n) = synchronized(this) {
             released = true
             Triple(futures, elements, size).also { size = 0; futures = arrayOfNulls(0); elements = IntArray(0) }
         }
-        for (i in 0 until n) fire(fs[i]!!, xs[i], false, System.nanoTime())
+        val parts = 4
+        (0 until parts).map { k ->
+            Thread.ofPlatform().start { for (i in k until n step parts) fire(fs[i]!!, xs[i], false, System.nanoTime()) }
+        }.forEach { it.join() }
     }
 }
