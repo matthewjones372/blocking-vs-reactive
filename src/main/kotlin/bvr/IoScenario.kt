@@ -21,7 +21,9 @@ import java.time.Duration
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.Semaphore
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.LongAdder
 
 /**
@@ -35,7 +37,9 @@ data class IoParams(val items: Int, val concurrency: Int, val latencyMicros: Lon
 
 /*
  * The I/O call, in each model's own shape. With `native`, each model waits on its own timer: a virtual thread sleeps,
- * Reactor uses `Mono.delay` on its parallel scheduler, Pekko uses its scheduler (ticking every millisecond). Without it,
+ * Reactor uses `Mono.delay` on its parallel scheduler, Pekko uses its scheduler (ticking every millisecond), and Lark's
+ * `mapAsync`, which has no timer of its own, uses the JDK's: a [ScheduledThreadPoolExecutor] with a thread per core, as
+ * Reactor's parallel scheduler has. Without it,
  * every model waits on the one shared [FakeIo] device, whose completions run on the device's own two threads, as a
  * socket's would on a poller or an event loop.
  */
@@ -47,6 +51,15 @@ fun monoIo(x: Int, p: IoParams): Mono<Int> =
     else Mono.fromFuture(FakeIo.call(x, p.latencyMicros))
 
 fun stageIo(x: Int, p: IoParams): CompletionStage<Int> =
+    if (p.native) CompletableFuture<Int>().also { f -> jdkTimer.schedule({ f.complete(x) }, p.latencyMicros, TimeUnit.MICROSECONDS) }
+    else FakeIo.call(x, p.latencyMicros)
+
+private val jdkTimer: ScheduledExecutorService =
+    Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors()) { r ->
+        Thread(r, "jdk-timer").apply { isDaemon = true }
+    }
+
+fun pekkoIo(x: Int, p: IoParams): CompletionStage<Int> =
     if (p.native) Patterns.after(Duration.ofNanos(p.latencyMicros * 1_000), pekkoSystem) { CompletableFuture.completedFuture(x) }
     else FakeIo.call(x, p.latencyMicros)
 
@@ -164,7 +177,7 @@ val pekkoSystem: ActorSystem by lazy {
 // region pekko
 fun pekko(p: IoParams, probe: Probe): Long =
     Source.fromIterator { counted(p.items, probe) }
-        .mapAsyncUnordered(p.concurrency) { x -> stageIo(x, p) }
+        .mapAsyncUnordered(p.concurrency) { x -> pekkoIo(x, p) }
         .runWith(Sink.fold(0L) { sum, x -> probe.completed(); sum + x }, pekkoSystem)
         .toCompletableFuture().join()
 // endregion
