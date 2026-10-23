@@ -14,6 +14,7 @@ val scenarios: Map<String, IoParams> = linkedMapOf(
 fun main(args: Array<String>) {
     if (args.firstOrNull() == "stacktraces") return stackTraces()
     if (args.firstOrNull() == "overload") return overload(args[1]).also { System.exit(0) }
+    if (args.firstOrNull() in netScenarios) return netMain(args)
     val scenario = args[0]
     val name = args[1]
     val warmups = args.getOrNull(2)?.toInt() ?: 3

@@ -14,8 +14,10 @@ The author prefers the blocking side. So the predictions were written down and c
 - **At 1,000 calls in flight, every model ties:** 93–96k ops/s against a ceiling of 100k.
 - **From 10,000 calls in flight up, Lark's `mapAsync` beats Reactor.** It does 1.2–1.5× Reactor's throughput, at
   similar CPU per call, with 60% of the heap per pending call.
-- **A blocking body still costs a parked virtual thread.** On the shared device, `mapPar` and plain virtual threads
-  hold 0.7–1.2 KB per pending call and use 2.5–4× Reactor's CPU. For an async client, use `mapAsync`.
+- **On real sockets, blocking code is no more expensive than Reactor Netty.** Virtual threads blocked in a plain
+  `Socket` used about two-thirds of Reactor Netty's CPU per call. The 2.5–4× gap on the shared device comes from how
+  its virtual threads are woken (by a platform thread), not from blocking itself. The same gap reappears on the JDK's
+  `HttpClient`, which wakes them the same way, and Reactor pays it too on that client.
 - **Lark's adaptive `Limit` protects a dependency that loses capacity.** p99 after the drop is 10 ms, against 30 ms
   for Reactor at its best fixed concurrency. It costs 13% of throughput while it ramps up.
 - **Reactor still wins on CPU-only work.** It hands elements between threads 1.8× faster than Lark, and runs a
@@ -102,6 +104,40 @@ to choose a model. Lark's `mapAsync` uses the least CPU per call and the least h
   on one `parallel` worker inside `FluxFlatMap.drainLoop`, so treat that bar as Reactor at an extreme, not Reactor in
   general.
 
+### Real sockets
+
+![CPU per call and throughput at 16, 1,000 and 10,000 HTTP calls in flight over loopback](docs/charts/net.svg)
+
+Each call is an HTTP/1.1 `GET` over loopback, with keep-alive, to a server in its own JVM (Netty, one event-loop
+thread pinned to its own core) that answers after 10 ms. The client gets the other 3 cores. Code:
+[`NetScenario.kt`](src/main/kotlin/bvr/NetScenario.kt), [`NetServer.kt`](src/main/kotlin/bvr/NetServer.kt).
+
+CPU per call, µs:
+
+| contestant | 16 | 1k | 10k |
+|---|--:|--:|--:|
+| Virtual threads over a plain `Socket` | 86 | 28.5 | 26.6 |
+| Lark `mapPar` over a plain `Socket` | 93 | 26.5 | 26.7 |
+| Reactor Netty `HttpClient` | 148 | 41.7 | 42.9 |
+| Virtual threads on the JDK `HttpClient` | 374 | 118 | 209 |
+| Lark `mapPar` on the JDK `HttpClient` | 356 | 140 | 610 |
+| Lark `mapAsync` on the JDK `HttpClient` | 356 | 160 | 1,146 |
+| Reactor on the JDK `HttpClient` | 336 | 143 | 542 |
+| Pekko on the JDK `HttpClient` | 416 | 142 | 522 |
+
+- **Blocking sockets.** A virtual thread blocked in a socket read is woken by the JDK's own poller. The same
+  `Semaphore` loop and the same `mapPar` used 0.6–0.7× Reactor Netty's CPU per call, and a quarter of its allocation.
+  The socket client is about 40 lines written for this test, and does less than Reactor Netty's full HTTP codec, so
+  read this as "blocking sockets are not more expensive", not as a margin to bank. At 1k and 10k both socket
+  contestants hit the one-core server's ceiling of about 70k calls a second.
+- **The JDK `HttpClient`.** It is asynchronous inside: `send` is `sendAsync(...).get()`, so a virtual thread in `send`
+  is woken by a platform thread, as on the shared device. Everything on it costs 2.4–3.4× Reactor Netty's CPU at 16
+  and 1k, Reactor included. At 10k connections it collapses for everyone (1.7–10.5k ops/s): its pool walks a list of
+  every idle connection under one lock, and its default executor grew to about 8,800 platform threads.
+- **Scheduler settings** ([chart](docs/charts/net-scheduler.svg)). JDK 25 accepts `-Djdk.pollerMode=1` (platform
+  poller threads) and `2` (virtual-thread pollers, Linux's default). Mode 1 cost the socket contestants 5–19% more CPU.
+  `-Djdk.virtualThreadScheduler.parallelism=2` was within the noise. The defaults are right.
+
 ### A dependency that loses capacity
 
 ![p99 latency before and after a dependency's capacity drops, and each run's length](docs/charts/overload.svg)
@@ -150,7 +186,7 @@ Where blocking code wins clearly is the stack trace when a call fails
 | # | Prediction | Result |
 |---|---|---|
 | H1 | Every bounded contestant keeps in-flight work below a few hundred; the unbounded one doesn't; throughput within 10% | **Confirmed** |
-| H2 | At 1k and 10k in flight, virtual threads within ±15% of Reactor, using more CPU | **Mixed.** A tie at 1k. At 10k Lark's `mapAsync` is 1.5× Reactor at similar CPU; blocking bodies trail Reactor on the shared device and use more CPU |
+| H2 | At 1k and 10k in flight, virtual threads within ±15% of Reactor, using more CPU | **Mixed.** A tie at 1k. At 10k Lark's `mapAsync` is 1.5× Reactor at similar CPU. Blocking bodies use more CPU on the shared device, but less than Reactor Netty on real sockets |
 | H3 | At 100k in flight, Reactor needs less heap per pending call | **Refuted for `mapAsync`** (197 B vs about 350 B); **true for blocking bodies** (about 900 B) |
 | H4 | On a CPU-only chain a plain loop wins, and Reactor beats Lark and Pekko | **Confirmed** |
 | H5 | Reactor's `publishOn` beats a blocking queue between virtual threads | **Confirmed**, by 1.8× over Lark's `buffer`, though Reactor's run barely crosses threads |
@@ -160,18 +196,20 @@ Where blocking code wins clearly is the stack trace when a call fails
 ## Caveats
 
 - One 4-core cloud VM. Treat differences under about 20% as noise.
-- Fake I/O, not sockets. The shared device completes every call on a platform thread, which is the most expensive way
-  to wake a virtual thread; real sockets on virtual threads are woken by the JDK's own pollers.
+- The I/O tests use fake I/O. The shared device completes every call on a platform thread, which is the most
+  expensive way to wake a virtual thread. The real-socket test is loopback only: no network latency, loss or
+  bandwidth, and a one-core server that caps at about 70k calls a second.
 - Neither the Reactor nor the Pekko code has been reviewed by someone who writes it for a living. Pull requests that
   make either faster are welcome, and the results will be re-run with them.
 - Lark is built from its `main` branch, which holds specs 0170–0178 (unordered windows, the adaptive `Limit`, and the
   faster hand-off and window) but isn't released yet, and published locally.
-- Versions: JDK 25.0.5 (Temurin), Kotlin 2.4.10, reactor-core 3.8.8, pekko-stream_2.13 1.2.1.
+- Versions: JDK 25.0.5 (Temurin), Kotlin 2.4.10, reactor-core 3.8.8, reactor-netty-http 1.3.7, pekko-stream_2.13
+  1.2.1.
 
 ## Not yet tested
 
-- **Real network I/O.** Reactor Netty against a virtual-thread server, driven by an open-model load generator at
-  and beyond saturation.
+- **A real network**, between machines, and servers (Reactor Netty against a virtual-thread server) driven by an
+  open-model load generator at and beyond saturation.
 - Kotlin coroutines and `Flow`.
 - `mapAsync` under a `Limit`.
 
@@ -187,6 +225,7 @@ Where blocking code wins clearly is the stack trace when a call fails
 export LARK_VERSION=0.0.0-cand-SNAPSHOT
 scripts/run-jmh.sh                 # results/jmh.json
 scripts/run-io.sh                  # results/io.txt
+scripts/run-net.sh                 # results/net.txt; about 3 hours
 build/install/blocking-vs-reactive/bin/blocking-vs-reactive stacktraces > results/stacktraces.txt
 python3 scripts/summarise.py > results/summary.md
 python3 scripts/charts.py          # docs/charts/*.svg
