@@ -641,3 +641,35 @@ RESULT scenario=inflight-100k-native contestant=lark-async-unordered iteration=2
 RESULT scenario=inflight-100k-native contestant=lark-async-unordered iteration=3 wallMs=952.8 opsPerSec=2099163 cpuMs=3470.0 cpuUsPerOp=1.74 allocMb=849.2 allocBytesPerOp=425 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
 RESULT scenario=inflight-100k-native contestant=lark-async-unordered liveBytesPerInFlight=276 fork=2
 RESULT scenario=inflight-100k-native contestant=lark-async-unordered rssHighWaterMb=1079 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=0 wallMs=172020.8 opsPerSec=11626 cpuMs=179210.0 cpuUsPerOp=89.61 allocMb=1868.7 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=1 wallMs=180693.4 opsPerSec=11068 cpuMs=188430.0 cpuUsPerOp=94.22 allocMb=1868.8 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=2 wallMs=153191.7 opsPerSec=13056 cpuMs=160590.0 cpuUsPerOp=80.30 allocMb=1874.6 allocBytesPerOp=937 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=3 wallMs=200404.6 opsPerSec=9980 cpuMs=208900.0 cpuUsPerOp=104.45 allocMb=1868.9 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor liveBytesPerInFlight=343 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor rssHighWaterMb=2162 fork=1
+RESULT scenario=inflight-100k-native contestant=reactor iteration=0 wallMs=201128.6 opsPerSec=9944 cpuMs=211670.0 cpuUsPerOp=105.84 allocMb=1869.1 allocBytesPerOp=935 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=1 wallMs=190544.5 opsPerSec=10496 cpuMs=198050.0 cpuUsPerOp=99.03 allocMb=1868.5 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=2 wallMs=107441.4 opsPerSec=18615 cpuMs=113300.0 cpuUsPerOp=56.65 allocMb=1885.6 allocBytesPerOp=943 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor iteration=3 wallMs=194356.4 opsPerSec=10290 cpuMs=201670.0 cpuUsPerOp=100.84 allocMb=1868.3 allocBytesPerOp=934 gcCount=0 gcMs=0 maxOutstanding=100000 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor liveBytesPerInFlight=343 fork=2
+RESULT scenario=inflight-100k-native contestant=reactor rssHighWaterMb=2011 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=0 wallMs=1935.5 opsPerSec=1033312 cpuMs=6250.0 cpuUsPerOp=3.13 allocMb=1120.7 allocBytesPerOp=560 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=1 wallMs=1952.8 opsPerSec=1024191 cpuMs=6470.0 cpuUsPerOp=3.24 allocMb=1120.4 allocBytesPerOp=560 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=2 wallMs=2067.7 opsPerSec=967263 cpuMs=7040.0 cpuUsPerOp=3.52 allocMb=1120.4 allocBytesPerOp=560 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=3 wallMs=1734.6 opsPerSec=1153027 cpuMs=5740.0 cpuUsPerOp=2.87 allocMb=1120.4 allocBytesPerOp=560 gcCount=0 gcMs=0 maxOutstanding=100001 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko liveBytesPerInFlight=202 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko rssHighWaterMb=1455 fork=1
+RESULT scenario=inflight-100k-native contestant=pekko iteration=0 wallMs=1903.0 opsPerSec=1050947 cpuMs=6490.0 cpuUsPerOp=3.25 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=1 wallMs=2256.5 opsPerSec=886334 cpuMs=7730.0 cpuUsPerOp=3.87 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=2 wallMs=2196.0 opsPerSec=910754 cpuMs=7450.0 cpuUsPerOp=3.73 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko iteration=3 wallMs=2028.2 opsPerSec=986094 cpuMs=6790.0 cpuUsPerOp=3.40 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko liveBytesPerInFlight=221 fork=2
+RESULT scenario=inflight-100k-native contestant=pekko rssHighWaterMb=1309 fork=2
+RESULT scenario=overload contestant=reactor-1000 seconds=6.23 opsPerSec=32090 p50BeforeMs=10.3 p99BeforeMs=11.0 p50AfterMs=51.7 p99AfterMs=60.5 fork=1
+RESULT scenario=overload contestant=reactor-tuned seconds=6.20 opsPerSec=32276 p50BeforeMs=5.1 p99BeforeMs=6.0 p50AfterMs=25.8 p99AfterMs=26.5 fork=1
+RESULT scenario=overload contestant=lark-1000 seconds=6.18 opsPerSec=32353 p50BeforeMs=10.1 p99BeforeMs=13.6 p50AfterMs=51.3 p99AfterMs=53.9 fork=1
+RESULT scenario=overload contestant=lark-adaptive seconds=7.17 opsPerSec=27910 p50BeforeMs=5.1 p99BeforeMs=6.4 p50AfterMs=5.1 p99AfterMs=10.0 fork=1
+RESULT scenario=overload contestant=reactor-1000 seconds=6.21 opsPerSec=32228 p50BeforeMs=10.3 p99BeforeMs=12.2 p50AfterMs=51.7 p99AfterMs=56.9 fork=2
+RESULT scenario=overload contestant=reactor-tuned seconds=6.19 opsPerSec=32295 p50BeforeMs=5.1 p99BeforeMs=6.2 p50AfterMs=25.8 p99AfterMs=27.1 fork=2
+RESULT scenario=overload contestant=lark-1000 seconds=6.21 opsPerSec=32213 p50BeforeMs=10.1 p99BeforeMs=10.9 p50AfterMs=51.5 p99AfterMs=53.9 fork=2
+RESULT scenario=overload contestant=lark-adaptive seconds=7.33 opsPerSec=27270 p50BeforeMs=5.1 p99BeforeMs=6.7 p50AfterMs=5.1 p99AfterMs=10.2 fork=2
