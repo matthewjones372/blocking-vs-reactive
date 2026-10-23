@@ -182,3 +182,7 @@ build/install/blocking-vs-reactive/bin/blocking-vs-reactive stacktraces > result
 python3 scripts/summarise.py > results/summary.md
 python3 scripts/charts.py          # docs/charts/*.svg
 ```
+
+## Licence
+
+[Apache 2.0](LICENSE), as Lark is.
