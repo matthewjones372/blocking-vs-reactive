@@ -155,8 +155,8 @@ Where blocking code wins clearly is the stack trace when a call fails
 - Fake I/O, not sockets.
 - Neither the Reactor nor the Pekko code has been reviewed by someone who writes it for a living. Pull requests that
   make either faster are welcome, and the results will be re-run with them.
-- Lark is built from its open pull requests
-  ([#479–#487](https://github.com/matthewjones372/lark/pulls)), published locally.
+- Lark is built from its `main` branch, which holds specs 0170–0172 but isn't released yet, and published
+  locally.
 - Versions: JDK 25.0.5 (Temurin), Kotlin 2.4.10, reactor-core 3.8.8, pekko-stream_2.13 1.2.1.
 
 ## Not yet tested
@@ -169,7 +169,7 @@ Where blocking code wins clearly is the stack trace when a call fails
 ## Running it
 
 ```bash
-# JDK 25 on the toolchain path. Build Lark from its pull requests first:
+# JDK 25 on the toolchain path. Build Lark from its main branch first:
 # in the lark checkout,
 ./gradlew :lark:publishToMavenLocal :lark-stream:publishToMavenLocal :lark-stream-forks:publishToMavenLocal \
     -Prelease.forceVersion=0.0.0-cand
