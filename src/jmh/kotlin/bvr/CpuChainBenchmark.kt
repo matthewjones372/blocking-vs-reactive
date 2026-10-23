@@ -12,10 +12,12 @@ import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.BenchmarkMode
+import org.openjdk.jmh.annotations.Measurement
 import org.openjdk.jmh.annotations.Mode
 import org.openjdk.jmh.annotations.OutputTimeUnit
 import org.openjdk.jmh.annotations.Scope
 import org.openjdk.jmh.annotations.State
+import org.openjdk.jmh.annotations.Warmup
 import reactor.core.publisher.Flux
 import java.util.concurrent.TimeUnit
 
@@ -26,6 +28,9 @@ import java.util.concurrent.TimeUnit
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
+// One operation takes up to a second for the slower contestants: longer iterations, so each sees enough of them.
+@Warmup(iterations = 10, time = 2)
+@Measurement(iterations = 8, time = 2)
 open class CpuChainBenchmark {
     private val n = 1_000_000
 
