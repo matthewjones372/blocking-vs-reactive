@@ -135,10 +135,12 @@ def io_summary(suite, meta, records, runs, out, js):
         if len(its) >= 2:
             drift.append(its[max(its)] / its[min(its)])
     if jit:
-        out.append(f"Warm-up check: median JIT time per measured iteration {fmt(median(jit))} ms (90th percentile "
-                   f"{fmt(sorted(jit)[int(0.9 * (len(jit) - 1))])} ms); last measured iteration against first, median "
-                   f"{fmt(median(drift), 3)}, 5th–95th percentile {fmt(sorted(drift)[int(0.05 * (len(drift) - 1))], 2)}–"
-                   f"{fmt(sorted(drift)[int(0.95 * (len(drift) - 1))], 2)}.\n")
+        line = (f"Warm-up check: median JIT time per measured iteration {fmt(median(jit))} ms (90th percentile "
+                f"{fmt(sorted(jit)[int(0.9 * (len(jit) - 1))])} ms)")
+        if drift:
+            line += (f"; last measured iteration against first, median {fmt(median(drift), 3)}, 5th–95th percentile "
+                     f"{fmt(sorted(drift)[int(0.05 * (len(drift) - 1))], 2)}–{fmt(sorted(drift)[int(0.95 * (len(drift) - 1))], 2)}")
+        out.append(line + ".\n")
     calib = [r["nsPerKiloRounds"] for r in records if r.get("kind") == "calibration"]
     out.append(f"Machine drift: the single-threaded calibration loop took {fmt(median(calib))} ns per thousand rounds "
                f"(median of {len(calib)} JVMs), coefficient of variation {fmt((cv(calib) or 0) * 100, 1)}%.\n")
