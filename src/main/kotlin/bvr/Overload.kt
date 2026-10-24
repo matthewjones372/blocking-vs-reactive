@@ -10,6 +10,7 @@ import io.github.matthewjones372.lark.stream.run
 import io.github.matthewjones372.lark.stream.runFold
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.core.scheduler.Schedulers
 import java.util.concurrent.CancellationException
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -269,6 +270,10 @@ fun overloadLark(run: OverloadRun, limit: Limit) {
 /** `flatMap` with a bound of [bound] and, optionally, the ported adaptive limit inside it. */
 fun overloadReactor(run: OverloadRun, bound: Int, limit: AsyncLimit?) {
     Flux.fromIterable(Iterable { run.source })
+        // An open-loop source parks until each arrival is due. Reactor pulls a source on whichever thread requests,
+        // which here is a completing thread; subscribeOn moves the pulling to a worker of its own, as Reactor's
+        // documentation does for any blocking source.
+        .let { if (run.pattern.ratePerSec != null) it.subscribeOn(Schedulers.boundedElastic()) else it }
         .flatMap({ i ->
             val permit = limit?.let { l -> { call: () -> CompletableFuture<Unit> -> l.withPermitAsync(call) } }
             Mono.fromFuture(run.serveAsync(i, permit))

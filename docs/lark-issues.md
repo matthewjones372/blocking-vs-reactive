@@ -1,0 +1,61 @@
+# Lark behaviours found by this benchmark
+
+Two behaviours of Lark (at the commit in `lark.commit`) that the semantics checks exposed. Neither affects a
+throughput or memory number; both affect what a caller can rely on. Each has a minimal reproduction in
+[`src/test/kotlin/bvr/LarkIssuesTest.kt`](../src/test/kotlin/bvr/LarkIssuesTest.kt) that uses nothing of the harness
+and asserts what Lark does today, so the test fails if Lark changes. Lark itself was not modified.
+
+## 1. An interrupted `await()` abandons a Forks run instead of stopping it
+
+```kotlin
+val caller = Thread.ofVirtual().start {
+    try {
+        Stream.from(1..100).mapPar(4) { body(it) }.runFold(0) { s, x -> s + x }.run(Forks()).await()
+    } catch (_: InterruptedException) { }
+}
+// once the four bodies are blocked:
+caller.interrupt(); caller.join()
+// the four bodies are still blocked, and stay so
+```
+
+`lark` core's `Future.await()` is documented as "an interrupt cancels the future on the way out", and it does: it
+calls `cancel(true)` on the run's exit future. But `PullRun.exit` in `Forks.kt` is a plain `CompletableFuture`
+that the run completes when it ends; nothing observes its cancellation, so the run keeps pulling and its bodies keep
+waiting. `docs/stream.md` says of `lark-stream-pekko`'s `awaitExit` that "an interrupt cancels the run rather than
+abandoning it"; on `Forks`, the general-purpose `await()` does the opposite.
+
+Stopping works through the handle: `start(Forks())` returns a `Running`, whose `close()` stops the run and
+interrupts its bodies (the contrast test). So the remedy is in Lark's hands: either have a cancelled exit stop the
+run, or give `Run` a blocking wait that closes the `Running` on interrupt.
+
+In this benchmark it shows as `interrupted: run abandoned = yes` for every Lark contestant in
+[`semantics.md`](semantics.md), next to `no` for plain and structured virtual threads and for Reactor's `block()`,
+which cancels its subscription.
+
+## 2. An ordered `mapAsync` or `mapPar` reports a failure only after every earlier element has answered
+
+```kotlin
+Stream.from(1..10)
+    .mapAsync(4) { x -> if (x == 1) never else if (x == 2) failedFuture(IllegalStateException()) else completedFuture(x) }
+    .runFold(0) { s, x -> s + x }.start(Forks())
+// element 2 failed at once; half a second later the run is still waiting on element 1
+```
+
+The ordered window passes answers on in source order, and a failure is treated as an answer: it waits behind the
+head. If the head never answers (no timeout on the call), the failure is never reported. Pekko's `mapAsync`, whose
+name and shape Lark follows, fails the stream as soon as any stage fails, and so does Reactor's
+`flatMapSequential` (the contrast test, and `failure surfaces while earlier calls held` in
+[`semantics.md`](semantics.md)). Plain virtual threads taking futures in order (`vt-ordered`) behave like Lark, so
+this is a property of ordering by waiting on the head, not of blocking; but Lark's documentation of `mapAsync` does
+not say that a failure can wait behind an unanswered element.
+
+The unordered variants (`mapAsyncUnordered`, `mapParUnordered`) report a failure at once.
+
+## Not issues, but worth knowing
+
+- After a stop, `mapAsyncUnordered` leaves a `whenComplete` callback on every stage still in flight, and does not
+  cancel the stages; the ordered `mapAsync` registers no callbacks, so it leaves nothing. Pekko's `mapAsync` and
+  `mapAsyncUnordered` also leave their callbacks, and Reactor cancels each future. Whether a stop should cancel the
+  caller's futures is a design choice; the table in `semantics.md` reports what each does.
+- `mapPar(limit)` is ordered, like `mapPar(n)`. Against a dependency whose latency varies, an ordered window holds
+  answered elements behind a slow head; the overload experiment uses `mapParUnordered(limit)` for that reason.

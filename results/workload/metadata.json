@@ -1,0 +1,2187 @@
+{
+ "suite": "workload",
+ "commit": "eed937ef32559368c8c9c1d4b5debb52d9352759",
+ "dirty": false,
+ "larkCommit": "3ccde4496a744605a46eacf4aa7e6943ff41bfd7",
+ "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "cpus": 4,
+ "memoryKb": 16477348,
+ "kernel": "6.18.44-fc-v153",
+ "governor": null,
+ "host": "vm",
+ "jvmOptions": "-Xms4g -Xmx4g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverJvmOptions": null,
+ "serverCpus": null,
+ "clientCpus": null,
+ "forks": 5,
+ "warmups": 2,
+ "iterations": 3,
+ "seed": 20261023,
+ "cells": 72,
+ "schedule": [
+  {
+   "round": 1,
+   "order": 0,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 1,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 2,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 3,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 4,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 5,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 6,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 7,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 8,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 9,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 10,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 11,
+   "scenario": "w-long-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 12,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 13,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 14,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 15,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 16,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 17,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 18,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 19,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 20,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 21,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 22,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 23,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 24,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 25,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 26,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 27,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 28,
+   "scenario": "w-short-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 29,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 30,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 31,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 32,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 33,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 34,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 35,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 36,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 37,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 38,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 39,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 40,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 41,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 42,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 43,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 44,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 45,
+   "scenario": "w-errors-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 46,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 47,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 48,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 49,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 50,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 51,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 52,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 53,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 54,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 55,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 56,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 57,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 58,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 59,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 60,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 61,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 62,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 63,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 64,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 65,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 66,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 67,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 68,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 69,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 70,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 71,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 0,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 1,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 2,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 3,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 4,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 5,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 6,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 7,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 8,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 9,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 10,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 11,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 12,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 13,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 14,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 15,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 16,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 17,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 18,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 19,
+   "scenario": "w-long-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 20,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 21,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 22,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 23,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 24,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 25,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 26,
+   "scenario": "w-short-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 27,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 28,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 29,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 30,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 31,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 32,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 33,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 34,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 35,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 36,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 37,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 38,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 39,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 40,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 41,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 42,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 43,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 44,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 45,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 46,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 47,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 48,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 49,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 50,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 51,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 52,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 53,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 54,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 55,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 56,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 57,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 58,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 59,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 60,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 61,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 62,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 63,
+   "scenario": "w-errors-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 64,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 65,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 66,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 67,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 68,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 69,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 70,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 71,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 0,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 1,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 2,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 3,
+   "scenario": "w-errors-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 4,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 5,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 6,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 7,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 8,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 9,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 10,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 11,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 12,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 13,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 14,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 15,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 16,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 17,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 18,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 19,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 20,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 21,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 22,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 23,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 24,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 25,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 26,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 27,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 28,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 29,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 30,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 31,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 32,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 33,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 34,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 35,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 36,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 37,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 38,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 39,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 40,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 41,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 42,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 43,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 44,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 45,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 46,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 47,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 48,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 49,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 50,
+   "scenario": "w-long-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 51,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 52,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 53,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 54,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 55,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 56,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 57,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 58,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 59,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 60,
+   "scenario": "w-short-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 61,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 62,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 63,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 64,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 65,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 66,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 67,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 68,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 69,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 70,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 71,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 0,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 1,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 2,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 3,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 4,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 5,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 6,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 7,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 8,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 9,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 10,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 11,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 12,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 13,
+   "scenario": "w-long-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 14,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 15,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 16,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 17,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 18,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 19,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 20,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 21,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 22,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 23,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 24,
+   "scenario": "w-errors-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 25,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 26,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 27,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 28,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 29,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 30,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 31,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 32,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 33,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 34,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 35,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 36,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 37,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 38,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 39,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 40,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 41,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 42,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 43,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 44,
+   "scenario": "w-short-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 45,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 46,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 47,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 48,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 49,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 50,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 51,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 52,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 53,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 54,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 55,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 56,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 57,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 58,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 59,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 60,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 61,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 62,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 63,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 64,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 65,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 66,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 67,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 68,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 69,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 70,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 71,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 0,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 1,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 2,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 3,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 4,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 5,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 6,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 7,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 8,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 9,
+   "scenario": "w-errors-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 10,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 11,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 12,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 13,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 14,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 15,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 16,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 17,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 18,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 19,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 20,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 21,
+   "scenario": "w-errors-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 22,
+   "scenario": "w-long-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 23,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 24,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 25,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 26,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 27,
+   "scenario": "w-short-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 28,
+   "scenario": "w-long-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 29,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 30,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 31,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 32,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 33,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 34,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 35,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 36,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 37,
+   "scenario": "w-short-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 38,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 39,
+   "scenario": "w-long-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 40,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 41,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 42,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 43,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 44,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 45,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 46,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 47,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 48,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 49,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 50,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 51,
+   "scenario": "w-long-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 52,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 53,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 54,
+   "scenario": "w-errors-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 55,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 56,
+   "scenario": "w-short-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 57,
+   "scenario": "w-errors-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 58,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 59,
+   "scenario": "w-short-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 60,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 61,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 62,
+   "scenario": "w-lognormal-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 63,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 64,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 65,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 66,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 67,
+   "scenario": "w-short-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 68,
+   "scenario": "w-errors-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 69,
+   "scenario": "w-slow-consumer-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 70,
+   "scenario": "w-long-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 71,
+   "scenario": "w-cpu-dispatched",
+   "contestant": "lark-mappar-unordered"
+  }
+ ],
+ "started": "2026-10-23T16:13:09.937581+00:00",
+ "finished": "2026-10-23T17:34:54.677166+00:00"
+}

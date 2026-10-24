@@ -1,0 +1,4017 @@
+{
+ "suite": "io",
+ "commit": "eed937ef32559368c8c9c1d4b5debb52d9352759",
+ "dirty": false,
+ "larkCommit": "3ccde4496a744605a46eacf4aa7e6943ff41bfd7",
+ "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "cpus": 4,
+ "memoryKb": 16477348,
+ "kernel": "6.18.44-fc-v153",
+ "governor": null,
+ "host": "vm",
+ "jvmOptions": "-Xms4g -Xmx4g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverJvmOptions": null,
+ "serverCpus": null,
+ "clientCpus": null,
+ "forks": 5,
+ "warmups": 2,
+ "iterations": 3,
+ "seed": 20261023,
+ "cells": 133,
+ "schedule": [
+  {
+   "round": 1,
+   "order": 0,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 1,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 2,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 3,
+   "scenario": "c1k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 4,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 5,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 6,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 7,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 8,
+   "scenario": "c100k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 9,
+   "scenario": "c100k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 10,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 11,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 12,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 13,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 14,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 15,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 16,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 17,
+   "scenario": "c10k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 18,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 19,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 20,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 21,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 22,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 23,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 24,
+   "scenario": "c1k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 25,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 26,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 27,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 28,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 29,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 30,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 31,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 32,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 33,
+   "scenario": "c100k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 34,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 35,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 36,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 37,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 38,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 39,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 40,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 41,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 42,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 43,
+   "scenario": "c10k-wheel",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 44,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 45,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 46,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 47,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 48,
+   "scenario": "c1k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 49,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 50,
+   "scenario": "c10k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 51,
+   "scenario": "c1k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 52,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 53,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 54,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 55,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 56,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 57,
+   "scenario": "c100k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 58,
+   "scenario": "c10k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 59,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 60,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 61,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 62,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 63,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 64,
+   "scenario": "c10k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 65,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 66,
+   "scenario": "c10k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 67,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 68,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 69,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 70,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 71,
+   "scenario": "bp-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 72,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 73,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 74,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 75,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 76,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 77,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 78,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 79,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 80,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 81,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 82,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 83,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 84,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 85,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 86,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 87,
+   "scenario": "c100k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 88,
+   "scenario": "c10k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 89,
+   "scenario": "c100k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 90,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 91,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 92,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 93,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-naive"
+  },
+  {
+   "round": 1,
+   "order": 94,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 95,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 96,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 97,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 98,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 99,
+   "scenario": "c100k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 100,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 101,
+   "scenario": "c10k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 102,
+   "scenario": "c100k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 103,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 104,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 105,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 106,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 107,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 108,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 109,
+   "scenario": "c1k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 110,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 111,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 112,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 113,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 114,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 115,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 116,
+   "scenario": "c10k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 117,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 118,
+   "scenario": "c10k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 119,
+   "scenario": "c1k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 120,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 121,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 122,
+   "scenario": "c1k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 123,
+   "scenario": "c100k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 124,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 125,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 126,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 1,
+   "order": 127,
+   "scenario": "c1k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 1,
+   "order": 128,
+   "scenario": "c1k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 129,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 130,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 1,
+   "order": 131,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 1,
+   "order": 132,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 0,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 1,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 2,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 3,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 4,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 5,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 6,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 7,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 8,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 9,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 10,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 11,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 12,
+   "scenario": "c10k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 13,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 14,
+   "scenario": "c10k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 15,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-naive"
+  },
+  {
+   "round": 2,
+   "order": 16,
+   "scenario": "c100k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 17,
+   "scenario": "c100k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 18,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 19,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 20,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 21,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 22,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 23,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 24,
+   "scenario": "c100k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 25,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 26,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 27,
+   "scenario": "c1k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 28,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 29,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 30,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 31,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 32,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 33,
+   "scenario": "c10k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 34,
+   "scenario": "c100k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 35,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 36,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 37,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 38,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 39,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 40,
+   "scenario": "c10k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 41,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 42,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 43,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 44,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 45,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 46,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 47,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 48,
+   "scenario": "c100k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 49,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 50,
+   "scenario": "c100k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 51,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 52,
+   "scenario": "c1k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 53,
+   "scenario": "c100k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 54,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 55,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 56,
+   "scenario": "c1k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 57,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 58,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 59,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 60,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 61,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 62,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 63,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 64,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 65,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 66,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 67,
+   "scenario": "c10k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 68,
+   "scenario": "c1k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 69,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 70,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 71,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 72,
+   "scenario": "c1k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 73,
+   "scenario": "c10k-wheel",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 74,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 75,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 76,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 77,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 78,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 79,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 80,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 81,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 82,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 83,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 84,
+   "scenario": "c1k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 85,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 86,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 87,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 88,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 89,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 90,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 91,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 92,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 93,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 94,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 95,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 96,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 97,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 98,
+   "scenario": "c100k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 99,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 100,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 101,
+   "scenario": "c1k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 102,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 103,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 104,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 105,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 106,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 107,
+   "scenario": "c10k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 108,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 109,
+   "scenario": "c1k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 110,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 111,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 112,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 113,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 114,
+   "scenario": "c1k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 115,
+   "scenario": "bp-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 116,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 117,
+   "scenario": "c10k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 118,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 119,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 2,
+   "order": 120,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 121,
+   "scenario": "c10k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 122,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 123,
+   "scenario": "c10k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 2,
+   "order": 124,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 2,
+   "order": 125,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 126,
+   "scenario": "c100k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 127,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 128,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 129,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 130,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 131,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 2,
+   "order": 132,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 0,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 1,
+   "scenario": "c10k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 2,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 3,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 4,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 5,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 6,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 7,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 8,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 9,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 10,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 11,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 12,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 13,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 14,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 15,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 16,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 17,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 18,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 19,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 20,
+   "scenario": "c100k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 21,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 22,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 23,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 24,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 25,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 26,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 27,
+   "scenario": "c1k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 28,
+   "scenario": "c10k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 29,
+   "scenario": "c10k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 30,
+   "scenario": "c1k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 31,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 32,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 33,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 34,
+   "scenario": "c100k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 35,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 36,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 37,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 38,
+   "scenario": "c100k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 39,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 40,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 41,
+   "scenario": "c10k-wheel",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 42,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 43,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 44,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 45,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-naive"
+  },
+  {
+   "round": 3,
+   "order": 46,
+   "scenario": "c1k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 47,
+   "scenario": "c10k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 48,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 49,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 50,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 51,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 52,
+   "scenario": "c10k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 53,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 54,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 55,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 56,
+   "scenario": "c1k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 57,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 58,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 59,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 60,
+   "scenario": "c100k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 61,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 62,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 63,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 64,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 65,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 66,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 67,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 68,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 69,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 70,
+   "scenario": "c100k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 71,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 72,
+   "scenario": "c100k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 73,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 74,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 75,
+   "scenario": "c1k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 76,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 77,
+   "scenario": "c100k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 78,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 79,
+   "scenario": "c100k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 80,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 81,
+   "scenario": "c100k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 82,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 83,
+   "scenario": "c1k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 84,
+   "scenario": "c10k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 85,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 86,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 87,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 88,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 89,
+   "scenario": "c1k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 90,
+   "scenario": "c10k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 91,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 92,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 93,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 94,
+   "scenario": "c10k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 95,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 96,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 97,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 98,
+   "scenario": "bp-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 99,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 100,
+   "scenario": "c1k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 101,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 102,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 103,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 104,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 105,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 106,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 107,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 108,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 109,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 110,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 111,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 112,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 113,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 114,
+   "scenario": "c10k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 115,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 3,
+   "order": 116,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 117,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 118,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 119,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 120,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 121,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 122,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 123,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 3,
+   "order": 124,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 125,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 3,
+   "order": 126,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 127,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 128,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 129,
+   "scenario": "c1k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 130,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 3,
+   "order": 131,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 132,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 0,
+   "scenario": "c1k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 1,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 2,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 3,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 4,
+   "scenario": "c10k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 5,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 6,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 7,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 8,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 9,
+   "scenario": "c100k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 10,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 11,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 12,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 13,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 14,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 15,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 16,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 17,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 18,
+   "scenario": "c100k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 19,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 20,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 21,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 22,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 23,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 24,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 25,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 26,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 27,
+   "scenario": "c10k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 28,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 29,
+   "scenario": "c1k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 30,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 31,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 32,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 33,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 34,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 35,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 36,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 37,
+   "scenario": "c10k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 38,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 39,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 40,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 41,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 42,
+   "scenario": "c100k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 43,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 44,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 45,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 46,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 47,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 48,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 49,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 50,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 51,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 52,
+   "scenario": "c1k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 53,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 54,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 55,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 56,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 57,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 58,
+   "scenario": "c100k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 59,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 60,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 61,
+   "scenario": "c1k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 62,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-naive"
+  },
+  {
+   "round": 4,
+   "order": 63,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 64,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 65,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 66,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 67,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 68,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 69,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 70,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 71,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 72,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 73,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 74,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 75,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 76,
+   "scenario": "c10k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 77,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 78,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 79,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 80,
+   "scenario": "c10k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 81,
+   "scenario": "c1k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 82,
+   "scenario": "c10k-wheel",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 83,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 84,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 85,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 86,
+   "scenario": "c10k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 87,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 88,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 89,
+   "scenario": "c1k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 90,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 91,
+   "scenario": "c1k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 92,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 93,
+   "scenario": "c100k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 94,
+   "scenario": "bp-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 95,
+   "scenario": "c10k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 96,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 97,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 98,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 99,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 100,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 101,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 4,
+   "order": 102,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 103,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 104,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 105,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 106,
+   "scenario": "c100k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 107,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 108,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 109,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 110,
+   "scenario": "c10k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 111,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 112,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 4,
+   "order": 113,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 114,
+   "scenario": "c100k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 115,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 116,
+   "scenario": "c10k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 117,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 4,
+   "order": 118,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 4,
+   "order": 119,
+   "scenario": "c1k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 120,
+   "scenario": "c1k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 121,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 4,
+   "order": 122,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 123,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 4,
+   "order": 124,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 125,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 126,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 127,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 128,
+   "scenario": "c100k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 4,
+   "order": 129,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 4,
+   "order": 130,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 4,
+   "order": 131,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 4,
+   "order": 132,
+   "scenario": "c100k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 0,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 1,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 2,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 3,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 4,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 5,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 6,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 7,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 8,
+   "scenario": "c1k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 9,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 10,
+   "scenario": "bp-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 11,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 12,
+   "scenario": "c10k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 13,
+   "scenario": "c10k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 14,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 15,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 16,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 17,
+   "scenario": "c10k-wheel",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 18,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 19,
+   "scenario": "c1k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 20,
+   "scenario": "c100k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 21,
+   "scenario": "c1k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 22,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 23,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-naive"
+  },
+  {
+   "round": 5,
+   "order": 24,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 25,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 26,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 27,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 28,
+   "scenario": "bp-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 29,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 30,
+   "scenario": "c10k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 31,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 32,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 33,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 34,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 35,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 36,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 37,
+   "scenario": "c10k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 38,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 39,
+   "scenario": "c100k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 40,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 41,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 42,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 43,
+   "scenario": "c1k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 44,
+   "scenario": "c10k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 45,
+   "scenario": "c100k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 46,
+   "scenario": "c100k-native",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 47,
+   "scenario": "c10k-shared",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 48,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 49,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 50,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 51,
+   "scenario": "c10k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 52,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 53,
+   "scenario": "c10k-wheel",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 54,
+   "scenario": "c100k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 55,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 56,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 57,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 58,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 59,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 60,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 61,
+   "scenario": "c1k-native",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 62,
+   "scenario": "c1k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 63,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 64,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 65,
+   "scenario": "c1k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 66,
+   "scenario": "c100k-dispatched",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 67,
+   "scenario": "c1k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 68,
+   "scenario": "c1k-native",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 69,
+   "scenario": "c1k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 70,
+   "scenario": "c1k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 71,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 72,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 73,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 74,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 75,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 76,
+   "scenario": "c10k-dispatched",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 77,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 78,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 79,
+   "scenario": "c100k-native",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 80,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 81,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 82,
+   "scenario": "c10k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 83,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 84,
+   "scenario": "c100k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 85,
+   "scenario": "c100k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 86,
+   "scenario": "c10k-shared",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 87,
+   "scenario": "c100k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 88,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 89,
+   "scenario": "c10k-wheel",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 90,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 91,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 92,
+   "scenario": "bp-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 93,
+   "scenario": "c1k-dispatched",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 94,
+   "scenario": "c100k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 95,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 96,
+   "scenario": "c1k-shared",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 97,
+   "scenario": "c100k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 98,
+   "scenario": "c100k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 99,
+   "scenario": "c100k-dispatched",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 100,
+   "scenario": "c100k-native",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 101,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 102,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 103,
+   "scenario": "c1k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 104,
+   "scenario": "c10k-wheel",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 5,
+   "order": 105,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 106,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 107,
+   "scenario": "c1k-native",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 108,
+   "scenario": "c10k-native",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 109,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 110,
+   "scenario": "c100k-native",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 111,
+   "scenario": "bp-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 112,
+   "scenario": "c1k-dispatched",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 113,
+   "scenario": "c10k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 114,
+   "scenario": "c1k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 115,
+   "scenario": "bp-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 116,
+   "scenario": "c100k-native",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 117,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 5,
+   "order": 118,
+   "scenario": "c100k-shared",
+   "contestant": "vt-structured"
+  },
+  {
+   "round": 5,
+   "order": 119,
+   "scenario": "c10k-dispatched",
+   "contestant": "vt-ordered"
+  },
+  {
+   "round": 5,
+   "order": 120,
+   "scenario": "c10k-shared",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 121,
+   "scenario": "c1k-shared",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 122,
+   "scenario": "c10k-shared",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 5,
+   "order": 123,
+   "scenario": "c100k-shared",
+   "contestant": "lark-mapasync-unordered"
+  },
+  {
+   "round": 5,
+   "order": 124,
+   "scenario": "c100k-shared",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 125,
+   "scenario": "c10k-native",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 126,
+   "scenario": "c10k-dispatched",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 5,
+   "order": 127,
+   "scenario": "c10k-shared",
+   "contestant": "lark-mappar-unordered"
+  },
+  {
+   "round": 5,
+   "order": 128,
+   "scenario": "c1k-dispatched",
+   "contestant": "reactor-flatmapsequential"
+  },
+  {
+   "round": 5,
+   "order": 129,
+   "scenario": "c10k-native",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 130,
+   "scenario": "c10k-wheel",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 131,
+   "scenario": "c10k-dispatched",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 5,
+   "order": 132,
+   "scenario": "c1k-shared",
+   "contestant": "reactor-flatmap"
+  }
+ ],
+ "started": "2026-10-23T17:34:55.510176+00:00",
+ "finished": "2026-10-23T19:15:34.198392+00:00"
+}

@@ -1,0 +1,675 @@
+{
+ "suite": "net",
+ "commit": "eed937ef32559368c8c9c1d4b5debb52d9352759",
+ "dirty": false,
+ "larkCommit": "3ccde4496a744605a46eacf4aa7e6943ff41bfd7",
+ "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "cpus": 4,
+ "memoryKb": 16477348,
+ "kernel": "6.18.44-fc-v153",
+ "governor": null,
+ "host": "vm",
+ "jvmOptions": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverJvmOptions": "-Xms1g -Xmx1g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverCpus": "3",
+ "clientCpus": "0-2",
+ "forks": 3,
+ "warmups": 2,
+ "iterations": 3,
+ "seed": 20261023,
+ "cells": 36,
+ "schedule": [
+  {
+   "round": 1,
+   "order": 0,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 1,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 2,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 3,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 4,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 5,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 6,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 7,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 8,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 9,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 10,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 11,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 12,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 13,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 14,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 15,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 16,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 17,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 18,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 19,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 20,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 21,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 22,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 23,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 1,
+   "order": 24,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 25,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 26,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 27,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 28,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 1,
+   "order": 29,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 30,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 31,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 1,
+   "order": 32,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 1,
+   "order": 33,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 1,
+   "order": 34,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 1,
+   "order": 35,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 0,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 1,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 2,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 3,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 4,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 5,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 6,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 7,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 8,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 9,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 10,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 11,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 12,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 13,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 14,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 15,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 16,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 17,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 18,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 19,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 20,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 21,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 22,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 23,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 2,
+   "order": 24,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 25,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 26,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 2,
+   "order": 27,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 28,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 2,
+   "order": 29,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 30,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 31,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 32,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 2,
+   "order": 33,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 2,
+   "order": 34,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 2,
+   "order": 35,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 0,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 1,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 2,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 3,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 4,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 5,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 6,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 7,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 8,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 9,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 10,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 11,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 12,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 13,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar"
+  },
+  {
+   "round": 3,
+   "order": 14,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 15,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 16,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 17,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 18,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 19,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 20,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 21,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 22,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 23,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 24,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 25,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 26,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap"
+  },
+  {
+   "round": 3,
+   "order": 27,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 28,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync"
+  },
+  {
+   "round": 3,
+   "order": 29,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain"
+  },
+  {
+   "round": 3,
+   "order": 30,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 31,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 32,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 33,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered"
+  },
+  {
+   "round": 3,
+   "order": 34,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain"
+  },
+  {
+   "round": 3,
+   "order": 35,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain"
+  }
+ ],
+ "started": "2026-10-23T15:18:23.753307+00:00",
+ "finished": "2026-10-23T16:13:09.145724+00:00"
+}

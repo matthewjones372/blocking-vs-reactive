@@ -14,5 +14,7 @@ scripts/run-jmh.sh
 mkdir -p results/semantics
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin semantics | sed -n 's/^RESULT //p' > results/semantics/semantics.jsonl
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin threaddump | sed -n 's/^RESULT //p' > results/semantics/threaddump.jsonl
-env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin stacktraces | grep -v '^RESULT' > results/semantics/stacktraces.txt
+env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin stacktraces > build/stacktraces.out
+grep -v '^RESULT' build/stacktraces.out > results/semantics/stacktraces.txt
+sed -n 's/^RESULT //p' build/stacktraces.out > results/semantics/stacktraces.jsonl
 scripts/summarise.py memory overload net workload io jmh semantics

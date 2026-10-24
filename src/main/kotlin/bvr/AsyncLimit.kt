@@ -24,9 +24,15 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
 
     val current: Int get() = lock.withLock { allowed }
 
-    /** A future that completes once the limit has room for one more call, which then holds a place. */
+    /**
+     * A future that completes once the limit has room for one more call, which then holds a place. A caller that
+     * finds room takes it even if others are waiting, as a thread arriving at Lark's `Limit` does: its `acquire`
+     * waits on a condition, and a signalled waiter must win the lock again before it can take the place it was
+     * woken for. Strict FIFO here would hand every place to the oldest waiter, which under a deadline is the one
+     * most likely to have expired.
+     */
     fun acquire(): CompletableFuture<Unit> = lock.withLock {
-        if (using < allowed && waiting.isEmpty()) {
+        if (using < allowed) {
             using++
             DONE
         } else {
