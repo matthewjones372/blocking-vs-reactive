@@ -120,7 +120,7 @@ def io_summary(suite, meta, records, runs, out, js):
     if suite.startswith("net"):
         cols = [c for c in cols if c[0] != "lagP99Us"] + [("serverLagP99Us", "server lag p99 µs", 0), ("serverUtil", "server CPU", 2)]
         for r in good:
-            s = json.loads(r["server"]) if isinstance(r.get("server"), str) else (r.get("server") or {})
+            s = json.loads(r["serverStats"]) if r.get("serverStats") else {}
             r["serverLagP99Us"] = s.get("lagP99Us")
             r["serverUtil"] = s.get("cpuUtilisation")
     values = {m: per_fork(good, key, m) for m, _, _ in cols + [("steadyOpsPerSec", "", 0)]}
@@ -159,8 +159,9 @@ def io_summary(suite, meta, records, runs, out, js):
         best = max((c for c in cells if c not in control), key=lambda c: median(cells[c]))
         sample = next(r for r in good if r["scenario"] == s)
         if suite.startswith("net"):
-            desc = (f"{sample['items']:,} requests, {sample['concurrency']} in flight, service {sample['serviceMicros']} µs, "
-                    f"{sample['payload']} B body, `{sample['client']}` clients")
+            desc = (f"{sample['items']:,} requests, {sample['concurrency']:,} in flight, service {sample['serviceMicros']} µs, "
+                    f"{sample['payload']} B body, `{sample['client']}` clients, `{sample.get('server', 'nio')}` server"
+                    + (f", client JVM `{sample['jvmOpts']}`" if sample.get("jvmOpts") else ""))
         else:
             desc = (f"{sample['items']:,} elements, bound {sample['concurrency']:,}, latency {sample['latencyMicros']} µs "
                     f"{sample['dist']}, device `{sample['device']}`"

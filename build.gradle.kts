@@ -19,6 +19,8 @@ dependencies {
     implementation("io.github.matthewjones372:lark-stream-forks:$larkVersion")
     implementation("io.projectreactor:reactor-core:3.8.8")
     implementation("org.apache.pekko:pekko-stream_2.13:1.2.1")
+    // The socket suite's Reactor Netty client, and the Netty its second server runs on (ported from main).
+    implementation("io.projectreactor.netty:reactor-netty-http:1.3.7")
 
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")

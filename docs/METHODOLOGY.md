@@ -110,16 +110,25 @@ written against due time) and CPU, and every client iteration reads them (`/__st
 result row says whether the server kept up. The server is pinned to one core and the client to the other three
 (`taskset`), restarted every round, and runs one selector.
 
-Clients, two families so the library is held fixed while the waiting model changes:
+Clients, three families, so the library is held fixed while the waiting model changes, and the client a Reactor
+service would actually use is present:
 
 - `raw`: a blocking `java.net.Socket` client (virtual threads park on the JDK's poller) and an
   `AsynchronousSocketChannel` client (completion handlers on a pool of one thread per client core). Same request
   bytes and response parser; one connection per unit of concurrency, so the pool never queues.
-- `jdk`: `java.net.http.HttpClient` (HTTP/1.1) with `send` for blocking contestants and `sendAsync` for the rest.
+- `jdk`: `java.net.http.HttpClient` (HTTP/1.1) with `send` for blocking contestants and `sendAsync` for the rest. Its
+  idle-connection pool is unbounded and kept for ten minutes, set explicitly. `send` is `sendAsync(...).get()` inside,
+  so a virtual thread in `send` is woken by the client's selector thread, not by the JDK's poller.
+- `netty`: Reactor Netty's `HttpClient`, with a connection pool sized to the concurrency, run by the Reactor
+  contestants only.
 
 Scenarios: 64 in flight at 1 ms with 128 B (high rate, small calls), 1,000 in flight at 20 ms with 128 B (many
-connections), 256 in flight at 5 ms with 16 KiB (bytes moved). Reactor Netty, Pekko HTTP and Kotlin coroutines are
-not covered; each would add its own event loop and allocation behaviour.
+connections), 256 in flight at 5 ms with 16 KiB (bytes moved), and 10,000 in flight at 10 ms with 128 B (connection
+count), each for every client family. Three more check the result's dependence on things outside the contestant:
+one scenario against a second server (Netty, from main's network work: each delayed answer a task on its event
+loop, several `SO_REUSEPORT` listeners), and two settings the JDK offers a virtual-thread service, platform poller
+threads (`-Djdk.pollerMode=1`) and two scheduler carriers (`-Djdk.virtualThreadScheduler.parallelism=2`), for the
+blocking contestants at 1,000 and 10,000 in flight. Pekko HTTP and Kotlin coroutines are not covered.
 
 ## 6. What is counted, and when
 

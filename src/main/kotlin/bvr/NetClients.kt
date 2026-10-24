@@ -16,6 +16,10 @@ import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
+import reactor.core.publisher.Mono
+import reactor.netty.resources.ConnectionProvider
+import java.time.Duration
+import reactor.netty.http.client.HttpClient as NettyClient
 
 /**
  * The two raw clients share their protocol: one `GET` per connection at a time (no pipelining), a response of
@@ -208,4 +212,20 @@ fun controlRequest(port: Int, path: String): String = Socket("127.0.0.1", port).
         head = head ?: responseHead(buf, n)
     }
     String(buf, head.second, head.first)
+}
+
+/**
+ * Reactor Netty's `HttpClient`, as a Reactor service would call its dependencies: a pool of at most [connections]
+ * (one per call in flight, as the raw clients have), whose acquirers queue rather than fail, and whose idle
+ * connections stay for ten minutes. Answers are read whole and counted. Ported from main's network scenario.
+ */
+class NettyHttp(port: Int, connections: Int) : AutoCloseable {
+    private val pool = ConnectionProvider.builder("bvr-net").maxConnections(connections).pendingAcquireMaxCount(-1)
+        .maxIdleTime(Duration.ofMinutes(10)).build()
+    private val client = NettyClient.create(pool).baseUrl("http://127.0.0.1:$port")
+
+    fun get(micros: Long, size: Int): Mono<Int> =
+        client.get().uri("/?d=$micros&s=$size").responseContent().aggregate().asByteArray().map { it.size }
+
+    override fun close() = pool.dispose()
 }

@@ -235,6 +235,29 @@ The suites ran at three commits of this repository, all against Lark `3ccde44`:
 No change between them touches code a suite before it measured; each summary names its own commit, and the summary
 script refuses to mix records from different commits within one suite.
 
+## Work merged from main
+
+While this rework was under way, main gained five commits (`3416fa3`..`7de18eb`) built on the original harness:
+
+- *A rerun against Lark main* with a JDK timer for Lark `mapAsync` on the native rows. Its numbers were measured on
+  the shared device (A1, A2) and are superseded by `results/io`; the fairer timer is what the `native` device already
+  does here.
+- *A real-network scenario*: a Netty server whose delayed answers are tasks on its event loop, Reactor Netty's client,
+  the JDK `HttpClient`, blocking contestants over a plain `Socket`, 16, 1,000 and 10,000 calls in flight, and a pass
+  over the JDK's poller and scheduler settings. It is ported onto this harness rather than kept beside it: the Netty
+  server is `NettyServer.kt` (same protocol and statistics as `NetServer.kt`, on the next port), Reactor Netty is the
+  socket suite's `netty` client family, 10,000 in flight is the `n-10k-*` scenarios, the settings pass is the
+  `-poller1` and `-parallelism2` scenarios, and `n-wide-raw-nettyserver` runs one scenario against the Netty server
+  to show whether the server's design matters. main's findings that are carried into this harness's results are
+  credited where they appear; its own numbers are not carried forward.
+- *An observation about the hand-off benchmark*: Reactor's `publishOn` requests more from inside its drain loop, and
+  `Flux.range` emits on whichever thread requests, so after the first batch almost every element is produced on the
+  consumer's own thread. HandOffBenchmark's Reactor score therefore measures little cross-thread hand-off; see A15.
+
+### A15. Reactor's hand-off barely hands off (distorting, found on main)
+
+CHECKED-PLACEHOLDER
+
 ## What was not changed
 
 - The original's fake I/O is kept as the `shared` device, and its native-timer rows as `native`, so the original

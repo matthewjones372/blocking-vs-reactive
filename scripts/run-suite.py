@@ -94,18 +94,25 @@ def pinned(cpus, cmd):
     return (["taskset", "-c", cpus] + cmd) if cpus and shutil.which("taskset") else cmd
 
 
-def start_server(args, env):
+def start_servers(args, env):
+    """Both servers, on the same pinned core: NetServer on --port, main's Netty server on the port after it. Only
+    the one a cell names receives requests; the other waits idle."""
     server_env = dict(env, JAVA_OPTS=SERVER_JVM)
     log = open(args.out / "server.log", "a")
-    p = subprocess.Popen(pinned(args.server_cpus, [str(binary), "net-server", str(args.port), "1"]),
-                         env=server_env, stdout=log, stderr=log)
-    for _ in range(100):
-        try:
-            socket.create_connection(("127.0.0.1", args.port), timeout=0.2).close()
-            return p
-        except OSError:
-            time.sleep(0.1)
-    raise SystemExit("the net server did not start")
+    started = []
+    for command, port in (("net-server", args.port), ("net-server-netty", args.port + 1)):
+        p = subprocess.Popen(pinned(args.server_cpus, [str(binary), command, str(port), "1"]),
+                             env=server_env, stdout=log, stderr=log)
+        for _ in range(150):
+            try:
+                socket.create_connection(("127.0.0.1", port), timeout=0.2).close()
+                break
+            except OSError:
+                time.sleep(0.1)
+        else:
+            raise SystemExit(f"{command} did not start")
+        started.append(p)
+    return started
 
 
 def main():
@@ -132,14 +139,16 @@ def main():
     subprocess.run(["./gradlew", "-q", "--stop"], cwd=root, capture_output=True)
     subprocess.run(["pkill", "-f", "KotlinCompileDaemon"], capture_output=True)
 
-    cells = [tuple(l.split()) for l in sh(str(binary), "cells", args.suite).splitlines() if l.strip()]
+    # Each line is `scenario contestant [JVM options for this cell]`.
+    cells = [tuple((l.split(maxsplit=2) + [""])[:3]) for l in sh(str(binary), "cells", args.suite).splitlines() if l.strip()]
     if args.only:
-        cells = [c for c in cells if args.only in " ".join(c)]
+        cells = [c for c in cells if args.only in " ".join(c[:2])]
     schedule = []
     for r in range(1, args.forks + 1):
         order = list(cells)
         random.Random(args.seed * 1000 + r).shuffle(order)
-        schedule += [{"round": r, "order": i, "scenario": s, "contestant": c} for i, (s, c) in enumerate(order)]
+        schedule += [{"round": r, "order": i, "scenario": s, "contestant": c, "jvmOpts": o}
+                     for i, (s, c, o) in enumerate(order)]
 
     meta = metadata(args, cells, schedule)
     if meta["dirty"]:
@@ -155,13 +164,13 @@ def main():
     for n, cell in enumerate(schedule, 1):
         if args.suite.startswith("net") and cell["round"] != current_round:
             # A fresh server each round, so its JIT and heap are not a function of how far the suite has got.
-            if server:
-                server.terminate(); server.wait()
-            server = start_server(args, env)
+            for p in server or []:
+                p.terminate(); p.wait()
+            server = start_servers(args, env)
             current_round = cell["round"]
         props = (f"-Dbvr.commit={meta['commit']} -Dbvr.larkVersion={meta['larkCommit']} -Dbvr.run={run_id} "
                  f"-Dbvr.fork={cell['round']} -Dbvr.order={cell['order']} -Dbvr.netPort={args.port}")
-        run_env = dict(env, JAVA_OPTS=f"{JVM[args.suite]} {props}")
+        run_env = dict(env, JAVA_OPTS=f"{JVM[args.suite]} {cell['jvmOpts']} {props}".replace("  ", " "))
         cmd = [str(binary)] + command(args.suite, cell["scenario"], cell["contestant"], args)
         if args.suite.startswith("net"):
             cmd = pinned(args.client_cpus, cmd)
@@ -184,8 +193,8 @@ def main():
         runs.flush()
         if code != 0:
             print(f"    exit {code}: {err.strip().splitlines()[-1:] if err.strip() else ''}", file=sys.stderr)
-    if server:
-        server.terminate(); server.wait()
+    for p in server or []:
+        p.terminate(); p.wait()
     meta["finished"] = datetime.now(timezone.utc).isoformat()
     (args.out / "metadata.json").write_text(json.dumps(meta, indent=1))
 
