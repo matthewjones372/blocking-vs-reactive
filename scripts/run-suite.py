@@ -101,6 +101,12 @@ def start_servers(args, env):
     log = open(args.out / "server.log", "a")
     started = []
     for command, port in (("net-server", args.port), ("net-server-netty", args.port + 1)):
+        # A server left over from an earlier run would answer the probe below in place of this one.
+        try:
+            socket.create_connection(("127.0.0.1", port), timeout=0.2).close()
+            raise SystemExit(f"port {port} is already in use: stop the process listening on it")
+        except OSError:
+            pass
         p = subprocess.Popen(pinned(args.server_cpus, [str(binary), command, str(port), "1"]),
                              env=server_env, stdout=log, stderr=log)
         for _ in range(150):
@@ -108,6 +114,8 @@ def start_servers(args, env):
                 socket.create_connection(("127.0.0.1", port), timeout=0.2).close()
                 break
             except OSError:
+                if p.poll() is not None:
+                    raise SystemExit(f"{command} exited with {p.returncode}: see server.log")
                 time.sleep(0.1)
         else:
             raise SystemExit(f"{command} did not start")
@@ -143,6 +151,8 @@ def main():
     cells = [tuple((l.split(maxsplit=2) + [""])[:3]) for l in sh(str(binary), "cells", args.suite).splitlines() if l.strip()]
     if args.only:
         cells = [c for c in cells if args.only in " ".join(c[:2])]
+    if not cells:
+        raise SystemExit(f"no cells for suite {args.suite}: does `{binary} cells {args.suite}` run?")
     schedule = []
     for r in range(1, args.forks + 1):
         order = list(cells)
