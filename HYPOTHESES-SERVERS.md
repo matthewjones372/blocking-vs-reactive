@@ -69,3 +69,17 @@ alternating contestants, median reported.
   server.
 - No TLS, compression, `async` (32,000 connections does not fit this VM) or
   CPU-per-request profile (gcannon offers no fixed rate).
+
+## Exploratory addendum: JDK 27, written while it ran and before any result was read
+
+Not part of the pre-registered round above. JDK 27 adds `-Djdk.pollerMode=3`, an epoll poller per carrier thread.
+Contestants `vt-arena-27` (JDK 27, defaults) and `vt-arena-27-pc` (JDK 27, poller per carrier), against `ktron` and
+`vt-arena` on JDK 25, `baseline` and `pipelined` only.
+
+| # | Prediction |
+|---|---|
+| X1 | `vt-arena-27` within noise of `vt-arena`: 0.50–0.56× `ktron` on `baseline`, 0.52–0.58× on `pipelined` |
+| X2 | `vt-arena-27-pc` gains 5–15% on `baseline` (0.55–0.62× `ktron`), less on `pipelined` (0.55–0.60×) |
+
+A poller per carrier at 0.70× or more would refute the expectation that the per-request system calls and parks, not
+cross-core wake-ups, are most of the gap.
