@@ -254,6 +254,19 @@ While this rework was under way, main gained five commits (`3416fa3`..`7de18eb`)
   `Flux.range` emits on whichever thread requests, so after the first batch almost every element is produced on the
   consumer's own thread. HandOffBenchmark's Reactor score therefore measures little cross-thread hand-off; see A15.
 
+main then gained two more reruns (`7b22d6d`, `5e01f93`) of the original harness against a newer Lark: Lark main
+with specs up to 0187, which adds fused CPU chains, a faster `merge`, and a retuned adaptive `Limit` ("an adaptive
+limit that keeps up"). They change main's README and results only, and were merged here keeping this branch's.
+Their numbers rest on the shared device (A1, A2) and are not carried forward. Their Lark is, though, newer than the
+one pinned here (`3ccde44`, specs up to 0178), so:
+
+- this branch's overload results measure the adaptive `Limit` *before* spec 0187's retuning. main reports the
+  retuned limit costing 7% of throughput, against 13–27% before; whether the caller's end-to-end p99 (finding 7)
+  changes with it has not been measured here;
+- this branch's CPU-chain and per-element JMH figures for Lark predate the fused chains.
+
+Moving the pin to Lark main means rerunning every suite at it; that was not done.
+
 ### A15. Reactor's hand-off barely hands off (distorting, found on main)
 
 `HandOffBenchmark` (H5) times a million ints passed from a producer thread to a consumer thread through a buffer of

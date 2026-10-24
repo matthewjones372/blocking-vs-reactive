@@ -232,6 +232,10 @@ tests require): the stream DSLs 7 each; `cf-plain` 32; `vt-plain` 35; `vt-ordere
 - Pekko's async hand-off (JMH) and its single-stage completion processing (finding 5) were not tuned beyond
   documented settings; a Pekko maintainer may know better.
 - A 4-core result is not a 64-core result; the suites are ready to rerun on a larger machine.
+- Lark is pinned at `3ccde44` (specs up to 0178). Lark main has since retuned the adaptive `Limit` (spec 0187)
+  and fused CPU-only chains; main's README reports both on the original harness. The overload findings here are
+  for the `Limit` before that retuning, and the JMH figures for Lark predate the fused chains. See
+  `docs/AUDIT.md`, "Work merged from main".
 
 ## Licence
 
