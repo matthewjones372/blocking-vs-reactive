@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # The JMH benchmarks (CPU-only chain, hand-off, per-element machinery): five forks each, settings on each class.
-# Writes results/jmh/jmh.json, the JMH log, and metadata. JMH_INCLUDES=<regex> runs a subset.
+# Writes results/jmh/jmh.json, the JMH log, and metadata. JMH_INCLUDES=<regex> runs a subset; JMH_OUT=<dir> writes elsewhere.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-out=results/jmh
+out=${JMH_OUT:-results/jmh}
 mkdir -p "$out"
 ./gradlew -q jmhJar
 ./gradlew -q --stop || true
