@@ -22,6 +22,9 @@ The author prefers the blocking side. So the predictions were written down and c
   for Reactor at its best fixed concurrency. It costs 7% of throughput.
 - **Reactor still wins on CPU-only work.** It hands elements between threads 1.5× faster than Lark, and runs a
   CPU-only operator chain 1.2× faster.
+- **As a server, blocking code reaches about half of an io_uring server.** A virtual-thread-per-connection server
+  written for the purpose did 52% of Ktron's requests a second on HttpArena's `baseline`, 55% pipelined and 94% on
+  a 10 KB JSON body, on two cores ([Servers](#servers)). Hand-written Jetty did 28%, 5% and 55%.
 
 ## Throughput as concurrency grows
 
@@ -185,6 +188,65 @@ Where blocking code wins clearly is the stack trace when a call fails
 | Reactor | only through `block()`, which a WebFlux handler never calls | no |
 | Pekko | yes | no |
 
+## Servers
+
+Could a server written as blocking code on virtual threads beat [Ktron](https://github.com/MDA2AV/Ktron), an io_uring
+server with one reactor per core that leads several of [HttpArena](https://github.com/MDA2AV/HttpArena)'s HTTP/1.1
+profiles? This round was pre-registered separately, in [`HYPOTHESES-SERVERS.md`](HYPOTHESES-SERVERS.md).
+
+| contestant | what it is |
+|---|---|
+| `ktron` | HttpArena's own Ktron entry, built from source and unchanged |
+| `vt-arena` | [`VtArena.kt`](src/main/kotlin/bvr/arena/VtArena.kt): a `ServerSocket`, one virtual thread per connection, blocking reads, a parser over the read buffer that allocates no strings, and every pipelined request already read answered with one write |
+| `jetty-arena` | [`JettyArena.kt`](src/main/kotlin/bvr/arena/JettyArena.kt): a hand-written Jetty 12 core handler, invoked on the selector, with a selector per core |
+
+Each server gets two cores; [gcannon](https://github.com/MDA2AV/gcannon), HttpArena's load generator, gets the other
+two, with 4,096 connections. The requests are HttpArena's own files (`baseline` rotates a GET, a POST with
+`Content-Length` and a chunked POST; `pipelined` is 16 deep; `json` is `GET /json/50` without compression). All three
+servers return byte-identical bodies. Each cell is the median of three 10-second runs, each in a fresh JVM after a
+10-second warm-up, with the contestants alternating. Every server ran at 194–199% CPU, so the server set the pace,
+and there were no errors.
+
+| profile | `ktron` | `vt-arena` | `jetty-arena` |
+|---|--:|--:|--:|
+| `baseline` | 442k req/s | 232k (0.52×) | 124k (0.28×) |
+| `pipelined` | 4.95M | 2.73M (0.55×) | 272k (0.05×) |
+| `json` | 133k | 126k (0.94×) | 73k (0.55×) |
+
+p99 latency, in the same order: `baseline` 12.6, 18.3 and 50.9 ms; `pipelined` 21.4, 39.8 and 546 ms; `json` 42.9,
+43.8 and 108 ms. Every line is in [`results/arena.txt`](results/arena.txt).
+
+- **Per request, blocking costs about twice what io_uring does.** On `baseline` each request is a read that finds
+  nothing waiting, a park, a wake-up from the JDK's poller and a write; Ktron's reactor submits many connections'
+  reads and writes in one system call and never switches threads.
+- **Batching helps both alike.** Answering a pipelined batch with one write took `vt-arena` from 0.52× to 0.55×:
+  Ktron batches too, so the gap stays.
+- **When the body is large, the gap almost closes.** A 10 KB response is serialisation and a kernel copy that both
+  servers pay in full, and the cost of how a request was woken shrinks beside it. One `vt-arena` run reached 168k,
+  above Ktron, with a p50 of 3 ms against 20–30 ms in its other runs; it has not been explained. A median of
+  three is not moved by one outlier.
+- **Hand-written Jetty is the slowest here**, and on `pipelined` by far: it answers pipelined requests one at a time,
+  with a write each. Its numbers come from one obvious setting (a selector per core); Jetty experts may do better.
+
+The same shape shows on HttpArena's 64-core host, with another team's server: Helidon SE on Níma, a
+virtual-thread-per-connection server, reaches 41% of Ktron on `baseline`, 22% on `pipelined` and 39% on `json-comp`.
+
+| # | Prediction | Result |
+|---|---|---|
+| S1 | `vt-arena` reaches 30–60% of `ktron` on `baseline` | **Confirmed:** 52% |
+| S2 | its `pipelined` ratio is at least its `baseline` ratio | **Confirmed**, narrowly: 0.55 against 0.52, inside the noise |
+| S3 | its `json` ratio is at least its `baseline` ratio | **Confirmed:** 0.94 |
+| S4 | `jetty-arena` within ±20% of `vt-arena` on `baseline` | **Refuted:** it did 54% of `vt-arena` |
+
+By the rule written down beforehand, 52% sits between "below 50%, blocking cannot beat Ktron" and "70% or more, worth
+pursuing on performance": inconclusive at this scale. In practice the answer is that a blocking server does not beat
+Ktron on small requests. It reaches about half, and a framework built on top of `vt-arena` (Pelican on Lark, say)
+could only add work. What it does beat, by about 1.9× on `baseline` and 10× on `pipelined`, is hand-written Jetty.
+
+**What this round cannot show.** Two server cores against HttpArena's 64; the load generator shares the machine; no
+TLS, compression, `async` profile (32,000 connections), or CPU per request at a fixed rate. The ioxide checkout is
+its `kotlin` branch at `344511c`, newer than the `7d41f47` HttpArena pins; Ktron is at the pinned `971aadc`.
+
 ## Against the pre-registered hypotheses
 
 | # | Prediction | Result |
@@ -212,8 +274,8 @@ Where blocking code wins clearly is the stack trace when a call fails
 
 ## Not yet tested
 
-- **A real network**, between machines, and servers (Reactor Netty against a virtual-thread server) driven by an
-  open-model load generator at and beyond saturation.
+- **A real network**, between machines, and servers driven by an open-model load generator at and beyond
+  saturation. [Servers](#servers) drove them closed-model on loopback, against Ktron and Jetty but not Reactor Netty.
 - Kotlin coroutines and `Flow`.
 - `mapAsync` under a `Limit`.
 
@@ -233,6 +295,9 @@ scripts/run-net.sh                 # results/net.txt; about 3 hours
 build/install/blocking-vs-reactive/bin/blocking-vs-reactive stacktraces > results/stacktraces.txt
 python3 scripts/summarise.py > results/summary.md
 python3 scripts/charts.py          # docs/charts/*.svg
+
+# the server round: gcannon built against liburing 2.9, and HttpArena's frameworks/ktron built with installDist
+GCANNON=/path/to/gcannon KTRON_LIB=/path/to/ktron-arena/lib scripts/run-arena.sh   # results/arena.txt
 ```
 
 ## Licence

@@ -19,6 +19,8 @@ dependencies {
     implementation("org.apache.pekko:pekko-stream_2.13:1.2.1")
     // The real-network scenario: Reactor Netty's client, and the Netty it brings serves the delayed answers.
     implementation("io.projectreactor.netty:reactor-netty-http:1.3.7")
+    // The server round: a hand-written Jetty handler, the floor under Pelican's Jetty backend.
+    implementation("org.eclipse.jetty:jetty-server:12.1.14")
 }
 
 kotlin { jvmToolchain(25) }
