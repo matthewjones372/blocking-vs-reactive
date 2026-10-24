@@ -231,6 +231,22 @@ p99 latency, in the same order: `baseline` 12.6, 18.3 and 50.9 ms; `pipelined` 2
 The same shape shows on HttpArena's 64-core host, with another team's server: Helidon SE on Níma, a
 virtual-thread-per-connection server, reaches 41% of Ktron on `baseline`, 22% on `pipelined` and 39% on `json-comp`.
 
+| # | Prediction | Result |
+|---|---|---|
+| S1 | `vt-arena` reaches 30–60% of `ktron` on `baseline` | **Confirmed:** 52% |
+| S2 | its `pipelined` ratio is at least its `baseline` ratio | **Confirmed**, narrowly: 0.55 against 0.52, inside the noise |
+| S3 | its `json` ratio is at least its `baseline` ratio | **Confirmed:** 0.94 |
+| S4 | `jetty-arena` within ±20% of `vt-arena` on `baseline` | **Refuted:** it did 54% of `vt-arena` |
+
+By the rule written down beforehand, 52% sits between "below 50%, blocking cannot beat Ktron" and "70% or more, worth
+pursuing on performance": inconclusive at this scale. In practice the answer is that a blocking server does not beat
+Ktron on small requests. It reaches about half, and a framework built on top of `vt-arena` (Pelican on Lark, say)
+could only add work. What it does beat, by about 1.9× on `baseline` and 10× on `pipelined`, is hand-written Jetty.
+
+**What this round cannot show.** Two server cores against HttpArena's 64; the load generator shares the machine; no
+TLS, compression, `async` profile (32,000 connections), or CPU per request at a fixed rate. The ioxide checkout is
+its `kotlin` branch at `344511c`, newer than the `7d41f47` HttpArena pins; Ktron is at the pinned `971aadc`.
+
 ### JDK 27, exploratory
 
 JDK 27 adds `-Djdk.pollerMode=3`, an epoll poller per carrier thread, which was expected to cut the cost of waking a
@@ -250,22 +266,6 @@ p99 on `baseline`: 13.8, 20.0, 21.8 and 46.3 ms.
 - **X2, a poller per carrier gains 5–15% on `baseline`: refuted, in the other direction.** It lost 16% on
   `baseline` and doubled p99, and changed nothing on `pipelined`. Why has not been investigated. So on this machine
   cross-core wake-ups are not where the gap is, and JDK 27 does not close it.
-
-| # | Prediction | Result |
-|---|---|---|
-| S1 | `vt-arena` reaches 30–60% of `ktron` on `baseline` | **Confirmed:** 52% |
-| S2 | its `pipelined` ratio is at least its `baseline` ratio | **Confirmed**, narrowly: 0.55 against 0.52, inside the noise |
-| S3 | its `json` ratio is at least its `baseline` ratio | **Confirmed:** 0.94 |
-| S4 | `jetty-arena` within ±20% of `vt-arena` on `baseline` | **Refuted:** it did 54% of `vt-arena` |
-
-By the rule written down beforehand, 52% sits between "below 50%, blocking cannot beat Ktron" and "70% or more, worth
-pursuing on performance": inconclusive at this scale. In practice the answer is that a blocking server does not beat
-Ktron on small requests. It reaches about half, and a framework built on top of `vt-arena` (Pelican on Lark, say)
-could only add work. What it does beat, by about 1.9× on `baseline` and 10× on `pipelined`, is hand-written Jetty.
-
-**What this round cannot show.** Two server cores against HttpArena's 64; the load generator shares the machine; no
-TLS, compression, `async` profile (32,000 connections), or CPU per request at a fixed rate. The ioxide checkout is
-its `kotlin` branch at `344511c`, newer than the `7d41f47` HttpArena pins; Ktron is at the pinned `971aadc`.
 
 ## Against the pre-registered hypotheses
 
