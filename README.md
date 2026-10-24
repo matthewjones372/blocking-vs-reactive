@@ -18,8 +18,8 @@ The author prefers the blocking side. So the predictions were written down and c
   `Socket` used 0.5–0.7× Reactor Netty's CPU per call. The 2.5–4× gap on the shared device comes from how
   its virtual threads are woken (by a platform thread), not from blocking itself. The same gap reappears on the JDK's
   `HttpClient`, which wakes them the same way, and Reactor pays it too on that client.
-- **Lark's adaptive `Limit` protects a dependency that loses capacity.** p99 after the drop is 10 ms, against 28 ms
-  for Reactor at its best fixed concurrency. It costs 13–21% of throughput while it ramps up.
+- **Lark's adaptive `Limit` protects a dependency that loses capacity.** p99 after the drop is 11 ms, against 26 ms
+  for Reactor at its best fixed concurrency. It costs 7% of throughput.
 - **Reactor still wins on CPU-only work.** It hands elements between threads 1.5× faster than Lark, and runs a
   CPU-only operator chain 1.2× faster.
 
@@ -147,12 +147,13 @@ The dependency serves 500 calls at once, 5 ms each. After 100,000 of the 200,000
 if a replica failed. Latency is measured per call, including the dependency's own queue, which is what a caller's
 timeout sees.
 
-- **Fixed concurrency.** Every fixed setting sees its p99 grow 4–5× when capacity drops: 56 ms at 1,000, and
-  28 ms even at the best fixed number.
-- **The adaptive limit.** `mapPar(Limit.adaptive(…))` settles at about 105 against the new capacity of 100, and holds
-  p99 at 10 ms.
-- **The cost.** It finishes 13–27% later across runs (27% in the latest), mostly because it ramps up from a starting
-  limit of 20.
+- **Fixed concurrency.** Every fixed setting sees its p99 grow 4–5× when capacity drops: 52 ms at 1,000, and
+  26 ms even at the best fixed number.
+- **The adaptive limit.** `mapPar(Limit.adaptive(…))` follows the capacity down without overshooting, and holds p99
+  at 11 ms.
+- **The cost.** It finishes 7% later. Pinning a limit at the dependency's real capacity (500–600) costs the same: only a
+  limit near 1,000 hides the gap between one call finishing and the next starting, and that queue is what gives fixed
+  concurrency its p99.
 - **Reactor.** It has nothing built in that adapts. Netflix's `concurrency-limits` library would close the gap.
 
 ### CPU-only work and hand-offs
@@ -194,7 +195,7 @@ Where blocking code wins clearly is the stack trace when a call fails
 | H4 | On a CPU-only chain a plain loop wins, and Reactor beats Lark and Pekko | **Confirmed** |
 | H5 | Reactor's `publishOn` beats a blocking queue between virtual threads | **Confirmed**, by 1.5× over Lark's `buffer`, though Reactor's run barely crosses threads |
 | H6 | Blocking code is shorter, and its trace names the caller | **Half refuted.** The traces are as predicted; the line counts are not |
-| H7 | When a dependency loses capacity, an adaptive limit matches fixed concurrency on throughput and has a lower p99 | **Half met.** p99 2.8× lower; throughput 13–21% lower |
+| H7 | When a dependency loses capacity, an adaptive limit matches fixed concurrency on throughput and has a lower p99 | **Nearly met.** p99 2.4× lower; throughput 7% lower |
 
 ## Caveats
 
@@ -204,8 +205,8 @@ Where blocking code wins clearly is the stack trace when a call fails
   bandwidth, and a one-core server that caps at about 70k calls a second.
 - Neither the Reactor nor the Pekko code has been reviewed by someone who writes it for a living. Pull requests that
   make either faster are welcome, and the results will be re-run with them.
-- Lark is built from its `main` branch, which holds specs 0170–0186 (unordered windows, the adaptive `Limit`, and the
-  faster hand-off, window, `merge` and fused chains) but isn't released yet, and published locally.
+- Lark is built from its `main` branch, which holds specs 0170–0187 (unordered windows, the adaptive `Limit` and its
+  tuning, and the faster hand-off, window, `merge` and fused chains) but isn't released yet, and published locally.
 - Versions: JDK 25.0.5 (Temurin), Kotlin 2.4.10, reactor-core 3.8.8, reactor-netty-http 1.3.7, pekko-stream_2.13
   1.2.1.
 

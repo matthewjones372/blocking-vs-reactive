@@ -665,11 +665,11 @@ RESULT scenario=inflight-100k-native contestant=pekko iteration=2 wallMs=2031.0 
 RESULT scenario=inflight-100k-native contestant=pekko iteration=3 wallMs=2331.0 opsPerSec=858003 cpuMs=6860.0 cpuUsPerOp=3.43 allocMb=1072.4 allocBytesPerOp=536 gcCount=0 gcMs=0 maxOutstanding=100001 fork=2
 RESULT scenario=inflight-100k-native contestant=pekko liveBytesPerInFlight=225 fork=2
 RESULT scenario=inflight-100k-native contestant=pekko rssHighWaterMb=1306 fork=2
-RESULT scenario=overload contestant=reactor-1000 seconds=6.27 opsPerSec=31915 p50BeforeMs=10.4 p99BeforeMs=13.8 p50AfterMs=52.1 p99AfterMs=56.7 fork=1
-RESULT scenario=overload contestant=reactor-tuned seconds=6.25 opsPerSec=31995 p50BeforeMs=5.1 p99BeforeMs=5.7 p50AfterMs=26.0 p99AfterMs=27.9 fork=1
-RESULT scenario=overload contestant=lark-1000 seconds=6.28 opsPerSec=31841 p50BeforeMs=10.1 p99BeforeMs=12.3 p50AfterMs=51.9 p99AfterMs=55.5 fork=1
-RESULT scenario=overload contestant=lark-adaptive seconds=8.03 opsPerSec=24903 p50BeforeMs=5.1 p99BeforeMs=7.1 p50AfterMs=5.1 p99AfterMs=10.2 fork=1
-RESULT scenario=overload contestant=reactor-1000 seconds=6.29 opsPerSec=31813 p50BeforeMs=10.4 p99BeforeMs=12.7 p50AfterMs=52.3 p99AfterMs=56.1 fork=2
-RESULT scenario=overload contestant=reactor-tuned seconds=6.33 opsPerSec=31571 p50BeforeMs=5.1 p99BeforeMs=6.6 p50AfterMs=26.1 p99AfterMs=29.2 fork=2
-RESULT scenario=overload contestant=lark-1000 seconds=6.34 opsPerSec=31540 p50BeforeMs=10.1 p99BeforeMs=13.4 p50AfterMs=52.2 p99AfterMs=56.0 fork=2
-RESULT scenario=overload contestant=lark-adaptive seconds=7.88 opsPerSec=25366 p50BeforeMs=5.1 p99BeforeMs=6.8 p50AfterMs=5.1 p99AfterMs=10.0 fork=2
+RESULT scenario=overload contestant=reactor-1000 seconds=6.17 opsPerSec=32428 p50BeforeMs=10.2 p99BeforeMs=10.6 p50AfterMs=51.5 p99AfterMs=52.8 fork=1
+RESULT scenario=overload contestant=reactor-tuned seconds=6.17 opsPerSec=32434 p50BeforeMs=5.1 p99BeforeMs=6.2 p50AfterMs=25.7 p99AfterMs=26.0 fork=1
+RESULT scenario=overload contestant=lark-1000 seconds=6.16 opsPerSec=32476 p50BeforeMs=10.1 p99BeforeMs=11.2 p50AfterMs=51.2 p99AfterMs=51.8 fork=1
+RESULT scenario=overload contestant=lark-adaptive seconds=6.61 opsPerSec=30270 p50BeforeMs=5.2 p99BeforeMs=9.1 p50AfterMs=5.1 p99AfterMs=10.3 fork=1
+RESULT scenario=overload contestant=reactor-1000 seconds=6.17 opsPerSec=32407 p50BeforeMs=10.2 p99BeforeMs=11.6 p50AfterMs=51.5 p99AfterMs=52.2 fork=2
+RESULT scenario=overload contestant=reactor-tuned seconds=6.17 opsPerSec=32429 p50BeforeMs=5.1 p99BeforeMs=5.7 p50AfterMs=25.7 p99AfterMs=26.8 fork=2
+RESULT scenario=overload contestant=lark-1000 seconds=6.16 opsPerSec=32444 p50BeforeMs=10.1 p99BeforeMs=11.2 p50AfterMs=51.2 p99AfterMs=51.8 fork=2
+RESULT scenario=overload contestant=lark-adaptive seconds=6.59 opsPerSec=30372 p50BeforeMs=5.2 p99BeforeMs=9.3 p50AfterMs=5.1 p99AfterMs=11.4 fork=2
