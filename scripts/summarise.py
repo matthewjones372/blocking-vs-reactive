@@ -383,6 +383,12 @@ def operational_tables(out):
         out.append("|---|---|--:|--:|")
         for r in (json.loads(l) for l in (d / "threaddump.jsonl").read_text().splitlines() if l.strip()):
             out.append(f"| {r['contestant']} | {r['model']} | {r['threads']} | {r['threadsAtCallSite']} |")
+    if (d / "handoff.jsonl").exists():
+        out.append("\n### Does the JMH hand-off cross threads?\n")
+        out.append("| contestant | elements | produced on the consumer's thread | fraction |")
+        out.append("|---|--:|--:|--:|")
+        for r in (json.loads(l) for l in (d / "handoff.jsonl").read_text().splitlines() if l.strip()):
+            out.append(f"| {r['contestant']} | {r['elements']:,} | {r['producedOnConsumerThread']:,} | {r['fraction']:.2f} |")
     if (d / "stacktraces.jsonl").exists():
         out.append("\n### Stack trace of a failed fetch, as the handler catches it\n")
         out.append("| contestant | exception caught | names `handleRequest` | names `fetchOrder` | lines |")

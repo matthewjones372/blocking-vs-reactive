@@ -256,7 +256,27 @@ While this rework was under way, main gained five commits (`3416fa3`..`7de18eb`)
 
 ### A15. Reactor's hand-off barely hands off (distorting, found on main)
 
-CHECKED-PLACEHOLDER
+`HandOffBenchmark` (H5) times a million ints passed from a producer thread to a consumer thread through a buffer of
+256. Reactor's contestant is `Flux.range(...).publishOn(single, 256)`. main observed that `publishOn` requests its
+next batch from inside its own drain loop, on the consumer's thread, and that a synchronous source such as
+`Flux.range` emits on whichever thread requests. So after the first batch the producer runs on the consumer's
+thread and nothing crosses threads.
+
+Checked here with `handoff-threads` (`HandOffCheck.kt`), which runs each contestant as the benchmark runs it but
+records the thread that produced each element and counts those produced on the consumer's thread:
+
+| contestant | elements produced on the consumer's thread |
+|---|--:|
+| Reactor `publishOn` | 999,999 of 1,000,000 (1.00) |
+| Lark `buffer` | 0 (0.00) |
+| Pekko async boundary | 377,638 (0.38) |
+| virtual threads + `ArrayBlockingQueue` | 0 (0.00) |
+
+The observation holds. Reactor's 26 ms in finding 13 is the cost of a same-thread queue, not of a hand-off, and
+Pekko's figure is a mix of the two. The benchmark is kept unchanged so its numbers stay comparable with the
+original's, and is relabelled: its Reactor and Pekko rows are not a measure of cross-thread hand-off. A fair
+version would give Reactor an asynchronous source (`subscribeOn` on another scheduler); that was not run. Raw
+records: `results/semantics/handoff.jsonl`.
 
 ## What was not changed
 

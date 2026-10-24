@@ -13,6 +13,7 @@ scripts/run-suite.py io --forks 5 --no-build
 scripts/run-jmh.sh
 mkdir -p results/semantics
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin semantics | sed -n 's/^RESULT //p' > results/semantics/semantics.jsonl
+env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin handoff-threads | sed -n 's/^RESULT //p' > results/semantics/handoff.jsonl
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin threaddump | sed -n 's/^RESULT //p' > results/semantics/threaddump.jsonl
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin stacktraces > build/stacktraces.out
 grep -v '^RESULT' build/stacktraces.out > results/semantics/stacktraces.txt

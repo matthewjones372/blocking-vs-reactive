@@ -180,6 +180,9 @@ CPU-only cases.** JMH, five forks, 99.9% intervals in [`results/jmh/summary.md`]
   is what each model adds to whatever the I/O costs.
 - *Hand-off between threads* (a million ints, buffer 256): Reactor `publishOn` 26 ms, Lark `buffer` 41 ms, an
   `ArrayBlockingQueue` between two virtual threads 227 ms, Pekko's async boundary 1.1 s.
+  These are not like for like. Reactor's synchronous source ends up running on the consumer's thread, so all but
+  one of its million elements never cross threads; Pekko's cross for 62% of them, Lark's and the queue's for all.
+  The finding was made on main and checked here (`docs/AUDIT.md` A15).
 - *CPU-only chain* (map, filter, map, sum over a million ints): a plain loop 0.66 ms, `Sequence` 9.7 ms, Reactor
   17.5 ms, Lark 20.6 ms, Pekko 87 ms.
 → ![](docs/charts/per-element.svg)
