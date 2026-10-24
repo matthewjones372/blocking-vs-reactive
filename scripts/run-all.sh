@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Every suite, one after another, as published in results/: about six hours on a 4-core machine. Run from a clean,
+# Every suite, one after another, as published in results/: about seven hours on a 4-core machine. Run from a clean,
 # committed tree with JAVA_HOME at JDK 25 and Lark published (scripts/build-lark.sh). Nothing else should run.
 set -euo pipefail
 cd "$(dirname "$0")/.."

@@ -12,7 +12,7 @@ pkill -f KotlinCompileDaemon || true
   echo "{\"commit\": \"$(git rev-parse HEAD)\", \"dirty\": $([[ -n $(git status --porcelain --untracked-files=no) ]] && echo true || echo false),"
   echo " \"larkCommit\": \"$(cat lark.commit)\", \"cpus\": $(nproc), \"kernel\": \"$(uname -r)\","
   echo " \"cpu\": \"$(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | sed 's/^ //')\","
-  echo " \"java\": \"$("$JAVA_HOME"/bin/java -version 2>&1 | head -1 | sed 's/"/\\"/g')\", \"started\": \"$(date -u +%FT%TZ)\"}"
+  echo " \"java\": \"$(env -u JAVA_TOOL_OPTIONS "$JAVA_HOME"/bin/java -version 2>&1 | head -1 | sed 's/"/\\"/g')\", \"started\": \"$(date -u +%FT%TZ)\"}"
 } > "$out/metadata.json"
 env -u JAVA_TOOL_OPTIONS "$JAVA_HOME"/bin/java -jar build/libs/blocking-vs-reactive-jmh.jar ${JMH_INCLUDES:-} \
   -f 5 -prof gc -rf json -rff "$out/jmh.json" -jvmArgs "-Xms2g -Xmx2g -XX:+UseG1GC --enable-preview" | tee "$out/jmh.txt"

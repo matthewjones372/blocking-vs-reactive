@@ -1,0 +1,148 @@
+===== vt-plain
+java.util.concurrent.ExecutionException: java.io.IOException: connection reset fetching order 3
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:124)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:193)
+	at bvr.StackTracesKt.handleRequestVt(StackTraces.kt:56)
+	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:129)
+	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:129)
+	at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
+	at bvr.MainKt.main(Main.kt:22)
+Caused by: java.io.IOException: connection reset fetching order 3
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
+	at bvr.StackTracesKt.handleRequestVt$lambda$0$0$0(StackTraces.kt:54)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ThreadPerTaskExecutor$ThreadBoundFuture.run(ThreadPerTaskExecutor.java:323)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+
+===== vt-structured
+java.io.IOException: connection reset fetching order 3
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
+	at bvr.StackTracesKt.handleRequestStructured$lambda$0$1(StackTraces.kt:67)
+	at java.base/java.util.concurrent.StructuredTaskScopeImpl$SubtaskImpl.run(StructuredTaskScopeImpl.java:325)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+
+===== lark-mappar
+java.io.IOException: connection reset fetching order 3
+	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
+	at bvr.StackTracesKt.handleRequestLark$lambda$0(StackTraces.kt:85)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:155)
+	at io.github.matthewjones372.lark.stream.DefectKt.guard(Defect.kt:46)
+	at io.github.matthewjones372.lark.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:160)
+	at io.github.matthewjones372.lark.stream.InFlight._init_$lambda$0(Window.kt:95)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
+	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapPar died on 3, built at StackTraces.kt:85
+
+===== lark-mapasync
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+	at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapAsync died on 3, built at StackTraces.kt:89
+
+===== cf-plain
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+	at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+
+===== reactor-flatmap
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+	at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:104)
+		at reactor.core.publisher.Mono.block(Mono.java:1773)
+		at bvr.StackTracesKt.handleRequestReactor(StackTraces.kt:107)
+		at bvr.StackTracesKt$stackTraces$handlers$6.invoke(StackTraces.kt:134)
+		at bvr.StackTracesKt$stackTraces$handlers$6.invoke(StackTraces.kt:134)
+		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
+		at bvr.MainKt.main(Main.kt:22)
+
+===== reactor-flatmap + checkpoint()
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	Suppressed: The stacktrace has been enhanced by Reactor, refer to additional information below: 
+Error has been observed at the following site(s):
+	*__checkpoint ? fetchOrder
+	*__checkpoint ? handleRequest
+Original Stack Trace:
+		at bvr.DeviceKt.fire(Device.kt:46)
+		at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+		at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+		at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+		at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+		at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+		at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+		at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+		at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:104)
+		at reactor.core.publisher.Mono.block(Mono.java:1773)
+		at bvr.StackTracesKt.handleRequestReactorCheckpoint(StackTraces.kt:111)
+		at bvr.StackTracesKt$stackTraces$handlers$7.invoke(StackTraces.kt:135)
+		at bvr.StackTracesKt$stackTraces$handlers$7.invoke(StackTraces.kt:135)
+		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
+		at bvr.MainKt.main(Main.kt:22)
+
+===== reactor-flatmap + Hooks.onOperatorDebug()
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	Suppressed: The stacktrace has been enhanced by Reactor, refer to additional information below: 
+Assembly trace from producer [reactor.core.publisher.MonoCompletionStage] :
+	reactor.core.publisher.Mono.fromFuture(Mono.java:624)
+	bvr.StackTracesKt.handleRequestReactorDebug$lambda$0(StackTraces.kt:116)
+Error has been observed at the following site(s):
+	*__Mono.fromFuture ? at bvr.StackTracesKt.handleRequestReactorDebug$lambda$0(StackTraces.kt:116)
+	*_____Flux.flatMap ? at bvr.StackTracesKt.handleRequestReactorDebug(StackTraces.kt:116)
+	|_     Flux.reduce ? at bvr.StackTracesKt.handleRequestReactorDebug(StackTraces.kt:117)
+Original Stack Trace:
+		at bvr.DeviceKt.fire(Device.kt:46)
+		at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+		at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+		at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+		at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+		at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+		at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+		at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+		at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:104)
+		at reactor.core.publisher.Mono.block(Mono.java:1773)
+		at bvr.StackTracesKt.handleRequestReactorDebug(StackTraces.kt:117)
+		at bvr.StackTracesKt$stackTraces$handlers$8.invoke(StackTraces.kt:136)
+		at bvr.StackTracesKt$stackTraces$handlers$8.invoke(StackTraces.kt:136)
+		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
+		at bvr.MainKt.main(Main.kt:22)
+
+===== pekko-mapasync-unordered
+bvr.IoFailure: connection reset on call 3
+	at bvr.DeviceKt.fire(Device.kt:46)
+	at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1753)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1745)
+	at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1662)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+

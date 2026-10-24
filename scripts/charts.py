@@ -50,7 +50,7 @@ def nice(x):
     return f"{x:.2f}" if x < 10 else f"{x:.1f}"
 
 
-def strip(path, title, subtitle, rows, unit, log=False, panels=None):
+def strip(path, title, subtitle, rows, unit, log=False, panels=None, shared=False):
     """rows: [(label, [values])] for one panel, or panels: [(panel title, rows)] side by side."""
     panels = panels or [(None, rows)]
     label_w, panel_w, row_h, top = 210, 300, 22, 70
@@ -61,8 +61,9 @@ def strip(path, title, subtitle, rows, unit, log=False, panels=None):
            f'aria-label="{title}">', STYLE, f'<rect class="bg" width="{w}" height="{h}"/>',
            f'<text class="t1" x="16" y="24" font-size="15" font-weight="600">{title}</text>',
            f'<text class="t2" x="16" y="44" font-size="12">{subtitle}</text>']
+    every = [v for _, prow in panels for _, vs in prow for v in vs if v is not None and v > 0]
     for k, (ptitle, prow) in enumerate(panels):
-        vals = [v for _, vs in prow for v in vs if v is not None and v > 0]
+        vals = every if shared else [v for _, vs in prow for v in vs if v is not None and v > 0]
         if not vals:
             continue
         lo, hi = (min(vals) / 1.3, max(vals) * 1.3) if log else (0, max(vals) * 1.1)
@@ -118,7 +119,7 @@ if io:
         order = [c for c, _ in by_median(sc[f"{shape}-dispatched"]["rows"], "opsPerSec")]
         strip(f"{shape}-devices.svg", f"{shape[1:]} calls of 10 ms in flight, on each device",
               f"Throughput, ops/s, log scale (ceiling {total}/s). The same contestants, four ways of completing the I/O.",
-              None, "ops/s", log=True,
+              None, "ops/s", log=True, shared=True,
               panels=[(d, [(c, sc[f"{shape}-{d}"]["rows"].get(c, {}).get("opsPerSec") or []) for c in order]) for d in devices])
     rows = sc["c10k-dispatched"]["rows"]
     order = sorted(rows, key=lambda c: statistics.median(rows[c]["cpuUsPerOp"]))
@@ -131,7 +132,7 @@ if wl:
     names = sorted(sc)
     order = [c for c, _ in by_median(sc[names[0]]["rows"], "opsPerSec")]
     strip("workload.svg", "The workload matrix", "Throughput, ops/s, log scale; each panel changes one thing from 1,000 calls of 10 ms.",
-          None, "ops/s", log=True,
+          None, "ops/s", log=True, shared=True,
           panels=[(n.replace("-dispatched", "").replace("w-", ""), [(c, sc[n]["rows"].get(c, {}).get("opsPerSec") or []) for c in order]) for n in names])
 
 mem = load("memory")

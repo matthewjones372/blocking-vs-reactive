@@ -6,6 +6,8 @@ Commit `eed937ef32`, Lark `3ccde4496a`, openjdk version "25.0.5" 2026-10-20 LTS,
 
 Server pinned to CPU 3 (`-Xms1g -Xmx1g -XX:+UseG1GC -XX:+AlwaysPreTouch`); clients to CPUs 0-2.
 
+Warm-up check: median JIT time per measured iteration 81 ms (90th percentile 579 ms); last measured iteration against first, median 1.009, 5th–95th percentile 0.93–1.10.
+
 Machine drift: the single-threaded calibration loop took 1,991 ns per thousand rounds (median of 108 JVMs), coefficient of variation 4.4%.
 
 

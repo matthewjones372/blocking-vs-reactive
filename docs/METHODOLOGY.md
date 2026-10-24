@@ -207,7 +207,10 @@ only offers a blocking `withPermit`, so `AsyncLimit` ports the same arithmetic u
 non-blocking acquire for Reactor. Running plain virtual threads on both is the check that the port behaves as the
 original. Lark's `mapParUnordered(limit)` is written out as Lark defines it (`mapParUnordered(limit.max) {
 limit.withPermit { … } }`) so an expired element can be caught outside the permit rather than fail the stream.
-Under every adaptive policy the outer bound is 1,000, as Lark's window is `limit.max`.
+Under every adaptive policy the outer bound is 1,000, as Lark's window is `limit.max`. As in Lark's `Limit`, a
+caller that finds a free place takes it even if others are waiting. Reactor's open-loop source, which parks until
+each arrival is due, is pulled on a `boundedElastic` worker (`subscribeOn`), as Reactor's documentation does for a
+blocking source.
 
 ## 9. Execution and statistics
 

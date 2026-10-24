@@ -12,8 +12,8 @@ Bytes retained per element: the slope of live bytes (class histogram after full 
 | contestant | B/element median [95% CI] | range | n | state at 100k | live/n at 100k | RSS growth at 100k MB | NMT thread KB | largest growing classes, B/element |
 |---|--:|--:|--:|--:|--:|--:|--:|---|
 | lark-mapasync | 79 [79–79] | 79–85 | 9 | 100,000/0/0 | 80 | 1 | 1,525 | `CompletableFuture` 24, `Started` 24, `Integer` 16, `CompletableFuture;` 5 |
-| cf-plain | 146 [146–146] | 146–146 | 9 | 100,000/0/1 | 146 | 1 | 1,103 | `CompletableFuture` 48, `CompletableFuture$UniWhenComplete` 40, `ContestantsKt$$Lambda/0x000000009c05ede0` 32, `ContestantsKt$$Lambda/0x000000009405ede0` 32 |
-| lark-mapasync-unordered | 154 [154–154] | 154–154 | 9 | 100,000/0/0 | 155 | 1 | 1,462 | `CompletableFuture` 48, `CompletableFuture$UniWhenComplete` 40, `AwaitedKt$$Lambda/0x0000000090094c20` 24, `AwaitedKt$$Lambda/0x0000000087094c20` 24 |
+| cf-plain | 146 [146–146] | 146–146 | 9 | 100,000/0/1 | 146 | 1 | 1,103 | `CompletableFuture` 48, `CompletableFuture$UniWhenComplete` 40, `ContestantsKt$$Lambda` 24, `CompletableFuture;` 5 |
+| lark-mapasync-unordered | 154 [154–154] | 154–154 | 9 | 100,000/0/0 | 155 | 1 | 1,462 | `CompletableFuture` 48, `CompletableFuture$UniWhenComplete` 40, `AwaitedKt$$Lambda` 20, `Integer` 16 |
 | pekko-mapasync-unordered | 158 [158–158] | 158–158 | 9 | 100,000/0/0 | 158 | 2 | 2,714 | `CompletableFuture` 48, `CompletableFuture$UniHandle` 40, `Promise$Transformation` 32, `FutureConvertersImpl$P` 24 |
 | pekko-mapasync | 187 [182–202] | 182–265 | 9 | 100,000/0/0 | 183 | 3 | 2,764 | `CompletableFuture` 48, `CompletableFuture$UniHandle` 40, `Promise$Transformation` 32, `FutureConvertersImpl$P` 24 |
 | reactor-flatmap | 198 [198–198] | 198–198 | 9 | 100,000/0/1 | 199 | 0 | 1,119 | `FluxFlatMap$FlatMapInner` 56, `CompletableFuture` 48, `CompletableFuture$UniHandle` 40, `MonoCompletionStage$MonoCompletionStageSubscription` 32 |

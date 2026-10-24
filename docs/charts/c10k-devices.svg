@@ -1,0 +1,452 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1450 374" width="1450" height="374" role="img" aria-label="10k calls of 10 ms in flight, on each device">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
+.grid { stroke: #e1e0d9; stroke-width: 1; }
+.jdk { fill: #6b6a65; stroke: #6b6a65; } .lark { fill: #2a78d6; stroke: #2a78d6; }
+.reactor { fill: #eb6834; stroke: #eb6834; } .pekko { fill: #1baf7a; stroke: #1baf7a; }
+.hollow { fill: #fcfcfb; stroke-width: 2; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
+  .jdk { fill: #a8a79f; stroke: #a8a79f; } .lark { fill: #3987e5; stroke: #3987e5; }
+  .reactor { fill: #d95926; stroke: #d95926; } .pekko { fill: #199e70; stroke: #199e70; }
+  .hollow { fill: #1a1a19; }
+}
+</style>
+<rect class="bg" width="1450" height="374"/>
+<text class="t1" x="16" y="24" font-size="15" font-weight="600">10k calls of 10 ms in flight, on each device</text>
+<text class="t2" x="16" y="44" font-size="12">Throughput, ops/s, log scale (ceiling 1M/s). The same contestants, four ways of completing the I/O.</text>
+<text class="t1" x="220" y="62" font-size="12" font-weight="600">dispatched</text>
+<line class="grid" x1="264.0" y1="70" x2="264.0" y2="334"/>
+<text class="mu" x="264.0" y="348" font-size="10" text-anchor="middle">30k</text>
+<line class="grid" x1="324.0" y1="70" x2="324.0" y2="334"/>
+<text class="mu" x="324.0" y="348" font-size="10" text-anchor="middle">100k</text>
+<line class="grid" x1="378.7" y1="70" x2="378.7" y2="334"/>
+<text class="mu" x="378.7" y="348" font-size="10" text-anchor="middle">300k</text>
+<line class="grid" x1="438.7" y1="70" x2="438.7" y2="334"/>
+<text class="mu" x="438.7" y="348" font-size="10" text-anchor="middle">1.00M</text>
+<text class="t1" x="202" y="85.0" font-size="12" text-anchor="end">reactor-flatmapsequential</text>
+<line class="reactor" x1="436.4" y1="81.0" x2="436.7" y2="81.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="436.6" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="436.4" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="436.7" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="436.5" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="436.6" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="436.6" cy="81.0" r="5"/>
+<text class="t2" x="444.7" y="85.0" font-size="11">959k</text>
+<text class="t1" x="202" y="107.0" font-size="12" text-anchor="end">cf-plain</text>
+<line class="jdk" x1="436.5" y1="103.0" x2="436.8" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="436.5" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="436.5" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="436.8" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="436.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="436.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="436.6" cy="103.0" r="5"/>
+<text class="t2" x="444.8" y="107.0" font-size="11">959k</text>
+<text class="t1" x="202" y="129.0" font-size="12" text-anchor="end">lark-mapasync</text>
+<line class="lark" x1="435.8" y1="125.0" x2="436.4" y2="125.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="436.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="436.3" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="436.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="436.3" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.8" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="436.3" cy="125.0" r="5"/>
+<text class="t2" x="444.4" y="129.0" font-size="11">953k</text>
+<text class="t1" x="202" y="151.0" font-size="12" text-anchor="end">lark-mapasync-unordered</text>
+<line class="lark" x1="435.5" y1="147.0" x2="435.9" y2="147.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="435.8" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.8" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.9" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.7" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.5" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="435.8" cy="147.0" r="5"/>
+<text class="t2" x="443.9" y="151.0" font-size="11">944k</text>
+<text class="t1" x="202" y="173.0" font-size="12" text-anchor="end">pekko-mapasync</text>
+<line class="pekko" x1="435.2" y1="169.0" x2="435.8" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="435.6" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="435.7" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="435.2" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="435.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="435.7" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="435.7" cy="169.0" r="5"/>
+<text class="t2" x="443.8" y="173.0" font-size="11">941k</text>
+<text class="t1" x="202" y="195.0" font-size="12" text-anchor="end">reactor-flatmap</text>
+<line class="reactor" x1="434.9" y1="191.0" x2="435.8" y2="191.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="435.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="434.9" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="435.4" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="435.6" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="435.4" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="435.4" cy="191.0" r="5"/>
+<text class="t2" x="443.8" y="195.0" font-size="11">935k</text>
+<text class="t1" x="202" y="217.0" font-size="12" text-anchor="end">vt-plain</text>
+<line class="jdk" x1="434.2" y1="213.0" x2="435.2" y2="213.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="434.3" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="434.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="434.6" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="435.2" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="434.2" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="434.5" cy="213.0" r="5"/>
+<text class="t2" x="443.2" y="217.0" font-size="11">920k</text>
+<text class="t1" x="202" y="239.0" font-size="12" text-anchor="end">vt-structured</text>
+<line class="jdk" x1="432.7" y1="235.0" x2="434.0" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="433.9" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="433.7" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="434.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="433.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="432.7" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="433.8" cy="235.0" r="5"/>
+<text class="t2" x="442.0" y="239.0" font-size="11">906k</text>
+<text class="t1" x="202" y="261.0" font-size="12" text-anchor="end">lark-mappar</text>
+<line class="lark" x1="432.1" y1="257.0" x2="433.4" y2="257.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="432.1" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="432.5" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="433.4" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="432.9" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="433.3" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="432.9" cy="257.0" r="5"/>
+<text class="t2" x="441.4" y="261.0" font-size="11">890k</text>
+<text class="t1" x="202" y="283.0" font-size="12" text-anchor="end">vt-ordered</text>
+<line class="jdk" x1="432.0" y1="279.0" x2="433.0" y2="279.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="432.5" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="432.0" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="432.2" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="432.6" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="433.0" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="432.5" cy="279.0" r="5"/>
+<text class="t2" x="441.0" y="283.0" font-size="11">882k</text>
+<text class="t1" x="202" y="305.0" font-size="12" text-anchor="end">lark-mappar-unordered</text>
+<line class="lark" x1="427.1" y1="301.0" x2="431.0" y2="301.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="427.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="430.4" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="431.0" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="429.9" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="429.5" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="429.9" cy="301.0" r="5"/>
+<text class="t2" x="439.0" y="305.0" font-size="11">837k</text>
+<text class="t1" x="202" y="327.0" font-size="12" text-anchor="end">pekko-mapasync-unordered</text>
+<line class="pekko" x1="428.0" y1="323.0" x2="432.2" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="432.2" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="428.9" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="428.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="431.5" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="429.7" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="429.7" cy="323.0" r="5"/>
+<text class="t2" x="440.2" y="327.0" font-size="11">835k</text>
+<text class="t1" x="520" y="62" font-size="12" font-weight="600">wheel</text>
+<line class="grid" x1="564.0" y1="70" x2="564.0" y2="334"/>
+<text class="mu" x="564.0" y="348" font-size="10" text-anchor="middle">30k</text>
+<line class="grid" x1="624.0" y1="70" x2="624.0" y2="334"/>
+<text class="mu" x="624.0" y="348" font-size="10" text-anchor="middle">100k</text>
+<line class="grid" x1="678.7" y1="70" x2="678.7" y2="334"/>
+<text class="mu" x="678.7" y="348" font-size="10" text-anchor="middle">300k</text>
+<line class="grid" x1="738.7" y1="70" x2="738.7" y2="334"/>
+<text class="mu" x="738.7" y="348" font-size="10" text-anchor="middle">1.00M</text>
+<line class="reactor" x1="736.8" y1="81.0" x2="736.8" y2="81.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="736.8" cy="81.0" r="5"/>
+<text class="t2" x="744.8" y="85.0" font-size="11">963k</text>
+<line class="jdk" x1="736.2" y1="103.0" x2="736.4" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="736.2" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="736.4" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="736.4" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="736.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="736.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="736.3" cy="103.0" r="5"/>
+<text class="t2" x="744.4" y="107.0" font-size="11">954k</text>
+<line class="lark" x1="736.4" y1="125.0" x2="736.9" y2="125.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="736.9" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.6" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.6" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.6" cy="125.0" r="5"/>
+<text class="t2" x="744.9" y="129.0" font-size="11">959k</text>
+<line class="lark" x1="735.8" y1="147.0" x2="736.4" y2="147.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="735.8" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.2" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="736.4" cy="147.0" r="5"/>
+<text class="t2" x="744.4" y="151.0" font-size="11">954k</text>
+<line class="pekko" x1="735.8" y1="169.0" x2="736.1" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="735.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="736.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="736.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="736.1" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="736.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="736.0" cy="169.0" r="5"/>
+<text class="t2" x="744.1" y="173.0" font-size="11">947k</text>
+<line class="reactor" x1="533.1" y1="191.0" x2="537.6" y2="191.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="537.6" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="534.1" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="534.7" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="533.1" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="533.3" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="534.1" cy="191.0" r="5"/>
+<text class="t2" x="545.6" y="195.0" font-size="11">16k</text>
+<line class="jdk" x1="734.7" y1="213.0" x2="735.5" y2="213.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="735.3" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="735.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="735.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="735.4" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="734.7" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="735.4" cy="213.0" r="5"/>
+<text class="t2" x="743.5" y="217.0" font-size="11">935k</text>
+<line class="jdk" x1="733.3" y1="235.0" x2="735.0" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="734.7" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="734.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="735.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="734.6" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="733.3" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="734.7" cy="235.0" r="5"/>
+<text class="t2" x="743.0" y="239.0" font-size="11">923k</text>
+<line class="lark" x1="733.8" y1="257.0" x2="734.8" y2="257.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="734.3" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="734.4" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="734.1" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="733.8" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="734.8" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="734.3" cy="257.0" r="5"/>
+<text class="t2" x="742.8" y="261.0" font-size="11">915k</text>
+<line class="jdk" x1="733.4" y1="279.0" x2="734.2" y2="279.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="733.5" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="733.4" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="734.2" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="734.2" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="733.8" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="733.8" cy="279.0" r="5"/>
+<text class="t2" x="742.2" y="283.0" font-size="11">907k</text>
+<line class="lark" x1="730.5" y1="301.0" x2="732.4" y2="301.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="731.3" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="731.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="732.4" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="730.5" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="731.9" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="731.3" cy="301.0" r="5"/>
+<text class="t2" x="740.4" y="305.0" font-size="11">862k</text>
+<line class="pekko" x1="733.8" y1="323.0" x2="735.5" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="735.5" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="735.1" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="735.2" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="733.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="734.9" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="735.1" cy="323.0" r="5"/>
+<text class="t2" x="743.5" y="327.0" font-size="11">931k</text>
+<text class="t1" x="820" y="62" font-size="12" font-weight="600">shared</text>
+<line class="grid" x1="864.0" y1="70" x2="864.0" y2="334"/>
+<text class="mu" x="864.0" y="348" font-size="10" text-anchor="middle">30k</text>
+<line class="grid" x1="924.0" y1="70" x2="924.0" y2="334"/>
+<text class="mu" x="924.0" y="348" font-size="10" text-anchor="middle">100k</text>
+<line class="grid" x1="978.7" y1="70" x2="978.7" y2="334"/>
+<text class="mu" x="978.7" y="348" font-size="10" text-anchor="middle">300k</text>
+<line class="grid" x1="1038.7" y1="70" x2="1038.7" y2="334"/>
+<text class="mu" x="1038.7" y="348" font-size="10" text-anchor="middle">1.00M</text>
+<line class="reactor" x1="995.8" y1="81.0" x2="1002.3" y2="81.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="1002.3" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="999.9" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1001.1" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1002.0" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="995.8" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1001.1" cy="81.0" r="5"/>
+<text class="t2" x="1010.3" y="85.0" font-size="11">471k</text>
+<line class="jdk" x1="1002.9" y1="103.0" x2="1007.6" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="1006.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1006.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1002.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1007.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1003.4" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1006.3" cy="103.0" r="5"/>
+<text class="t2" x="1015.6" y="107.0" font-size="11">522k</text>
+<line class="lark" x1="1022.4" y1="125.0" x2="1026.1" y2="125.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1024.6" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1024.5" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1026.1" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1024.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1022.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1024.5" cy="125.0" r="5"/>
+<text class="t2" x="1034.1" y="129.0" font-size="11">752k</text>
+<line class="lark" x1="1015.2" y1="147.0" x2="1021.2" y2="147.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1021.2" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1019.2" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1015.2" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1016.9" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1017.9" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1017.9" cy="147.0" r="5"/>
+<text class="t2" x="1029.2" y="151.0" font-size="11">658k</text>
+<line class="pekko" x1="983.9" y1="169.0" x2="987.9" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="987.9" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="987.4" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="985.9" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="987.2" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="983.9" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="987.2" cy="169.0" r="5"/>
+<text class="t2" x="995.9" y="173.0" font-size="11">356k</text>
+<line class="reactor" x1="1000.5" y1="191.0" x2="1004.9" y2="191.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="1002.6" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1000.5" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1004.9" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1000.7" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1003.6" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1002.6" cy="191.0" r="5"/>
+<text class="t2" x="1012.9" y="195.0" font-size="11">485k</text>
+<line class="jdk" x1="989.2" y1="213.0" x2="996.5" y2="213.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="990.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="992.8" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="996.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="991.9" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="989.2" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="991.9" cy="213.0" r="5"/>
+<text class="t2" x="1004.5" y="217.0" font-size="11">391k</text>
+<line class="jdk" x1="987.3" y1="235.0" x2="993.1" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="990.5" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="991.9" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="991.9" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="987.3" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="993.1" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="991.9" cy="235.0" r="5"/>
+<text class="t2" x="1001.1" y="239.0" font-size="11">391k</text>
+<line class="lark" x1="988.0" y1="257.0" x2="996.4" y2="257.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="994.2" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="990.9" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="996.4" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="990.0" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="988.0" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="990.9" cy="257.0" r="5"/>
+<text class="t2" x="1004.4" y="261.0" font-size="11">383k</text>
+<line class="jdk" x1="980.6" y1="279.0" x2="994.3" y2="279.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="980.6" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="991.4" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="992.8" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="994.3" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="991.3" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="991.4" cy="279.0" r="5"/>
+<text class="t2" x="1002.3" y="283.0" font-size="11">387k</text>
+<line class="lark" x1="1000.1" y1="301.0" x2="1005.1" y2="301.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1005.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1002.6" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1005.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1000.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1001.2" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="1002.6" cy="301.0" r="5"/>
+<text class="t2" x="1013.1" y="305.0" font-size="11">484k</text>
+<line class="pekko" x1="960.9" y1="323.0" x2="981.8" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="978.1" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="977.2" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="981.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="960.9" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="977.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="977.8" cy="323.0" r="5"/>
+<text class="t2" x="989.8" y="327.0" font-size="11">295k</text>
+<text class="t1" x="1120" y="62" font-size="12" font-weight="600">native</text>
+<line class="grid" x1="1164.0" y1="70" x2="1164.0" y2="334"/>
+<text class="mu" x="1164.0" y="348" font-size="10" text-anchor="middle">30k</text>
+<line class="grid" x1="1224.0" y1="70" x2="1224.0" y2="334"/>
+<text class="mu" x="1224.0" y="348" font-size="10" text-anchor="middle">100k</text>
+<line class="grid" x1="1278.7" y1="70" x2="1278.7" y2="334"/>
+<text class="mu" x="1278.7" y="348" font-size="10" text-anchor="middle">300k</text>
+<line class="grid" x1="1338.7" y1="70" x2="1338.7" y2="334"/>
+<text class="mu" x="1338.7" y="348" font-size="10" text-anchor="middle">1.00M</text>
+<line class="reactor" x1="1329.5" y1="81.0" x2="1334.2" y2="81.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="1334.2" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1332.5" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1331.9" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1329.5" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1331.2" cy="81.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1331.9" cy="81.0" r="5"/>
+<text class="t2" x="1342.2" y="85.0" font-size="11">873k</text>
+<line class="jdk" x1="1296.6" y1="103.0" x2="1298.6" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="1298.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1298.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1296.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1297.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1296.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1297.9" cy="103.0" r="5"/>
+<text class="t2" x="1306.6" y="107.0" font-size="11">441k</text>
+<line class="lark" x1="1316.1" y1="125.0" x2="1320.8" y2="125.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1320.8" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1317.1" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1316.1" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1318.3" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1317.4" cy="125.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1317.4" cy="125.0" r="5"/>
+<text class="t2" x="1328.8" y="129.0" font-size="11">652k</text>
+<line class="lark" x1="1305.4" y1="147.0" x2="1317.7" y2="147.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1316.2" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1317.7" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1315.0" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1305.4" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1313.4" cy="147.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1315.0" cy="147.0" r="5"/>
+<text class="t2" x="1325.7" y="151.0" font-size="11">622k</text>
+<line class="pekko" x1="1324.3" y1="169.0" x2="1325.6" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="1325.6" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1325.2" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1325.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.3" cy="169.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1325.2" cy="169.0" r="5"/>
+<text class="t2" x="1333.6" y="173.0" font-size="11">762k</text>
+<line class="reactor" x1="1262.8" y1="191.0" x2="1275.2" y2="191.0" stroke-width="2" opacity="0.5"/>
+<circle class="reactor" cx="1275.2" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1264.4" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1267.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1274.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1262.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="reactor" cx="1267.8" cy="191.0" r="5"/>
+<text class="t2" x="1283.2" y="195.0" font-size="11">241k</text>
+<line class="jdk" x1="1328.7" y1="213.0" x2="1331.9" y2="213.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="1331.3" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1331.9" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1330.1" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1328.7" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1331.8" cy="213.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="1331.3" cy="213.0" r="5"/>
+<text class="t2" x="1339.9" y="217.0" font-size="11">863k</text>
+<line class="jdk" x1="1326.4" y1="235.0" x2="1330.8" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="1330.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1326.4" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1329.9" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1329.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1328.4" cy="235.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="1329.2" cy="235.0" r="5"/>
+<text class="t2" x="1338.8" y="239.0" font-size="11">826k</text>
+<line class="lark" x1="1330.7" y1="257.0" x2="1332.4" y2="257.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1331.3" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1332.4" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1330.7" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1331.0" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1330.9" cy="257.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="1331.0" cy="257.0" r="5"/>
+<text class="t2" x="1340.4" y="261.0" font-size="11">857k</text>
+<line class="jdk" x1="1327.0" y1="279.0" x2="1329.7" y2="279.0" stroke-width="2" opacity="0.5"/>
+<circle class="jdk" cx="1327.1" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1329.7" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1328.0" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1327.0" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk" cx="1327.7" cy="279.0" r="2" opacity="0.7"/>
+<circle class="jdk hollow" cx="1327.7" cy="279.0" r="5"/>
+<text class="t2" x="1337.7" y="283.0" font-size="11">802k</text>
+<line class="lark" x1="1326.7" y1="301.0" x2="1327.8" y2="301.0" stroke-width="2" opacity="0.5"/>
+<circle class="lark" cx="1327.7" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1327.1" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1326.7" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1327.8" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark" cx="1326.9" cy="301.0" r="2" opacity="0.7"/>
+<circle class="lark hollow" cx="1327.1" cy="301.0" r="5"/>
+<text class="t2" x="1335.8" y="305.0" font-size="11">793k</text>
+<line class="pekko" x1="1324.4" y1="323.0" x2="1325.5" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="pekko" cx="1325.1" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1325.5" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.9" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.4" cy="323.0" r="2" opacity="0.7"/>
+<circle class="pekko" cx="1324.9" cy="323.0" r="5"/>
+<text class="t2" x="1333.5" y="327.0" font-size="11">758k</text>
+<text class="mu" x="1434" y="366" font-size="10" text-anchor="end">ops/s. Small dots: forks; large: median; hollow: blocking.</text>
+</svg>

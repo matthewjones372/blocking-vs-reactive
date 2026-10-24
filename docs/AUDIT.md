@@ -209,6 +209,32 @@ tests that guard them make sense:
   could take the connection and replace the answer before it was completed. `cf-plain` and Pekko, which issue the
   next call from the completing thread, hung on it. The answer is now read before the connection goes back.
 
+- The ported limit first granted places strictly in arrival order. Lark's `Limit` waits on a condition, so a
+  caller arriving when a place is free takes it ahead of signalled waiters. The port now does the same. Under a
+  deadline, strict order hands every place to the oldest waiter, the one most likely to have expired.
+- The structured-concurrency stack-trace demo kept forking into a scope already cancelled by the failure; those
+  forks never run, so their permits never came back and the demo hung (once in five runs). It now stops taking
+  permits once the scope has stopped. The `vt-structured` contestant had the same race in a narrower form: it
+  checks for a stop after each permit, so it loses at most one permit and cannot hang; it is left as measured.
+
+One problem is not resolved: Reactor with the ported adaptive limit collapses under open-loop load with a deadline
+(about 100 answers/s where every other model with the same policy answers thousands). The limit falls to 3–9 while
+the dependency is idle. Pulling the source on its own worker and the queueing change above did not change it, and
+the process is not CPU-bound. The row is reported, and kept out of every conclusion.
+
+## Provenance of the published results
+
+The suites ran at three commits of this repository, all against Lark `3ccde44`:
+
+| suites | commit | what changed before the next |
+|---|---|---|
+| memory, net, workload, io | `eed937e` | the ported limit's queueing and Reactor's open-loop source (overload only) |
+| overload | `70ccc83` | the stack-trace demo, a test tolerance |
+| semantics, thread dumps, stack traces, JMH | `9d74499` | |
+
+No change between them touches code a suite before it measured; each summary names its own commit, and the summary
+script refuses to mix records from different commits within one suite.
+
 ## What was not changed
 
 - The original's fake I/O is kept as the `shared` device, and its native-timer rows as `native`, so the original
