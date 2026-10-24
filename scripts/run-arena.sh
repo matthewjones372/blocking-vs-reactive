@@ -38,6 +38,9 @@ start_server() {
     ktron) KTRON_REACTORS=2 KTRON_DATASET=arena/dataset.json KTRON_PORT=$PORT \
              exec taskset -c $server_cpus "$java" $heap --enable-native-access=ALL-UNNAMED -cp "$KTRON_LIB/*" arena.MainKt ;;
     vt-arena) exec taskset -c $server_cpus "$java" $heap -cp "$lib" bvr.arena.VtArenaKt $PORT arena/dataset.json ;;
+    # Exploratory, after the pre-registered round: vt-arena on JDK 27 ($JAVA27), as is and with a poller per carrier.
+    vt-arena-27) exec taskset -c $server_cpus "$JAVA27" $heap -cp "$lib" bvr.arena.VtArenaKt $PORT arena/dataset.json ;;
+    vt-arena-27-pc) exec taskset -c $server_cpus "$JAVA27" $heap -Djdk.pollerMode=3 -cp "$lib" bvr.arena.VtArenaKt $PORT arena/dataset.json ;;
     jetty-arena) exec taskset -c $server_cpus "$java" $heap -cp "$lib" bvr.arena.JettyArenaKt $PORT arena/dataset.json ;;
   esac
 }

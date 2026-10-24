@@ -231,6 +231,26 @@ p99 latency, in the same order: `baseline` 12.6, 18.3 and 50.9 ms; `pipelined` 2
 The same shape shows on HttpArena's 64-core host, with another team's server: Helidon SE on Níma, a
 virtual-thread-per-connection server, reaches 41% of Ktron on `baseline`, 22% on `pipelined` and 39% on `json-comp`.
 
+### JDK 27, exploratory
+
+JDK 27 adds `-Djdk.pollerMode=3`, an epoll poller per carrier thread, which was expected to cut the cost of waking a
+virtual thread from another core. This run came after the pre-registered round; its predictions (X1, X2 in
+[`HYPOTHESES-SERVERS.md`](HYPOTHESES-SERVERS.md)) were committed while it ran, before any result was read. Same
+harness, three runs each, medians, all four contestants alternating ([`results/arena-jdk27.txt`](results/arena-jdk27.txt)):
+
+| profile | `ktron` | `vt-arena`, JDK 25 | JDK 27 | JDK 27, poller per carrier |
+|---|--:|--:|--:|--:|
+| `baseline` | 437k | 232k (0.53×) | 232k (0.53×) | 194k (0.44×) |
+| `pipelined` | 4.86M | 2.75M (0.57×) | 2.86M (0.59×) | 2.78M (0.57×) |
+
+p99 on `baseline`: 13.8, 20.0, 21.8 and 46.3 ms.
+
+- **X1, JDK 27 alone changes nothing: confirmed.** (`pipelined` at 0.59× is a hair above the predicted 0.52–0.58×,
+  inside the noise.)
+- **X2, a poller per carrier gains 5–15% on `baseline`: refuted, in the other direction.** It lost 16% on
+  `baseline` and doubled p99, and changed nothing on `pipelined`. Why has not been investigated. So on this machine
+  cross-core wake-ups are not where the gap is, and JDK 27 does not close it.
+
 | # | Prediction | Result |
 |---|---|---|
 | S1 | `vt-arena` reaches 30–60% of `ktron` on `baseline` | **Confirmed:** 52% |
