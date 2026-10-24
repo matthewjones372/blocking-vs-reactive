@@ -128,7 +128,9 @@ class ContestantSemanticsTest {
         assertEquals(true, seen["finished"], "$seen")
         // Pekko runs a blocking iterator on the stream's own actor, so the stream waits with it; its documented
         // remedy is a blocking-I/O dispatcher behind an async boundary, which this source does not have.
-        val limit = if (name.startsWith("pekko")) 200.0 else 30.0
+        // Holding elements for a batch of the window (16) would take at least 75 ms at one element per 5 ms; 60 ms
+        // leaves room for a loaded machine without letting batching through.
+        val limit = if (name.startsWith("pekko")) 200.0 else 60.0
         assertTrue((seen["worstProducedToConsumedMs"] as Double) < limit, "$seen")
     }
 
