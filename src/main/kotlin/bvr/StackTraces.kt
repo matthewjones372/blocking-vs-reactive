@@ -59,13 +59,19 @@ fun handleRequestVt(): Long {
 
 fun handleRequestStructured(): Long {
     val permits = Semaphore(4)
-    StructuredTaskScope.open<Int>().use { scope ->
-        val orders = (1..10).map { id ->
-            permits.acquire()
-            scope.fork(Callable { try { fetchOrderBlocking(id) } finally { permits.release() } })
+    val total = LongAdder()
+    val joiner = StopOnFailureOrTake()
+    StructuredTaskScope.open(joiner).use { scope ->
+        for (id in 1..10) {
+            if (!permits.acquireUnless { joiner.stopped }) break
+            scope.fork(Callable { try { total.add(fetchOrderBlocking(id).toLong()) } finally { permits.release() } })
         }
-        scope.join()
-        return orders.sumOf { it.get().toLong() }
+        try {
+            scope.join()
+        } catch (failed: StructuredTaskScope.FailedException) {
+            throw failed.cause!!
+        }
+        return total.sum()
     }
 }
 

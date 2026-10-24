@@ -216,6 +216,8 @@ fun vtStructured(job: Job) {
     val joiner = StopOnFailureOrTake()
     StructuredTaskScope.open(joiner).use { scope ->
         for (x in job.source) {
+            // A fork into a cancelled scope never runs, so its permit would not come back; the check after acquire
+            // stops the loop, having lost at most the one permit taken before the stop was seen.
             permits.acquire()
             if (joiner.stopped) break
             scope.fork(Callable {
@@ -235,6 +237,17 @@ fun vtStructured(job: Job) {
             throw failed.cause!!
         }
     }
+}
+
+/**
+ * A permit, or false once [stopped]: after a scope is cancelled, a fork never runs, so a permit taken for it would
+ * never come back, and a plain `acquire` could wait for ever on permits held by forks that will not run. Used by
+ * the stack-trace demo, where a failure can come before every fork has been made.
+ */
+fun Semaphore.acquireUnless(stopped: () -> Boolean): Boolean {
+    while (!tryAcquire(1, java.util.concurrent.TimeUnit.MILLISECONDS)) if (stopped()) return false
+    if (stopped()) { release(); return false }
+    return true
 }
 
 /** Cancels the scope on the first failure, which [result] then throws, or once the take is reached. */

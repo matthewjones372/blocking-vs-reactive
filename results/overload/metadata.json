@@ -1,0 +1,1611 @@
+{
+ "suite": "overload",
+ "commit": "70ccc8361181b3ab6fc9a9e71dac5e9344a11f26",
+ "dirty": false,
+ "larkCommit": "3ccde4496a744605a46eacf4aa7e6943ff41bfd7",
+ "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "cpus": 4,
+ "memoryKb": 16477348,
+ "kernel": "6.18.44-fc-v153",
+ "governor": null,
+ "host": "vm",
+ "jvmOptions": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverJvmOptions": null,
+ "serverCpus": null,
+ "clientCpus": null,
+ "forks": 4,
+ "warmups": 2,
+ "iterations": 3,
+ "seed": 20261023,
+ "cells": 66,
+ "schedule": [
+  {
+   "round": 1,
+   "order": 0,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 1,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 2,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 3,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 4,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 5,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 6,
+   "scenario": "open-50ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 7,
+   "scenario": "gradual",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 8,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 9,
+   "scenario": "rejecting",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 10,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 11,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 12,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 13,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 14,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 15,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 16,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 17,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 18,
+   "scenario": "rejecting",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 19,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 20,
+   "scenario": "gradual",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 21,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 22,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 23,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 24,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 25,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 26,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 27,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 28,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 29,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 30,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 31,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 32,
+   "scenario": "open-50ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 33,
+   "scenario": "open-500ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 34,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 35,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 36,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 37,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 38,
+   "scenario": "sudden",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 39,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 40,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 41,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 42,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 43,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 44,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 45,
+   "scenario": "recovery",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 46,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 47,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 48,
+   "scenario": "recovery",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 49,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 50,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 51,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 52,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 53,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 54,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 55,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 56,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 1,
+   "order": 57,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 58,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 59,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 60,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 1,
+   "order": 61,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 62,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 1,
+   "order": 63,
+   "scenario": "open-500ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 1,
+   "order": 64,
+   "scenario": "sudden",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 1,
+   "order": 65,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 0,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 1,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 2,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 3,
+   "scenario": "open-50ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 4,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 5,
+   "scenario": "recovery",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 6,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 7,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 8,
+   "scenario": "sudden",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 9,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 10,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 11,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 12,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 13,
+   "scenario": "open-500ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 14,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 15,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 16,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 17,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 18,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 19,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 20,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 21,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 22,
+   "scenario": "rejecting",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 23,
+   "scenario": "open-50ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 24,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 25,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 26,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 27,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 28,
+   "scenario": "rejecting",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 29,
+   "scenario": "sudden",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 30,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 31,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 32,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 33,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 34,
+   "scenario": "gradual",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 35,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 36,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 37,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 38,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 39,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 40,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 41,
+   "scenario": "open-500ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 42,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 43,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 44,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 45,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 46,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 47,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 48,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 49,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 2,
+   "order": 50,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 51,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 52,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 53,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 54,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 55,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 56,
+   "scenario": "gradual",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 57,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 58,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 59,
+   "scenario": "recovery",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 2,
+   "order": 60,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 61,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 2,
+   "order": 62,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 63,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 2,
+   "order": 64,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 2,
+   "order": 65,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 0,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 1,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 2,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 3,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 4,
+   "scenario": "recovery",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 5,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 6,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 7,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 8,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 9,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 10,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 11,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 12,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 13,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 14,
+   "scenario": "open-50ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 15,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 16,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 17,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 18,
+   "scenario": "open-50ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 19,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 20,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 21,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 22,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 23,
+   "scenario": "recovery",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 24,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 25,
+   "scenario": "rejecting",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 26,
+   "scenario": "gradual",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 27,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 28,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 29,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 30,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 31,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 32,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 33,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 34,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 35,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 36,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 37,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 38,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 39,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 40,
+   "scenario": "sudden",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 41,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 42,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 43,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 44,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 45,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 46,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 47,
+   "scenario": "rejecting",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 48,
+   "scenario": "open-500ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 49,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 50,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 51,
+   "scenario": "gradual",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 52,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 53,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 54,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 55,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 56,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 57,
+   "scenario": "sudden",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 3,
+   "order": 58,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 59,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 60,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 61,
+   "scenario": "open-500ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 3,
+   "order": 62,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 3,
+   "order": 63,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 3,
+   "order": 64,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 3,
+   "order": 65,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 0,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 1,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 2,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 3,
+   "scenario": "open-500ms",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 4,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 5,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 6,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 7,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 8,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 9,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 10,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 11,
+   "scenario": "open-50ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 12,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 13,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 14,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 15,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 16,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 17,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 18,
+   "scenario": "open-500ms",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 19,
+   "scenario": "sudden",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 20,
+   "scenario": "recovery",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 21,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 22,
+   "scenario": "recovery",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 23,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 24,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 25,
+   "scenario": "open-500ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 26,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 27,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 28,
+   "scenario": "recovery",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 29,
+   "scenario": "recovery",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 30,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 31,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 32,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 33,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 34,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 35,
+   "scenario": "sudden",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 36,
+   "scenario": "sudden",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 37,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 38,
+   "scenario": "rejecting",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 39,
+   "scenario": "open-500ms",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 40,
+   "scenario": "rejecting",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 41,
+   "scenario": "sudden",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 42,
+   "scenario": "sudden",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 43,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 44,
+   "scenario": "open-50ms",
+   "contestant": "vt-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 45,
+   "scenario": "sudden",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 46,
+   "scenario": "rejecting",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 47,
+   "scenario": "gradual",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 48,
+   "scenario": "gradual",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 49,
+   "scenario": "recovery",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 50,
+   "scenario": "rejecting",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 51,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 52,
+   "scenario": "rejecting",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 53,
+   "scenario": "open-500ms",
+   "contestant": "lark-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 54,
+   "scenario": "gradual",
+   "contestant": "vt-adaptive"
+  },
+  {
+   "round": 4,
+   "order": 55,
+   "scenario": "open-50ms",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 56,
+   "scenario": "open-50ms",
+   "contestant": "reactor-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 57,
+   "scenario": "gradual",
+   "contestant": "reactor-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 58,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 59,
+   "scenario": "open-500ms",
+   "contestant": "vt-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 60,
+   "scenario": "recovery",
+   "contestant": "lark-fixed-500"
+  },
+  {
+   "round": 4,
+   "order": 61,
+   "scenario": "open-50ms",
+   "contestant": "vt-fixed-100"
+  },
+  {
+   "round": 4,
+   "order": 62,
+   "scenario": "gradual",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 63,
+   "scenario": "rejecting",
+   "contestant": "lark-fixed-1000"
+  },
+  {
+   "round": 4,
+   "order": 64,
+   "scenario": "gradual",
+   "contestant": "reactor-adaptive-port"
+  },
+  {
+   "round": 4,
+   "order": 65,
+   "scenario": "open-50ms",
+   "contestant": "reactor-adaptive-port"
+  }
+ ],
+ "started": "2026-10-24T08:19:04.775414+00:00",
+ "finished": "2026-10-24T08:58:54.772442+00:00"
+}
