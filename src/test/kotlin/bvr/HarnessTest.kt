@@ -113,7 +113,9 @@ class HarnessTest {
             assertTrue(cells.isNotEmpty(), "suite $suite is empty")
             for ((s, c) in cells) {
                 assertTrue(s in known, "$suite names unknown scenario $s")
-                assertTrue(c in contestants || c in overloadContestants, "$suite names unknown contestant $c")
+                // A diagnostic contestant only in a diagnostic suite: none may reach a published one.
+                val diagnostic = suite.endsWith("-diag") && c in diagnosticContestants
+                assertTrue(c in contestants || c in overloadContestants || diagnostic, "$suite names unknown contestant $c")
             }
         }
     }
