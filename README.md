@@ -16,9 +16,16 @@ name the waiting call. The price is about 1 KB of memory and a few microseconds 
 throughput only with ten thousand or more calls in flight on synthetic I/O, and it disappeared behind a real HTTP
 client's own cost. (Databases were not tested; see caveats.)
 
-**Reactive is still the better tool for a narrower set of jobs:** streaming pipelines that need operators
-(merging streams, time windows, retries with backoff), many producers feeding one slow consumer, CPU-only operator
-chains, and backpressure that has to cross the network to a remote producer.
+**Some jobs still call for a stream library, but not for the reactive model.** Pipelines with operators (merging
+streams, time windows, retries) and many producers feeding one slow consumer go better with a stream library than
+with hand-written threads. Lark is a stream library that runs on virtual threads, and it did both: it has the
+operators, and behind a slow consumer it matched Reactor (47.2–47.8k against 47.2–47.9k ops/s), including with
+`mapPar`, which blocks a virtual thread per call. What still
+favoured Reactor or Pekko was narrow:
+
+- CPU-only operator chains, where Reactor was 1.11× faster than Lark and allocated half as much;
+- time-based rate operators (`throttle`, `debounce`), which Lark does not have;
+- demand sent to a remote producer: Lark can consume a Reactive Streams `Publisher` but cannot expose one.
 
 ### The evidence, question by question
 
@@ -30,7 +37,7 @@ chains, and backpressure that has to cross the network to a remote producer.
 | Does Lark beat Reactor, as the original README claimed (1.6–1.9×)? | **No.** That result measured the fake device, not the libraries. On a device that keeps up, Lark `mapAsync` and Reactor `flatMap` tie at 10,000 in flight (942k against 895k ops/s). Lark led only when the machine ran out of CPU at 100,000 in flight, within 26% noise. Reactor was faster on CPU-only operator chains (1.11×). | 1, 5, 13 |
 | Does Lark's adaptive limit protect a service when a dependency loses capacity? | **It protects the dependency, not the caller.** The dependency's p99 stayed at 9 ms, but the queue moved into the caller: end-to-end p99 was 111 ms, against 28–29 ms with a fixed limit of 500. It won clearly when the dependency rejects calls or the callers have deadlines. | 11, [`docs/adaptive-limit.md`](docs/adaptive-limit.md) |
 | What mattered more than blocking against reactive? | **Ordering, and the client library.** Under variable latency, ordered pipelines of every model fell to 14–15% of the unordered ones' throughput. The JDK `HttpClient` cost about three times the CPU per request of a raw socket client, whatever the model. | 6, 7 |
-| Where do reactive libraries still earn their place? | **Pipelines with a single slow consumer, CPU-only chains, the operator library, and flow control across processes.** With a serial consumer, the stream libraries ran more than twice as fast as virtual threads whose tasks each called the consumer. Reactor led CPU-only chains. Merging, time windows and retries come built in, and blocking slows only a producer inside the same process. | 9, 13, [`docs/backpressure.md`](docs/backpressure.md) |
+| Where do reactive libraries still earn their place? | **Narrowly.** A stream library beats hand-written virtual threads for pipelines with one slow consumer (more than twice as fast) and supplies the operators, but Lark, a stream library on virtual threads, matched Reactor behind the slow consumer and has the operators. Reactor and Pekko kept CPU-only chains (Reactor 1.11× faster than Lark), time-based rate operators, and exposing demand to a remote producer, which Lark lacks. | 9, 13, [`docs/backpressure.md`](docs/backpressure.md) |
 
 These verdicts come from one 4-core cloud VM, loopback sockets and synthetic dependencies (caveats, section 6).
 They are about the shape of the costs, not margins to bank on another machine.
