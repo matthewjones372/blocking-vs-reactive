@@ -30,39 +30,6 @@ of the calls in flight are waiting rather than being served. In the example abov
 limit grows while `queued` is close to zero and shrinks when it is large. The calls actually being served,
 `serving ≈ limit × unloaded / took` (100 here), say where to cut to.
 
-## The moving parts
-
-```mermaid
-mindmap
-  root((Lark's adaptive Limit))
-    Permits
-      acquire waits while the limit is full
-      release records how long the call took
-      a failed call: limit × 0.9 at once
-      interrupted, cancelled, or a declared failure: not counted
-    Windows
-      one decision per window: at least 16 calls, and at least limit calls
-      average call time, not single calls
-      busy = at most half the permits were idle
-    Estimates
-      unloaded = fastest window seen
-      queued = limit − serving
-      serving = limit × unloaded ÷ took
-    Thresholds, scaled
-      step = log10 of the limit, at least 1
-      calm: queued under 2% of limit
-      short: up to 3 steps or 5%, whichever is more
-      long: from 6 steps or 15%, whichever is more
-    Moves
-      slow start: double while calm
-      calm and busy: grow 10%
-      short and busy: grow one step
-      long: cut to serving + 3 steps, at most halving
-    Forgetting
-      every 100 windows, cut to serving
-      unloaded becomes that epoch's fastest window
-```
-
 ## One window's decision
 
 Each release feeds `Vegas.sample(took, inFlight, dropped)`. Calls accumulate until the window is full, at least
