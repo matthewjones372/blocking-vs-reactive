@@ -16,7 +16,7 @@ import kotlin.test.assertTrue
 @Execution(ExecutionMode.SAME_THREAD)
 class ContestantSemanticsTest {
     companion object {
-        @JvmStatic fun bounded() = contestants.values.filter { it.model != Model.UNBOUNDED }.map { it.name }
+        @JvmStatic fun bounded() = (contestants.values + diagnosticContestants.values).filter { it.model != Model.UNBOUNDED }.map { it.name }
 
         /** Waits for every call in flight before it returns, because nothing in it keeps the futures to cancel. */
         val waitsForInFlight = setOf("cf-plain")
@@ -54,14 +54,14 @@ class ContestantSemanticsTest {
     }
 
     private fun observe(check: String, name: String, f: (Contestant) -> Map<String, Any?>) =
-        f(contestants.getValue(name)).also { record(check, name, it) }
+        f(contestant(name)).also { record(check, name, it) }
 
     @ParameterizedTest @MethodSource("bounded")
     fun `answers every element exactly once, in source order when ordered`(name: String) {
         val seen = observe("answers", name, Semantics::answers)
         assertEquals(true, seen["finished"], "$seen")
         assertEquals(true, seen["allOnce"], "$seen")
-        if (contestants.getValue(name).ordered) assertEquals(true, seen["inOrder"], "$seen")
+        if (contestant(name).ordered) assertEquals(true, seen["inOrder"], "$seen")
     }
 
     @ParameterizedTest @MethodSource("bounded")
@@ -74,7 +74,7 @@ class ContestantSemanticsTest {
 
     @ParameterizedTest @MethodSource("bounded")
     fun `while flowing, never has more than its bound between start and sink`(name: String) {
-        val most = Semantics.mostInFlight(contestants.getValue(name))
+        val most = Semantics.mostInFlight(contestant(name))
         record("mostInFlight", name, mapOf("most" to most, "bound" to 32))
         // One more than the bound is an answer that has left the operator and not yet reached the sink.
         assertTrue(most <= 33, "$name had $most in flight against a bound of 32")

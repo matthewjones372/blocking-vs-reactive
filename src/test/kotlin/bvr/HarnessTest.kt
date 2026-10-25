@@ -15,7 +15,7 @@ import kotlin.test.assertTrue
 
 class HarnessTest {
     companion object {
-        @JvmStatic fun all() = contestants.keys.toList()
+        @JvmStatic fun all() = contestants.keys.toList() + diagnosticContestants.keys
         @JvmStatic fun net() = netContestants
         @JvmStatic fun overload() = overloadContestants.keys.toList()
 
@@ -113,7 +113,9 @@ class HarnessTest {
             assertTrue(cells.isNotEmpty(), "suite $suite is empty")
             for ((s, c) in cells) {
                 assertTrue(s in known, "$suite names unknown scenario $s")
-                assertTrue(c in contestants || c in overloadContestants, "$suite names unknown contestant $c")
+                // A diagnostic contestant only in a diagnostic suite: none may reach a published one.
+                val diagnostic = suite.endsWith("-diag") && c in diagnosticContestants
+                assertTrue(c in contestants || c in overloadContestants || diagnostic, "$suite names unknown contestant $c")
             }
         }
     }
@@ -126,7 +128,7 @@ class HarnessTest {
             val setup = ioSetup(device, s.workload, counters)
             val sum = LongAdder()
             onVirtualThread {
-                contestants.getValue(name).run(
+                contestant(name).run(
                     Job(counted(s.items, counters), s.concurrency, setup.io, recover = true, sink = summingSink(s.workload, sum, counters)),
                 )
             }
@@ -142,7 +144,7 @@ class HarnessTest {
         val w = Workload(200, Dist.BIMODAL, cpuIters = 2_000, sinkIters = 2_000)
         val setup = ioSetup("dispatched", w, counters)
         val sum = LongAdder()
-        onVirtualThread { contestants.getValue(name).run(Job(counted(2_000, counters), 64, setup.io, sink = summingSink(w, sum, counters))) }
+        onVirtualThread { contestant(name).run(Job(counted(2_000, counters), 64, setup.io, sink = summingSink(w, sum, counters))) }
         setup.close()
         assertEquals(2_000L * 1_999 / 2, sum.sum())
     }
@@ -155,7 +157,7 @@ class HarnessTest {
             val counters = Counters()
             NetIo(s, port, counters).use { io ->
                 val sum = LongAdder()
-                onVirtualThread { contestants.getValue(name).run(Job(counted(s.items, counters), s.concurrency, io, sink = { y -> sum.add(y.toLong()) })) }
+                onVirtualThread { contestant(name).run(Job(counted(s.items, counters), s.concurrency, io, sink = { y -> sum.add(y.toLong()) })) }
                 assertEquals(500L * 499 / 2, sum.sum(), "$name on $client")
             }
         }

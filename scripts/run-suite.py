@@ -38,6 +38,7 @@ JVM = {
     "overload": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
     "net": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
     "net-smoke": "-Xms1g -Xmx1g -XX:+UseG1GC",
+    "net-diag": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
 }
 SERVER_JVM = "-Xms1g -Xmx1g -XX:+UseG1GC -XX:+AlwaysPreTouch"
 

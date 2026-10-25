@@ -61,6 +61,15 @@ val netScenarios: Map<String, NetScenario> = buildList {
 val netSuites: Map<String, List<Pair<String, String>>> = mapOf(
     "net" to netScenarios.values.filter { "smoke" !in it.name }.flatMap { s -> s.contestants.map { s.name to it } },
     "net-smoke" to netScenarios.values.filter { "smoke" in it.name }.flatMap { s -> s.contestants.map { s.name to it } },
+    // Why Lark trails on raw sockets: each Lark contestant beside its other order, ordered contestants of the other
+    // models, and vt-batched, which refills its bound in batches as Lark's window does and nothing else.
+    "net-diag" to listOf("n-fast-raw", "n-wide-raw", "n-large-raw", "n-10k-raw").flatMap { s ->
+        listOf(
+            "lark-mappar", "lark-mappar-unordered", "lark-mapasync", "lark-mapasync-unordered",
+            "vt-plain", "vt-batched", "reactor-flatmap",
+            "vt-ordered", "reactor-flatmapsequential", "pekko-mapasync",
+        ).map { s to it }
+    },
 )
 
 /** The I/O call over a real socket: each form checks the body's length, then answers the element itself. */
@@ -119,7 +128,7 @@ class NetIo(private val s: NetScenario, port: Int, override val counters: Counte
 /** `net <scenario> <contestant> [warmups] [iterations]`, against a server already listening on `bvr.netPort`. */
 fun netMain(args: List<String>) {
     val s = netScenarios.getValue(args[0])
-    val c = contestants.getValue(args[1])
+    val c = contestant(args[1])
     val warmups = args.getOrNull(2)?.toInt() ?: 2
     val iterations = args.getOrNull(3)?.toInt() ?: 3
     // The netty server listens on the port after the nio one.

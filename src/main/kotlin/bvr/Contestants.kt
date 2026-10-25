@@ -161,6 +161,53 @@ fun vtPlain(job: Job) {
 }
 // endregion
 
+// region vt-batched (diagnostic)
+/**
+ * [vtPlain], but a finished call's permit is handed back only once a batch of them has finished: a quarter of the
+ * bound, at most 64, a power of two, as Lark's window wakes its parked feeder (`Ring`, `Arrivals`). Not a contestant:
+ * it isolates what refilling in batches costs over a real socket, apart from everything else Lark does.
+ */
+fun vtBatched(job: Job) {
+    val batch = Integer.highestOneBit(maxOf(1, minOf(job.concurrency / 4, 64)))
+    val permits = Semaphore(job.concurrency)
+    val finished = AtomicLong()
+    val failure = AtomicReference<Throwable>()
+    val taken = AtomicLong()
+    val stop = AtomicBoolean()
+    Executors.newVirtualThreadPerTaskExecutor().use { threads ->
+        for (x in job.source) {
+            try {
+                permits.acquire()
+            } catch (interrupted: InterruptedException) {
+                threads.shutdownNow()
+                throw interrupted
+            }
+            if (stop.get()) break
+            try {
+                threads.submit {
+                    try {
+                        val y = job.callBlocking(x)
+                        val n = taken.incrementAndGet()
+                        if (n <= job.take) job.sink(y)
+                        if (n >= job.take && stop.compareAndSet(false, true)) threads.shutdownNow()
+                    } catch (_: InterruptedException) {
+                        // Let go of by shutdownNow.
+                    } catch (failed: Throwable) {
+                        if (failure.compareAndSet(null, failed) && stop.compareAndSet(false, true)) threads.shutdownNow()
+                    } finally {
+                        // Once stopped, one permit each, so the caller wakes to see it however few calls are left.
+                        if (stop.get()) permits.release() else if (finished.incrementAndGet() % batch == 0L) permits.release(batch)
+                    }
+                }
+            } catch (_: RejectedExecutionException) {
+                break
+            }
+        }
+    }
+    failure.get()?.let { throw it }
+}
+// endregion
+
 // region vt-ordered
 /** A virtual thread per element; the caller takes the futures in the order they were started. */
 fun vtOrdered(job: Job) {
@@ -435,3 +482,10 @@ val contestants: Map<String, Contestant> = listOf(
     Contestant("pekko-mapasync-unordered", Model.REACTIVE, ordered = false, "Pekko", ::pekkoMapAsyncUnordered),
     Contestant("vt-naive", Model.UNBOUNDED, ordered = false, "JDK", ::vtNaive),
 ).associateBy { it.name }
+
+/** Contestants that isolate one mechanism for a diagnostic suite; no published suite runs them. */
+val diagnosticContestants: Map<String, Contestant> = listOf(
+    Contestant("vt-batched", Model.BLOCKING, ordered = false, "JDK", ::vtBatched),
+).associateBy { it.name }
+
+fun contestant(name: String): Contestant = contestants[name] ?: diagnosticContestants.getValue(name)
