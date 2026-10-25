@@ -101,26 +101,35 @@ def start_servers(args, env):
     server_env = dict(env, JAVA_OPTS=SERVER_JVM)
     log = open(args.out / "server.log", "a")
     started = []
+
+    def fail(message):
+        # Stop what this call started, or it outlives the runner and holds the ports.
+        for q in started:
+            q.terminate(); q.wait()
+        raise SystemExit(message)
+
     for command, port in (("net-server", args.port), ("net-server-netty", args.port + 1)):
         # A server left over from an earlier run would answer the probe below in place of this one.
         try:
             socket.create_connection(("127.0.0.1", port), timeout=0.2).close()
-            raise SystemExit(f"port {port} is already in use: stop the process listening on it")
+            fail(f"port {port} is already in use: stop the process listening on it")
         except OSError:
             pass
         p = subprocess.Popen(pinned(args.server_cpus, [str(binary), command, str(port), "1"]),
                              env=server_env, stdout=log, stderr=log)
-        for _ in range(150):
+        started.append(p)
+        # A cold JVM with a pre-touched heap on one core can take well over ten seconds to listen.
+        deadline = time.time() + 60
+        while True:
             try:
                 socket.create_connection(("127.0.0.1", port), timeout=0.2).close()
                 break
             except OSError:
                 if p.poll() is not None:
-                    raise SystemExit(f"{command} exited with {p.returncode}: see server.log")
+                    fail(f"{command} exited with {p.returncode}: see server.log")
+                if time.time() > deadline:
+                    fail(f"{command} did not start within 60 s: see server.log")
                 time.sleep(0.1)
-        else:
-            raise SystemExit(f"{command} did not start")
-        started.append(p)
     return started
 
 
