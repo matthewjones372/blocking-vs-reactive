@@ -23,7 +23,11 @@ operators, and behind a slow consumer it matched Reactor (47.2–47.8k against 4
 `mapPar`, which blocks a virtual thread per call. What still
 favoured Reactor or Pekko was narrow:
 
-- CPU-only operator chains, where Reactor was 1.11× faster than Lark and allocated half as much;
+- calls that do real CPU work: with about 30 µs of work per call, Reactor `flatMapSequential` led at 58.1k ops/s,
+  Reactor `flatMap`, Pekko and plain virtual threads reached 48.7–50.8k, and Lark 41.0–46.5k (0.70–0.80). Plain
+  virtual threads beat Lark here, so this is a gap in Lark, not in the virtual-thread engine; its cause is not
+  isolated (finding 10). The CPU-only operator chain (finding 13) is not evidence either way: Reactor's lead there
+  is about 2 ns per element, which any real work per element hides;
 - time-based rate operators (`throttle`, `debounce`), which Lark does not have;
 - demand sent to a remote producer: Lark can consume a Reactive Streams `Publisher` but cannot expose one.
 
@@ -37,7 +41,7 @@ favoured Reactor or Pekko was narrow:
 | Does Lark beat Reactor, as the original README claimed (1.6–1.9×)? | **No.** That result measured the fake device, not the libraries. On a device that keeps up, Lark `mapAsync` and Reactor `flatMap` tie at 10,000 in flight (942k against 895k ops/s). Lark led only when the machine ran out of CPU at 100,000 in flight, within 26% noise. Reactor was faster on CPU-only operator chains (1.11×). | 1, 5, 13 |
 | Does Lark's adaptive limit protect a service when a dependency loses capacity? | **It protects the dependency, not the caller.** The dependency's p99 stayed at 9 ms, but the queue moved into the caller: end-to-end p99 was 111 ms, against 28–29 ms with a fixed limit of 500. It won clearly when the dependency rejects calls or the callers have deadlines. | 11, [`docs/adaptive-limit.md`](docs/adaptive-limit.md) |
 | What mattered more than blocking against reactive? | **Ordering, and the client library.** Under variable latency, ordered pipelines of every model fell to 14–15% of the unordered ones' throughput. The JDK `HttpClient` cost about three times the CPU per request of a raw socket client, whatever the model. | 6, 7 |
-| Where do reactive libraries still earn their place? | **Narrowly.** A stream library beats hand-written virtual threads for pipelines with one slow consumer (more than twice as fast) and supplies the operators, but Lark, a stream library on virtual threads, matched Reactor behind the slow consumer and has the operators. Reactor and Pekko kept CPU-only chains (Reactor 1.11× faster than Lark), time-based rate operators, and exposing demand to a remote producer, which Lark lacks. | 9, 13, [`docs/backpressure.md`](docs/backpressure.md) |
+| Where do reactive libraries still earn their place? | **Narrowly.** A stream library beats hand-written virtual threads for pipelines with one slow consumer (more than twice as fast) and supplies the operators, but Lark, a stream library on virtual threads, matched Reactor behind the slow consumer and has the operators. Reactor and Pekko kept calls with real CPU work (Lark 0.70–0.80 of Reactor's best, behind plain virtual threads too, cause not isolated), time-based rate operators, and exposing demand to a remote producer, which Lark lacks. | 9, 13, [`docs/backpressure.md`](docs/backpressure.md) |
 
 These verdicts come from one 4-core cloud VM, loopback sockets and synthetic dependencies (caveats, section 6).
 They are about the shape of the costs, not margins to bank on another machine.
@@ -205,7 +209,9 @@ threads, lagging it by 41 ms).
 1,000 in flight: Reactor `flatMapSequential` 58.1k ops/s (best), everyone else 41.0–50.8k, with Reactor `flatMap`,
 `cf-plain`, Pekko, `vt-plain` and `vt-structured` at 48.7–50.8k, Lark `mapAsync` at 46.5k, and the ordered blocking
 contestants and Lark's unordered operators at 41.0–44.2k. Asynchronous contestants run the step on the four
-dispatch threads, blocking ones on the four carriers.
+dispatch threads, blocking ones on the four carriers. Every contestant spends 67–95 µs of CPU per call on a step of
+about 30 µs, so what separates them is how each shares four cores between the work, the completions and its own
+coordination; why Lark's operators and `vt-ordered` sit lowest is not isolated.
 
 **11. Adaptive concurrency moves the queue rather than removing it; its clear wins are against a dependency that
 rejects and against arrivals with a deadline.** The overload factorial (dependency capacity 500, then 100; 5 ms
@@ -260,6 +266,8 @@ CPU-only cases.** JMH, five forks, 99.9% intervals in [`results/jmh/summary.md`]
   on main and checked here (`docs/AUDIT.md` A15).
 - *CPU-only chain* (map, filter, map, sum over a million ints): a plain loop 0.87 ms, `Sequence` 11.5 ms, Reactor
   16.0 ms, Lark 17.8 ms (1.11× Reactor, allocating 56 MB per million elements to Reactor's 28 MB), Pekko 105 ms.
+  The gap between Reactor and Lark is about 2 ns per element over four trivial steps; with real work per element it
+  disappears, so this measures operator overhead, not suitability for CPU-bound work (finding 10 is that).
 → ![](docs/charts/per-element.svg)
 
 ## 6. Important caveats
