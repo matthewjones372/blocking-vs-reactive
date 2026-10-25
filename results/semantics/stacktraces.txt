@@ -6,7 +6,7 @@ java.util.concurrent.ExecutionException: java.io.IOException: connection reset f
 	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:129)
 	at bvr.StackTracesKt$stackTraces$handlers$1.invoke(StackTraces.kt:129)
 	at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
-	at bvr.MainKt.main(Main.kt:22)
+	at bvr.MainKt.main(Main.kt:25)
 Caused by: java.io.IOException: connection reset fetching order 3
 	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
 	at bvr.StackTracesKt.handleRequestVt$lambda$0$0$0(StackTraces.kt:54)
@@ -25,11 +25,13 @@ java.io.IOException: connection reset fetching order 3
 java.io.IOException: connection reset fetching order 3
 	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
 	at bvr.StackTracesKt.handleRequestLark$lambda$0(StackTraces.kt:85)
-	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:155)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0$0(Window.kt:209)
+	at io.github.matthewjones372.lark.fail.FailKt.attempt(Fail.kt:49)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:209)
 	at io.github.matthewjones372.lark.stream.DefectKt.guard(Defect.kt:46)
 	at io.github.matthewjones372.lark.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
-	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:160)
-	at io.github.matthewjones372.lark.stream.InFlight._init_$lambda$0(Window.kt:95)
+	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:214)
+	at io.github.matthewjones372.lark.stream.InFlight.run(Window.kt:117)
 	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
 	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapPar died on 3, built at StackTraces.kt:85
 
@@ -76,7 +78,7 @@ bvr.IoFailure: connection reset on call 3
 		at bvr.StackTracesKt$stackTraces$handlers$6.invoke(StackTraces.kt:134)
 		at bvr.StackTracesKt$stackTraces$handlers$6.invoke(StackTraces.kt:134)
 		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
-		at bvr.MainKt.main(Main.kt:22)
+		at bvr.MainKt.main(Main.kt:25)
 
 ===== reactor-flatmap + checkpoint()
 bvr.IoFailure: connection reset on call 3
@@ -102,7 +104,7 @@ Original Stack Trace:
 		at bvr.StackTracesKt$stackTraces$handlers$7.invoke(StackTraces.kt:135)
 		at bvr.StackTracesKt$stackTraces$handlers$7.invoke(StackTraces.kt:135)
 		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
-		at bvr.MainKt.main(Main.kt:22)
+		at bvr.MainKt.main(Main.kt:25)
 
 ===== reactor-flatmap + Hooks.onOperatorDebug()
 bvr.IoFailure: connection reset on call 3
@@ -132,7 +134,7 @@ Original Stack Trace:
 		at bvr.StackTracesKt$stackTraces$handlers$8.invoke(StackTraces.kt:136)
 		at bvr.StackTracesKt$stackTraces$handlers$8.invoke(StackTraces.kt:136)
 		at bvr.StackTracesKt.stackTraces(StackTraces.kt:142)
-		at bvr.MainKt.main(Main.kt:22)
+		at bvr.MainKt.main(Main.kt:25)
 
 ===== pekko-mapasync-unordered
 bvr.IoFailure: connection reset on call 3
