@@ -36,6 +36,9 @@ its carrier), in whether demand crosses an asynchronous boundary (Reactive Strea
 does not call `next()`, and in what a stop does (section 7). Adaptive concurrency is a policy layered on any of
 them, and is measured separately (Q4).
 
+Why a bounded loop of blocking calls on virtual threads gets backpressure without a demand protocol, with
+pseudocode, diagrams and the measurements behind it: [`docs/backpressure.md`](docs/backpressure.md).
+
 ## 3. Experimental design
 
 - **One contract for every contestant.** The same counted source, I/O call, bound and sink; every iteration's sum
