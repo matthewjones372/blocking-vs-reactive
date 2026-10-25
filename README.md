@@ -7,12 +7,20 @@ cloud VM; each table names the commit it ran at. How the experiments are built i
 [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md); what was wrong with the earlier version of this benchmark, and what
 changed, is in [`docs/AUDIT.md`](docs/AUDIT.md).
 
-## The short answer
+## Is reactive programming still necessary in 2026?
 
-**Do virtual threads remove the need for reactive code? For request/response I/O inside one service, largely yes.
-Blocking on virtual threads matched the reactive libraries on throughput, gave the same backpressure, and gave
-better stack traces and thread dumps. It costs more CPU and memory per waiting call, which mattered only at
-extreme concurrency. Reactive libraries kept clear advantages in a few specific places, listed below.**
+**No, not as the default.** On JDK 21 or later, a service that handles requests by calling other services over
+the network can block on virtual threads instead. At ordinary concurrency and over real sockets, blocking code
+matched Reactor and Pekko on throughput, held backpressure just as well, and gave stack traces and thread dumps that
+name the waiting call. The price is about 1 KB of memory and a few microseconds of CPU per waiting call. It cost
+throughput only with ten thousand or more calls in flight on synthetic I/O, and it disappeared behind a real HTTP
+client's own cost. (Databases were not tested; see caveats.)
+
+**Reactive is still the better tool for a narrower set of jobs:** streaming pipelines that need operators
+(merging streams, time windows, retries with backoff), many producers feeding one slow consumer, CPU-only operator
+chains, and backpressure that has to cross the network to a remote producer.
+
+### The evidence, question by question
 
 | Question | Verdict | Evidence |
 |---|---|---|
@@ -31,7 +39,7 @@ They are about the shape of the costs, not margins to bank on another machine.
 
 | | Question | Where it is answered |
 |---|---|---|
-| Q1 | Does Project Loom remove the need for asynchronous or reactive code? | Not directly measurable. Q2–Q4 and the semantics checks answer the parts that are; the short answer above puts them together. |
+| Q1 | Does Project Loom remove the need for asynchronous or reactive code? | Not directly measurable. Q2–Q4 and the semantics checks answer the parts that are; the answer above puts them together. |
 | Q2 | What does waiting by parking a virtual thread cost, against composing a future, for the same I/O? | I/O, workload, socket and memory suites; per-element JMH |
 | Q3 | How do Lark, Reactor and Pekko compare at the same job? | The same suites, comparing within one model (async with async, ordered with ordered) |
 | Q4 | How do fixed and adaptive concurrency limits behave when a dependency loses capacity? | The overload suite, a factorial of model × policy |
