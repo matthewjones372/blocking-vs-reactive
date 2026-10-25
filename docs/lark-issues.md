@@ -59,3 +59,11 @@ The unordered variants (`mapAsyncUnordered`, `mapParUnordered`) report a failure
   caller's futures is a design choice; the table in `semantics.md` reports what each does.
 - `mapPar(limit)` is ordered, like `mapPar(n)`. Against a dependency whose latency varies, an ordered window holds
   answered elements behind a slow head; the overload experiment uses `mapParUnordered(limit)` for that reason.
+- A full window wakes its waiting feeder only once a quarter of the window, at most 64 places, has freed
+  (`Ring.kt`, `Arrivals.kt` in `lark-stream-forks`; spec 0172), so up to that many places stand idle while the
+  feeder sleeps. Over loopback sockets at 64 in flight this costs every Lark operator, ordered or not, 15–17%
+  against the best contestant: 56–58 calls in flight of 64, against 63 for the others. Plain virtual threads made
+  to refill the same way (`vt-batched`, in `results/net-diag`) lose 10% against plain virtual threads, with the same
+  shortfall. At 256 and 1,000 in flight the cost is mostly within the noise, and on the synthetic devices, where
+  each call is cheap to issue, it does not show. It is a trade (fewer wake-ups for the feeder), not a defect;
+  a smaller batch for small windows would remove most of it.

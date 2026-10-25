@@ -28,10 +28,12 @@ data class NetScenario(
     val jvmOpts: String = "",
 )
 
-val netContestants = listOf("vt-plain", "lark-mappar", "cf-plain", "lark-mapasync", "reactor-flatmap", "pekko-mapasync-unordered")
+// All unordered, Lark's operators included. results/net was measured with Lark's ordered operators against the rest
+// unordered (docs/AUDIT.md A16); net-diag sets each Lark operator beside its other order.
+val netContestants = listOf("vt-plain", "lark-mappar-unordered", "cf-plain", "lark-mapasync-unordered", "reactor-flatmap", "pekko-mapasync-unordered")
 
 private val reactorOnly = listOf("reactor-flatmap", "reactor-flatmapsequential")
-private val blockingOnly = listOf("vt-plain", "lark-mappar")
+private val blockingOnly = listOf("vt-plain", "lark-mappar-unordered")
 
 val netScenarios: Map<String, NetScenario> = buildList {
     for (client in listOf("raw", "jdk", "netty")) {

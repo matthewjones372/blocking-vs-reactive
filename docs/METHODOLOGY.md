@@ -130,6 +130,13 @@ loop, several `SO_REUSEPORT` listeners), and two settings the JDK offers a virtu
 threads (`-Djdk.pollerMode=1`) and two scheduler carriers (`-Djdk.virtualThreadScheduler.parallelism=2`), for the
 blocking contestants at 1,000 and 10,000 in flight. Pekko HTTP and Kotlin coroutines are not covered.
 
+The contestants are all unordered. The published `results/net` ran Lark's ordered operators against unordered
+contestants (AUDIT A16), so a diagnostic suite, `net-diag`, runs the four raw-client scenarios with each Lark
+operator in both orders, the ordered contestants of the other models, and `vt-batched`: `vt-plain` with permits
+handed back in batches the size Lark's window uses to wake its feeder (a quarter of the bound, at most 64). It
+separates what ordering costs from what Lark's refill costs. `vt-batched` is in the tests but in no published
+suite.
+
 ## 6. What is counted, and when
 
 `Counters` tracks each element four times, with `LongAdder`s: taken from the source, handed to the I/O call,

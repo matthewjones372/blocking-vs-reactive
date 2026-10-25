@@ -224,16 +224,31 @@ the process is not CPU-bound. The row is reported, and kept out of every conclus
 
 ## Provenance of the published results
 
-The suites ran at three commits of this repository, all against Lark `3ccde44`:
+Every suite ran in one pass against Lark `575a944e` (Lark main, specs up to 0187), each at the commit current when
+it started:
 
-| suites | commit | what changed before the next |
-|---|---|---|
-| memory, net, workload, io | `eed937e` | the ported limit's queueing and Reactor's open-loop source (overload only) |
-| overload | `70ccc83` | the stack-trace demo, a test tolerance |
-| semantics, thread dumps, stack traces, JMH | `9d74499` | |
+| suite | commit |
+|---|---|
+| memory | `7f1e06b` |
+| overload | `0150172` |
+| net | `39a9a41` |
+| workload | `3b93bd0` |
+| io | `3e96e3c` |
+| JMH | `e4f9599` |
+| semantics, hand-off threads, thread dumps, stack traces | `fec0436` |
+| net-diag | `85f2f13` |
 
-No change between them touches code a suite before it measured; each summary names its own commit, and the summary
-script refuses to mix records from different commits within one suite.
+Between `7f1e06b` and `fec0436` the only commits add each finished suite's results, so the code measured is the
+same throughout. `85f2f13` adds the diagnostic contestant `vt-batched` and the `net-diag` suite, which no other
+suite runs. Each summary names its own commit, and the summary script refuses to mix records from different
+commits within one suite.
+
+The machine's speed was not constant across runs. In the I/O suite, contestants that do not involve Lark ran at
+0.71–0.78 of their speed in the previous run (at Lark `3ccde44`), with CPU per call up by a similar factor, while
+the single-threaded calibration loop moved by 1.6%: it does not detect a slowdown of multi-threaded work, such as
+contention for the host's shared caches and memory bandwidth. The README therefore compares only contestants
+measured in the same run; differences between the Lark versions are stated only where same-run controls anchor
+them (the fixed bounds in the overload suite).
 
 ## Work merged from main
 
@@ -258,14 +273,16 @@ main then gained two more reruns (`7b22d6d`, `5e01f93`) of the original harness 
 with specs up to 0187, which adds fused CPU chains, a faster `merge`, and a retuned adaptive `Limit` ("an adaptive
 limit that keeps up"). They change main's README and results only, and were merged here keeping this branch's.
 Their numbers rest on the shared device (A1, A2) and are not carried forward. Their Lark is, though, newer than the
-one pinned here (`3ccde44`, specs up to 0178), so:
+one then pinned here (`3ccde44`, specs up to 0178), so:
 
-- this branch's overload results measure the adaptive `Limit` *before* spec 0187's retuning. main reports the
-  retuned limit costing 7% of throughput, against 13–27% before; whether the caller's end-to-end p99 (finding 7)
-  changes with it has not been measured here;
-- this branch's CPU-chain and per-element JMH figures for Lark predate the fused chains.
+- the overload results then measured the adaptive `Limit` *before* spec 0187's retuning; main reports the retuned
+  limit costing 7% of throughput, against 13–27% before;
+- the CPU-chain and per-element JMH figures for Lark predated the fused chains.
 
-Moving the pin to Lark main means rerunning every suite at it; that was not done.
+The pin was then moved to Lark main (`575a944e`) and every suite rerun at it; the published results are that
+rerun. Against same-run controls, spec 0187 cut the adaptive limit's cost before a capacity drop from 15–18% to
+4–7% and its end-to-end p99 after the drop from 173–247 ms to 111–239 ms; the finding that it moves the queue to
+the caller stands. Lark's CPU-only chain went from 1.18× to 1.11× Reactor's time.
 
 ### A15. Reactor's hand-off barely hands off (distorting, found on main)
 
@@ -282,14 +299,32 @@ records the thread that produced each element and counts those produced on the c
 |---|--:|
 | Reactor `publishOn` | 999,999 of 1,000,000 (1.00) |
 | Lark `buffer` | 0 (0.00) |
-| Pekko async boundary | 377,638 (0.38) |
+| Pekko async boundary | 326,650 (0.33) |
 | virtual threads + `ArrayBlockingQueue` | 0 (0.00) |
 
-The observation holds. Reactor's 26 ms in finding 13 is the cost of a same-thread queue, not of a hand-off, and
+The observation holds. Reactor's 25 ms in finding 13 is the cost of a same-thread queue, not of a hand-off, and
 Pekko's figure is a mix of the two. The benchmark is kept unchanged so its numbers stay comparable with the
 original's, and is relabelled: its Reactor and Pekko rows are not a measure of cross-thread hand-off. A fair
 version would give Reactor an asynchronous source (`subscribeOn` on another scheduler); that was not run. Raw
 records: `results/semantics/handoff.jsonl`.
+
+### A16. The socket suite repeated A4: ordered Lark against unordered contestants (distorting, this rework's own)
+
+`NetBench.kt` ran Lark's ordered `mapPar` and `mapAsync` against `vt-plain`, `cf-plain`, Reactor `flatMap` and
+Pekko `mapAsyncUnordered`, all unordered: the comparison A4 faults in the original, rebuilt in new code. Over real
+sockets it matters, because latency varies (the server's p99 lag was 8–15 ms on a 20 ms call) and an ordered
+window keeps an answered call's slot until every earlier call answers. Lark kept fewer calls in flight than the
+others (for example 920 of 1,000 against 998) and held 51–2,018 answered-but-waiting elements against 0–4, and
+the README reported it as 17–26% behind.
+
+*Resolution.* A diagnostic suite (`net-diag`, `results/net-diag`) runs the four raw-client scenarios with each Lark
+operator in both orders, ordered Reactor, Pekko and `vt-ordered`, and `vt-batched`, which is `vt-plain` with permits
+returned in Lark's batch size. At 1,000 in flight every ordered contestant, of every library, is 0.79–0.84 of the
+best, and Lark's unordered `mapAsync` is the best: the deficit there was ordering. At 64 in flight every Lark
+operator, ordered or not, is 0.83–0.85, and `vt-batched` loses 10% against `vt-plain` with the same shortfall of
+calls in flight: a cost of Lark's batched refill, recorded in `docs/lark-issues.md`. The suite's contestants are now
+all unordered (`netContestants`); `results/net` keeps the ordered Lark rows it was measured with, and the README
+reads it with that in mind. The JDK-client and Netty-server rows were not rerun unordered.
 
 ## What was not changed
 
