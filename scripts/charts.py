@@ -159,6 +159,94 @@ if ov:
               None, "ms, or answers/s", log=True,
               panels=[("e2e p99 ms", e2e), ("dependency p99 ms", dep), ("good answers/s", good)])
 
+def timeline(path, title, subtitle, panels, until_ms):
+    """panels: [(panel title, t_ms, [(label, css class, values, dashed)])], every series in calls, one shared axis."""
+    style = """<style>
+.s1 { stroke: #2a78d6; } .s2 { stroke: #eb6834; } .s3 { stroke: #1baf7a; } .ref { stroke: #898781; }
+.k1 { fill: #2a78d6; } .k2 { fill: #eb6834; } .k3 { fill: #1baf7a; } .kref { fill: #898781; }
+@media (prefers-color-scheme: dark) {
+  .s1 { stroke: #3987e5; } .s2 { stroke: #d95926; } .s3 { stroke: #199e70; }
+  .k1 { fill: #3987e5; } .k2 { fill: #d95926; } .k3 { fill: #199e70; }
+}
+</style>"""
+    left, right, plot_w, plot_h, top, gap = 56, 200, 560, 170, 108, 50
+    w = left + plot_w + right
+    h = top + len(panels) * (plot_h + gap) + 10
+    hi = max(v for _, _, series in panels for _, _, vs, _ in series for v in vs if v is not None) * 1.08
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" '
+           f'aria-label="{title}">', STYLE, style, f'<rect class="bg" width="{w}" height="{h}"/>',
+           f'<text class="t1" x="16" y="24" font-size="15" font-weight="600">{title}</text>',
+           f'<text class="t2" x="16" y="44" font-size="12">{subtitle}</text>']
+    # The legend: every series once, in the order the panels draw them.
+    legend, lx = {}, 16
+    for _, _, series in panels:
+        for label, cls, _, dashed in series:
+            legend.setdefault(label, (cls, dashed))
+    for label, (cls, dashed) in legend.items():
+        dash = ' stroke-dasharray="5 4"' if dashed else ""
+        svg.append(f'<line class="{cls}" x1="{lx}" y1="66" x2="{lx + 22}" y2="66" stroke-width="2"{dash}/>')
+        svg.append(f'<text class="t2" x="{lx + 28}" y="70" font-size="11">{label}</text>')
+        lx += 40 + 6.2 * len(label)
+    for k, (ptitle, t_ms, series) in enumerate(panels):
+        y0 = top + k * (plot_h + gap)
+        def x(t):
+            return left + t / until_ms * plot_w
+        def y(v):
+            return y0 + plot_h - v / hi * plot_h
+        svg.append(f'<text class="t1" x="{left}" y="{y0 - 10}" font-size="12" font-weight="600">{ptitle}</text>')
+        for v in range(0, int(hi) + 1, 250):
+            svg.append(f'<line class="grid" x1="{left}" y1="{y(v):.1f}" x2="{left + plot_w}" y2="{y(v):.1f}"/>')
+            svg.append(f'<text class="mu" x="{left - 6}" y="{y(v) + 4:.1f}" font-size="10" text-anchor="end">{v:,}</text>')
+        for s in range(0, until_ms // 1000 + 1):
+            svg.append(f'<text class="mu" x="{x(s * 1000):.1f}" y="{y0 + plot_h + 14}" font-size="10" text-anchor="middle">{s} s</text>')
+        ends = []
+        for label, cls, vs, dashed in series:
+            pts = [(t, v) for t, v in zip(t_ms, vs) if v is not None and t <= until_ms]
+            dash = ' stroke-dasharray="5 4"' if dashed else ""
+            line = " ".join(f"{x(t):.1f},{y(v):.1f}" for t, v in pts)
+            svg.append(f'<polyline class="{cls}" fill="none" stroke-width="2" stroke-linejoin="round"{dash} points="{line}">'
+                       f'<title>{label}</title></polyline>')
+            tail = [v for t, v in pts if t >= until_ms - 900]
+            ends.append([y(statistics.median(tail)), label, cls, statistics.median(tail)])
+        # Direct labels at the right edge, pushed apart so none overlaps another.
+        ends.sort()
+        for i in range(1, len(ends)):
+            ends[i][0] = max(ends[i][0], ends[i - 1][0] + 13)
+        for ly, label, cls, v in ends:
+            k_cls = "kref" if cls == "ref" else "k" + cls[1:]
+            svg.append(f'<rect class="{k_cls}" x="{left + plot_w + 8}" y="{ly - 4:.1f}" width="8" height="8" rx="2"/>')
+            svg.append(f'<text class="t2" x="{left + plot_w + 20}" y="{ly + 4:.1f}" font-size="11">{label} {v:,.0f}</text>')
+    svg.append(f'<text class="mu" x="{w - 16}" y="{h - 8}" font-size="10" text-anchor="end">calls, sampled every 10 ms; '
+               f'labels give the median of the last 0.9 s</text>')
+    svg.append("</svg>")
+    (out_dir / path).write_text("\n".join(svg) + "\n")
+    print(f"wrote docs/charts/{path}")
+
+
+def overload_record(pattern, contestant, fork=1):
+    p = root / "results/overload/results.jsonl"
+    for line in p.read_text().splitlines() if p.exists() else []:
+        r = json.loads(line)
+        if r.get("kind") == "overload" and r["pattern"] == pattern and r["contestant"] == contestant and r["fork"] == fork:
+            return r
+    return None
+
+
+adaptive, fixed = overload_record("sudden", "lark-adaptive"), overload_record("sudden", "lark-fixed-500")
+if adaptive and fixed:
+    def series(r, limit_label):
+        s = r["series"]
+        waiting = [max(0, b - sv - q) for b, sv, q in zip(s["inBody"], s["serving"], s["depQueue"])]
+        limit = s["limit"] if any(v is not None for v in s["limit"]) else [500] * len(s["tMs"])
+        return (s["tMs"], [("capacity", "ref", s["capacity"], True), (limit_label, "s1", limit, False),
+                           ("queued in the dependency", "s3", s["depQueue"], False),
+                           ("waiting in the caller", "s2", waiting, False)])
+    ta, sa = series(adaptive, "limit")
+    tf, sf = series(fixed, "limit")
+    timeline("vegas-sudden.svg", "The adaptive limit after a capacity drop, and where the queue goes",
+             "Lark mapParUnordered, window = the limit's max (1,000 or 500). Capacity 500, then 100 from 3 s; fork 1 of 4.",
+             [("Lark's adaptive Limit (Vegas)", ta, sa), ("A fixed limit of 500", tf, sf)], 6000)
+
 jmh = load("jmh")
 if jmh:
     j = jmh["jmh"]

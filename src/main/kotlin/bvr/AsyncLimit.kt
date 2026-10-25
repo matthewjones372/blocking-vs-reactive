@@ -8,8 +8,10 @@ import kotlin.math.log10
 import kotlin.math.max
 
 /**
- * Lark's `Limit` (lark-core, `Limit.kt` and `Vegas.kt` at the commit in `lark.commit`), ported so that a contestant
- * which may not block (Reactor) can use the same control policy. Lark's `Limit.withPermit` waits on a condition, so it
+ * Lark's `Limit` (lark-core, `Limit.kt` and `Vegas.kt` as of Lark `3ccde44`, spec 0171), ported so that a contestant
+ * which may not block (Reactor) can use the same control policy. It does not have spec 0187's changes (slow start,
+ * thresholds that scale with the limit, cuts to what the dependency is serving, the periodic probe); see
+ * docs/adaptive-limit.md. Lark's `Limit.withPermit` waits on a condition, so it
  * can only be used from a thread that may park. This class keeps the same state, under the same lock, with the same
  * Vegas arithmetic, and adds [acquire], which answers a future instead of waiting.
  *
@@ -115,7 +117,7 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
     }
 }
 
-/** Lark's `Vegas`, unchanged but for its name and visibility; see its KDoc in lark-core for the reasoning. */
+/** Lark's `Vegas` as of `3ccde44`, unchanged but for its name and visibility; see its KDoc in lark-core. */
 class PortedVegas(initial: Int, private val min: Int, private val max: Int) {
     private var limit = initial.toDouble()
     private var unloaded = Double.MAX_VALUE
