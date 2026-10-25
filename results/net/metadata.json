@@ -1,0 +1,1497 @@
+{
+ "suite": "net",
+ "commit": "39a9a413b7f32bd2ea279031bf0fb0fa431d90dc",
+ "dirty": false,
+ "larkCommit": "575a944e26b4ce300a4ec606dd5c27364e448d98",
+ "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
+ "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+ "cpus": 4,
+ "memoryKb": 16477348,
+ "kernel": "6.18.44-fc-v153",
+ "governor": null,
+ "host": "vm",
+ "jvmOptions": "-Xms2g -Xmx2g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverJvmOptions": "-Xms1g -Xmx1g -XX:+UseG1GC -XX:+AlwaysPreTouch",
+ "serverCpus": "3",
+ "clientCpus": "0-2",
+ "forks": 3,
+ "warmups": 2,
+ "iterations": 3,
+ "seed": 20261023,
+ "cells": 70,
+ "schedule": [
+  {
+   "round": 1,
+   "order": 0,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 1,
+   "scenario": "n-10k-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 2,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 3,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 4,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 5,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 6,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 7,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 8,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 9,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 1,
+   "order": 10,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 11,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 12,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 13,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 1,
+   "order": 14,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 15,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 16,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 17,
+   "scenario": "n-10k-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 18,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 19,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 20,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 21,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 22,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 23,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 24,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 25,
+   "scenario": "n-10k-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 26,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 1,
+   "order": 27,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 28,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 29,
+   "scenario": "n-10k-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 30,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 31,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 1,
+   "order": 32,
+   "scenario": "n-10k-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 33,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 34,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 35,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 1,
+   "order": 36,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 37,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 38,
+   "scenario": "n-10k-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 39,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 40,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 41,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 42,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 1,
+   "order": 43,
+   "scenario": "n-10k-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 44,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 45,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 46,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 47,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 48,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 49,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 50,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 51,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 52,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 53,
+   "scenario": "n-10k-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 54,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 55,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 56,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 57,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 58,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 59,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 1,
+   "order": 60,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 61,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 62,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 63,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 64,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 65,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 66,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 67,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 1,
+   "order": 68,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 1,
+   "order": 69,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 0,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 2,
+   "order": 1,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 2,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 3,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 4,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 2,
+   "order": 5,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 2,
+   "order": 6,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 7,
+   "scenario": "n-10k-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 8,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 9,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 10,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 11,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 12,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 13,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 14,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 15,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 16,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 17,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 2,
+   "order": 18,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 19,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 20,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 21,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 22,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 23,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 2,
+   "order": 24,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 25,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 26,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 27,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 28,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 29,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 30,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 31,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 32,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 33,
+   "scenario": "n-10k-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 34,
+   "scenario": "n-10k-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 35,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 36,
+   "scenario": "n-10k-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 37,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 38,
+   "scenario": "n-10k-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 39,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 40,
+   "scenario": "n-10k-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 41,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 42,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 43,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 2,
+   "order": 44,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 45,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 46,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 47,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 48,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 49,
+   "scenario": "n-10k-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 50,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 51,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 52,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 53,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 54,
+   "scenario": "n-10k-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 55,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 56,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 57,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 58,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 59,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 60,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 61,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 2,
+   "order": 62,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 63,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 64,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 65,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 66,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 67,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 2,
+   "order": 68,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 2,
+   "order": 69,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 0,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 1,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 2,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 3,
+   "scenario": "n-large-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 4,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 5,
+   "scenario": "n-wide-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 6,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 7,
+   "scenario": "n-fast-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 8,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 3,
+   "order": 9,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 10,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 11,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 12,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 13,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 3,
+   "order": 14,
+   "scenario": "n-10k-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 15,
+   "scenario": "n-large-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 16,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 17,
+   "scenario": "n-fast-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 18,
+   "scenario": "n-10k-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 19,
+   "scenario": "n-large-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 20,
+   "scenario": "n-wide-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 21,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 22,
+   "scenario": "n-fast-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 23,
+   "scenario": "n-10k-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 24,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 25,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 26,
+   "scenario": "n-fast-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 27,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 3,
+   "order": 28,
+   "scenario": "n-10k-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 29,
+   "scenario": "n-large-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 30,
+   "scenario": "n-large-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 31,
+   "scenario": "n-10k-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 32,
+   "scenario": "n-large-netty",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 33,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 34,
+   "scenario": "n-10k-raw-parallelism2",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 3,
+   "order": 35,
+   "scenario": "n-wide-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 36,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 3,
+   "order": 37,
+   "scenario": "n-wide-jdk",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 38,
+   "scenario": "n-wide-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 39,
+   "scenario": "n-fast-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 40,
+   "scenario": "n-wide-raw-parallelism2",
+   "contestant": "lark-mappar",
+   "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
+  },
+  {
+   "round": 3,
+   "order": 41,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 42,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 43,
+   "scenario": "n-10k-jdk",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 44,
+   "scenario": "n-wide-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 45,
+   "scenario": "n-fast-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 46,
+   "scenario": "n-10k-jdk",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 47,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mapasync",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 48,
+   "scenario": "n-fast-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 49,
+   "scenario": "n-wide-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 3,
+   "order": 50,
+   "scenario": "n-wide-jdk",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 51,
+   "scenario": "n-wide-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 52,
+   "scenario": "n-large-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 53,
+   "scenario": "n-wide-raw-nettyserver",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 54,
+   "scenario": "n-wide-netty",
+   "contestant": "reactor-flatmapsequential",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 55,
+   "scenario": "n-wide-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 56,
+   "scenario": "n-10k-raw-poller1",
+   "contestant": "vt-plain",
+   "jvmOpts": "-Djdk.pollerMode=1"
+  },
+  {
+   "round": 3,
+   "order": 57,
+   "scenario": "n-10k-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 58,
+   "scenario": "n-fast-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 59,
+   "scenario": "n-wide-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 60,
+   "scenario": "n-fast-jdk",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 61,
+   "scenario": "n-10k-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 62,
+   "scenario": "n-large-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 63,
+   "scenario": "n-large-raw",
+   "contestant": "cf-plain",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 64,
+   "scenario": "n-10k-raw",
+   "contestant": "reactor-flatmap",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 65,
+   "scenario": "n-10k-raw",
+   "contestant": "pekko-mapasync-unordered",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 66,
+   "scenario": "n-fast-jdk",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 67,
+   "scenario": "n-large-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 68,
+   "scenario": "n-fast-raw",
+   "contestant": "lark-mappar",
+   "jvmOpts": ""
+  },
+  {
+   "round": 3,
+   "order": 69,
+   "scenario": "n-large-raw",
+   "contestant": "vt-plain",
+   "jvmOpts": ""
+  }
+ ],
+ "started": "2026-10-24T18:15:04.377966+00:00",
+ "finished": "2026-10-24T20:15:51.719669+00:00"
+}

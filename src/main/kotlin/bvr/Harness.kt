@@ -2,126 +2,211 @@ package bvr
 
 import com.sun.management.OperatingSystemMXBean
 import com.sun.management.ThreadMXBean
+import java.io.File
 import java.lang.management.ManagementFactory
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.ScheduledThreadPoolExecutor
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.locks.LockSupport
 
-/**
- * The one I/O device every contestant talks to: a call answers a future that a shared timer completes after
- * `latency`. Reactive contestants compose the future; virtual-thread contestants `join()` it and park. The device
- * therefore costs everyone the same, and only the concurrency model around it differs.
- */
-object FakeIo {
-    private val timer = ScheduledThreadPoolExecutor(2) { r -> Thread(r, "fake-io").apply { isDaemon = true } }
+/** Just enough JSON for result lines: maps, lists, strings, numbers, booleans and null. NaN becomes null. */
+object Json {
+    fun write(value: Any?): String = StringBuilder().also { append(it, value) }.toString()
 
-    fun call(x: Int, latencyMicros: Long): CompletableFuture<Int> {
-        val f = CompletableFuture<Int>()
-        timer.schedule({ f.complete(x) }, latencyMicros, TimeUnit.MICROSECONDS)
-        return f
-    }
-
-    fun failing(latencyMicros: Long): CompletableFuture<Int> {
-        val f = CompletableFuture<Int>()
-        timer.schedule({ f.completeExceptionally(IllegalStateException("connection reset")) }, latencyMicros, TimeUnit.MICROSECONDS)
-        return f
+    private fun append(out: StringBuilder, value: Any?) {
+        when (value) {
+            null -> out.append("null")
+            is String -> {
+                out.append('"')
+                for (c in value) when {
+                    c == '"' -> out.append("\\\"")
+                    c == '\\' -> out.append("\\\\")
+                    c == '\n' -> out.append("\\n")
+                    c < ' ' -> out.append("\\u%04x".format(c.code))
+                    else -> out.append(c)
+                }
+                out.append('"')
+            }
+            is Double -> if (value.isNaN() || value.isInfinite()) out.append("null") else out.append(value)
+            is Float -> append(out, value.toDouble())
+            is Number, is Boolean -> out.append(value)
+            is Enum<*> -> append(out, value.name.lowercase())
+            is Map<*, *> -> {
+                out.append('{')
+                value.entries.forEachIndexed { i, (k, v) ->
+                    if (i > 0) out.append(',')
+                    append(out, k.toString())
+                    out.append(':')
+                    append(out, v)
+                }
+                out.append('}')
+            }
+            is Iterable<*> -> {
+                out.append('[')
+                value.forEachIndexed { i, v -> if (i > 0) out.append(','); append(out, v) }
+                out.append(']')
+            }
+            else -> append(out, value.toString())
+        }
     }
 }
 
+/** One measurement, printed as `RESULT {json}` for the scripts to collect. */
+fun emit(fields: Map<String, Any?>) {
+    println("RESULT " + Json.write(fields))
+    System.out.flush()
+}
+
 /**
- * What a contestant reports while it runs: elements taken from the source, and elements that reached the sink.
- * A platform thread samples the difference every millisecond, so the hot path pays for two increments and no CAS loop.
+ * Samples the queues between [Counters] every millisecond on a platform thread, but only inside the steady window:
+ * from the moment 10% of [items] have been consumed until 90% have. Ramp-up and drain are left out, so the means
+ * describe the concurrency a contestant actually sustains. The hot path pays only for the counters' increments.
  */
-class Probe {
-    private val produced = AtomicLong()
-    private val completed = AtomicLong()
-    @Volatile var maxOutstanding = 0L
-        private set
+class Sampler(private val c: Counters, private val items: Long) {
+    var samples = 0L; private set
+    private var pendingSum = 0.0
+    private var bufferedSum = 0.0
+    private var queuedSum = 0.0
+    var pendingMax = 0L; private set
+    var bufferedMax = 0L; private set
+    var queuedMax = 0L; private set
+    var outstandingMax = 0L; private set
+    private var rssSum = 0.0
+    private var rssSamples = 0
+    var rssMaxMb = 0.0; private set
+    private var t10 = 0L
+    private var c10 = 0L
+    private var t90 = 0L
+    private var c90 = 0L
+
     @Volatile private var running = true
 
-    fun produced() { produced.incrementAndGet() }
-    fun completed() { completed.incrementAndGet() }
-    fun outstanding() = produced.get() - completed.get()
-
-    private val sampler = Thread.ofPlatform().daemon().start {
+    private val thread = Thread.ofPlatform().daemon().name("sampler").start {
+        val lo = items / 10
+        val hi = items - items / 10
         while (running) {
-            val o = outstanding()
-            if (o > maxOutstanding) maxOutstanding = o
-            Thread.sleep(1)
+            val consumed = c.consumed.sum()
+            val ioDone = c.ioDone.sum()
+            val started = c.started.sum()
+            val produced = c.produced.sum()
+            outstandingMax = maxOf(outstandingMax, produced - consumed)
+            if (consumed >= lo && t10 == 0L) { t10 = System.nanoTime(); c10 = consumed }
+            if (consumed >= hi && t90 == 0L) { t90 = System.nanoTime(); c90 = consumed }
+            if (consumed in lo until hi) {
+                val pending = started - ioDone
+                val buffered = ioDone - consumed
+                val queued = produced - started
+                samples++
+                pendingSum += pending; bufferedSum += buffered; queuedSum += queued
+                pendingMax = maxOf(pendingMax, pending)
+                bufferedMax = maxOf(bufferedMax, buffered)
+                queuedMax = maxOf(queuedMax, queued)
+                if (samples % 20 == 1L) {
+                    val rss = Jvm.rssMb()
+                    rssSum += rss; rssSamples++
+                    rssMaxMb = maxOf(rssMaxMb, rss)
+                }
+            }
+            LockSupport.parkNanos(1_000_000)
         }
     }
 
-    fun stop() { running = false; sampler.join() }
+    fun stop() { running = false; thread.join() }
+
+    val pendingMean get() = if (samples == 0L) Double.NaN else pendingSum / samples
+    val bufferedMean get() = if (samples == 0L) Double.NaN else bufferedSum / samples
+    val queuedMean get() = if (samples == 0L) Double.NaN else queuedSum / samples
+    val rssMeanMb get() = if (rssSamples == 0) Double.NaN else rssSum / rssSamples
+
+    /** Elements consumed per second between the 10% and 90% marks; NaN if the run was too short to see both. */
+    val steadyOpsPerSec get() = if (t90 <= t10 || t10 == 0L) Double.NaN else (c90 - c10) / ((t90 - t10) / 1e9)
 }
 
-data class Measurement(
-    val wallMs: Double,
-    val cpuMs: Double,
-    val allocatedMb: Double,
-    val gcCount: Long,
-    val gcMs: Long,
-    val maxOutstanding: Long,
-)
-
+/** The JVM's own counters, read before and after a measured body. */
 object Jvm {
     private val os = ManagementFactory.getOperatingSystemMXBean() as OperatingSystemMXBean
     private val threads = ManagementFactory.getThreadMXBean() as ThreadMXBean
     private val gcs = ManagementFactory.getGarbageCollectorMXBeans()
-    private val memory = ManagementFactory.getMemoryMXBean()
+    private val jit = ManagementFactory.getCompilationMXBean()
 
-    fun measure(body: (Probe) -> Unit): Measurement {
-        val probe = Probe()
-        val gcCount0 = gcs.sumOf { it.collectionCount }
-        val gcMs0 = gcs.sumOf { it.collectionTime }
-        val alloc0 = threads.totalThreadAllocatedBytes
-        val cpu0 = os.processCpuTime
-        val t0 = System.nanoTime()
-        body(probe)
-        val wall = System.nanoTime() - t0
-        val cpu = os.processCpuTime - cpu0
-        val alloc = threads.totalThreadAllocatedBytes - alloc0
-        probe.stop()
-        return Measurement(
-            wallMs = wall / 1e6,
-            cpuMs = cpu / 1e6,
-            allocatedMb = alloc / 1e6,
-            gcCount = gcs.sumOf { it.collectionCount } - gcCount0,
-            gcMs = gcs.sumOf { it.collectionTime } - gcMs0,
-            maxOutstanding = probe.maxOutstanding,
+    // G1 reports its concurrent cycles as a collector too; only the others are pauses.
+    private fun pauses() = gcs.filter { "Concurrent" !in it.name }
+    private fun concurrent() = gcs.filter { "Concurrent" in it.name }
+
+    class Snapshot(
+        val nanos: Long = System.nanoTime(),
+        val cpuNanos: Long = os.processCpuTime,
+        val allocated: Long = threads.totalThreadAllocatedBytes,
+        val pauseCount: Long = pauses().sumOf { it.collectionCount },
+        val pauseMs: Long = pauses().sumOf { it.collectionTime },
+        val concurrentMs: Long = concurrent().sumOf { it.collectionTime },
+        val jitMs: Long = jit.totalCompilationTime,
+    )
+
+    /** What happened between [a] and [b], per element where that is how it is read. */
+    fun delta(a: Snapshot, b: Snapshot, items: Long): Map<String, Any?> {
+        val wallMs = (b.nanos - a.nanos) / 1e6
+        val cpuMs = (b.cpuNanos - a.cpuNanos) / 1e6
+        return linkedMapOf(
+            "wallMs" to wallMs,
+            "opsPerSec" to items / (wallMs / 1000),
+            "cpuMs" to cpuMs,
+            "cpuUsPerOp" to cpuMs * 1000 / items,
+            "cpuUtilisation" to cpuMs / wallMs / Runtime.getRuntime().availableProcessors(),
+            "allocBytesPerOp" to (b.allocated - a.allocated).toDouble() / items,
+            "allocMbPerSec" to (b.allocated - a.allocated) / 1e6 / (wallMs / 1000),
+            "gcPauses" to b.pauseCount - a.pauseCount,
+            "gcPauseMs" to b.pauseMs - a.pauseMs,
+            "gcConcurrentMs" to b.concurrentMs - a.concurrentMs,
+            "jitMs" to b.jitMs - a.jitMs,
         )
     }
 
-    /**
-     * Live heap held per element in flight: the heap after a full GC taken while at least [inFlight] * 0.9
-     * elements are outstanding, less the heap after a full GC before the run started.
-     */
-    fun liveBytesPerInFlight(inFlight: Int, body: (Probe) -> Unit): Double {
-        System.gc(); System.gc()
-        val before = memory.heapMemoryUsage.used
-        val probe = Probe()
-        var during = -1L
-        var seen = 0L
-        val watcher = Thread.ofPlatform().start {
-            val deadline = System.nanoTime() + 10_000_000_000
-            while (System.nanoTime() < deadline) {
-                val o = probe.outstanding()
-                if (o >= inFlight * 9L / 10) {
-                    System.gc()
-                    during = memory.heapMemoryUsage.used
-                    seen = o
-                    return@start
-                }
-                Thread.onSpinWait()
-            }
-        }
-        body(probe)
-        watcher.join()
-        probe.stop()
-        return if (during < 0) Double.NaN else (during - before).toDouble() / seen
+    private const val PAGE_KB = 4L
+
+    /** Resident set size now, from /proc; NaN where there is no /proc. */
+    fun rssMb(): Double = try {
+        File("/proc/self/statm").readText().trim().split(" ")[1].toLong() * PAGE_KB / 1024.0
+    } catch (_: Exception) {
+        Double.NaN
     }
 
-    fun rssHighWaterMb(): Double =
-        java.io.File("/proc/self/status").readLines().first { it.startsWith("VmHWM:") }
-            .split(Regex("\\s+"))[1].toDouble() / 1024
+    /** The process's peak resident set size so far. */
+    fun rssHighWaterMb(): Double = try {
+        File("/proc/self/status").readLines().first { it.startsWith("VmHWM:") }.split(Regex("\\s+"))[1].toDouble() / 1024
+    } catch (_: Exception) {
+        Double.NaN
+    }
+
+    /**
+     * A fixed amount of single-threaded CPU work, timed: ns per thousand rounds of the [cpuWork] loop. Printed at
+     * the start of every JVM so the summary can show how much the machine itself drifted during a suite.
+     */
+    fun calibrate(): Double {
+        repeat(5) { cpuWork(it, 2_000_000) }
+        val runs = (1..5).map {
+            val t0 = System.nanoTime()
+            cpuWork(it, 10_000_000)
+            (System.nanoTime() - t0) / 10_000.0
+        }
+        return runs.sorted()[2]
+    }
+}
+
+/** What every result line carries so the summary can refuse to mix runs from different builds or machines. */
+fun environment(): Map<String, Any?> = linkedMapOf(
+    "jdk" to System.getProperty("java.vm.version"),
+    "cpus" to Runtime.getRuntime().availableProcessors(),
+    "maxHeapMb" to Runtime.getRuntime().maxMemory() / (1 shl 20),
+    "jvmArgs" to ManagementFactory.getRuntimeMXBean().inputArguments
+        .filter { it.startsWith("-X") && !it.startsWith("-Xlog") }.joinToString(" "),
+    "commit" to System.getProperty("bvr.commit"),
+    "larkVersion" to System.getProperty("bvr.larkVersion"),
+    "run" to System.getProperty("bvr.run"),
+    "fork" to System.getProperty("bvr.fork")?.toIntOrNull(),
+    "order" to System.getProperty("bvr.order")?.toIntOrNull(),
+)
+
+/** Runs [body] on a fresh virtual thread and waits: every contestant is called the way a request handler would call it. */
+fun <T> onVirtualThread(body: () -> T): T {
+    var result: Result<T>? = null
+    Thread.ofVirtual().name("caller").start { result = runCatching(body) }.join()
+    return result!!.getOrThrow()
 }

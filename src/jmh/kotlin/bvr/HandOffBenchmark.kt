@@ -7,15 +7,16 @@ import io.github.matthewjones372.lark.stream.buffer
 import io.github.matthewjones372.lark.stream.from
 import io.github.matthewjones372.lark.stream.run
 import io.github.matthewjones372.lark.stream.runFold
-import org.apache.pekko.stream.Attributes
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.BenchmarkMode
+import org.openjdk.jmh.annotations.Measurement
 import org.openjdk.jmh.annotations.Mode
 import org.openjdk.jmh.annotations.OutputTimeUnit
 import org.openjdk.jmh.annotations.Scope
 import org.openjdk.jmh.annotations.State
+import org.openjdk.jmh.annotations.Warmup
 import org.openjdk.jmh.annotations.TearDown
 import reactor.core.publisher.Flux
 import reactor.core.scheduler.Schedulers
@@ -29,6 +30,9 @@ import java.util.concurrent.TimeUnit
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
+// One operation takes up to a second for the slower contestants: longer iterations, so each sees enough of them.
+@Warmup(iterations = 10, time = 2)
+@Measurement(iterations = 8, time = 2)
 open class HandOffBenchmark {
     private val n = 1_000_000
     private val single = Schedulers.newSingle("consumer")
@@ -67,6 +71,7 @@ open class HandOffBenchmark {
 
     @Benchmark
     fun pekko(): Long =
-        Source.range(0, n - 1).async().addAttributes(Attributes.inputBuffer(256, 256))
+        // An async boundary whose downstream input buffer holds 256, as the other contestants' buffers do.
+        Source.range(0, n - 1).async("pekko.actor.default-dispatcher", 256)
             .runWith(Sink.fold(0L) { s, x -> s + x }, pekkoSystem).toCompletableFuture().join()
 }

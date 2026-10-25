@@ -1,376 +1,170 @@
 #!/usr/bin/env python3
-"""Draws the README's charts from results/ as SVG into docs/charts/. Plain SVG, no plotting library, so anyone can
-re-run it after a benchmark run. Colour follows the library (Lark blue, Reactor orange, Pekko aqua, plain virtual
-threads yellow) and every mark carries its name and value as text, so colour is never the only way to read one."""
+"""Draws the README's charts as SVG into docs/charts/ from results/*/summary.json (run scripts/summarise.py first).
+
+Plain SVG, no plotting library. Every chart is a strip per contestant: one small dot per fork (or per sample), a
+line over their range, and a larger mark at the median, so the spread is as visible as the middle. Colour is the
+library (JDK grey, Lark blue, Reactor orange, Pekko green); a hollow mark is a blocking contestant, a filled one an
+asynchronous or reactive one. Every row is labelled with its name and median, so colour is never needed to read it.
+"""
 import json
 import math
-import re
 import statistics
-from collections import defaultdict
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 out_dir = root / "docs/charts"
 out_dir.mkdir(parents=True, exist_ok=True)
 
-# ---- data ---------------------------------------------------------------------------------------------------------
-
-rows = defaultdict(lambda: defaultdict(list))
-for line in (root / "results/io.txt").read_text().splitlines():
-    if not line.startswith("RESULT"):
-        continue
-    kv = dict(re.findall(r"(\w+)=(\S+)", line))
-    for k, v in kv.items():
-        if k not in ("scenario", "contestant", "iteration", "fork"):
-            try:
-                rows[(kv["scenario"], kv["contestant"])][k].append(float(v))
-            except ValueError:
-                pass
-
-
-# The real-network scenario; a run under other scheduler settings is filed as `<contestant>@<config>`.
-net_file = root / "results/net.txt"
-for line in (net_file.read_text().splitlines() if net_file.exists() else []):
-    if not line.startswith("RESULT"):
-        continue
-    kv = dict(re.findall(r"(\w+)=(\S+)", line))
-    who = kv["contestant"] + (f"@{kv['config']}" if "config" in kv else "")
-    for k, v in kv.items():
-        if k not in ("scenario", "contestant", "iteration", "fork", "config"):
-            rows[(kv["scenario"], who)][k].append(float(v))
-
-
-def med(scenario, contestant, metric):
-    values = [v for v in rows[(scenario, contestant)].get(metric, []) if not math.isnan(v)]
-    return statistics.median(values) if values else None
-
-
-def most(scenario, contestant, metric):
-    values = rows[(scenario, contestant)].get(metric, [])
-    return max(values) if values else None
-
-
-jmh = {r["benchmark"].replace("bvr.", ""): r["primaryMetric"]["score"]
-       for r in json.loads((root / "results/jmh.json").read_text())}
-
-# ---- style --------------------------------------------------------------------------------------------------------
-
 STYLE = """<style>
 text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 .bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
-.grid { stroke: #e1e0d9; stroke-width: 1; } .axis { stroke: #c3c2b7; stroke-width: 1; }
-.lark { fill: #2a78d6; } .reactor { fill: #eb6834; } .pekko { fill: #1baf7a; } .vt { fill: #eda100; } .alt { fill: #e87ba4; }
-.lark-s { stroke: #2a78d6; } .reactor-s { stroke: #eb6834; } .pekko-s { stroke: #1baf7a; } .vt-s { stroke: #eda100; } .alt-s { stroke: #e87ba4; }
-.ring { stroke: #fcfcfb; stroke-width: 2; }
+.grid { stroke: #e1e0d9; stroke-width: 1; }
+.jdk { fill: #6b6a65; stroke: #6b6a65; } .lark { fill: #2a78d6; stroke: #2a78d6; }
+.reactor { fill: #eb6834; stroke: #eb6834; } .pekko { fill: #1baf7a; stroke: #1baf7a; }
+.hollow { fill: #fcfcfb; stroke-width: 2; }
 @media (prefers-color-scheme: dark) {
-  .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .mu { fill: #898781; }
-  .grid { stroke: #2c2c2a; } .axis { stroke: #383835; }
-  .lark { fill: #3987e5; } .reactor { fill: #d95926; } .pekko { fill: #199e70; } .vt { fill: #c98500; } .alt { fill: #d55181; }
-  .lark-s { stroke: #3987e5; } .reactor-s { stroke: #d95926; } .pekko-s { stroke: #199e70; } .vt-s { stroke: #c98500; } .alt-s { stroke: #d55181; }
-  .ring { stroke: #1a1a19; }
+  .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
+  .jdk { fill: #a8a79f; stroke: #a8a79f; } .lark { fill: #3987e5; stroke: #3987e5; }
+  .reactor { fill: #d95926; stroke: #d95926; } .pekko { fill: #199e70; stroke: #199e70; }
+  .hollow { fill: #1a1a19; }
 }
 </style>"""
 
-# Every contestant, its label, and the library its colour follows. One order for every chart, so a row is always
-# in the same place.
-CONTESTANTS = [
-    ("lark-async", "Lark mapAsync", "lark"),
-    ("lark-async-unordered", "Lark mapAsyncUnordered", "lark"),
-    ("lark", "Lark mapPar", "lark"),
-    ("lark-unordered", "Lark mapParUnordered", "lark"),
-    ("reactor", "Reactor flatMap", "reactor"),
-    ("pekko", "Pekko mapAsyncUnordered", "pekko"),
-    ("vt-plain", "Virtual threads + Semaphore", "vt"),
-]
+BLOCKING = {"vt-plain", "vt-ordered", "vt-structured", "lark-mappar", "lark-mappar-unordered", "vt-naive"}
 
 
-def esc(s):
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+def lib(name):
+    for prefix, cls in (("lark", "lark"), ("reactor", "reactor"), ("pekko", "pekko")):
+        if name.startswith(prefix):
+            return cls
+    return "jdk"
 
 
-def text(x, y, s, cls="t2", size=12, anchor="start", weight="normal"):
-    return (f'<text x="{x:.1f}" y="{y:.1f}" class="{cls}" font-size="{size}" text-anchor="{anchor}" '
-            f'font-weight="{weight}">{esc(s)}</text>')
+def nice(x):
+    if x >= 1e6:
+        return f"{x / 1e6:.2f}M"
+    if x >= 1e4:
+        return f"{x / 1e3:.0f}k"
+    if x >= 100:
+        return f"{x:,.0f}"
+    return f"{x:.2f}" if x < 10 else f"{x:.1f}"
 
 
-def svg(width, height, body, title, desc):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
-            f'role="img" aria-labelledby="t d"><title id="t">{esc(title)}</title><desc id="d">{esc(desc)}</desc>'
-            f'{STYLE}<rect class="bg" width="{width}" height="{height}" rx="8"/>{"".join(body)}</svg>\n')
-
-
-def bar(x0, x1, y, h, cls):
-    """A horizontal bar anchored at x0, with a 4px rounded data end at x1."""
-    r = min(4.0, max(0.0, x1 - x0), h / 2)
-    return (f'<path class="{cls}" d="M{x0:.1f},{y:.1f} H{x1 - r:.1f} Q{x1:.1f},{y:.1f} {x1:.1f},{y + r:.1f} '
-            f'V{y + h - r:.1f} Q{x1:.1f},{y + h:.1f} {x1 - r:.1f},{y + h:.1f} H{x0:.1f} Z"/>')
-
-
-def nice_max(v):
-    exp = 10 ** math.floor(math.log10(v))
-    for m in (1, 2, 2.5, 5, 10):
-        if m * exp >= v:
-            return m * exp
-    return 10 * exp
-
-
-def compact(v):
-    def trim(n, digits):
-        s = f"{n:.{digits}f}"
-        return s.rstrip("0").rstrip(".") if "." in s else s
-    if v >= 1e6:
-        return trim(v / 1e6, 2) + "M"
-    if v >= 1e3:
-        return trim(v / 1e3, 1 if v < 1e4 else 0) + "k"
-    if v >= 10:
-        return trim(v, 1)
-    return trim(v, 2)
-
-
-def hbars(x, y, width, title, subtitle, items, fmt=compact, log=False):
-    """A panel of horizontal bars, one per (label, value, colour class), value labelled at each bar's end."""
-    label_w, row_h, bar_h = 178, 24, 14
-    plot_x, plot_w = x + label_w, width - label_w - 64
-    body = [text(x, y + 14, title, "t1", 13, weight="600"), text(x, y + 30, subtitle, "mu", 11)]
-    top = y + 44
-    present = [i for i in items if i[1] is not None]
-    if log:
-        lo = 10 ** math.floor(math.log10(min(v for _, v, _ in present)))
-        hi = 10 ** math.ceil(math.log10(max(v for _, v, _ in present)))
-        def pos(v): return plot_x + plot_w * (math.log10(v) - math.log10(lo)) / (math.log10(hi) - math.log10(lo))
-        ticks = [10 ** e for e in range(int(math.log10(lo)), int(math.log10(hi)) + 1)]
-    else:
-        hi = nice_max(max(v for _, v, _ in present))
-        def pos(v): return plot_x + plot_w * v / hi
-        ticks = [hi * i / 4 for i in range(5)]
-    bottom = top + row_h * len(items)
-    for t in ticks:
-        tx = pos(t)
-        body.append(f'<line class="grid" x1="{tx:.1f}" y1="{top - 4}" x2="{tx:.1f}" y2="{bottom}"/>')
-        body.append(text(tx, bottom + 14, compact(t) if t else "0", "mu", 10, "middle"))
-    body.append(f'<line class="axis" x1="{plot_x}" y1="{top - 4}" x2="{plot_x}" y2="{bottom}"/>')
-    for i, (label, value, cls) in enumerate(items):
-        ry = top + i * row_h
-        body.append(text(plot_x - 8, ry + bar_h - 2, label, "t2", 12, "end"))
-        if value is None:
-            body.append(text(plot_x + 6, ry + bar_h - 2, "not measured", "mu", 11))
+def strip(path, title, subtitle, rows, unit, log=False, panels=None, shared=False):
+    """rows: [(label, [values])] for one panel, or panels: [(panel title, rows)] side by side."""
+    panels = panels or [(None, rows)]
+    label_w, panel_w, row_h, top = 210, 300, 22, 70
+    n = max(len(r) for _, r in panels)
+    w = label_w + panel_w * len(panels) + 40
+    h = top + n * row_h + 40
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" '
+           f'aria-label="{title}">', STYLE, f'<rect class="bg" width="{w}" height="{h}"/>',
+           f'<text class="t1" x="16" y="24" font-size="15" font-weight="600">{title}</text>',
+           f'<text class="t2" x="16" y="44" font-size="12">{subtitle}</text>']
+    every = [v for _, prow in panels for _, vs in prow for v in vs if v is not None and v > 0]
+    for k, (ptitle, prow) in enumerate(panels):
+        vals = every if shared else [v for _, vs in prow for v in vs if v is not None and v > 0]
+        if not vals:
             continue
-        if log:
-            cx = pos(value)
-            body.append(f'<circle class="{cls} ring" cx="{cx:.1f}" cy="{ry + bar_h / 2:.1f}" r="5"/>')
-            body.append(text(cx + 10, ry + bar_h - 2, fmt(value), "t1", 11))
-        else:
-            x1 = pos(value)
-            body.append(bar(plot_x, max(plot_x + 1, x1), ry, bar_h, cls))
-            body.append(text(x1 + 6, ry + bar_h - 2, fmt(value), "t1", 11))
-    return body, bottom + 22 - y
+        lo, hi = (min(vals) / 1.3, max(vals) * 1.3) if log else (0, max(vals) * 1.1)
+        x0 = label_w + k * panel_w + 10
+        def x(v):
+            if log:
+                return x0 + (math.log(v) - math.log(lo)) / (math.log(hi) - math.log(lo)) * (panel_w - 70)
+            return x0 + (v - lo) / (hi - lo) * (panel_w - 70)
+        if ptitle:
+            svg.append(f'<text class="t1" x="{x0}" y="{top - 8}" font-size="12" font-weight="600">{ptitle}</text>')
+        ticks = [10 ** e * m for e in range(int(math.floor(math.log10(lo))), int(math.ceil(math.log10(hi))) + 1) for m in (1, 3)] if log \
+            else [hi / 1.1 * f for f in (0, 0.25, 0.5, 0.75, 1.0)]
+        for t in ticks:
+            if lo <= t <= hi:
+                svg.append(f'<line class="grid" x1="{x(t):.1f}" y1="{top}" x2="{x(t):.1f}" y2="{top + n * row_h}"/>')
+                svg.append(f'<text class="mu" x="{x(t):.1f}" y="{top + n * row_h + 14}" font-size="10" text-anchor="middle">{nice(t)}</text>')
+        for i, (label, vs) in enumerate(prow):
+            y = top + i * row_h + row_h / 2
+            vs = [v for v in vs if v is not None and v > 0]
+            if k == 0:
+                svg.append(f'<text class="t1" x="{label_w - 8}" y="{y + 4:.1f}" font-size="12" text-anchor="end">{label}</text>')
+            if not vs:
+                continue
+            c = lib(label)
+            med = statistics.median(vs)
+            svg.append(f'<line class="{c}" x1="{x(min(vs)):.1f}" y1="{y:.1f}" x2="{x(max(vs)):.1f}" y2="{y:.1f}" stroke-width="2" opacity="0.5"/>')
+            for v in vs:
+                svg.append(f'<circle class="{c}" cx="{x(v):.1f}" cy="{y:.1f}" r="2" opacity="0.7"/>')
+            hollow = " hollow" if label in BLOCKING else ""
+            svg.append(f'<circle class="{c}{hollow}" cx="{x(med):.1f}" cy="{y:.1f}" r="5"/>')
+            svg.append(f'<text class="t2" x="{x(max(vs)) + 8:.1f}" y="{y + 4:.1f}" font-size="11">{nice(med)}</text>')
+    svg.append(f'<text class="mu" x="{w - 16}" y="{h - 8}" font-size="10" text-anchor="end">{unit}. Small dots: forks; '
+               f'large: median; hollow: blocking.</text>')
+    svg.append("</svg>")
+    (out_dir / path).write_text("\n".join(svg) + "\n")
+    print(f"wrote docs/charts/{path}")
 
 
-def panels(name, title, desc, grid, width=1080, headline=None):
-    """Panels laid out in rows of up to two; each entry is the keyword arguments of hbars."""
-    body, y = [], 20
-    if headline:
-        body.append(text(20, 34, headline, "t1", 16, weight="600"))
-        y = 52
-    for row in grid:
-        heights = []
-        col_w = (width - 20 - 20 * len(row)) // len(row)
-        for j, p in enumerate(row):
-            b, h = hbars(20 + j * (col_w + 20), y, col_w, **p)
-            body += b
-            heights.append(h)
-        y += max(heights) + 18
-    (out_dir / name).write_text(svg(width, y, body, title, desc))
+def load(suite):
+    p = root / "results" / suite / "summary.json"
+    return json.loads(p.read_text()) if p.exists() else None
 
 
-def items_for(scenario, metric):
-    return [(label, med(scenario, key, metric), cls) for key, label, cls in CONTESTANTS]
+def by_median(rows, key):
+    return sorted(rows.items(), key=lambda kv: -(statistics.median(kv[1][key]) if kv[1].get(key) else 0))
 
 
-# ---- one chart per scenario ---------------------------------------------------------------------------------------
+io = load("io")
+if io:
+    sc = io["scenarios"]
+    for shape, total in (("c10k", "1M"), ("c100k", "10M")):
+        devices = [d for d in ("dispatched", "wheel", "shared", "native") if f"{shape}-{d}" in sc]
+        order = [c for c, _ in by_median(sc[f"{shape}-dispatched"]["rows"], "opsPerSec")]
+        strip(f"{shape}-devices.svg", f"{shape[1:]} calls of 10 ms in flight, on each device",
+              f"Throughput, ops/s, log scale (ceiling {total}/s). The same contestants, four ways of completing the I/O.",
+              None, "ops/s", log=True, shared=True,
+              panels=[(d, [(c, sc[f"{shape}-{d}"]["rows"].get(c, {}).get("opsPerSec") or []) for c in order]) for d in devices])
+    rows = sc["c10k-dispatched"]["rows"]
+    order = sorted(rows, key=lambda c: statistics.median(rows[c]["cpuUsPerOp"]))
+    strip("cpu-per-call.svg", "CPU per call, 10,000 calls of 10 ms in flight", "Process CPU µs per element on the dispatched device: "
+          "contestant, device and sampler together.", [(c, rows[c]["cpuUsPerOp"]) for c in order], "CPU µs per element")
 
-def scenario_chart(scenario, in_flight, ceiling):
-    native = f"{scenario}-native"
-    panels(
-        f"{scenario}.svg",
-        f"{in_flight} calls in flight",
-        f"Throughput, CPU and memory per contestant with {in_flight} 10 ms calls in flight",
-        [
-            [dict(title="Throughput, shared device", subtitle=f"ops/s, higher is better (ceiling {ceiling})",
-                  items=items_for(scenario, "opsPerSec")),
-             dict(title="Throughput, each model's own timer", subtitle="ops/s, higher is better",
-                  items=items_for(native, "opsPerSec"))],
-            [dict(title="CPU per call, shared device", subtitle="µs of process CPU per call, lower is better",
-                  items=items_for(scenario, "cpuUsPerOp"), fmt=lambda v: f"{v:.2f} µs"),
-             dict(title="Live heap per call in flight, shared device", subtitle="bytes, lower is better",
-                  items=items_for(scenario, "liveBytesPerInFlight"), fmt=lambda v: f"{v:,.0f} B")],
-        ],
-        headline=f"{in_flight} calls in flight, 10 ms each",
-    )
+wl = load("workload")
+if wl:
+    sc = wl["scenarios"]
+    names = sorted(sc)
+    order = [c for c, _ in by_median(sc[names[0]]["rows"], "opsPerSec")]
+    strip("workload.svg", "The workload matrix", "Throughput, ops/s, log scale; each panel changes one thing from 1,000 calls of 10 ms.",
+          None, "ops/s", log=True, shared=True,
+          panels=[(n.replace("-dispatched", "").replace("w-", ""), [(c, sc[n]["rows"].get(c, {}).get("opsPerSec") or []) for c in order]) for n in names])
 
+mem = load("memory")
+if mem:
+    m = mem["memory"]
+    for mode, title in (("pending", "Retained bytes per pending call"), ("hol", "Retained bytes per answered, unconsumed element")):
+        if mode in m:
+            order = sorted(m[mode], key=lambda c: statistics.median(m[mode][c]["slopes"]))
+            strip(f"memory-{mode}.svg", title, "Slope of live heap between 10,000 and 100,000 held; dots are fork × repeat samples.",
+                  [(c, m[mode][c]["slopes"]) for c in order], "bytes per element")
 
-scenario_chart("fanout-1k", "1,000", "100k")
-scenario_chart("fanout-10k", "10,000", "1M")
-scenario_chart("inflight-100k", "100,000", "10M")
+ov = load("overload")
+if ov:
+    o = ov["overload"]
+    for p in ("sudden", "open-50ms"):
+        if p not in o:
+            continue
+        order = sorted(o[p])
+        e2e = [(c, [o[p][c]["phases"][-1]["e2eP99Ms"]]) for c in order]
+        dep = [(c, [o[p][c]["phases"][-1]["depP99Ms"]]) for c in order]
+        good = [(c, [o[p][c]["phases"][-1]["goodputPerSec"] or 0.001]) for c in order]
+        strip(f"overload-{p}.svg", f"After the dependency loses capacity ({p})",
+              "Median across forks, last phase. End-to-end counts from arrival; the dependency's own p99 hides time spent waiting in the caller.",
+              None, "ms, or answers/s", log=True,
+              panels=[("e2e p99 ms", e2e), ("dependency p99 ms", dep), ("good answers/s", good)])
 
-# Backpressure: what each one let pile up, and what it cost.
-bp = CONTESTANTS + [("vt-naive", "Virtual threads, no bound", "vt")]
-panels(
-    "backpressure.svg",
-    "Backpressure",
-    "The most elements each contestant ever had in flight, and its throughput, with 16 calls allowed",
-    [[dict(title="Most elements ever in flight", subtitle="log scale; 16 were allowed",
-           items=[(label, most("backpressure", key, "maxOutstanding"), cls) for key, label, cls in bp],
-           fmt=lambda v: f"{v:,.0f}", log=True),
-      dict(title="Throughput", subtitle="ops/s; 1 ms calls, ceiling 16k",
-           items=[(label, med("backpressure", key, "opsPerSec"), cls) for key, label, cls in bp[:-1]])]],
-    headline="A fast producer, a slow consumer, at most 16 in flight",
-)
-
-# Overload: p99 before and after the dependency loses capacity, and how long the run took.
-ov = [("reactor-1000", "Reactor flatMap(…, 1000)", "reactor"),
-      ("reactor-tuned", "Reactor flatMap(…, 500)", "reactor"),
-      ("lark-1000", "Lark mapPar(Limit.fixed(1000))", "lark"),
-      ("lark-adaptive", "Lark mapPar(Limit.adaptive)", "lark")]
-panels(
-    "overload.svg",
-    "A dependency that loses capacity",
-    "p99 latency before and after a dependency's capacity drops from 500 to 100, and each run's length",
-    [[dict(title="p99 latency before the drop", subtitle="ms, lower is better",
-           items=[(label, med("overload", key, "p99BeforeMs"), cls) for key, label, cls in ov],
-           fmt=lambda v: f"{v:.1f} ms"),
-      dict(title="p99 latency after the drop", subtitle="ms, lower is better",
-           items=[(label, med("overload", key, "p99AfterMs"), cls) for key, label, cls in ov],
-           fmt=lambda v: f"{v:.1f} ms")],
-     [dict(title="Time to finish 200k calls", subtitle="seconds, lower is better",
-           items=[(label, med("overload", key, "seconds"), cls) for key, label, cls in ov],
-           fmt=lambda v: f"{v:.2f} s")]],
-    headline="Capacity drops from 500 to 100 halfway through",
-)
-
-# JMH: CPU-only work and hand-offs.
-panels(
-    "jmh.svg",
-    "CPU-only work and hand-offs",
-    "Milliseconds per million elements for a CPU-only chain and for a hand-off between threads",
-    [[dict(title="Hand-off between two threads", subtitle="ms per million elements, log scale, lower is better",
-           items=[("Lark buffer", jmh["HandOffBenchmark.lark"], "lark"),
-                  ("Reactor publishOn", jmh["HandOffBenchmark.reactor"], "reactor"),
-                  ("Pekko async", jmh["HandOffBenchmark.pekko"], "pekko"),
-                  ("ArrayBlockingQueue", jmh["HandOffBenchmark.vtQueue"], "vt")],
-           fmt=lambda v: f"{v:,.0f} ms", log=True),
-      dict(title="map, filter, map, sum", subtitle="ms per million elements, log scale, lower is better",
-           items=[("Lark", jmh["CpuChainBenchmark.lark"], "lark"),
-                  ("Reactor", jmh["CpuChainBenchmark.reactor"], "reactor"),
-                  ("Pekko", jmh["CpuChainBenchmark.pekko"], "pekko"),
-                  ("Kotlin Sequence", jmh["CpuChainBenchmark.sequence"], "vt"),
-                  ("for loop", jmh["CpuChainBenchmark.loop"], "vt")],
-           fmt=lambda v: f"{v:,.1f} ms", log=True)]],
-    headline="Where Reactor still wins: CPU-only work",
-)
-
-# Lines of code per contestant, from the region markers.
-loc = {}
-src = (root / "src/main/kotlin/bvr/IoScenario.kt").read_text()
-for name, body in re.findall(r"// region (\S+)\n(.*?)// endregion", src, re.S):
-    loc[name] = len([l for l in body.splitlines() if l.strip() and not l.strip().startswith("//")])
-panels(
-    "code.svg",
-    "Lines of code",
-    "Non-blank lines each contestant needs for the same bounded fan-out",
-    [[dict(title="Lines for the same bounded fan-out", subtitle="non-blank lines, from IoScenario.kt",
-           items=[(label, float(loc[key]), cls) for key, label, cls in CONTESTANTS],
-           fmt=lambda v: f"{v:.0f}")]],
-    width=560,
-)
-
-# Throughput as concurrency grows, the five contestants that matter most, shared device.
-series = [("lark-async", "Lark mapAsync", "lark"), ("reactor", "Reactor", "reactor"), ("pekko", "Pekko", "pekko"),
-          ("lark", "Lark mapPar", "alt"), ("vt-plain", "Virtual threads", "vt")]
-levels = [("fanout-1k", 1_000), ("fanout-10k", 10_000), ("inflight-100k", 100_000)]
-W, H, L, R, T, B = 760, 400, 70, 170, 64, 46
-hi = nice_max(max(med(s, k, "opsPerSec") for k, _, _ in series for s, _ in levels))
-body = [text(20, 30, "Throughput as calls in flight grow", "t1", 16, weight="600"),
-        text(20, 48, "ops/s on the shared device, higher is better; 10 ms calls", "mu", 11)]
-def px(i): return L + (W - L - R) * i / (len(levels) - 1)
-def py(v): return H - B - (H - T - B) * v / hi
-for i in range(5):
-    v = hi * i / 4
-    body.append(f'<line class="grid" x1="{L}" y1="{py(v):.1f}" x2="{W - R}" y2="{py(v):.1f}"/>')
-    body.append(text(L - 8, py(v) + 4, compact(v) if v else "0", "mu", 10, "end"))
-for i, (_, n) in enumerate(levels):
-    body.append(text(px(i), H - B + 18, f"{n:,} in flight", "mu", 11, "middle"))
-ends = []
-for key, label, cls in series:
-    pts = [(px(i), py(med(s, key, "opsPerSec"))) for i, (s, _) in enumerate(levels)]
-    body.append(f'<polyline class="{cls}-s" fill="none" stroke-width="2" points="'
-                + " ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + '"/>')
-    for x, y in pts:
-        body.append(f'<circle class="{cls} ring" cx="{x:.1f}" cy="{y:.1f}" r="4.5"/>')
-    ends.append([pts[-1][1], label, med(levels[-1][0], key, "opsPerSec")])
-# Direct labels at the line ends, nudged apart so none overlap.
-ends.sort()
-for i in range(1, len(ends)):
-    ends[i][0] = max(ends[i][0], ends[i - 1][0] + 15)
-for y, label, v in ends:
-    body.append(text(W - R + 12, y + 4, f"{label}  {compact(v)}", "t2", 11))
-(out_dir / "throughput.svg").write_text(
-    svg(W, H, body, "Throughput as calls in flight grow",
-        "Ops per second at 1k, 10k and 100k calls in flight for Lark mapAsync, Reactor, Pekko, Lark mapPar and "
-        "plain virtual threads"))
-
-# The real network: HTTP/1.1 over loopback to a server in its own JVM, on its own core.
-NET = [
-    ("lark-async", "Lark mapAsync, JDK client", "lark"),
-    ("lark", "Lark mapPar, JDK client", "lark"),
-    ("lark-socket", "Lark mapPar, socket", "lark"),
-    ("reactor-netty", "Reactor Netty", "reactor"),
-    ("reactor-jdk", "Reactor, JDK client", "reactor"),
-    ("pekko", "Pekko, JDK client", "pekko"),
-    ("vt-plain", "Virtual threads, JDK client", "vt"),
-    ("vt-socket", "Virtual threads, socket", "vt"),
-]
-if any(s == "net-1k" for s, _ in rows):
-    def net_items(scenario, metric):
-        return [(label, med(scenario, key, metric), cls) for key, label, cls in NET]
-    us = lambda v: f"{v:.1f} µs"
-    panels(
-        "net.svg",
-        "Real network",
-        "Throughput and CPU per call for 16, 1,000 and 10,000 HTTP calls in flight over loopback, each answered after "
-        "10 ms by a server on its own core",
-        [[dict(title="CPU per call, 16 in flight", subtitle="µs of client process CPU per call, lower is better",
-               items=net_items("net-16", "cpuUsPerOp"), fmt=us),
-          dict(title="Throughput, 16 in flight", subtitle="ops/s, higher is better (ceiling 1.6k)",
-               items=net_items("net-16", "opsPerSec"))],
-         [dict(title="CPU per call, 1,000 in flight", subtitle="µs of client process CPU per call, lower is better",
-               items=net_items("net-1k", "cpuUsPerOp"), fmt=us),
-          dict(title="Throughput, 1,000 in flight", subtitle="ops/s, higher is better (ceiling 100k; server's lower)",
-               items=net_items("net-1k", "opsPerSec"))],
-         [dict(title="CPU per call, 10,000 in flight", subtitle="µs of client process CPU per call, lower is better",
-               items=net_items("net-10k", "cpuUsPerOp"), fmt=us),
-          dict(title="Throughput, 10,000 in flight", subtitle="ops/s, higher is better (ceiling 1M; server's lower)",
-               items=net_items("net-10k", "opsPerSec"))]],
-        headline="Real sockets: HTTP/1.1 over loopback, 10 ms answers",
-    )
-
-    # Scheduler settings, for the blocking contestants: one panel per contestant and level, one bar per setting.
-    settings = [("", "default"), ("@parallelism-2", "parallelism=2"), ("@poller-1", "pollerMode=1"),
-                ("@poller-2", "pollerMode=2")]
-    blocking = [("vt-plain", "Virtual threads, JDK client", "vt"), ("lark", "Lark mapPar, JDK client", "lark"),
-                ("vt-socket", "Virtual threads, socket", "vt"), ("lark-socket", "Lark mapPar, socket", "lark")]
-    grid = []
-    for key, label, cls in blocking:
-        grid.append([dict(title=f"{label}, {n}", subtitle="µs of client CPU per call, lower is better",
-                          items=[(name, med(level, key + suffix, "cpuUsPerOp"), cls) for suffix, name in settings],
-                          fmt=us)
-                     for level, n in (("net-1k", "1,000 in flight"), ("net-10k", "10,000 in flight"))])
-    panels(
-        "net-scheduler.svg",
-        "Scheduler settings on the real network",
-        "CPU per call for the blocking contestants under the default scheduler, parallelism 2, and each poller mode",
-        grid,
-        headline="Blocking contestants under other scheduler settings",
-    )
-
-print("\n".join(sorted(p.name for p in out_dir.glob("*.svg"))))
+jmh = load("jmh")
+if jmh:
+    j = jmh["jmh"]
+    per = {k.split("[")[1].rstrip("]"): v for k, v in j.items() if k.startswith("PerElementBenchmark")}
+    if per:
+        order = sorted(per, key=lambda c: per[c]["score"])
+        strip("per-element.svg", "Machinery per element, with I/O that is already done",
+              "JMH, ns per element through each contestant's own code, bound 64, completed futures. Dots are forks.",
+              [(c, per[c]["forks"]) for c in order], "ns per element", log=True)

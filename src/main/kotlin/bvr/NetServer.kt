@@ -1,88 +1,201 @@
 package bvr
 
-import io.netty.bootstrap.ServerBootstrap
-import io.netty.buffer.ByteBuf
-import io.netty.buffer.ByteBufUtil
-import io.netty.channel.ChannelHandlerContext
-import io.netty.channel.ChannelInitializer
-import io.netty.channel.ChannelOption
-import io.netty.channel.MultiThreadIoEventLoopGroup
-import io.netty.channel.epoll.Epoll
-import io.netty.channel.epoll.EpollChannelOption
-import io.netty.channel.epoll.EpollIoHandler
-import io.netty.channel.epoll.EpollServerSocketChannel
-import io.netty.channel.nio.NioIoHandler
-import io.netty.channel.socket.SocketChannel
-import io.netty.channel.socket.nio.NioServerSocketChannel
-import io.netty.handler.codec.ByteToMessageDecoder
-import java.util.concurrent.TimeUnit
+import com.sun.management.OperatingSystemMXBean
+import java.lang.management.ManagementFactory
+import java.net.InetSocketAddress
+import java.net.StandardSocketOptions
+import java.nio.ByteBuffer
+import java.nio.channels.SelectionKey
+import java.nio.channels.Selector
+import java.nio.channels.ServerSocketChannel
+import java.nio.channels.SocketChannel
+import java.util.PriorityQueue
+import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.LongAdder
+import java.util.concurrent.locks.LockSupport
 
 /**
- * The server for the real-network scenario, run in its own JVM so the client's process CPU stays clean:
- * `NetServerKt [port] [delayMicros] [threads]`.
+ * The test server for the socket scenarios: HTTP/1.1 with keep-alive, `GET /?d=<micros>&s=<bytes>` answered after
+ * `d` microseconds with `s` bytes of body.
  *
- * It serves HTTP/1.1 with keep-alive, and answers `GET /?x=<n>` with the body `<n>` after `delayMicros`. The delay is
- * a task on the connection's own event loop (Netty's scheduled-task queue, which epoll wakes with a timerfd), so no
- * thread is held per request, and 10,000 waiting requests cost 10,000 small queue entries.
+ * No thread sleeps per request. Each of [selectors] threads owns its connections, parses their requests and keeps
+ * its own queue of responses ordered by due time; one timer thread wakes a selector, every 100 µs at most, when its
+ * earliest response is due. A slow response therefore costs a queue entry, not a thread, and the server's own delay
+ * (`lag`: a response's write against its due time) is measured and reported, so a run can show that the server kept
+ * up. `GET /__stats` answers that, with the server's CPU time; `GET /__reset` clears it.
  */
-fun main(args: Array<String>) {
-    val port = args.getOrNull(0)?.toInt() ?: 8099
-    val delayMicros = args.getOrNull(1)?.toLong() ?: 10_000
-    val threads = args.getOrNull(2)?.toInt() ?: 1
-    val epoll = Epoll.isAvailable()
-    val group = MultiThreadIoEventLoopGroup(threads, if (epoll) EpollIoHandler.newFactory() else NioIoHandler.newFactory())
-    // The kernel caps each listen backlog at net.core.somaxconn (4,096 here), and 10,000 clients connecting at once
-    // overflow one: the dropped handshakes then wait out TCP's retransmit back-off. With epoll, several listeners
-    // share the port through SO_REUSEPORT, each with its own backlog, all on the same event loop.
-    val listeners = if (epoll) 4 else 1
-    val bootstrap = ServerBootstrap()
-        .group(group)
-        .channel(if (epoll) EpollServerSocketChannel::class.java else NioServerSocketChannel::class.java)
-        .option(ChannelOption.SO_BACKLOG, 16_384)
-        .option(ChannelOption.SO_REUSEADDR, true)
-        .childOption(ChannelOption.TCP_NODELAY, true)
-        .childHandler(object : ChannelInitializer<SocketChannel>() {
-            override fun initChannel(ch: SocketChannel) {
-                ch.pipeline().addLast(DelayedEcho(delayMicros))
-            }
-        })
-    if (epoll) bootstrap.option(EpollChannelOption.SO_REUSEPORT, true)
-    val channels = List(listeners) { bootstrap.bind("127.0.0.1", port).sync().channel() }
-    println("NETSERVER ready port=$port delayMicros=$delayMicros threads=$threads epoll=$epoll listeners=$listeners")
-    channels.forEach { it.closeFuture().sync() }
-}
+class NetServer(port: Int, selectors: Int) {
+    private val server = ServerSocketChannel.open().apply {
+        setOption(StandardSocketOptions.SO_REUSEADDR, true)
+        bind(InetSocketAddress("127.0.0.1", port), 4096)
+    }
+    private val loops = List(selectors) { Loop(it) }
+    private val next = AtomicInteger()
+    @Volatile var lag = Histogram(); private set
+    val served = LongAdder()
+    private val os = ManagementFactory.getOperatingSystemMXBean() as OperatingSystemMXBean
+    @Volatile private var cpuAtReset = os.processCpuTime
+    @Volatile private var nanosAtReset = System.nanoTime()
 
-/**
- * A minimal HTTP/1.1 server codec, enough for what the clients send: a `GET` with headers and no body, one at a time
- * per connection (pipelined ones are answered in order too, since equal delays fire in the order they were set).
- * Netty's full `HttpServerCodec` cost the one-core server about 14 µs a request and capped it near 70k requests/s.
- */
-private class DelayedEcho(private val delayMicros: Long) : ByteToMessageDecoder() {
-    override fun decode(ctx: ChannelHandlerContext, input: ByteBuf, out: MutableList<Any>) {
-        while (true) {
-            // The end of the headers, `\r\n\r\n`, as an absolute index; none yet means the request is incomplete.
-            var end = -1
-            for (i in input.readerIndex()..input.writerIndex() - 4) {
-                if (input.getInt(i) == CRLFCRLF) { end = i; break }
+    private class Due(val at: Long, val key: SelectionKey, val conn: Conn, val size: Int) : Comparable<Due> {
+        override fun compareTo(other: Due) = at.compareTo(other.at)
+    }
+
+    private class Conn {
+        val inBuf: ByteBuffer = ByteBuffer.allocate(8192)
+        val pending = ArrayDeque<ByteBuffer>()
+        var writing: ByteBuffer? = null
+    }
+
+    private inner class Loop(i: Int) {
+        val selector: Selector = Selector.open()
+        val registering = ConcurrentLinkedQueue<SocketChannel>()
+        val due = PriorityQueue<Due>()
+        @Volatile var earliest = Long.MAX_VALUE
+
+        val thread: Thread = Thread.ofPlatform().daemon().name("server-$i").start { run() }
+
+        fun run() {
+            while (true) {
+                selector.select()
+                while (true) {
+                    val ch = registering.poll() ?: break
+                    ch.configureBlocking(false)
+                    ch.setOption(StandardSocketOptions.TCP_NODELAY, true)
+                    ch.register(selector, SelectionKey.OP_READ, Conn())
+                }
+                val keys = selector.selectedKeys().iterator()
+                while (keys.hasNext()) {
+                    val key = keys.next()
+                    keys.remove()
+                    try {
+                        if (!key.isValid) continue
+                        if (key.isReadable) read(key)
+                        if (key.isValid && key.isWritable) flush(key)
+                    } catch (_: java.io.IOException) {
+                        key.cancel(); key.channel().close()
+                    }
+                }
+                val now = System.nanoTime()
+                while (due.isNotEmpty() && due.peek().at <= now) {
+                    val d = due.poll()
+                    lag.record(now - d.at)
+                    if (d.key.isValid) respond(d)
+                }
+                earliest = due.peek()?.at ?: Long.MAX_VALUE
             }
-            if (end < 0) return
-            // The request line is `GET /?x=<n> HTTP/1.1`; the answer is `<n>`.
-            var from = input.readerIndex()
-            while (input.getByte(from) != '='.code.toByte()) from++
-            var to = ++from
-            while (input.getByte(to) in '0'.code.toByte()..'9'.code.toByte()) to++
-            val digits = input.toString(from, to - from, Charsets.US_ASCII)
-            input.readerIndex(end + 4)
-            ctx.executor().schedule({
-                val response = "HTTP/1.1 200 OK\r\ncontent-length: ${digits.length}\r\n\r\n$digits"
-                ctx.writeAndFlush(ByteBufUtil.writeAscii(ctx.alloc(), response))
-            }, delayMicros, TimeUnit.MICROSECONDS)
+        }
+
+        private fun read(key: SelectionKey) {
+            val conn = key.attachment() as Conn
+            val ch = key.channel() as SocketChannel
+            if (ch.read(conn.inBuf) < 0) { key.cancel(); ch.close(); return }
+            while (true) {
+                val request = takeRequest(conn.inBuf) ?: break
+                when {
+                    request.startsWith("GET /__stats") -> queue(key, conn, stats().toByteArray())
+                    request.startsWith("GET /__reset") -> { reset(); queue(key, conn, "{}".toByteArray()) }
+                    else -> {
+                        val at = System.nanoTime() + param(request, "d") * 1_000
+                        due.add(Due(at, key, conn, param(request, "s").toInt()))
+                    }
+                }
+            }
+        }
+
+        // One body per size, shared by every response of that size: the server copies nothing per request.
+        private val bodies = HashMap<Int, ByteArray>()
+
+        private fun respond(d: Due) {
+            served.increment()
+            queue(d.key, d.conn, bodies.getOrPut(d.size) { ByteArray(d.size) { 'x'.code.toByte() } })
+        }
+
+        private fun queue(key: SelectionKey, conn: Conn, body: ByteArray) {
+            conn.pending.addLast(ByteBuffer.wrap("HTTP/1.1 200 OK\r\nContent-Length: ${body.size}\r\n\r\n".toByteArray()))
+            conn.pending.addLast(ByteBuffer.wrap(body))
+            flush(key)
+        }
+
+        fun flush(key: SelectionKey) {
+            val conn = key.attachment() as Conn
+            val ch = key.channel() as SocketChannel
+            while (true) {
+                val buf = conn.writing ?: conn.pending.removeFirstOrNull() ?: break
+                conn.writing = buf
+                ch.write(buf)
+                if (buf.hasRemaining()) {
+                    key.interestOps(SelectionKey.OP_READ or SelectionKey.OP_WRITE)
+                    return
+                }
+                conn.writing = null
+            }
+            key.interestOps(SelectionKey.OP_READ)
         }
     }
 
-    override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) { ctx.close() }
-
-    private companion object {
-        const val CRLFCRLF = 0x0d0a0d0a
+    private fun reset() {
+        lag = Histogram()
+        served.reset()
+        cpuAtReset = os.processCpuTime
+        nanosAtReset = System.nanoTime()
     }
+
+    private fun stats(): String {
+        val cpuMs = (os.processCpuTime - cpuAtReset) / 1e6
+        val wallMs = (System.nanoTime() - nanosAtReset) / 1e6
+        return Json.write(
+            mapOf(
+                "served" to served.sum(), "lagP50Us" to lag.quantile(0.5) / 1000, "lagP99Us" to lag.quantile(0.99) / 1000,
+                "lagMaxUs" to lag.max() / 1000, "cpuMs" to cpuMs, "wallMs" to wallMs,
+                "cpuUtilisation" to cpuMs / wallMs / Runtime.getRuntime().availableProcessors(),
+                "cpus" to Runtime.getRuntime().availableProcessors(),
+            ),
+        )
+    }
+
+    fun serve() {
+        // The timer: wakes whichever selector has a response due.
+        Thread.ofPlatform().daemon().name("server-timer").start {
+            while (true) {
+                val now = System.nanoTime()
+                for (l in loops) if (l.earliest <= now) l.selector.wakeup()
+                LockSupport.parkNanos(100_000)
+            }
+        }
+        while (true) {
+            val ch = server.accept()
+            val l = loops[Math.floorMod(next.getAndIncrement(), loops.size)]
+            l.registering.add(ch)
+            l.selector.wakeup()
+        }
+    }
+}
+
+/** The request at the front of [buf], if a whole one has arrived; the bytes after it are kept for the next. */
+internal fun takeRequest(buf: ByteBuffer): String? {
+    val end = (0 until buf.position() - 3).firstOrNull {
+        buf.get(it) == '\r'.code.toByte() && buf.get(it + 1) == '\n'.code.toByte() &&
+            buf.get(it + 2) == '\r'.code.toByte() && buf.get(it + 3) == '\n'.code.toByte()
+    } ?: return null
+    val bytes = ByteArray(end + 4)
+    buf.flip()
+    buf.get(bytes)
+    buf.compact()
+    return String(bytes, Charsets.ISO_8859_1)
+}
+
+internal fun param(request: String, name: String): Long {
+    val start = request.indexOf("$name=") + name.length + 1
+    var end = start
+    while (end < request.length && request[end].isDigit()) end++
+    return request.substring(start, end).toLong()
+}
+
+/** `net-server <port> [selectors]`: serves until killed. */
+fun netServerMain(args: List<String>) {
+    val selectors = args.getOrNull(1)?.toInt() ?: Runtime.getRuntime().availableProcessors()
+    System.err.println("net-server on ${args[0]} with $selectors selectors")
+    NetServer(args[0].toInt(), selectors).serve()
 }
