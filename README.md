@@ -7,11 +7,39 @@ cloud VM; each table names the commit it ran at. How the experiments are built i
 [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md); what was wrong with the earlier version of this benchmark, and what
 changed, is in [`docs/AUDIT.md`](docs/AUDIT.md).
 
+## Is reactive programming still necessary in 2026?
+
+**No, not as the default.** On JDK 21 or later, a service that handles requests by calling other services over
+the network can block on virtual threads instead. At ordinary concurrency and over real sockets, blocking code
+matched Reactor and Pekko on throughput, held backpressure just as well, and gave stack traces and thread dumps that
+name the waiting call. The price is about 1 KB of memory and a few microseconds of CPU per waiting call. It cost
+throughput only with ten thousand or more calls in flight on synthetic I/O, and it disappeared behind a real HTTP
+client's own cost. (Databases were not tested; see caveats.)
+
+**Reactive is still the better tool for a narrower set of jobs:** streaming pipelines that need operators
+(merging streams, time windows, retries with backoff), many producers feeding one slow consumer, CPU-only operator
+chains, and backpressure that has to cross the network to a remote producer.
+
+### The evidence, question by question
+
+| Question | Verdict | Evidence |
+|---|---|---|
+| Is blocking on virtual threads as fast as reactive code? | **Yes, at ordinary concurrency.** At 1,000 calls in flight every contestant, blocking or not, reached 93–97% of the I/O ceiling, all tied. Over real sockets, blocking calls tied with Reactor, Pekko and futures, and with the JDK HTTP client, blocking `send` was at or tied with the fastest. | findings 2, 6 |
+| What does blocking cost? | **More CPU and memory per waiting call.** Parking a virtual thread cost 3.9–5.3 µs of CPU per call against 1.2–2.8 µs for a future, and about 1 KB of heap per pending call against 80–200 B. It showed only at very high completion rates (0.75–0.89 of the best at 10,000 in flight on synthetic I/O), and it disappeared behind a real HTTP client's own cost. | 3, 4, 5, 6 |
+| Is backpressure as easy without reactive code? | **Yes, if you write the bound.** A `Semaphore` or a bounded queue held the bound exactly as Reactor and Pekko did. An unbounded thread per element did not. | [`docs/backpressure.md`](docs/backpressure.md) |
+| Does Lark beat Reactor, as the original README claimed (1.6–1.9×)? | **No.** That result measured the fake device, not the libraries. On a device that keeps up, Lark `mapAsync` and Reactor `flatMap` tie at 10,000 in flight (942k against 895k ops/s). Lark led only when the machine ran out of CPU at 100,000 in flight, within 26% noise. Reactor was faster on CPU-only operator chains (1.11×). | 1, 5, 13 |
+| Does Lark's adaptive limit protect a service when a dependency loses capacity? | **It protects the dependency, not the caller.** The dependency's p99 stayed at 9 ms, but the queue moved into the caller: end-to-end p99 was 111 ms, against 28–29 ms with a fixed limit of 500. It won clearly when the dependency rejects calls or the callers have deadlines. | 11, [`docs/adaptive-limit.md`](docs/adaptive-limit.md) |
+| What mattered more than blocking against reactive? | **Ordering, and the client library.** Under variable latency, ordered pipelines of every model fell to 14–15% of the unordered ones' throughput. The JDK `HttpClient` cost about three times the CPU per request of a raw socket client, whatever the model. | 6, 7 |
+| Where do reactive libraries still earn their place? | **Pipelines with a single slow consumer, CPU-only chains, the operator library, and flow control across processes.** With a serial consumer, the stream libraries ran more than twice as fast as virtual threads whose tasks each called the consumer. Reactor led CPU-only chains. Merging, time windows and retries come built in, and blocking slows only a producer inside the same process. | 9, 13, [`docs/backpressure.md`](docs/backpressure.md) |
+
+These verdicts come from one 4-core cloud VM, loopback sockets and synthetic dependencies (caveats, section 6).
+They are about the shape of the costs, not margins to bank on another machine.
+
 ## 1. The questions
 
 | | Question | Where it is answered |
 |---|---|---|
-| Q1 | Does Project Loom remove the need for asynchronous or reactive code? | Not directly measurable. Q2–Q4 and the semantics checks answer the parts that are. |
+| Q1 | Does Project Loom remove the need for asynchronous or reactive code? | Not directly measurable. Q2–Q4 and the semantics checks answer the parts that are; the answer above puts them together. |
 | Q2 | What does waiting by parking a virtual thread cost, against composing a future, for the same I/O? | I/O, workload, socket and memory suites; per-element JMH |
 | Q3 | How do Lark, Reactor and Pekko compare at the same job? | The same suites, comparing within one model (async with async, ordered with ordered) |
 | Q4 | How do fixed and adaptive concurrency limits behave when a dependency loses capacity? | The overload suite, a factorial of model × policy |
