@@ -118,33 +118,37 @@ parked contestants 0.86–1.15M (0.29–0.39), Pekko 0.75–0.83M (0.25–0.28).
 and 482 ms for Pekko): this is a CPU-saturation result, which a machine with more cores would move.
 
 **6. Over real sockets the client library matters more than the concurrency model, and ordering costs more than
-the library.** With the raw clients (same protocol code, blocking socket against `AsynchronousSocketChannel`),
-plain virtual threads, `cf-plain`, Reactor and Pekko's unordered `mapAsync` tie at 32–41k requests/s from 64 to
-1,000 in flight, with the one-core server at 0.77–0.95 of its core. The main socket suite put Lark's *ordered*
-operators against these unordered contestants and found them 17–26% behind; that comparison was unfair
-([`docs/AUDIT.md`](docs/AUDIT.md) A16), and the diagnostic suite
-([`results/net-diag/summary.md`](results/net-diag/summary.md)) separates the causes:
+the library.** Every contestant in the socket suite is unordered. With the raw clients (same protocol code,
+blocking socket against `AsynchronousSocketChannel`), plain virtual threads, `cf-plain`, Reactor and Pekko reach
+19–34k requests/s from 64 to 1,000 in flight, with the one-core server at 0.84–0.98 of its core, and Lark's
+unordered `mapPar` and `mapAsync` are at 0.76–0.97 of the best: every difference is inside the run's noise floor
+of 10–22%. An earlier version of the suite put Lark's *ordered* operators against the others and found them 17–26%
+behind ([`docs/AUDIT.md`](docs/AUDIT.md) A16). A diagnostic suite, run separately
+([`results/net-diag/summary.md`](results/net-diag/summary.md); compare numbers only within each run), separates
+the causes:
 
 - *Ordering.* At 1,000 in flight every ordered contestant, from every library, is 0.79–0.84 of the best, each
-  holding 44–54 answered calls behind a slower head; Lark's unordered `mapAsync` is the fastest contestant (40.2k).
+  holding 44–54 answered calls behind a slower head; Lark's unordered `mapAsync` is the fastest contestant.
 - *Lark's batched refill.* At 64 in flight every Lark operator, ordered or not, is 0.83–0.85 of the best. Lark's
   window wakes its waiting feeder only once a quarter of the window, at most 64, has freed; plain virtual threads
-  refilling the same way (`vt-batched`, a diagnostic contestant) lose 10% against `vt-plain`, with the same shortfall of
-  calls in flight (56–58 of 64, against 63). Latency per call does not change. At 256 and 1,000 in flight the
-  effect is mostly within the noise.
+  refilling the same way (`vt-batched`, a diagnostic contestant) lose 10% against `vt-plain`, with the same shortfall
+  of calls in flight (56–58 of 64, against 63). Latency per call does not change. At 256 and 1,000 in flight the
+  effect is mostly within the noise. The socket suite shows the same shortfall (Lark 55 of 64 in flight, the others
+  62–63) inside its wider noise. Reported to Lark as [lark#589](https://github.com/matthewjones372/lark/issues/589).
 - *At 10,000 in flight* Lark `mapAsync` is the best; the blocking contestants of every kind are 0.86–0.90, at
   86–91 µs of CPU per request against 65–78 µs.
 
-With the JDK `HttpClient`, everyone spends 106–166 µs of CPU per request in the client and reaches 14.5–22.3k/s, and
-blocking `send` on virtual threads is the fastest from 64 to 1,000 in flight, though most differences there
-are ties. At 10,000 connections the JDK client
-falls to 9.7–10.6k/s for every unordered contestant, and ordered Lark to 0.28–0.34 of that at 469–667 µs per request
-(open questions). Reactor Netty's client reaches 30.9–38.1k/s at 43–66 µs per request from 64 to 1,000 in flight,
-against 28–51 µs for the raw clients, and 19.1–21.3k/s at 10,000. Against main's Netty server instead of the NIO one,
-everyone is faster (39.0–44.0k at 1,000 in flight, the server at two-thirds of its core) and the ranking holds.
-Platform poller threads (`-Djdk.pollerMode=1`) cost plain virtual threads 16% at 1,000 in flight (29.8k against
-35.7k) and two carriers instead of four (`-Djdk.virtualThreadScheduler.parallelism=2`) 7%; at 10,000 neither moved it.
-→ [`results/net/summary.md`](results/net/summary.md)
+With the JDK `HttpClient`, everyone spends 141–239 µs of CPU per request in the client and reaches 10.1–17.1k/s from
+64 to 1,000 in flight. Blocking `send` (plain virtual threads, Lark `mapPar`) is at or tied with the top in all three
+scenarios; at 64 in flight `cf-plain`, Pekko and Lark `mapAsync` are behind at 0.73–0.79. At 10,000 connections every
+contestant falls to 7.2–8.9k/s at 240–324 µs per request, all ties: Lark's ordered operators had collapsed there
+(0.28–0.34 of the best at 469–667 µs per request), and the unordered ones do not, so that was the ordered window,
+not Lark. Reactor Netty's client reaches 17.9–30.1k/s at 56–101 µs per request from 64 to 1,000 in flight, against
+41–82 µs for the raw clients, and about 16k/s at 10,000. Against main's Netty server instead of the NIO one, at 1,000
+in flight, everyone is faster (34.0–36.9k against 24.5–32.2k, the server at three-quarters of its core rather than
+all of it), and every contestant ties. Platform poller threads (`-Djdk.pollerMode=1`) and two carriers instead of
+four (`-Djdk.virtualThreadScheduler.parallelism=2`) moved plain virtual threads by no more than the noise floor
+(10–22% here), at 1,000 or 10,000 in flight. → [`results/net/summary.md`](results/net/summary.md)
 
 **7. Ordering costs far more than the choice of model when latency varies.** Lognormal latency (median 5 ms, 1,000
 in flight): every unordered contestant reaches 108–112k ops/s, every ordered one 16.1–16.2k, blocking or not, Lark,
@@ -266,11 +270,9 @@ tests require): the stream DSLs 7 each; `cf-plain` 32; `vt-plain` 35; `vt-ordere
 
 - Whether the CPU-per-call gap between parked threads and futures (finding 3) matters in a service depends on what
   else a call costs; with a real HTTP client (finding 6) it was lost in the client's own cost.
-- Ordered Lark on the JDK `HttpClient` at 10,000 connections uses 469–667 µs of CPU per request, against 206–242 µs
-  for the other contestants. main found that the client's pool walks every idle connection under one lock; how an
-  ordered window's refill interacts with it is not isolated, and the suite has no unordered Lark on that client.
 - Lark's batched refill (finding 6) is a deliberate trade (Lark spec 0172: fewer wake-ups for the feeder); its cost
-  is measured here only over loopback sockets at 64 in flight ([`docs/lark-issues.md`](docs/lark-issues.md)).
+  is measured here only over loopback sockets at 64 in flight ([`docs/lark-issues.md`](docs/lark-issues.md),
+  [lark#589](https://github.com/matthewjones372/lark/issues/589)).
 - Reactor with the ported adaptive limit collapses under open-loop load with a deadline: the limit falls to single
   digits while the dependency is idle, so Vegas is reading inflated call times. Pulling the source on its own
   worker (`subscribeOn`) and letting arrivals take free permits ahead of older waiters, as Lark's `Limit` does, did
