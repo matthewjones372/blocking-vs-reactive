@@ -2,8 +2,8 @@
  "suite": "net",
  "commit": "34651ca74a8fe3ea1ed5b05df78b954b05c03086",
  "dirty": false,
- "larkCommit": "575a944e26b4ce300a4ec606dd5c27364e448d98",
- "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "surefoldCommit": "575a944e26b4ce300a4ec606dd5c27364e448d98",
+ "surefoldVersion": "0.0.0-cand-SNAPSHOT",
  "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
  "cpus": 4,
@@ -39,7 +39,7 @@
    "round": 1,
    "order": 2,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -53,7 +53,7 @@
    "round": 1,
    "order": 4,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -74,7 +74,7 @@
    "round": 1,
    "order": 7,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -88,14 +88,14 @@
    "round": 1,
    "order": 9,
    "scenario": "n-10k-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
    "round": 1,
    "order": 10,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -123,7 +123,7 @@
    "round": 1,
    "order": 14,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -137,7 +137,7 @@
    "round": 1,
    "order": 16,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -165,7 +165,7 @@
    "round": 1,
    "order": 20,
    "scenario": "n-large-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -179,14 +179,14 @@
    "round": 1,
    "order": 22,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 23,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -207,7 +207,7 @@
    "round": 1,
    "order": 26,
    "scenario": "n-wide-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
@@ -270,7 +270,7 @@
    "round": 1,
    "order": 35,
    "scenario": "n-wide-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
@@ -284,7 +284,7 @@
    "round": 1,
    "order": 37,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -347,7 +347,7 @@
    "round": 1,
    "order": 46,
    "scenario": "n-large-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -361,7 +361,7 @@
    "round": 1,
    "order": 48,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -403,7 +403,7 @@
    "round": 1,
    "order": 54,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -424,7 +424,7 @@
    "round": 1,
    "order": 57,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -445,7 +445,7 @@
    "round": 1,
    "order": 60,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -473,14 +473,14 @@
    "round": 1,
    "order": 64,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 65,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -494,14 +494,14 @@
    "round": 1,
    "order": 67,
    "scenario": "n-10k-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
    "round": 1,
    "order": 68,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -515,7 +515,7 @@
    "round": 2,
    "order": 0,
    "scenario": "n-wide-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
@@ -550,14 +550,14 @@
    "round": 2,
    "order": 5,
    "scenario": "n-10k-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
    "round": 2,
    "order": 6,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -585,14 +585,14 @@
    "round": 2,
    "order": 10,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 11,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -613,7 +613,7 @@
    "round": 2,
    "order": 14,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -627,7 +627,7 @@
    "round": 2,
    "order": 16,
    "scenario": "n-large-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -655,28 +655,28 @@
    "round": 2,
    "order": 20,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 21,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 22,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 23,
    "scenario": "n-wide-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
@@ -704,14 +704,14 @@
    "round": 2,
    "order": 27,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 28,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -816,7 +816,7 @@
    "round": 2,
    "order": 43,
    "scenario": "n-10k-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
@@ -830,14 +830,14 @@
    "round": 2,
    "order": 45,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 46,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -865,7 +865,7 @@
    "round": 2,
    "order": 50,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -886,7 +886,7 @@
    "round": 2,
    "order": 53,
    "scenario": "n-large-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -907,14 +907,14 @@
    "round": 2,
    "order": 56,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 57,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -928,7 +928,7 @@
    "round": 2,
    "order": 59,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -949,7 +949,7 @@
    "round": 2,
    "order": 62,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1005,7 +1005,7 @@
    "round": 3,
    "order": 0,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1019,14 +1019,14 @@
    "round": 3,
    "order": 2,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 3,
    "scenario": "n-large-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1047,7 +1047,7 @@
    "round": 3,
    "order": 6,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1075,28 +1075,28 @@
    "round": 3,
    "order": 10,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 11,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 12,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 13,
    "scenario": "n-wide-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
@@ -1180,7 +1180,7 @@
    "round": 3,
    "order": 25,
    "scenario": "n-wide-raw-nettyserver",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1194,7 +1194,7 @@
    "round": 3,
    "order": 27,
    "scenario": "n-10k-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
@@ -1222,7 +1222,7 @@
    "round": 3,
    "order": 31,
    "scenario": "n-10k-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1236,7 +1236,7 @@
    "round": 3,
    "order": 33,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1250,14 +1250,14 @@
    "round": 3,
    "order": 35,
    "scenario": "n-wide-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 36,
    "scenario": "n-10k-raw-poller1",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.pollerMode=1"
   },
   {
@@ -1271,7 +1271,7 @@
    "round": 3,
    "order": 38,
    "scenario": "n-wide-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1285,14 +1285,14 @@
    "round": 3,
    "order": 40,
    "scenario": "n-wide-raw-parallelism2",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": "-Djdk.virtualThreadScheduler.parallelism=2"
   },
   {
    "round": 3,
    "order": 41,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1306,7 +1306,7 @@
    "round": 3,
    "order": 43,
    "scenario": "n-10k-jdk",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1334,7 +1334,7 @@
    "round": 3,
    "order": 47,
    "scenario": "n-large-raw",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1467,21 +1467,21 @@
    "round": 3,
    "order": 66,
    "scenario": "n-fast-jdk",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 67,
    "scenario": "n-large-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 68,
    "scenario": "n-fast-raw",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {

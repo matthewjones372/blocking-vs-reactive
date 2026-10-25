@@ -8,14 +8,14 @@ import kotlin.math.log10
 import kotlin.math.max
 
 /**
- * Lark's `Limit` (lark-core, `Limit.kt` and `Vegas.kt` as of Lark `3ccde44`, spec 0171), ported so that a contestant
+ * Surefold's `Limit` (surefold-core, `Limit.kt` and `Vegas.kt` as of Surefold `3ccde44`, spec 0171), ported so that a contestant
  * which may not block (Reactor) can use the same control policy. It does not have spec 0187's changes (slow start,
  * thresholds that scale with the limit, cuts to what the dependency is serving, the periodic probe); see
- * docs/adaptive-limit.md. Lark's `Limit.withPermit` waits on a condition, so it
+ * docs/adaptive-limit.md. Surefold's `Limit.withPermit` waits on a condition, so it
  * can only be used from a thread that may park. This class keeps the same state, under the same lock, with the same
  * Vegas arithmetic, and adds [acquire], which answers a future instead of waiting.
  *
- * The overload experiment also runs plain virtual threads on both this port and Lark's own `Limit`, which checks
+ * The overload experiment also runs plain virtual threads on both this port and Surefold's own `Limit`, which checks
  * that the port behaves as the original does.
  */
 class AsyncLimit private constructor(initial: Int, val max: Int, private val vegas: PortedVegas?) {
@@ -28,7 +28,7 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
 
     /**
      * A future that completes once the limit has room for one more call, which then holds a place. A caller that
-     * finds room takes it even if others are waiting, as a thread arriving at Lark's `Limit` does: its `acquire`
+     * finds room takes it even if others are waiting, as a thread arriving at Surefold's `Limit` does: its `acquire`
      * waits on a condition, and a signalled waiter must win the lock again before it can take the place it was
      * woken for. Strict FIFO here would hand every place to the oldest waiter, which under a deadline is the one
      * most likely to have expired.
@@ -44,7 +44,7 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
 
     /**
      * Gives back a place. An answered call teaches an adaptive limit and a failed one backs it off; one that was
-     * cancelled (a [java.util.concurrent.CancellationException], as Lark's `Limit` also treats it) says nothing about
+     * cancelled (a [java.util.concurrent.CancellationException], as Surefold's `Limit` also treats it) says nothing about
      * the dependency and teaches nothing.
      */
     fun release(tookNanos: Long, failed: Boolean, measured: Boolean = true) {
@@ -88,7 +88,7 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
             }
         }
 
-    /** The blocking form, for a thread that may park; the same as Lark's `Limit.withPermit`. */
+    /** The blocking form, for a thread that may park; the same as Surefold's `Limit.withPermit`. */
     fun <A> withPermit(block: () -> A): A {
         try {
             acquire().get()
@@ -117,7 +117,7 @@ class AsyncLimit private constructor(initial: Int, val max: Int, private val veg
     }
 }
 
-/** Lark's `Vegas` as of `3ccde44`, unchanged but for its name and visibility; see its KDoc in lark-core. */
+/** Surefold's `Vegas` as of `3ccde44`, unchanged but for its name and visibility; see its KDoc in surefold-core. */
 class PortedVegas(initial: Int, private val min: Int, private val max: Int) {
     private var limit = initial.toDouble()
     private var unloaded = Double.MAX_VALUE

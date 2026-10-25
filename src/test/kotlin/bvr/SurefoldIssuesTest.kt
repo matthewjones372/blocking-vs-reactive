@@ -1,15 +1,15 @@
 package bvr
 
-import io.github.matthewjones372.lark.await
-import io.github.matthewjones372.lark.stream.Exit
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.mapAsync
-import io.github.matthewjones372.lark.stream.mapPar
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
-import io.github.matthewjones372.lark.stream.start
+import io.github.matthewjones372.surefold.await
+import io.github.matthewjones372.surefold.stream.Exit
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.mapAsync
+import io.github.matthewjones372.surefold.stream.mapPar
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
+import io.github.matthewjones372.surefold.stream.start
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import org.junit.jupiter.api.Test
@@ -23,10 +23,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * The minimal reproductions behind docs/lark-issues.md, with nothing of the harness in them. Each asserts what Lark
- * does at the commit in lark.commit; if Lark changes, the test fails and the document is out of date.
+ * The minimal reproductions behind docs/surefold-issues.md, with nothing of the harness in them. Each asserts what Surefold
+ * does at the commit in surefold.commit; if Surefold changes, the test fails and the document is out of date.
  */
-class LarkIssuesTest {
+class SurefoldIssuesTest {
     /** Four bodies blocked on a latch inside `mapPar(4)`, counted while they are inside. */
     private class Blocked {
         val inside = AtomicInteger()

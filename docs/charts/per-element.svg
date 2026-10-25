@@ -3,12 +3,12 @@
 text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 .bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
 .grid { stroke: #e1e0d9; stroke-width: 1; }
-.jdk { fill: #6b6a65; stroke: #6b6a65; } .lark { fill: #2a78d6; stroke: #2a78d6; }
+.jdk { fill: #6b6a65; stroke: #6b6a65; } .surefold { fill: #2a78d6; stroke: #2a78d6; }
 .reactor { fill: #eb6834; stroke: #eb6834; } .pekko { fill: #1baf7a; stroke: #1baf7a; }
 .hollow { fill: #fcfcfb; stroke-width: 2; }
 @media (prefers-color-scheme: dark) {
   .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
-  .jdk { fill: #a8a79f; stroke: #a8a79f; } .lark { fill: #3987e5; stroke: #3987e5; }
+  .jdk { fill: #a8a79f; stroke: #a8a79f; } .surefold { fill: #3987e5; stroke: #3987e5; }
   .reactor { fill: #d95926; stroke: #d95926; } .pekko { fill: #199e70; stroke: #199e70; }
   .hollow { fill: #1a1a19; }
 }
@@ -71,32 +71,32 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="278.2" cy="169.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="278.2" cy="169.0" r="5"/>
 <text class="t2" x="290.6" y="173.0" font-size="11">164</text>
-<text class="t1" x="202" y="195.0" font-size="12" text-anchor="end">lark-mapasync</text>
-<line class="lark" x1="294.8" y1="191.0" x2="298.8" y2="191.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="296.3" cy="191.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="298.8" cy="191.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="295.8" cy="191.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="298.4" cy="191.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="294.8" cy="191.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="296.3" cy="191.0" r="5"/>
+<text class="t1" x="202" y="195.0" font-size="12" text-anchor="end">surefold-mapasync</text>
+<line class="surefold" x1="294.8" y1="191.0" x2="298.8" y2="191.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="296.3" cy="191.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="298.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="295.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="298.4" cy="191.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="294.8" cy="191.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="296.3" cy="191.0" r="5"/>
 <text class="t2" x="306.8" y="195.0" font-size="11">262</text>
-<text class="t1" x="202" y="217.0" font-size="12" text-anchor="end">lark-mapasync-unordered</text>
-<line class="lark" x1="313.1" y1="213.0" x2="315.5" y2="213.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="313.8" cy="213.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="314.2" cy="213.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="315.5" cy="213.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="313.1" cy="213.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="314.3" cy="213.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="314.2" cy="213.0" r="5"/>
+<text class="t1" x="202" y="217.0" font-size="12" text-anchor="end">surefold-mapasync-unordered</text>
+<line class="surefold" x1="313.1" y1="213.0" x2="315.5" y2="213.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="313.8" cy="213.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="314.2" cy="213.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="315.5" cy="213.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="313.1" cy="213.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="314.3" cy="213.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="314.2" cy="213.0" r="5"/>
 <text class="t2" x="323.5" y="217.0" font-size="11">415</text>
-<text class="t1" x="202" y="239.0" font-size="12" text-anchor="end">lark-mappar</text>
-<line class="lark" x1="346.8" y1="235.0" x2="355.2" y2="235.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="354.8" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="355.0" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="351.8" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="346.8" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="355.2" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="354.8" cy="235.0" r="5"/>
+<text class="t1" x="202" y="239.0" font-size="12" text-anchor="end">surefold-mappar</text>
+<line class="surefold" x1="346.8" y1="235.0" x2="355.2" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="354.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="355.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="351.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="346.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="355.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="354.8" cy="235.0" r="5"/>
 <text class="t2" x="363.2" y="239.0" font-size="11">1,182</text>
 <text class="t1" x="202" y="261.0" font-size="12" text-anchor="end">vt-plain</text>
 <line class="jdk" x1="358.2" y1="257.0" x2="362.6" y2="257.0" stroke-width="2" opacity="0.5"/>
@@ -107,14 +107,14 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="jdk" cx="360.3" cy="257.0" r="2" opacity="0.7"/>
 <circle class="jdk hollow" cx="360.3" cy="257.0" r="5"/>
 <text class="t2" x="370.6" y="261.0" font-size="11">1,365</text>
-<text class="t1" x="202" y="283.0" font-size="12" text-anchor="end">lark-mappar-unordered</text>
-<line class="lark" x1="364.9" y1="279.0" x2="367.2" y2="279.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="366.4" cy="279.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="366.7" cy="279.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="364.9" cy="279.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="367.2" cy="279.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="365.1" cy="279.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="366.4" cy="279.0" r="5"/>
+<text class="t1" x="202" y="283.0" font-size="12" text-anchor="end">surefold-mappar-unordered</text>
+<line class="surefold" x1="364.9" y1="279.0" x2="367.2" y2="279.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="366.4" cy="279.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="366.7" cy="279.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="364.9" cy="279.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="367.2" cy="279.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="365.1" cy="279.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="366.4" cy="279.0" r="5"/>
 <text class="t2" x="375.2" y="283.0" font-size="11">1,597</text>
 <text class="t1" x="202" y="305.0" font-size="12" text-anchor="end">vt-structured</text>
 <line class="jdk" x1="368.5" y1="301.0" x2="372.7" y2="301.0" stroke-width="2" opacity="0.5"/>

@@ -2,8 +2,8 @@
  "suite": "io",
  "commit": "3e96e3ca9c5255709d968a07f3e3dd39a7d721ca",
  "dirty": false,
- "larkCommit": "575a944e26b4ce300a4ec606dd5c27364e448d98",
- "larkVersion": "0.0.0-cand-SNAPSHOT",
+ "surefoldCommit": "575a944e26b4ce300a4ec606dd5c27364e448d98",
+ "surefoldVersion": "0.0.0-cand-SNAPSHOT",
  "java": "openjdk version \"25.0.5\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)",
  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
  "cpus": 4,
@@ -25,14 +25,14 @@
    "round": 1,
    "order": 0,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 1,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -60,7 +60,7 @@
    "round": 1,
    "order": 5,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -74,7 +74,7 @@
    "round": 1,
    "order": 7,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -102,7 +102,7 @@
    "round": 1,
    "order": 11,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -123,7 +123,7 @@
    "round": 1,
    "order": 14,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -158,21 +158,21 @@
    "round": 1,
    "order": 19,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 20,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 21,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -214,14 +214,14 @@
    "round": 1,
    "order": 27,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 28,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -235,14 +235,14 @@
    "round": 1,
    "order": 30,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 31,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -263,7 +263,7 @@
    "round": 1,
    "order": 34,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -312,7 +312,7 @@
    "round": 1,
    "order": 41,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -333,7 +333,7 @@
    "round": 1,
    "order": 44,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -347,7 +347,7 @@
    "round": 1,
    "order": 46,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -368,7 +368,7 @@
    "round": 1,
    "order": 49,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -389,21 +389,21 @@
    "round": 1,
    "order": 52,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 53,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 54,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -417,7 +417,7 @@
    "round": 1,
    "order": 56,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -438,14 +438,14 @@
    "round": 1,
    "order": 59,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 60,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -466,7 +466,7 @@
    "round": 1,
    "order": 63,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -480,7 +480,7 @@
    "round": 1,
    "order": 65,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -515,7 +515,7 @@
    "round": 1,
    "order": 70,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -571,7 +571,7 @@
    "round": 1,
    "order": 78,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -592,14 +592,14 @@
    "round": 1,
    "order": 81,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 82,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -620,7 +620,7 @@
    "round": 1,
    "order": 85,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -662,7 +662,7 @@
    "round": 1,
    "order": 91,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -704,14 +704,14 @@
    "round": 1,
    "order": 97,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 98,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -753,21 +753,21 @@
    "round": 1,
    "order": 104,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 105,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 106,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -781,7 +781,7 @@
    "round": 1,
    "order": 108,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -795,7 +795,7 @@
    "round": 1,
    "order": 110,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -809,21 +809,21 @@
    "round": 1,
    "order": 112,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 113,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 1,
    "order": 114,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -935,7 +935,7 @@
    "round": 1,
    "order": 130,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -949,14 +949,14 @@
    "round": 1,
    "order": 132,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 0,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -970,7 +970,7 @@
    "round": 2,
    "order": 2,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1012,7 +1012,7 @@
    "round": 2,
    "order": 8,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1026,14 +1026,14 @@
    "round": 2,
    "order": 10,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 11,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1047,7 +1047,7 @@
    "round": 2,
    "order": 13,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1089,7 +1089,7 @@
    "round": 2,
    "order": 19,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1138,7 +1138,7 @@
    "round": 2,
    "order": 26,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1152,14 +1152,14 @@
    "round": 2,
    "order": 28,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 29,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1180,7 +1180,7 @@
    "round": 2,
    "order": 32,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1215,7 +1215,7 @@
    "round": 2,
    "order": 37,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1264,14 +1264,14 @@
    "round": 2,
    "order": 44,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 45,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1285,7 +1285,7 @@
    "round": 2,
    "order": 47,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1334,7 +1334,7 @@
    "round": 2,
    "order": 54,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1369,21 +1369,21 @@
    "round": 2,
    "order": 59,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 60,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 61,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1397,7 +1397,7 @@
    "round": 2,
    "order": 63,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1411,7 +1411,7 @@
    "round": 2,
    "order": 65,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1446,14 +1446,14 @@
    "round": 2,
    "order": 70,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 71,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1481,21 +1481,21 @@
    "round": 2,
    "order": 75,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 76,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 77,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1516,14 +1516,14 @@
    "round": 2,
    "order": 80,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 81,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1572,14 +1572,14 @@
    "round": 2,
    "order": 88,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 89,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1593,7 +1593,7 @@
    "round": 2,
    "order": 91,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1614,14 +1614,14 @@
    "round": 2,
    "order": 94,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 95,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1635,7 +1635,7 @@
    "round": 2,
    "order": 97,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1656,7 +1656,7 @@
    "round": 2,
    "order": 100,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1677,7 +1677,7 @@
    "round": 2,
    "order": 103,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1712,7 +1712,7 @@
    "round": 2,
    "order": 108,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1726,28 +1726,28 @@
    "round": 2,
    "order": 110,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 111,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 112,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 113,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1789,14 +1789,14 @@
    "round": 2,
    "order": 119,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 2,
    "order": 120,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1880,7 +1880,7 @@
    "round": 2,
    "order": 132,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -1915,7 +1915,7 @@
    "round": 3,
    "order": 4,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -1929,7 +1929,7 @@
    "round": 3,
    "order": 6,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -1964,7 +1964,7 @@
    "round": 3,
    "order": 11,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -1992,7 +1992,7 @@
    "round": 3,
    "order": 15,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2006,7 +2006,7 @@
    "round": 3,
    "order": 17,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2020,7 +2020,7 @@
    "round": 3,
    "order": 19,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2041,7 +2041,7 @@
    "round": 3,
    "order": 22,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -2062,14 +2062,14 @@
    "round": 3,
    "order": 25,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 26,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2111,14 +2111,14 @@
    "round": 3,
    "order": 32,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 33,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -2139,14 +2139,14 @@
    "round": 3,
    "order": 36,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 37,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -2167,7 +2167,7 @@
    "round": 3,
    "order": 40,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2181,14 +2181,14 @@
    "round": 3,
    "order": 42,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 43,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2223,14 +2223,14 @@
    "round": 3,
    "order": 48,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 49,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2265,7 +2265,7 @@
    "round": 3,
    "order": 54,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2286,21 +2286,21 @@
    "round": 3,
    "order": 57,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 58,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 59,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2328,14 +2328,14 @@
    "round": 3,
    "order": 63,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 64,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2349,21 +2349,21 @@
    "round": 3,
    "order": 66,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 67,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 68,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2419,7 +2419,7 @@
    "round": 3,
    "order": 76,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2461,7 +2461,7 @@
    "round": 3,
    "order": 82,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2489,7 +2489,7 @@
    "round": 3,
    "order": 86,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2503,7 +2503,7 @@
    "round": 3,
    "order": 88,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -2524,7 +2524,7 @@
    "round": 3,
    "order": 91,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2566,7 +2566,7 @@
    "round": 3,
    "order": 97,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2594,7 +2594,7 @@
    "round": 3,
    "order": 101,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2615,28 +2615,28 @@
    "round": 3,
    "order": 104,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 105,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 106,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 107,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2678,7 +2678,7 @@
    "round": 3,
    "order": 113,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2692,7 +2692,7 @@
    "round": 3,
    "order": 115,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2713,7 +2713,7 @@
    "round": 3,
    "order": 118,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -2734,14 +2734,14 @@
    "round": 3,
    "order": 121,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 3,
    "order": 122,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2804,7 +2804,7 @@
    "round": 3,
    "order": 131,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2839,7 +2839,7 @@
    "round": 4,
    "order": 3,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -2867,14 +2867,14 @@
    "round": 4,
    "order": 7,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 8,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -2909,21 +2909,21 @@
    "round": 4,
    "order": 13,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 14,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 15,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2972,7 +2972,7 @@
    "round": 4,
    "order": 22,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -2986,21 +2986,21 @@
    "round": 4,
    "order": 24,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 25,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 26,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3028,14 +3028,14 @@
    "round": 4,
    "order": 30,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 31,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3056,7 +3056,7 @@
    "round": 4,
    "order": 34,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3119,21 +3119,21 @@
    "round": 4,
    "order": 43,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 44,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 45,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3147,7 +3147,7 @@
    "round": 4,
    "order": 47,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3161,21 +3161,21 @@
    "round": 4,
    "order": 49,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 50,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 51,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3210,7 +3210,7 @@
    "round": 4,
    "order": 56,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3231,7 +3231,7 @@
    "round": 4,
    "order": 59,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3259,14 +3259,14 @@
    "round": 4,
    "order": 63,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 64,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3280,7 +3280,7 @@
    "round": 4,
    "order": 66,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3315,14 +3315,14 @@
    "round": 4,
    "order": 71,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 72,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3357,7 +3357,7 @@
    "round": 4,
    "order": 77,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3371,7 +3371,7 @@
    "round": 4,
    "order": 79,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3399,14 +3399,14 @@
    "round": 4,
    "order": 83,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 84,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3427,14 +3427,14 @@
    "round": 4,
    "order": 87,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 88,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3490,7 +3490,7 @@
    "round": 4,
    "order": 96,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3553,7 +3553,7 @@
    "round": 4,
    "order": 105,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3581,7 +3581,7 @@
    "round": 4,
    "order": 109,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3595,7 +3595,7 @@
    "round": 4,
    "order": 111,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3609,7 +3609,7 @@
    "round": 4,
    "order": 113,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3686,14 +3686,14 @@
    "round": 4,
    "order": 124,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 125,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3707,7 +3707,7 @@
    "round": 4,
    "order": 127,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3721,21 +3721,21 @@
    "round": 4,
    "order": 129,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 130,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 4,
    "order": 131,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3749,7 +3749,7 @@
    "round": 5,
    "order": 0,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3770,7 +3770,7 @@
    "round": 5,
    "order": 3,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -3784,14 +3784,14 @@
    "round": 5,
    "order": 5,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 6,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -3812,7 +3812,7 @@
    "round": 5,
    "order": 9,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -3854,7 +3854,7 @@
    "round": 5,
    "order": 15,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3903,7 +3903,7 @@
    "round": 5,
    "order": 22,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -3973,21 +3973,21 @@
    "round": 5,
    "order": 32,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 33,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 34,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -4001,7 +4001,7 @@
    "round": 5,
    "order": 36,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4029,7 +4029,7 @@
    "round": 5,
    "order": 40,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -4057,21 +4057,21 @@
    "round": 5,
    "order": 44,
    "scenario": "c10k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 45,
    "scenario": "c100k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 46,
    "scenario": "c100k-native",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4085,7 +4085,7 @@
    "round": 5,
    "order": 48,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4134,7 +4134,7 @@
    "round": 5,
    "order": 55,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -4155,28 +4155,28 @@
    "round": 5,
    "order": 58,
    "scenario": "c1k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 59,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 60,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 61,
    "scenario": "c1k-native",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -4197,7 +4197,7 @@
    "round": 5,
    "order": 64,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -4253,7 +4253,7 @@
    "round": 5,
    "order": 72,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -4267,14 +4267,14 @@
    "round": 5,
    "order": 74,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 75,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4288,14 +4288,14 @@
    "round": 5,
    "order": 77,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 78,
    "scenario": "c100k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4309,7 +4309,7 @@
    "round": 5,
    "order": 80,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4330,7 +4330,7 @@
    "round": 5,
    "order": 83,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4365,7 +4365,7 @@
    "round": 5,
    "order": 88,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4386,7 +4386,7 @@
    "round": 5,
    "order": 91,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -4407,7 +4407,7 @@
    "round": 5,
    "order": 94,
    "scenario": "c100k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4463,7 +4463,7 @@
    "round": 5,
    "order": 102,
    "scenario": "c10k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4491,14 +4491,14 @@
    "round": 5,
    "order": 106,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 107,
    "scenario": "c1k-native",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -4533,7 +4533,7 @@
    "round": 5,
    "order": 112,
    "scenario": "c1k-dispatched",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4554,7 +4554,7 @@
    "round": 5,
    "order": 115,
    "scenario": "bp-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4568,7 +4568,7 @@
    "round": 5,
    "order": 117,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar",
+   "contestant": "surefold-mappar",
    "jvmOpts": ""
   },
   {
@@ -4596,7 +4596,7 @@
    "round": 5,
    "order": 121,
    "scenario": "c1k-shared",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
@@ -4610,7 +4610,7 @@
    "round": 5,
    "order": 123,
    "scenario": "c100k-shared",
-   "contestant": "lark-mapasync-unordered",
+   "contestant": "surefold-mapasync-unordered",
    "jvmOpts": ""
   },
   {
@@ -4638,7 +4638,7 @@
    "round": 5,
    "order": 127,
    "scenario": "c10k-shared",
-   "contestant": "lark-mappar-unordered",
+   "contestant": "surefold-mappar-unordered",
    "jvmOpts": ""
   },
   {
@@ -4652,21 +4652,21 @@
    "round": 5,
    "order": 129,
    "scenario": "c10k-native",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 130,
    "scenario": "c10k-wheel",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {
    "round": 5,
    "order": 131,
    "scenario": "c10k-dispatched",
-   "contestant": "lark-mapasync",
+   "contestant": "surefold-mapasync",
    "jvmOpts": ""
   },
   {

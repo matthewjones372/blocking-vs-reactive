@@ -1,6 +1,6 @@
 {
  "jmh": {
-  "CpuChainBenchmark.lark": {
+  "CpuChainBenchmark.surefold": {
    "score": 17.787601865518447,
    "error": 0.5263519165963246,
    "forks": [
@@ -65,7 +65,7 @@
    "alloc": 43996938.35650931,
    "unit": "ms/op"
   },
-  "HandOffBenchmark.lark": {
+  "HandOffBenchmark.surefold": {
    "score": 46.17675092846211,
    "error": 1.2935201356837236,
    "forks": [
@@ -156,7 +156,7 @@
    "alloc": 384.7178177349205,
    "unit": "ns/op"
   },
-  "PerElementBenchmark.element [lark-mappar]": {
+  "PerElementBenchmark.element [surefold-mappar]": {
    "score": 1125.1568289720703,
    "error": 136.88967215209937,
    "forks": [
@@ -169,7 +169,7 @@
    "alloc": 513.9020933773893,
    "unit": "ns/op"
   },
-  "PerElementBenchmark.element [lark-mappar-unordered]": {
+  "PerElementBenchmark.element [surefold-mappar-unordered]": {
    "score": 1582.296249637103,
    "error": 117.36017998493833,
    "forks": [
@@ -195,7 +195,7 @@
    "alloc": 39.98921984767661,
    "unit": "ns/op"
   },
-  "PerElementBenchmark.element [lark-mapasync]": {
+  "PerElementBenchmark.element [surefold-mapasync]": {
    "score": 265.5566192008889,
    "error": 14.128400085464976,
    "forks": [
@@ -208,7 +208,7 @@
    "alloc": 104.90368094581136,
    "unit": "ns/op"
   },
-  "PerElementBenchmark.element [lark-mapasync-unordered]": {
+  "PerElementBenchmark.element [surefold-mapasync-unordered]": {
    "score": 415.2871293977649,
    "error": 15.011994877691004,
    "forks": [

@@ -198,7 +198,7 @@ fun environment(): Map<String, Any?> = linkedMapOf(
     "jvmArgs" to ManagementFactory.getRuntimeMXBean().inputArguments
         .filter { it.startsWith("-X") && !it.startsWith("-Xlog") }.joinToString(" "),
     "commit" to System.getProperty("bvr.commit"),
-    "larkVersion" to System.getProperty("bvr.larkVersion"),
+    "surefoldVersion" to System.getProperty("bvr.surefoldVersion"),
     "run" to System.getProperty("bvr.run"),
     "fork" to System.getProperty("bvr.fork")?.toIntOrNull(),
     "order" to System.getProperty("bvr.order")?.toIntOrNull(),

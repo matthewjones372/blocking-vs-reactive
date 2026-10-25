@@ -1,14 +1,14 @@
 package bvr
 
 import com.sun.management.HotSpotDiagnosticMXBean
-import io.github.matthewjones372.lark.stream.Exit
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.mapAsync
-import io.github.matthewjones372.lark.stream.mapPar
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
+import io.github.matthewjones372.surefold.stream.Exit
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.mapAsync
+import io.github.matthewjones372.surefold.stream.mapPar
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import reactor.core.publisher.Flux
@@ -81,11 +81,11 @@ private fun <R : Any> Exit<*, R>.value(): R = when (this) {
     is Exit.Failed -> error(error.toString())
 }
 
-fun handleRequestLark(): Long =
+fun handleRequestSurefold(): Long =
     Stream.from(1..10).mapPar(4) { id -> fetchOrderBlocking(id) }.runFold(0L) { s, x -> s + x }
         .run(Forks()).toCompletableFuture().join().value()
 
-fun handleRequestLarkAsync(): Long =
+fun handleRequestSurefoldAsync(): Long =
     Stream.from(1..10).mapAsync(4) { id -> fetchOrderAsync(id) }.runFold(0L) { s, x -> s + x }
         .run(Forks()).toCompletableFuture().join().value()
 
@@ -128,8 +128,8 @@ fun stackTraces() {
     val handlers = linkedMapOf<String, () -> Long>(
         "vt-plain" to ::handleRequestVt,
         "vt-structured" to ::handleRequestStructured,
-        "lark-mappar" to ::handleRequestLark,
-        "lark-mapasync" to ::handleRequestLarkAsync,
+        "surefold-mappar" to ::handleRequestSurefold,
+        "surefold-mapasync" to ::handleRequestSurefoldAsync,
         "cf-plain" to ::handleRequestCf,
         "reactor-flatmap" to ::handleRequestReactor,
         "reactor-flatmap + checkpoint()" to ::handleRequestReactorCheckpoint,

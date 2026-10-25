@@ -1,8 +1,8 @@
 # How the adaptive limit works
 
-Lark's `Limit.adaptive` decides, while it runs, how many calls may be inside a dependency at once. It uses TCP
+Surefold's `Limit.adaptive` decides, while it runs, how many calls may be inside a dependency at once. It uses TCP
 Vegas's idea: a call that takes longer than the dependency takes when idle must have waited in a queue. This page
-walks through the algorithm as Lark implements it (`Vegas.kt` and `Limit.kt` in lark-core at `575a944e`, specs
+walks through the algorithm as Surefold implements it (`Vegas.kt` and `Limit.kt` in surefold-core at `575a944e`, specs
 0171 and 0187), shows it running in this repository's overload suite, and explains why it moves the queue rather
 than removing it. The ported version used for Reactor is covered at the end.
 
@@ -78,7 +78,7 @@ fun sample(took: Long, inFlight: Int, failed: Boolean): Int {
 }
 ```
 
-Why each piece is there, from the comments in Lark's source:
+Why each piece is there, from the comments in Surefold's source:
 
 - **Windows, not calls.** The fastest single call is luck. Comparing every call with it would read ordinary jitter
   as queueing, and more so the higher the limit.
@@ -87,7 +87,7 @@ Why each piece is there, from the comments in Lark's source:
 - **Slow start.** Starting at 20 and adding a step per window would take seconds to reach hundreds. Doubling
   while nothing queues reaches them in a few windows, as TCP's slow start does.
 - **Cut to what is served, not by a fraction.** When the queue is long, the dependency's own answer rate says
-  where the limit should be. Lark cuts straight there, plus a short queue, and never by more than half at once.
+  where the limit should be. Surefold cuts straight there, plus a short queue, and never by more than half at once.
 - **The periodic probe.** A dependency that queues throughout an epoch would teach the limit a slower `unloaded`,
   and the limit would queue more each epoch. Once every 100 windows it drops to what is being served, so every
   epoch has a window with no queue in it (BBR probes for its round-trip time the same way). Then `unloaded` is
@@ -102,7 +102,7 @@ throws counts as a dependency failure, unless it was interrupted or cancelled, o
 ## Watching it run
 
 The `sudden` overload pattern gives the dependency a capacity of 500 calls at 5 ms each, then 100 from 3 s, as if
-a replica failed. The chart is one fork of Lark `mapParUnordered` with the adaptive limit, beside the same stream
+a replica failed. The chart is one fork of Surefold `mapParUnordered` with the adaptive limit, beside the same stream
 with a fixed limit of 500.
 
 ![The adaptive limit and where calls wait, against a fixed limit of 500](charts/vegas-sudden.svg)
@@ -135,7 +135,7 @@ caller's queue does not:
   policies kept 18.1–19.1k calls/s with 5–7 rejections in the whole run. A fixed bound of 1,000 collapsed to near
   zero under 1.2–1.4M rejections, because the closed loop retries at once.
 - **Callers with a deadline.** An element that waits in the caller can be dropped before it costs the dependency
-  anything. With arrivals at 60k/s and a 50 ms deadline, Lark's adaptive limit answered 7.4k/s in time against
+  anything. With arrivals at 60k/s and a 50 ms deadline, Surefold's adaptive limit answered 7.4k/s in time against
   about 400/s for every fixed bound.
 - **Other callers of the same dependency.** One `Limit` value shared by every caller bounds them all together,
   so a dependency queue that one caller would fill stays short for everyone.
@@ -149,10 +149,10 @@ against the limit rather than its maximum.
 
 Reactor's operators may not block, and `Limit.acquire` waits on a condition. So the overload suite uses a port,
 [`AsyncLimit.kt`](../src/main/kotlin/bvr/AsyncLimit.kt). Its `acquire` returns a future that completes when a
-permit is free. Lark's barging is kept: a caller that finds a free permit takes it ahead of waiters, and
+permit is free. Surefold's barging is kept: a caller that finds a free permit takes it ahead of waiters, and
 releases go through a per-thread trampoline so a chain of failing calls cannot overflow the stack. Its Vegas
-arithmetic is Lark's as of `3ccde44` (spec 0171), before spec 0187. It has no slow start, no thresholds that
+arithmetic is Surefold's as of `3ccde44` (spec 0171), before spec 0187. It has no slow start, no thresholds that
 scale with the limit, no cut to what is being served, and no periodic probe; it forgets `unloaded` by overwriting
 it every 100 windows. The measurements show that difference: the port costs 15% of throughput before the drop
-against 4–7% for Lark's own limit, and takes 0.6–1.0 s rather than 0.2–0.25 s to raise the limit again.
+against 4–7% for Surefold's own limit, and takes 0.6–1.0 s rather than 0.2–0.25 s to raise the limit again.
 Reactor with the port also collapses under open-loop load, for reasons not yet isolated (README, open questions).
