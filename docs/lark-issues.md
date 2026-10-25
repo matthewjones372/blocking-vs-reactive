@@ -7,6 +7,8 @@ and asserts what Lark does today, so the test fails if Lark changes. Lark itself
 
 ## 1. An interrupted `await()` abandons a Forks run instead of stopping it
 
+Filed as [lark#647](https://github.com/matthewjones372/lark/issues/647); still present on Lark main at `6f2c3f91`.
+
 ```kotlin
 val caller = Thread.ofVirtual().start {
     try {
@@ -34,6 +36,8 @@ which cancels its subscription.
 
 ## 2. An ordered `mapAsync` or `mapPar` reports a failure only after every earlier element has answered
 
+Filed as [lark#648](https://github.com/matthewjones372/lark/issues/648); still present on Lark main at `6f2c3f91`.
+
 ```kotlin
 Stream.from(1..10)
     .mapAsync(4) { x -> if (x == 1) never else if (x == 2) failedFuture(IllegalStateException()) else completedFuture(x) }
@@ -56,7 +60,8 @@ The unordered variants (`mapAsyncUnordered`, `mapParUnordered`) report a failure
 - After a stop, `mapAsyncUnordered` leaves a `whenComplete` callback on every stage still in flight, and does not
   cancel the stages; the ordered `mapAsync` registers no callbacks, so it leaves nothing. Pekko's `mapAsync` and
   `mapAsyncUnordered` also leave their callbacks, and Reactor cancels each future. Whether a stop should cancel the
-  caller's futures is a design choice; the table in `semantics.md` reports what each does.
+  caller's futures is a design choice; the table in `semantics.md` reports what each does. Filed as
+  [lark#649](https://github.com/matthewjones372/lark/issues/649).
 - `mapPar(limit)` is ordered, like `mapPar(n)`. Against a dependency whose latency varies, an ordered window holds
   answered elements behind a slow head; the overload experiment uses `mapParUnordered(limit)` for that reason.
 - A full window wakes its waiting feeder only once a quarter of the window, at most 64 places, has freed
@@ -66,4 +71,4 @@ The unordered variants (`mapAsyncUnordered`, `mapParUnordered`) report a failure
   to refill the same way (`vt-batched`, in `results/net-diag`) lose 10% against plain virtual threads, with the same
   shortfall. At 256 and 1,000 in flight the cost is mostly within the noise, and on the synthetic devices, where
   each call is cheap to issue, it does not show. It is a trade (fewer wake-ups for the feeder), not a defect;
-  a smaller batch for small windows would remove most of it.
+  a smaller batch for small windows would remove most of it. Filed as [lark#589](https://github.com/matthewjones372/lark/issues/589).
