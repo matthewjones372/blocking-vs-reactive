@@ -323,8 +323,9 @@ returned in Lark's batch size. At 1,000 in flight every ordered contestant, of e
 best, and Lark's unordered `mapAsync` is the best: the deficit there was ordering. At 64 in flight every Lark
 operator, ordered or not, is 0.83–0.85, and `vt-batched` loses 10% against `vt-plain` with the same shortfall of
 calls in flight: a cost of Lark's batched refill, recorded in `docs/lark-issues.md`. The suite's contestants are now
-all unordered (`netContestants`); `results/net` keeps the ordered Lark rows it was measured with, and the README
-reads it with that in mind. The JDK-client and Netty-server rows were not rerun unordered.
+all unordered (`netContestants`), and `results/net` was rerun that way (at `34651ca`, Lark `575a944e`). In the rerun
+Lark's unordered operators tie with the rest on every client, and the collapse of ordered Lark on the JDK client at
+10,000 connections (0.28–0.34 of the best) is gone, so it was the ordered window too.
 
 ## What was not changed
 
