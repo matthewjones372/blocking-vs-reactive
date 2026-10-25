@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 216" width="760" height="216" role="img" aria-label="As a web server">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
+.grid { stroke: #e1e0d9; stroke-width: 1; } .axis { stroke: #c3c2b7; stroke-width: 1; }
+.lark { fill: #2a78d6; } .reactor { fill: #eb6834; } .pekko { fill: #1baf7a; } .vt { fill: #eda100; } .alt { fill: #e87ba4; }
+.lark-s { stroke: #2a78d6; } .reactor-s { stroke: #eb6834; } .pekko-s { stroke: #1baf7a; } .vt-s { stroke: #eda100; } .alt-s { stroke: #e87ba4; }
+.ring { stroke: #fcfcfb; stroke-width: 2; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .mu { fill: #898781; }
+  .grid { stroke: #2c2c2a; } .axis { stroke: #383835; }
+  .lark { fill: #3987e5; } .reactor { fill: #d95926; } .pekko { fill: #199e70; } .vt { fill: #c98500; } .alt { fill: #d55181; }
+  .lark-s { stroke: #3987e5; } .reactor-s { stroke: #d95926; } .pekko-s { stroke: #199e70; } .vt-s { stroke: #c98500; } .alt-s { stroke: #d55181; }
+  .ring { stroke: #1a1a19; }
+}
+</style>
+<rect class="bg" width="760" height="216" rx="8"/>
+<text class="t1" x="20" y="30" font-size="16" font-weight="600">As a web server</text>
+<text class="t2" x="20" y="52" font-size="12.5">Requests answered per second. Higher is better.</text>
+<line class="axis" x1="250" y1="66" x2="250" y2="164"/>
+<text class="t1" x="238" y="84.5" font-size="13" text-anchor="end" font-weight="600">Blocking code, faster engine</text>
+<line class="lark-s" x1="250" y1="80" x2="630.0" y2="80" stroke-width="2" stroke-linecap="round"/>
+<circle class="lark ring" cx="630.0" cy="80" r="6"/>
+<text class="t1" x="642.0" y="84.5" font-size="13" font-weight="600">445k</text>
+<text class="t1" x="238" y="118.5" font-size="13" text-anchor="end">Blocking code, virtual threads</text>
+<line class="vt-s" x1="250" y1="114" x2="481.4" y2="114" stroke-width="2" stroke-linecap="round"/>
+<circle class="vt ring" cx="481.4" cy="114" r="6"/>
+<text class="t1" x="493.4" y="118.5" font-size="13">271k</text>
+<text class="t1" x="238" y="152.5" font-size="13" text-anchor="end">Hand-written Jetty</text>
+<line class="pekko-s" x1="250" y1="148" x2="353.0" y2="148" stroke-width="2" stroke-linecap="round"/>
+<circle class="pekko ring" cx="353.0" cy="148" r="6"/>
+<text class="t1" x="365.0" y="152.5" font-size="13">120k</text>
+<text class="mu" x="20" y="202" font-size="11.5">HttpArena's baseline requests, 4,096 connections, two server cores. Median of 3 runs, run side by side.</text>
+</svg>

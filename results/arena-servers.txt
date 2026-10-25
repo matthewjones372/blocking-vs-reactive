@@ -1,0 +1,14 @@
+# openjdk version "25.0.5" 2026-10-20 LTS
+# 4
+# 6.18.44-fc-v153
+# Usage: gcannon <url> -c <conns> -t <threads> -d <duration> [-p <pipeline>] [-r <req/conn>] [-s <status>] [-R|--raw file1,file2,...] [--ws [--ws-msg <message>]] [--tui] [--json] [-b <buckets>] [--recv-buf <bytes>] [--cqe-latency]
+# server cpus 0,1; gcannon cpus 2,3; conns 4096; warm 10s; measured 10s
+RESULT run=1 profile=baseline contestant=jetty-arena rps=136759 p50us=27500 p99us=80100 p999us=250700 ok=1367714 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=baseline contestant=vt-arena rps=278512 p50us=14100 p99us=20400 p999us=53200 ok=2786396 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=baseline contestant=uring-arena rps=444544 p50us=9109 p99us=11500 p999us=14300 ok=4446142 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=2 profile=baseline contestant=jetty-arena rps=119346 p50us=30800 p99us=91200 p999us=287400 ok=1193566 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=2 profile=baseline contestant=vt-arena rps=265387 p50us=14900 p99us=27500 p999us=66700 ok=2654144 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=baseline contestant=uring-arena rps=440724 p50us=9232 p99us=11900 p999us=14500 ok=4407886 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=3 profile=baseline contestant=jetty-arena rps=120441 p50us=31900 p99us=71300 p999us=406800 ok=1204611 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=3 profile=baseline contestant=vt-arena rps=270677 p50us=14800 p99us=20900 p999us=54200 ok=2707027 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=baseline contestant=uring-arena rps=461320 p50us=8627 p99us=12600 p999us=20500 ok=4613873 non2xx=0 errors=0 reconnects=0 serverCpuPct=196

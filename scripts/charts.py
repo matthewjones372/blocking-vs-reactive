@@ -373,4 +373,103 @@ if any(s == "net-1k" for s, _ in rows):
         headline="Blocking contestants under other scheduler settings",
     )
 
+# ---- lollipops: one per question the README answers --------------------------------------------------------------
+# A row per contestant: its name, a 2px stem from zero to its value, an 8px dot ringed in the surface colour, and the
+# value beside the dot. The row that answers the question has its name in bold.
+
+
+def lollipop(name, title, subtitle, items, fmt=None, best=None, note=None):
+    fmt = fmt or (lambda v: f"{v:,.0f}")
+    items = [i for i in items if i[1] is not None]
+    width, label_w, row_h, top = 760, 250, 34, 74
+    plot_w = width - label_w - 130
+    hi = max(v for _, v, _ in items)
+    x = lambda v: label_w + plot_w * v / hi
+    height = top + row_h * len(items) + (40 if note else 18)
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}" '
+           f'role="img" aria-label="{esc(title)}">', STYLE,
+           f'<rect class="bg" width="{width}" height="{height}" rx="8"/>',
+           f'<text class="t1" x="20" y="30" font-size="16" font-weight="600">{esc(title)}</text>',
+           f'<text class="t2" x="20" y="52" font-size="12.5">{esc(subtitle)}</text>',
+           f'<line class="axis" x1="{label_w}" y1="{top - 8}" x2="{label_w}" y2="{top + row_h * len(items) - 12}"/>']
+    for i, (label, v, cls) in enumerate(items):
+        y = top + row_h * i + 6
+        weight = ' font-weight="600"' if label == best else ""
+        out += [f'<text class="t1" x="{label_w - 12}" y="{y + 4.5}" font-size="13" text-anchor="end"{weight}>{esc(label)}</text>',
+                f'<line class="{cls}-s" x1="{label_w}" y1="{y}" x2="{x(v):.1f}" y2="{y}" stroke-width="2" stroke-linecap="round"/>',
+                f'<circle class="{cls} ring" cx="{x(v):.1f}" cy="{y}" r="6"/>',
+                f'<text class="t1" x="{x(v) + 12:.1f}" y="{y + 4.5}" font-size="13"{weight}>{esc(fmt(v))}</text>']
+    if note:
+        out.append(f'<text class="mu" x="20" y="{height - 14}" font-size="11.5">{esc(note)}</text>')
+    out.append("</svg>")
+    (out_dir / name).write_text("\n".join(out))
+
+
+kilo = lambda v: f"{v / 1000:,.0f}k" if v < 1_000_000 else f"{v / 1_000_000:.2f}M"
+lollipop(
+    "q-waiting.svg",
+    "Waiting on the network: 10,000 calls at once",
+    "Calls finished per second. Higher is better.",
+    [("Lark (virtual threads)", med("fanout-10k", "lark-async", "opsPerSec"), "lark"),
+     ("Pekko Streams", med("fanout-10k", "pekko", "opsPerSec"), "pekko"),
+     ("Reactor", med("fanout-10k", "reactor", "opsPerSec"), "reactor"),
+     ("Plain virtual threads", med("fanout-10k", "vt-plain", "opsPerSec"), "vt")],
+    fmt=kilo, best="Lark (virtual threads)",
+    note="Each call waits 10 ms on a shared fake device. Median of 8 runs.")
+
+lollipop(
+    "q-cpu-network.svg",
+    "CPU per call on real network connections",
+    "Microseconds of CPU per call, 1,000 connections at once. Lower is better.",
+    [("Plain virtual threads", med("net-1k", "vt-socket", "cpuUsPerOp"), "vt"),
+     ("Lark (virtual threads)", med("net-1k", "lark-socket", "cpuUsPerOp"), "lark"),
+     ("Reactor Netty", med("net-1k", "reactor-netty", "cpuUsPerOp"), "reactor")],
+    fmt=lambda v: f"{v:.0f} µs", best="Plain virtual threads",
+    note="HTTP/1.1 over loopback; the blocking clients read a plain Socket. Median of 8 runs.")
+
+lollipop(
+    "q-computation.svg",
+    "Pure computation: map, filter, map, sum",
+    "Milliseconds per million numbers. Lower is better.",
+    [("A plain loop", jmh.get("CpuChainBenchmark.loop"), "alt"),
+     ("Reactor", jmh.get("CpuChainBenchmark.reactor"), "reactor"),
+     ("Lark (virtual threads)", jmh.get("CpuChainBenchmark.lark"), "lark"),
+     ("Pekko Streams", jmh.get("CpuChainBenchmark.pekko"), "pekko")],
+    fmt=lambda v: f"{v:.1f} ms", best="Reactor",
+    note="JMH, average time. Reactor beats Lark here; a plain loop beats every library.")
+
+overload = {}
+for line in (root / "results/summary.md").read_text().splitlines():
+    cells = [c.strip() for c in line.strip("|").split("|")]
+    if len(cells) == 7 and cells[0] in ("reactor-1000", "reactor-tuned", "lark-1000", "lark-adaptive"):
+        overload[cells[0]] = float(cells[6])
+lollipop(
+    "q-slowdown.svg",
+    "When a service you call slows down",
+    "Slowest 1% of calls after it loses 80% of its capacity, in ms. Lower is better.",
+    [("Lark, adaptive limit", overload.get("lark-adaptive"), "lark"),
+     ("Reactor, best fixed limit", overload.get("reactor-tuned"), "reactor"),
+     ("Reactor, 1,000 at once", overload.get("reactor-1000"), "reactor"),
+     ("Lark, 1,000 at once", overload.get("lark-1000"), "lark")],
+    fmt=lambda v: f"{v:.0f} ms", best="Lark, adaptive limit",
+    note="The dependency drops from 500 to 100 calls at once halfway through. The adaptive limit costs 7% throughput.")
+
+servers_file = root / "results/arena-servers.txt"
+if servers_file.exists():
+    arena = defaultdict(list)
+    for line in servers_file.read_text().splitlines():
+        if line.startswith("RESULT"):
+            kv = dict(re.findall(r"(\w+)=(\S+)", line))
+            arena[(kv["profile"], kv["contestant"])].append(float(kv["rps"]))
+    srv = lambda c: statistics.median(arena[("baseline", c)]) if arena[("baseline", c)] else None
+    lollipop(
+        "q-servers.svg",
+        "As a web server",
+        "Requests answered per second. Higher is better.",
+        [("Blocking code, faster engine", srv("uring-arena"), "lark"),
+         ("Blocking code, virtual threads", srv("vt-arena"), "vt"),
+         ("Hand-written Jetty", srv("jetty-arena"), "pekko")],
+        fmt=kilo, best="Blocking code, faster engine",
+        note="HttpArena's baseline requests, 4,096 connections, two server cores. Median of 3 runs, run side by side.")
+
 print("\n".join(sorted(p.name for p in out_dir.glob("*.svg"))))

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="760" height="250" role="img" aria-label="When a service you call slows down">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
+.grid { stroke: #e1e0d9; stroke-width: 1; } .axis { stroke: #c3c2b7; stroke-width: 1; }
+.lark { fill: #2a78d6; } .reactor { fill: #eb6834; } .pekko { fill: #1baf7a; } .vt { fill: #eda100; } .alt { fill: #e87ba4; }
+.lark-s { stroke: #2a78d6; } .reactor-s { stroke: #eb6834; } .pekko-s { stroke: #1baf7a; } .vt-s { stroke: #eda100; } .alt-s { stroke: #e87ba4; }
+.ring { stroke: #fcfcfb; stroke-width: 2; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .mu { fill: #898781; }
+  .grid { stroke: #2c2c2a; } .axis { stroke: #383835; }
+  .lark { fill: #3987e5; } .reactor { fill: #d95926; } .pekko { fill: #199e70; } .vt { fill: #c98500; } .alt { fill: #d55181; }
+  .lark-s { stroke: #3987e5; } .reactor-s { stroke: #d95926; } .pekko-s { stroke: #199e70; } .vt-s { stroke: #c98500; } .alt-s { stroke: #d55181; }
+  .ring { stroke: #1a1a19; }
+}
+</style>
+<rect class="bg" width="760" height="250" rx="8"/>
+<text class="t1" x="20" y="30" font-size="16" font-weight="600">When a service you call slows down</text>
+<text class="t2" x="20" y="52" font-size="12.5">Slowest 1% of calls after it loses 80% of its capacity, in ms. Lower is better.</text>
+<line class="axis" x1="250" y1="66" x2="250" y2="198"/>
+<text class="t1" x="238" y="84.5" font-size="13" text-anchor="end" font-weight="600">Lark, adaptive limit</text>
+<line class="lark-s" x1="250" y1="80" x2="328.9" y2="80" stroke-width="2" stroke-linecap="round"/>
+<circle class="lark ring" cx="328.9" cy="80" r="6"/>
+<text class="t1" x="340.9" y="84.5" font-size="13" font-weight="600">11 ms</text>
+<text class="t1" x="238" y="118.5" font-size="13" text-anchor="end">Reactor, best fixed limit</text>
+<line class="reactor-s" x1="250" y1="114" x2="441.1" y2="114" stroke-width="2" stroke-linecap="round"/>
+<circle class="reactor ring" cx="441.1" cy="114" r="6"/>
+<text class="t1" x="453.1" y="118.5" font-size="13">26 ms</text>
+<text class="t1" x="238" y="152.5" font-size="13" text-anchor="end">Reactor, 1,000 at once</text>
+<line class="reactor-s" x1="250" y1="148" x2="630.0" y2="148" stroke-width="2" stroke-linecap="round"/>
+<circle class="reactor ring" cx="630.0" cy="148" r="6"/>
+<text class="t1" x="642.0" y="152.5" font-size="13">52 ms</text>
+<text class="t1" x="238" y="186.5" font-size="13" text-anchor="end">Lark, 1,000 at once</text>
+<line class="lark-s" x1="250" y1="182" x2="624.9" y2="182" stroke-width="2" stroke-linecap="round"/>
+<circle class="lark ring" cx="624.9" cy="182" r="6"/>
+<text class="t1" x="636.9" y="186.5" font-size="13">52 ms</text>
+<text class="mu" x="20" y="236" font-size="11.5">The dependency drops from 500 to 100 calls at once halfway through. The adaptive limit costs 7% throughput.</text>
+</svg>

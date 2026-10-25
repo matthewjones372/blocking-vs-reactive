@@ -1,13 +1,75 @@
 # Blocking vs reactive
 
-Do virtual threads make reactive programming unnecessary? This repo puts blocking code on virtual threads (plain JDK,
-and [Lark](https://github.com/matthewjones372/lark)'s `lark-stream`) against Project Reactor and Pekko Streams, on
-workloads chosen to favour the reactive side.
+> **Do Java's virtual threads make reactive programming unnecessary?**
+>
+> **For most services, yes.** Plain blocking code kept up with reactive code where it matters, used less CPU on real
+> network connections, and is far easier to debug. Reactive code still wins on pure computation.
 
-The author prefers the blocking side. So the predictions were written down and committed in
-[`HYPOTHESES.md`](HYPOTHESES.md) before anything was measured, and every result is reported, losses included.
+"Blocking code" means the plain style: call something, wait for the answer, carry on. "Reactive" means Project
+Reactor, Pekko Streams, and code written as chains of callbacks. [Lark](https://github.com/matthewjones372/lark) is a
+library for blocking-style code on virtual threads.
 
-## In short
+## The answers
+
+### 1. Waiting on the network? Lark beats Reactor.
+
+![Calls finished per second with 10,000 calls at once: Lark 670k, Pekko Streams 365k, Reactor 361k, plain virtual threads 243k](docs/charts/q-waiting.svg)
+
+At normal load (1,000 calls at once) every style ties. Here, at 10,000, plain virtual threads trail, because of how this
+test wakes them; on real connections (next) they don't.
+
+### 2. On real network connections, blocking code uses less CPU.
+
+![CPU per call with 1,000 connections: plain virtual threads 26 µs, Lark 23 µs, Reactor Netty 45 µs](docs/charts/q-cpu-network.svg)
+
+About half of what Reactor Netty spends on each call.
+
+### 3. Pure computation? Reactive code wins.
+
+![Milliseconds per million numbers: a plain loop 0.9, Reactor 15.9, Lark 19.5, Pekko Streams 115](docs/charts/q-computation.svg)
+
+Reactor is 1.2× faster than Lark. A plain loop beats every library by more than ten times.
+
+### 4. When a service you call slows down, an adaptive limit protects you.
+
+![Slowest 1% of calls after the slowdown: Lark adaptive limit 11 ms, Reactor best fixed limit 26 ms, Reactor and Lark at 1,000 at once 52 ms](docs/charts/q-slowdown.svg)
+
+Reactor has nothing built in that adapts.
+
+### 5. As a web server, blocking code is fast. The engine underneath matters most.
+
+![Requests per second: blocking code on a faster engine 445k, blocking code on virtual threads 271k, hand-written Jetty 120k](docs/charts/q-servers.svg)
+
+Blocking code on virtual threads answered 2.3× the requests of a hand-written Jetty server. The same code on a faster
+engine answered 3.7×. That engine uses io_uring, a Linux feature that hands the kernel many network reads and writes
+in one call instead of one call each.
+
+### 6. Limiting work in flight is just as easy.
+
+A semaphore or a bounded queue held 16–17 calls in flight, the same as Reactor. With no limit at all, 19,997 piled up:
+that's true in either style.
+
+### 7. When something fails, blocking code tells you where.
+
+Its stack trace names your handler and the call that failed. Reactor's names neither, unless you call `block()`.
+
+## What it means
+
+- **Building an ordinary service?** Write blocking code on virtual threads. It is as fast where it matters, and much
+  easier to read and debug.
+- **Crunching numbers in a pipeline?** A reactive library is still faster, and a plain loop is faster than both.
+- **Need a very fast web server?** Pick the engine, not the programming style.
+
+## How this was tested
+
+- One 4-core cloud VM, JDK 25. Every number is a median of repeated runs, each in a fresh JVM.
+- The author prefers blocking code, so every prediction was written down and committed in
+  [`HYPOTHESES.md`](HYPOTHESES.md) before anything was measured. Every result is reported, losses included.
+- Treat differences under about 20% as noise. Everything below is the detail.
+
+---
+
+## The findings in more detail
 
 - **Backpressure is as easy with virtual threads as with Reactor, but you still have to bound the work.** Every
   bounded contestant held 16–17 elements in flight; the unbounded virtual-thread version let 19,997 pile up.
@@ -22,10 +84,10 @@ The author prefers the blocking side. So the predictions were written down and c
   for Reactor at its best fixed concurrency. It costs 7% of throughput.
 - **Reactor still wins on CPU-only work.** It hands elements between threads 1.5× faster than Lark, and runs a
   CPU-only operator chain 1.2× faster.
-- **As a server, blocking code beats hand-written Jetty, and blocking code on io_uring beats both.** A
-  virtual-thread-per-connection server did 1.9× hand-written Jetty's requests a second on HttpArena's `baseline`,
-  10× pipelined and 1.7× on a 10 KB JSON body, on two cores. The same handler on an io_uring runtime of its own, still
-  written as blocking code, did a further 1.5×, 1.4× and 1.3× ([Servers](#servers)).
+- **As a server, blocking code beats hand-written Jetty, and blocking code on io_uring beats both.** Run side by
+  side on HttpArena's `baseline` requests, two server cores: hand-written Jetty 120k requests a second, blocking code on
+  virtual threads 271k (2.3×), the same blocking code on an io_uring runtime of its own 445k (3.7×)
+  ([`results/arena-servers.txt`](results/arena-servers.txt); [Servers](#servers) has the other profiles).
 
 ## Throughput as concurrency grows
 
