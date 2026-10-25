@@ -1,0 +1,23 @@
+# openjdk version "25.0.5" 2026-10-20 LTS
+# 4
+# 6.18.44-fc-v153
+# Usage: gcannon <url> -c <conns> -t <threads> -d <duration> [-p <pipeline>] [-r <req/conn>] [-s <status>] [-R|--raw file1,file2,...] [--ws [--ws-msg <message>]] [--tui] [--json] [-b <buckets>] [--recv-buf <bytes>] [--cqe-latency]
+# server cpus 0,1; gcannon cpus 2,3; conns 4096; warm 10s; measured 10s
+RESULT run=1 profile=baseline contestant=vt-arena rps=232044 p50us=12500 p99us=19800 p999us=107400 ok=2320677 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=1 profile=baseline contestant=vt-arena-27 rps=238678 p50us=12400 p99us=21800 p999us=76200 ok=2387015 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=1 profile=baseline contestant=vt-arena-27-pc rps=194217 p50us=7309 p99us=47400 p999us=327500 ok=1942368 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=1 profile=pipelined contestant=vt-arena rps=2576945 p50us=23800 p99us=70700 p999us=296300 ok=25772192 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=1 profile=pipelined contestant=vt-arena-27 rps=2881006 p50us=9976 p99us=17700 p999us=77500 ok=28813792 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=1 profile=pipelined contestant=vt-arena-27-pc rps=2913591 p50us=5471 p99us=75700 p999us=334300 ok=29139264 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=baseline contestant=vt-arena rps=235067 p50us=9709 p99us=20000 p999us=160200 ok=2351803 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=baseline contestant=vt-arena-27 rps=231999 p50us=17100 p99us=42500 p999us=222900 ok=2320411 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=2 profile=baseline contestant=vt-arena-27-pc rps=209380 p50us=18400 p99us=39200 p999us=248900 ok=2093994 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=2 profile=pipelined contestant=vt-arena rps=2754105 p50us=17200 p99us=36800 p999us=120100 ok=27544592 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=2 profile=pipelined contestant=vt-arena-27 rps=2857933 p50us=22200 p99us=32200 p999us=497300 ok=28581968 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=2 profile=pipelined contestant=vt-arena-27-pc rps=2698832 p50us=23200 p99us=51800 p999us=325800 ok=26994128 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=baseline contestant=vt-arena rps=204945 p50us=19200 p99us=37300 p999us=171600 ok=2049883 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=baseline contestant=vt-arena-27 rps=231608 p50us=9363 p99us=15500 p999us=44800 ok=2316307 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=baseline contestant=vt-arena-27-pc rps=184638 p50us=18300 p99us=46300 p999us=234600 ok=1846581 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=pipelined contestant=vt-arena rps=2781915 p50us=22500 p99us=35600 p999us=675500 ok=27821616 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=pipelined contestant=vt-arena-27 rps=2802242 p50us=10600 p99us=24300 p999us=42000 ok=28025232 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=pipelined contestant=vt-arena-27-pc rps=2777307 p50us=17500 p99us=34000 p999us=182100 ok=27776672 non2xx=0 errors=0 reconnects=0 serverCpuPct=199

@@ -1,0 +1,23 @@
+# openjdk version "25.0.5" 2026-10-20 LTS
+# 4
+# 6.18.44-fc-v153
+# Usage: gcannon <url> -c <conns> -t <threads> -d <duration> [-p <pipeline>] [-r <req/conn>] [-s <status>] [-R|--raw file1,file2,...] [--ws [--ws-msg <message>]] [--tui] [--json] [-b <buckets>] [--recv-buf <bytes>] [--cqe-latency]
+# server cpus 0,1; gcannon cpus 2,3; conns 4096; warm 10s; measured 10s
+RESULT run=1 profile=baseline contestant=vt-arena rps=231397 p50us=11100 p99us=15400 p999us=75400 ok=2314216 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=1 profile=baseline contestant=jetty-arena rps=140544 p50us=27700 p99us=47500 p999us=225900 ok=1405595 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=1 profile=pipelined contestant=vt-arena rps=2945581 p50us=21400 p99us=36400 p999us=608000 ok=29464176 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=1 profile=pipelined contestant=jetty-arena rps=270777 p50us=226800 p99us=521600 p999us=822600 ok=2708272 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=json contestant=vt-arena rps=117485 p50us=20300 p99us=45900 p999us=391100 ok=1175031 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=json contestant=jetty-arena rps=73017 p50us=51600 p99us=108300 p999us=549400 ok=730362 non2xx=0 errors=0 reconnects=0 serverCpuPct=195
+RESULT run=2 profile=baseline contestant=vt-arena rps=231786 p50us=11900 p99us=18300 p999us=102100 ok=2318115 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=2 profile=baseline contestant=jetty-arena rps=120887 p50us=31900 p99us=97800 p999us=218400 ok=1208992 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=pipelined contestant=vt-arena rps=2697846 p50us=15800 p99us=39800 p999us=108800 ok=26982176 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=pipelined contestant=jetty-arena rps=271675 p50us=227900 p99us=546000 p999us=895800 ok=2716996 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=2 profile=json contestant=vt-arena rps=168198 p50us=2969 p99us=3816 p999us=8863 ok=1682924 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=2 profile=json contestant=jetty-arena rps=69727 p50us=53300 p99us=253800 p999us=370100 ok=697498 non2xx=0 errors=0 reconnects=0 serverCpuPct=194
+RESULT run=3 profile=baseline contestant=vt-arena rps=236710 p50us=11300 p99us=21000 p999us=73900 ok=2368046 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=baseline contestant=jetty-arena rps=124403 p50us=31400 p99us=50900 p999us=211900 ok=1244213 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=3 profile=pipelined contestant=vt-arena rps=2731435 p50us=16800 p99us=42300 p999us=122800 ok=27316912 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=pipelined contestant=jetty-arena rps=275703 p50us=223900 p99us=547300 p999us=868300 ok=2757307 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=json contestant=vt-arena rps=125747 p50us=23000 p99us=43800 p999us=193900 ok=1257599 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=3 profile=json contestant=jetty-arena rps=75936 p50us=48700 p99us=103700 p999us=416900 ok=759474 non2xx=0 errors=0 reconnects=0 serverCpuPct=194

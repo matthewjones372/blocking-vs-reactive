@@ -1,0 +1,23 @@
+# openjdk version "25.0.5" 2026-10-20 LTS
+# 4
+# 6.18.44-fc-v153
+# Usage: gcannon <url> -c <conns> -t <threads> -d <duration> [-p <pipeline>] [-r <req/conn>] [-s <status>] [-R|--raw file1,file2,...] [--ws [--ws-msg <message>]] [--tui] [--json] [-b <buckets>] [--recv-buf <bytes>] [--cqe-latency]
+# server cpus 0,1; gcannon cpus 2,3; conns 4096; warm 10s; measured 10s
+RESULT run=1 profile=baseline contestant=vt-arena rps=260587 p50us=15400 p99us=23500 p999us=58800 ok=2606140 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=1 profile=baseline contestant=uring-arena rps=405012 p50us=9823 p99us=15300 p999us=29400 ok=4051053 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=pipelined contestant=vt-arena rps=3990303 p50us=12300 p99us=18400 p999us=65300 ok=39907008 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=1 profile=pipelined contestant=uring-arena rps=5316378 p50us=12000 p99us=18600 p999us=25900 ok=53189808 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=1 profile=json contestant=vt-arena rps=123463 p50us=23800 p99us=31700 p999us=250900 ok=1234752 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=1 profile=json contestant=uring-arena rps=172354 p50us=23500 p99us=29500 p999us=237100 ok=1723954 non2xx=0 errors=0 reconnects=0 serverCpuPct=195
+RESULT run=2 profile=baseline contestant=vt-arena rps=261700 p50us=15200 p99us=21900 p999us=44800 ok=2617345 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=2 profile=baseline contestant=uring-arena rps=395901 p50us=10100 p99us=12700 p999us=16400 ok=3961024 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=pipelined contestant=vt-arena rps=3822642 p50us=16600 p99us=24900 p999us=69200 ok=38234000 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=2 profile=pipelined contestant=uring-arena rps=5237278 p50us=12300 p99us=16500 p999us=27900 ok=52399296 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=2 profile=json contestant=vt-arena rps=154717 p50us=8051 p99us=12800 p999us=37400 ok=1547385 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=2 profile=json contestant=uring-arena rps=175959 p50us=22500 p99us=34400 p999us=320400 ok=1759804 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=3 profile=baseline contestant=vt-arena rps=265059 p50us=11500 p99us=15300 p999us=35700 ok=2650891 non2xx=0 errors=0 reconnects=0 serverCpuPct=199
+RESULT run=3 profile=baseline contestant=uring-arena rps=381185 p50us=10500 p99us=14700 p999us=38000 ok=3812333 non2xx=0 errors=0 reconnects=0 serverCpuPct=198
+RESULT run=3 profile=pipelined contestant=vt-arena rps=3554991 p50us=18000 p99us=39800 p999us=71000 ok=35553712 non2xx=0 errors=0 reconnects=0 serverCpuPct=197
+RESULT run=3 profile=pipelined contestant=uring-arena rps=5133114 p50us=12400 p99us=18600 p999us=24000 ok=51337744 non2xx=0 errors=0 reconnects=0 serverCpuPct=196
+RESULT run=3 profile=json contestant=vt-arena rps=135763 p50us=9070 p99us=11500 p999us=31700 ok=1357809 non2xx=0 errors=0 reconnects=0 serverCpuPct=195
+RESULT run=3 profile=json contestant=uring-arena rps=173307 p50us=23100 p99us=35000 p999us=207200 ok=1733305 non2xx=0 errors=0 reconnects=0 serverCpuPct=193

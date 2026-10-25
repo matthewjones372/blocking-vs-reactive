@@ -22,6 +22,10 @@ The author prefers the blocking side. So the predictions were written down and c
   for Reactor at its best fixed concurrency. It costs 7% of throughput.
 - **Reactor still wins on CPU-only work.** It hands elements between threads 1.5× faster than Lark, and runs a
   CPU-only operator chain 1.2× faster.
+- **As a server, blocking code beats hand-written Jetty, and blocking code on io_uring beats both.** A
+  virtual-thread-per-connection server did 1.9× hand-written Jetty's requests a second on HttpArena's `baseline`,
+  10× pipelined and 1.7× on a 10 KB JSON body, on two cores. The same handler on an io_uring runtime of its own, still
+  written as blocking code, did a further 1.5×, 1.4× and 1.3× ([Servers](#servers)).
 
 ## Throughput as concurrency grows
 
@@ -185,6 +189,88 @@ Where blocking code wins clearly is the stack trace when a call fails
 | Reactor | only through `block()`, which a WebFlux handler never calls | no |
 | Pekko | yes | no |
 
+## Servers
+
+How fast can a server written as blocking code serve HTTP? This round was pre-registered separately, in
+[`HYPOTHESES-SERVERS.md`](HYPOTHESES-SERVERS.md).
+
+| contestant | what it is |
+|---|---|
+| `vt-arena` | [`VtArena.kt`](src/main/kotlin/bvr/arena/VtArena.kt): a `ServerSocket`, one virtual thread per connection, blocking reads, a parser over the read buffer that allocates no strings, and every pipelined request already read answered with one write |
+| `jetty-arena` | [`JettyArena.kt`](src/main/kotlin/bvr/arena/JettyArena.kt): a hand-written Jetty 12 core handler, invoked on the selector, with a selector per core |
+| `uring-arena` | [`UringArena.kt`](src/main/kotlin/bvr/arena/UringArena.kt): `vt-arena`'s handler, unchanged, on a runtime of its own ([`src/main/java/bvr/arena`](src/main/java/bvr/arena)): one carrier thread per core with its own io_uring, each connection a JDK `Continuation` whose reads and writes look blocking |
+
+Each server gets two cores; [gcannon](https://github.com/MDA2AV/gcannon), HttpArena's load generator, gets the other
+two, with 4,096 connections. The requests are HttpArena's own files (`baseline` rotates a GET, a POST with
+`Content-Length` and a chunked POST; `pipelined` is 16 deep; `json` is `GET /json/50` without compression). All the
+servers return byte-identical bodies. Each cell is the median of three 10-second runs, each in a fresh JVM after a
+10-second warm-up, with the contestants alternating. Every server ran at 194–199% CPU, so the server set the pace,
+and there were no errors.
+
+**Blocking on virtual threads against hand-written Jetty** ([`results/arena.txt`](results/arena.txt)):
+
+| profile | `jetty-arena` | `vt-arena` |
+|---|--:|--:|
+| `baseline` | 124k req/s | 232k (1.9×) |
+| `pipelined` | 272k | 2.73M (10×) |
+| `json` | 73k | 126k (1.7×) |
+
+p99 latency: `baseline` 50.9 against 18.3 ms; `pipelined` 546 against 39.8 ms; `json` 108 against 43.8 ms.
+
+- **Hand-written Jetty is the slowest here**, and on `pipelined` by far: it answers pipelined requests one at a time,
+  with a write each. Its numbers come from one obvious setting (a selector per core); Jetty experts may do better.
+- **What a request costs `vt-arena`** is a read that finds nothing waiting, a park, a wake-up from the JDK's poller
+  and a write: a system call each way and a hand-off between threads, for every request.
+
+**The same handler on io_uring** ([`results/arena-uring3.txt`](results/arena-uring3.txt), the two run alternately):
+
+| profile | `vt-arena` | `uring-arena` |
+|---|--:|--:|
+| `baseline` | 262k | 396k (1.5×) |
+| `pipelined` | 3.82M | 5.24M (1.4×) |
+| `json` | 136k | 173k (1.3×) |
+
+- **Why it is faster.** Each carrier runs every connection that is ready, then hands the kernel all their reads and
+  writes in one `io_uring_enter` and resumes whichever completed, on the same core: no poller thread, no hand-off
+  between threads and no system call per read. A connection's receive is one multishot request into a pool of
+  buffers the kernel picks from, and its writes never park.
+- **What mattered most, in order of what each step measured:** small per-connection buffers that grow on demand
+  (about 160 KB per connection had been thrashing the caches, and kernel time per request fell by a fifth); writes
+  that never park; a parser that crosses a request once, eight bytes at a time; a `Date` header rebuilt once a second
+  by a thread of its own instead of on every response; parking only between drains, so a park saves and restores a few
+  small frames. The steps are in [`results/arena-uring*.txt`](results). The last tuned build, measured alone
+  over five runs on a faster night ([`results/arena-uring5.txt`](results/arena-uring5.txt)), did 508k on `baseline`,
+  5.58M on `pipelined` and 207k on `json`.
+- **What blocking code still costs:** a continuation's park and resume, a few percent of CPU on `baseline`, where each
+  request needs one.
+- The runtime became a Pelican backend, `pelican-uring` (Pelican specs 0087 and 0088).
+
+| # | Prediction | Result |
+|---|---|---|
+| S4 | `jetty-arena` within ±20% of `vt-arena` on `baseline` | **Refuted:** it did 54% of `vt-arena` |
+
+**What this round cannot show.** Two server cores against HttpArena's 64; the load generator shares the machine; no
+TLS, compression, `async` profile (32,000 connections), or CPU per request at a fixed rate.
+
+### JDK 27, exploratory
+
+JDK 27 adds `-Djdk.pollerMode=3`, an epoll poller per carrier thread, which was expected to cut the cost of waking a
+virtual thread from another core. This run came after the pre-registered round; its predictions (X1, X2 in
+[`HYPOTHESES-SERVERS.md`](HYPOTHESES-SERVERS.md)) were committed while it ran, before any result was read. Same
+harness, three runs each, medians, all contestants alternating ([`results/arena-jdk27.txt`](results/arena-jdk27.txt)):
+
+| profile | `vt-arena`, JDK 25 | JDK 27 | JDK 27, poller per carrier |
+|---|--:|--:|--:|
+| `baseline` | 232k | 232k | 194k (0.84×) |
+| `pipelined` | 2.75M | 2.86M (1.04×) | 2.78M (1.01×) |
+
+p99 on `baseline`: 20.0, 21.8 and 46.3 ms.
+
+- **X1, JDK 27 alone changes nothing: confirmed.**
+- **X2, a poller per carrier gains 5–15% on `baseline`: refuted, in the other direction.** It lost 16% on
+  `baseline` and doubled p99, and changed nothing on `pipelined`. Why has not been investigated. So on this machine
+  cross-core wake-ups are not where the cost is, and JDK 27 does not remove it.
+
 ## Against the pre-registered hypotheses
 
 | # | Prediction | Result |
@@ -212,8 +298,8 @@ Where blocking code wins clearly is the stack trace when a call fails
 
 ## Not yet tested
 
-- **A real network**, between machines, and servers (Reactor Netty against a virtual-thread server) driven by an
-  open-model load generator at and beyond saturation.
+- **A real network**, between machines, and servers driven by an open-model load generator at and beyond
+  saturation. [Servers](#servers) drove them closed-model on loopback, and not against Reactor Netty.
 - Kotlin coroutines and `Flow`.
 - `mapAsync` under a `Limit`.
 
@@ -233,6 +319,9 @@ scripts/run-net.sh                 # results/net.txt; about 3 hours
 build/install/blocking-vs-reactive/bin/blocking-vs-reactive stacktraces > results/stacktraces.txt
 python3 scripts/summarise.py > results/summary.md
 python3 scripts/charts.py          # docs/charts/*.svg
+
+# the server round: gcannon built against liburing 2.9
+GCANNON=/path/to/gcannon scripts/run-arena.sh   # results/arena.txt
 ```
 
 ## Licence
