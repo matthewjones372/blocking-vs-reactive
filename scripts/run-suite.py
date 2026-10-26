@@ -145,8 +145,11 @@ def main():
     ap.add_argument("--no-build", action="store_true")
     ap.add_argument("--only", help="run only cells whose 'scenario contestant' contains this")
     ap.add_argument("--port", type=int, default=18080)
-    ap.add_argument("--server-cpus", default="3" if (os.cpu_count() or 1) >= 4 else None)
-    ap.add_argument("--client-cpus", default=f"0-{(os.cpu_count() or 1) - 2}" if (os.cpu_count() or 1) >= 4 else None)
+    # The socket suites' server gets the last CPU and the clients the rest, so the two never share a core. (Before,
+    # the server was CPU 3 whatever the machine, which overlapped the clients on anything larger than 4 CPUs.)
+    cpus = os.cpu_count() or 1
+    ap.add_argument("--server-cpus", default=str(cpus - 1) if cpus >= 4 else None)
+    ap.add_argument("--client-cpus", default=f"0-{cpus - 2}" if cpus >= 4 else None)
     args = ap.parse_args()
     args.out = args.out or root / "results" / args.suite
     args.out.mkdir(parents=True, exist_ok=True)
