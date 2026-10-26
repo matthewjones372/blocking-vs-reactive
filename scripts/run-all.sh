@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Every suite, one after another, as published in results/: about seven hours on a 4-core machine. Run from a clean,
+# Every suite, one after another, as published in results/: about nine hours on a 4-core machine. Run from a clean,
 # committed tree with JAVA_HOME at JDK 25 and Surefold published (scripts/build-surefold.sh). Nothing else should run.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -8,6 +8,7 @@ bin=build/install/blocking-vs-reactive/bin/blocking-vs-reactive
 scripts/run-suite.py memory --forks 3 --no-build
 scripts/run-suite.py overload --forks 4 --no-build
 scripts/run-suite.py net --forks 3 --no-build
+scripts/run-suite.py net-diag --forks 3 --no-build
 scripts/run-suite.py workload --forks 5 --no-build
 scripts/run-suite.py io --forks 5 --no-build
 scripts/run-jmh.sh
@@ -18,4 +19,4 @@ env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin threaddump | sed -n 's/^RESULT 
 env -u JAVA_TOOL_OPTIONS JAVA_OPTS="-Xmx2g" $bin stacktraces > build/stacktraces.out
 grep -v '^RESULT' build/stacktraces.out > results/semantics/stacktraces.txt
 sed -n 's/^RESULT //p' build/stacktraces.out > results/semantics/stacktraces.jsonl
-scripts/summarise.py memory overload net workload io jmh semantics
+scripts/summarise.py memory overload net net-diag workload io jmh semantics
