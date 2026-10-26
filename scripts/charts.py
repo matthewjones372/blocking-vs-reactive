@@ -3,7 +3,7 @@
 
 Plain SVG, no plotting library. Every chart is a strip per contestant: one small dot per fork (or per sample), a
 line over their range, and a larger mark at the median, so the spread is as visible as the middle. Colour is the
-library (JDK grey, Lark blue, Reactor orange, Pekko green); a hollow mark is a blocking contestant, a filled one an
+library (JDK grey, Surefold blue, Reactor orange, Pekko green); a hollow mark is a blocking contestant, a filled one an
 asynchronous or reactive one. Every row is labelled with its name and median, so colour is never needed to read it.
 """
 import json
@@ -19,22 +19,22 @@ STYLE = """<style>
 text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 .bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
 .grid { stroke: #e1e0d9; stroke-width: 1; }
-.jdk { fill: #6b6a65; stroke: #6b6a65; } .lark { fill: #2a78d6; stroke: #2a78d6; }
+.jdk { fill: #6b6a65; stroke: #6b6a65; } .surefold { fill: #2a78d6; stroke: #2a78d6; }
 .reactor { fill: #eb6834; stroke: #eb6834; } .pekko { fill: #1baf7a; stroke: #1baf7a; }
 .hollow { fill: #fcfcfb; stroke-width: 2; }
 @media (prefers-color-scheme: dark) {
   .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
-  .jdk { fill: #a8a79f; stroke: #a8a79f; } .lark { fill: #3987e5; stroke: #3987e5; }
+  .jdk { fill: #a8a79f; stroke: #a8a79f; } .surefold { fill: #3987e5; stroke: #3987e5; }
   .reactor { fill: #d95926; stroke: #d95926; } .pekko { fill: #199e70; stroke: #199e70; }
   .hollow { fill: #1a1a19; }
 }
 </style>"""
 
-BLOCKING = {"vt-plain", "vt-ordered", "vt-structured", "lark-mappar", "lark-mappar-unordered", "vt-naive"}
+BLOCKING = {"vt-plain", "vt-ordered", "vt-structured", "surefold-mappar", "surefold-mappar-unordered", "vt-naive"}
 
 
 def lib(name):
-    for prefix, cls in (("lark", "lark"), ("reactor", "reactor"), ("pekko", "pekko")):
+    for prefix, cls in (("surefold", "surefold"), ("reactor", "reactor"), ("pekko", "pekko")):
         if name.startswith(prefix):
             return cls
     return "jdk"
@@ -232,7 +232,7 @@ def overload_record(pattern, contestant, fork=1):
     return None
 
 
-adaptive, fixed = overload_record("sudden", "lark-adaptive"), overload_record("sudden", "lark-fixed-500")
+adaptive, fixed = overload_record("sudden", "surefold-adaptive"), overload_record("sudden", "surefold-fixed-500")
 if adaptive and fixed:
     def series(r, limit_label):
         s = r["series"]
@@ -244,8 +244,8 @@ if adaptive and fixed:
     ta, sa = series(adaptive, "limit")
     tf, sf = series(fixed, "limit")
     timeline("vegas-sudden.svg", "The adaptive limit after a capacity drop, and where the queue goes",
-             "Lark mapParUnordered, window = the limit's max (1,000 or 500). Capacity 500, then 100 from 3 s; fork 1 of 4.",
-             [("Lark's adaptive Limit (Vegas)", ta, sa), ("A fixed limit of 500", tf, sf)], 6000)
+             "Surefold mapParUnordered, window = the limit's max (1,000 or 500). Capacity 500, then 100 from 3 s; fork 1 of 4.",
+             [("Surefold's adaptive Limit (Vegas)", ta, sa), ("A fixed limit of 500", tf, sf)], 6000)
 
 jmh = load("jmh")
 if jmh:

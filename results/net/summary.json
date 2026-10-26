@@ -153,7 +153,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       8513.26780502768,
       8211.330482603978,
@@ -375,7 +375,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       7171.809332437237,
       7157.377733259963,
@@ -685,7 +685,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       14940.046217528983,
       14395.41759262959,
@@ -981,7 +981,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       13719.301052987388,
       11633.018378930821,
@@ -1136,7 +1136,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       12281.632295311812,
       13384.894785645332,
@@ -1214,10 +1214,10 @@
   },
   "n-10k-raw-poller1": {
    "noise": 0.10065292302914206,
-   "best": "lark-mappar-unordered",
+   "best": "surefold-mappar-unordered",
    "desc": "50,000 requests, 10,000 in flight, service 10000 \u00b5s, 128 B body, `raw` clients, `nio` server, client JVM `-Djdk.pollerMode=1`",
    "rows": {
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       14537.461081773841,
       13437.396646599627,
@@ -1446,7 +1446,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       15563.139968051066,
       14837.293689533508,
@@ -1742,7 +1742,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       12386.582682233073,
       12522.68307077105,
@@ -2274,7 +2274,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       29894.413797405563,
       27196.49261368567,
@@ -2348,7 +2348,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       27806.629090336945,
       26911.13472718072,
@@ -2503,7 +2503,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       11599.735032078152,
       12022.531256068856,
@@ -2725,7 +2725,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       10322.51536850436,
       9381.039597429026,
@@ -3183,7 +3183,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       19801.56422009041,
       22743.845117891822,
@@ -3257,7 +3257,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       19972.44817152146,
       19748.012699867188,
@@ -3483,10 +3483,10 @@
   },
   "n-wide-jdk": {
    "noise": 0.11406886089568377,
-   "best": "lark-mappar-unordered",
+   "best": "surefold-mappar-unordered",
    "desc": "200,000 requests, 1,000 in flight, service 20000 \u00b5s, 128 B body, `jdk` clients, `nio` server",
    "rows": {
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       14347.661865365482,
       13926.202004071045,
@@ -3856,7 +3856,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       13317.230283188805,
       11934.211666930425,
@@ -4240,7 +4240,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       27552.528566804303,
       28176.392263309477,
@@ -4462,7 +4462,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       19491.190016027424,
       24473.250611472704,
@@ -4617,7 +4617,7 @@
      "model": "reactive",
      "ordered": false
     },
-    "lark-mapasync-unordered": {
+    "surefold-mapasync-unordered": {
      "opsPerSec": [
       33387.14444015806,
       36514.47399096766,
@@ -4839,7 +4839,7 @@
      "model": "async",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       34071.417243509786,
       30536.659935647323,
@@ -5068,7 +5068,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       24620.93271302865,
       23186.163884575497,
@@ -5223,7 +5223,7 @@
      "model": "blocking",
      "ordered": false
     },
-    "lark-mappar-unordered": {
+    "surefold-mappar-unordered": {
      "opsPerSec": [
       19416.861161877983,
       19062.345735435418,

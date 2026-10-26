@@ -3,12 +3,12 @@
 text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 .bg { fill: #fcfcfb; } .t1 { fill: #0b0b0b; } .t2 { fill: #52514e; } .mu { fill: #898781; }
 .grid { stroke: #e1e0d9; stroke-width: 1; }
-.jdk { fill: #6b6a65; stroke: #6b6a65; } .lark { fill: #2a78d6; stroke: #2a78d6; }
+.jdk { fill: #6b6a65; stroke: #6b6a65; } .surefold { fill: #2a78d6; stroke: #2a78d6; }
 .reactor { fill: #eb6834; stroke: #eb6834; } .pekko { fill: #1baf7a; stroke: #1baf7a; }
 .hollow { fill: #fcfcfb; stroke-width: 2; }
 @media (prefers-color-scheme: dark) {
   .bg { fill: #1a1a19; } .t1 { fill: #f0efec; } .t2 { fill: #c3c2b7; } .grid { stroke: #2c2c2a; }
-  .jdk { fill: #a8a79f; stroke: #a8a79f; } .lark { fill: #3987e5; stroke: #3987e5; }
+  .jdk { fill: #a8a79f; stroke: #a8a79f; } .surefold { fill: #3987e5; stroke: #3987e5; }
   .reactor { fill: #d95926; stroke: #d95926; } .pekko { fill: #199e70; stroke: #199e70; }
   .hollow { fill: #1a1a19; }
 }
@@ -36,14 +36,14 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="reactor" cx="437.3" cy="81.0" r="2" opacity="0.7"/>
 <circle class="reactor" cx="437.6" cy="81.0" r="5"/>
 <text class="t2" x="445.9" y="85.0" font-size="11">948k</text>
-<text class="t1" x="202" y="107.0" font-size="12" text-anchor="end">lark-mapasync</text>
-<line class="lark" x1="437.1" y1="103.0" x2="437.7" y2="103.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="437.1" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="437.7" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="437.3" cy="103.0" r="5"/>
+<text class="t1" x="202" y="107.0" font-size="12" text-anchor="end">surefold-mapasync</text>
+<line class="surefold" x1="437.1" y1="103.0" x2="437.7" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="437.1" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="437.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="437.3" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="437.3" cy="103.0" r="5"/>
 <text class="t2" x="445.7" y="107.0" font-size="11">942k</text>
 <text class="t1" x="202" y="129.0" font-size="12" text-anchor="end">cf-plain</text>
 <line class="jdk" x1="437.0" y1="125.0" x2="437.7" y2="125.0" stroke-width="2" opacity="0.5"/>
@@ -63,14 +63,14 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="436.5" cy="147.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="436.3" cy="147.0" r="5"/>
 <text class="t2" x="444.5" y="151.0" font-size="11">922k</text>
-<text class="t1" x="202" y="173.0" font-size="12" text-anchor="end">lark-mapasync-unordered</text>
-<line class="lark" x1="435.7" y1="169.0" x2="436.5" y2="169.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="436.1" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="436.0" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="435.8" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="435.7" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="436.5" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="436.0" cy="169.0" r="5"/>
+<text class="t1" x="202" y="173.0" font-size="12" text-anchor="end">surefold-mapasync-unordered</text>
+<line class="surefold" x1="435.7" y1="169.0" x2="436.5" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="436.1" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="436.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="435.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="435.7" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="436.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="436.0" cy="169.0" r="5"/>
 <text class="t2" x="444.5" y="173.0" font-size="11">915k</text>
 <text class="t1" x="202" y="195.0" font-size="12" text-anchor="end">reactor-flatmap</text>
 <line class="reactor" x1="433.8" y1="191.0" x2="436.5" y2="191.0" stroke-width="2" opacity="0.5"/>
@@ -90,14 +90,14 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="jdk" cx="433.2" cy="213.0" r="2" opacity="0.7"/>
 <circle class="jdk hollow" cx="432.2" cy="213.0" r="5"/>
 <text class="t2" x="443.6" y="217.0" font-size="11">841k</text>
-<text class="t1" x="202" y="239.0" font-size="12" text-anchor="end">lark-mappar</text>
-<line class="lark" x1="430.0" y1="235.0" x2="432.6" y2="235.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="432.0" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="430.0" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="430.6" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="430.2" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="432.6" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="430.6" cy="235.0" r="5"/>
+<text class="t1" x="202" y="239.0" font-size="12" text-anchor="end">surefold-mappar</text>
+<line class="surefold" x1="430.0" y1="235.0" x2="432.6" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="432.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="430.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="430.6" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="430.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="432.6" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="430.6" cy="235.0" r="5"/>
 <text class="t2" x="440.6" y="239.0" font-size="11">812k</text>
 <text class="t1" x="202" y="261.0" font-size="12" text-anchor="end">vt-ordered</text>
 <line class="jdk" x1="429.7" y1="257.0" x2="435.0" y2="257.0" stroke-width="2" opacity="0.5"/>
@@ -126,14 +126,14 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="427.2" cy="301.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="427.9" cy="301.0" r="5"/>
 <text class="t2" x="439.8" y="305.0" font-size="11">765k</text>
-<text class="t1" x="202" y="327.0" font-size="12" text-anchor="end">lark-mappar-unordered</text>
-<line class="lark" x1="423.4" y1="323.0" x2="425.0" y2="323.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="424.3" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="423.9" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="425.0" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="424.4" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="423.4" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="424.3" cy="323.0" r="5"/>
+<text class="t1" x="202" y="327.0" font-size="12" text-anchor="end">surefold-mappar-unordered</text>
+<line class="surefold" x1="423.4" y1="323.0" x2="425.0" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="424.3" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="423.9" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="425.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="424.4" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="423.4" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="424.3" cy="323.0" r="5"/>
 <text class="t2" x="433.0" y="327.0" font-size="11">707k</text>
 <text class="t1" x="520" y="62" font-size="12" font-weight="600">wheel</text>
 <line class="grid" x1="532.6" y1="70" x2="532.6" y2="334"/>
@@ -154,13 +154,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="reactor" cx="737.9" cy="81.0" r="2" opacity="0.7"/>
 <circle class="reactor" cx="738.1" cy="81.0" r="5"/>
 <text class="t2" x="746.2" y="85.0" font-size="11">959k</text>
-<line class="lark" x1="737.4" y1="103.0" x2="737.7" y2="103.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="737.4" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.6" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.5" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.7" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.6" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.6" cy="103.0" r="5"/>
+<line class="surefold" x1="737.4" y1="103.0" x2="737.7" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="737.4" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.5" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.6" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.6" cy="103.0" r="5"/>
 <text class="t2" x="745.7" y="107.0" font-size="11">948k</text>
 <line class="jdk" x1="736.7" y1="125.0" x2="737.5" y2="125.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="737.2" cy="125.0" r="2" opacity="0.7"/>
@@ -178,13 +178,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="736.6" cy="147.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="736.8" cy="147.0" r="5"/>
 <text class="t2" x="745.2" y="151.0" font-size="11">932k</text>
-<line class="lark" x1="736.8" y1="169.0" x2="737.3" y2="169.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="736.8" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.0" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="737.3" cy="169.0" r="5"/>
+<line class="surefold" x1="736.8" y1="169.0" x2="737.3" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="736.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.3" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="737.3" cy="169.0" r="5"/>
 <text class="t2" x="745.3" y="173.0" font-size="11">941k</text>
 <line class="reactor" x1="531.8" y1="191.0" x2="533.8" y2="191.0" stroke-width="2" opacity="0.5"/>
 <circle class="reactor" cx="531.8" cy="191.0" r="2" opacity="0.7"/>
@@ -202,13 +202,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="jdk" cx="733.4" cy="213.0" r="2" opacity="0.7"/>
 <circle class="jdk hollow" cx="733.4" cy="213.0" r="5"/>
 <text class="t2" x="743.7" y="217.0" font-size="11">865k</text>
-<line class="lark" x1="730.0" y1="235.0" x2="733.6" y2="235.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="733.3" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="731.9" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="730.0" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="733.6" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="733.2" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="733.2" cy="235.0" r="5"/>
+<line class="surefold" x1="730.0" y1="235.0" x2="733.6" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="733.3" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="731.9" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="730.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="733.6" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="733.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="733.2" cy="235.0" r="5"/>
 <text class="t2" x="741.6" y="239.0" font-size="11">860k</text>
 <line class="jdk" x1="726.2" y1="257.0" x2="729.1" y2="257.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="726.2" cy="257.0" r="2" opacity="0.7"/>
@@ -234,13 +234,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="732.4" cy="301.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="734.5" cy="301.0" r="5"/>
 <text class="t2" x="743.7" y="305.0" font-size="11">885k</text>
-<line class="lark" x1="722.0" y1="323.0" x2="728.4" y2="323.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="724.1" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="722.0" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="723.8" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="728.4" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="722.4" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="723.8" cy="323.0" r="5"/>
+<line class="surefold" x1="722.0" y1="323.0" x2="728.4" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="724.1" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="722.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="723.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="728.4" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="722.4" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="723.8" cy="323.0" r="5"/>
 <text class="t2" x="736.4" y="327.0" font-size="11">698k</text>
 <text class="t1" x="820" y="62" font-size="12" font-weight="600">shared</text>
 <line class="grid" x1="832.6" y1="70" x2="832.6" y2="334"/>
@@ -261,13 +261,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="reactor" cx="1007.6" cy="81.0" r="2" opacity="0.7"/>
 <circle class="reactor" cx="1008.6" cy="81.0" r="5"/>
 <text class="t2" x="1023.4" y="85.0" font-size="11">498k</text>
-<line class="lark" x1="1018.7" y1="103.0" x2="1025.9" y2="103.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1020.1" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1018.7" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1020.7" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1025.9" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1023.9" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1020.7" cy="103.0" r="5"/>
+<line class="surefold" x1="1018.7" y1="103.0" x2="1025.9" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1020.1" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1018.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1020.7" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1025.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1023.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1020.7" cy="103.0" r="5"/>
 <text class="t2" x="1033.9" y="107.0" font-size="11">652k</text>
 <line class="jdk" x1="1005.2" y1="125.0" x2="1011.3" y2="125.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="1005.7" cy="125.0" r="2" opacity="0.7"/>
@@ -285,13 +285,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="998.0" cy="147.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="990.4" cy="147.0" r="5"/>
 <text class="t2" x="1006.0" y="151.0" font-size="11">333k</text>
-<line class="lark" x1="1016.6" y1="169.0" x2="1019.9" y2="169.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1016.6" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1019.3" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1016.8" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1019.9" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1016.8" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1016.8" cy="169.0" r="5"/>
+<line class="surefold" x1="1016.6" y1="169.0" x2="1019.9" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1016.6" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1019.3" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1016.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1019.9" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1016.8" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1016.8" cy="169.0" r="5"/>
 <text class="t2" x="1027.9" y="173.0" font-size="11">598k</text>
 <line class="reactor" x1="1004.1" y1="191.0" x2="1008.4" y2="191.0" stroke-width="2" opacity="0.5"/>
 <circle class="reactor" cx="1008.3" cy="191.0" r="2" opacity="0.7"/>
@@ -309,13 +309,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="jdk" cx="982.1" cy="213.0" r="2" opacity="0.7"/>
 <circle class="jdk hollow" cx="982.1" cy="213.0" r="5"/>
 <text class="t2" x="997.6" y="217.0" font-size="11">277k</text>
-<line class="lark" x1="977.7" y1="235.0" x2="982.0" y2="235.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="977.7" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="979.3" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="982.0" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="980.5" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="979.1" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="979.3" cy="235.0" r="5"/>
+<line class="surefold" x1="977.7" y1="235.0" x2="982.0" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="977.7" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="979.3" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="982.0" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="980.5" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="979.1" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="979.3" cy="235.0" r="5"/>
 <text class="t2" x="990.0" y="239.0" font-size="11">260k</text>
 <line class="jdk" x1="978.3" y1="257.0" x2="993.8" y2="257.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="984.2" cy="257.0" r="2" opacity="0.7"/>
@@ -341,13 +341,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="988.2" cy="301.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="984.0" cy="301.0" r="5"/>
 <text class="t2" x="996.2" y="305.0" font-size="11">288k</text>
-<line class="lark" x1="987.0" y1="323.0" x2="993.7" y2="323.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="991.3" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="990.1" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="987.0" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="993.7" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="991.6" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="991.3" cy="323.0" r="5"/>
+<line class="surefold" x1="987.0" y1="323.0" x2="993.7" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="991.3" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="990.1" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="987.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="993.7" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="991.6" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="991.3" cy="323.0" r="5"/>
 <text class="t2" x="1001.7" y="327.0" font-size="11">340k</text>
 <text class="t1" x="1120" y="62" font-size="12" font-weight="600">native</text>
 <line class="grid" x1="1132.6" y1="70" x2="1132.6" y2="334"/>
@@ -368,13 +368,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="reactor" cx="1324.3" cy="81.0" r="2" opacity="0.7"/>
 <circle class="reactor" cx="1328.0" cy="81.0" r="5"/>
 <text class="t2" x="1339.2" y="85.0" font-size="11">766k</text>
-<line class="lark" x1="1316.2" y1="103.0" x2="1318.9" y2="103.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1318.9" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1318.8" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1316.2" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1318.5" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1317.1" cy="103.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1318.5" cy="103.0" r="5"/>
+<line class="surefold" x1="1316.2" y1="103.0" x2="1318.9" y2="103.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1318.9" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1318.8" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1316.2" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1318.5" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1317.1" cy="103.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1318.5" cy="103.0" r="5"/>
 <text class="t2" x="1326.9" y="107.0" font-size="11">621k</text>
 <line class="jdk" x1="1302.3" y1="125.0" x2="1307.5" y2="125.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="1306.0" cy="125.0" r="2" opacity="0.7"/>
@@ -392,13 +392,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="1325.2" cy="147.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="1323.8" cy="147.0" r="5"/>
 <text class="t2" x="1333.7" y="151.0" font-size="11">698k</text>
-<line class="lark" x1="1315.2" y1="169.0" x2="1317.5" y2="169.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1316.5" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1315.2" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1316.5" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1317.5" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1317.0" cy="169.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1316.5" cy="169.0" r="5"/>
+<line class="surefold" x1="1315.2" y1="169.0" x2="1317.5" y2="169.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1316.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1315.2" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1316.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1317.5" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1317.0" cy="169.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1316.5" cy="169.0" r="5"/>
 <text class="t2" x="1325.5" y="173.0" font-size="11">594k</text>
 <line class="reactor" x1="1268.9" y1="191.0" x2="1291.4" y2="191.0" stroke-width="2" opacity="0.5"/>
 <circle class="reactor" cx="1268.9" cy="191.0" r="2" opacity="0.7"/>
@@ -416,13 +416,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="jdk" cx="1328.4" cy="213.0" r="2" opacity="0.7"/>
 <circle class="jdk hollow" cx="1327.9" cy="213.0" r="5"/>
 <text class="t2" x="1337.9" y="217.0" font-size="11">764k</text>
-<line class="lark" x1="1325.8" y1="235.0" x2="1331.2" y2="235.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1328.2" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1329.3" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1327.1" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1325.8" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1331.2" cy="235.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="1328.2" cy="235.0" r="5"/>
+<line class="surefold" x1="1325.8" y1="235.0" x2="1331.2" y2="235.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1328.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1329.3" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1327.1" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1325.8" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1331.2" cy="235.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="1328.2" cy="235.0" r="5"/>
 <text class="t2" x="1339.2" y="239.0" font-size="11">770k</text>
 <line class="jdk" x1="1320.3" y1="257.0" x2="1327.9" y2="257.0" stroke-width="2" opacity="0.5"/>
 <circle class="jdk" cx="1325.3" cy="257.0" r="2" opacity="0.7"/>
@@ -448,13 +448,13 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Ar
 <circle class="pekko" cx="1324.1" cy="301.0" r="2" opacity="0.7"/>
 <circle class="pekko" cx="1323.8" cy="301.0" r="5"/>
 <text class="t2" x="1332.3" y="305.0" font-size="11">698k</text>
-<line class="lark" x1="1320.2" y1="323.0" x2="1328.0" y2="323.0" stroke-width="2" opacity="0.5"/>
-<circle class="lark" cx="1328.0" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1321.8" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1320.2" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1321.3" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark" cx="1325.0" cy="323.0" r="2" opacity="0.7"/>
-<circle class="lark hollow" cx="1321.8" cy="323.0" r="5"/>
+<line class="surefold" x1="1320.2" y1="323.0" x2="1328.0" y2="323.0" stroke-width="2" opacity="0.5"/>
+<circle class="surefold" cx="1328.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1321.8" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1320.2" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1321.3" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold" cx="1325.0" cy="323.0" r="2" opacity="0.7"/>
+<circle class="surefold hollow" cx="1321.8" cy="323.0" r="5"/>
 <text class="t2" x="1336.0" y="327.0" font-size="11">667k</text>
 <text class="mu" x="1434" y="366" font-size="10" text-anchor="end">ops/s. Small dots: forks; large: median; hollow: blocking.</text>
 </svg>

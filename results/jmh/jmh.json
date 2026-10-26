@@ -1,7 +1,7 @@
 [
     {
         "jmhVersion" : "1.36",
-        "benchmark" : "bvr.CpuChainBenchmark.lark",
+        "benchmark" : "bvr.CpuChainBenchmark.surefold",
         "mode" : "avgt",
         "threads" : 1,
         "forks" : 5,
@@ -1873,7 +1873,7 @@
     },
     {
         "jmhVersion" : "1.36",
-        "benchmark" : "bvr.HandOffBenchmark.lark",
+        "benchmark" : "bvr.HandOffBenchmark.surefold",
         "mode" : "avgt",
         "threads" : 1,
         "forks" : 5,
@@ -4469,7 +4469,7 @@
         "measurementTime" : "1 s",
         "measurementBatchSize" : 1,
         "params" : {
-            "contestant" : "lark-mappar"
+            "contestant" : "surefold-mappar"
         },
         "primaryMetric" : {
             "score" : 1125.1568289720703,
@@ -4837,7 +4837,7 @@
         "measurementTime" : "1 s",
         "measurementBatchSize" : 1,
         "params" : {
-            "contestant" : "lark-mappar-unordered"
+            "contestant" : "surefold-mappar-unordered"
         },
         "primaryMetric" : {
             "score" : 1582.296249637103,
@@ -5583,7 +5583,7 @@
         "measurementTime" : "1 s",
         "measurementBatchSize" : 1,
         "params" : {
-            "contestant" : "lark-mapasync"
+            "contestant" : "surefold-mapasync"
         },
         "primaryMetric" : {
             "score" : 265.5566192008889,
@@ -5951,7 +5951,7 @@
         "measurementTime" : "1 s",
         "measurementBatchSize" : 1,
         "params" : {
-            "contestant" : "lark-mapasync-unordered"
+            "contestant" : "surefold-mapasync-unordered"
         },
         "primaryMetric" : {
             "score" : 415.2871293977649,

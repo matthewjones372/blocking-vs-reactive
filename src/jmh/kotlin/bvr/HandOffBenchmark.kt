@@ -1,12 +1,12 @@
 package bvr
 
-import io.github.matthewjones372.lark.stream.Exit
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.buffer
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
+import io.github.matthewjones372.surefold.stream.Exit
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.buffer
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import org.openjdk.jmh.annotations.Benchmark
@@ -61,7 +61,7 @@ open class HandOffBenchmark {
     }
 
     @Benchmark
-    fun lark(): Long {
+    fun surefold(): Long {
         val exit = Stream.from(0 until n).buffer(256).runFold(0L) { s, x -> s + x }.run(Forks()).toCompletableFuture().join()
         return (exit as Exit.Done).value
     }

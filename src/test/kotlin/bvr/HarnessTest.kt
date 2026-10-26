@@ -1,6 +1,6 @@
 package bvr
 
-import io.github.matthewjones372.lark.Limit
+import io.github.matthewjones372.surefold.Limit
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -93,10 +93,10 @@ class HarnessTest {
     }
 
     @Test
-    fun `the ported limit and Lark's own limit both bound blocking callers`() {
+    fun `the ported limit and Surefold's own limit both bound blocking callers`() {
         val port = AsyncLimit.fixed(3)
-        val lark = Limit.fixed(3)
-        for (withPermit in listOf<(() -> Unit) -> Unit>({ port.withPermit(it) }, { lark.withPermit(it) })) {
+        val surefold = Limit.fixed(3)
+        for (withPermit in listOf<(() -> Unit) -> Unit>({ port.withPermit(it) }, { surefold.withPermit(it) })) {
             val inside = AtomicInteger()
             val most = AtomicInteger()
             Executors.newVirtualThreadPerTaskExecutor().use { threads ->

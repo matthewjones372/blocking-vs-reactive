@@ -94,7 +94,7 @@ def per_fork(records, key, metric):
 
 
 def header(meta):
-    return (f"Commit `{meta['commit'][:10]}`{' (dirty tree)' if meta['dirty'] else ''}, Lark `{meta['larkCommit'][:10]}`, "
+    return (f"Commit `{meta['commit'][:10]}`{' (dirty tree)' if meta['dirty'] else ''}, Surefold `{meta['surefoldCommit'][:10]}`, "
             f"{meta['java'].splitlines()[0]}, {meta['cpu']}, {meta['cpus']} CPUs, kernel {meta['kernel']}, "
             f"governor {meta['governor']}. JVM: `{meta['jvmOptions']}`. {meta['forks']} forks"
             + (f" × {meta['warmups']} warm-up + {meta['iterations']} measured iterations" if meta['suite'] in ('io', 'workload', 'smoke') or meta['suite'].startswith('net') else "")

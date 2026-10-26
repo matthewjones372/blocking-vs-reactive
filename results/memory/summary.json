@@ -1,7 +1,7 @@
 {
  "memory": {
   "pending": {
-   "lark-mapasync": {
+   "surefold-mapasync": {
     "slopes": [
      79.37413333333333,
      79.41626666666667,
@@ -35,7 +35,7 @@
      146.2465777777778
     ]
    },
-   "lark-mapasync-unordered": {
+   "surefold-mapasync-unordered": {
     "slopes": [
      154.2615111111111,
      154.3518222222222,
@@ -171,7 +171,7 @@
      1029.9056
     ]
    },
-   "lark-mappar": {
+   "surefold-mappar": {
     "slopes": [
      986.6332444444445,
      1584.0561777777777,
@@ -188,7 +188,7 @@
      1237.6281777777779
     ]
    },
-   "lark-mappar-unordered": {
+   "surefold-mappar-unordered": {
     "slopes": [
      839.1264888888888,
      1328.3230222222223,
@@ -224,7 +224,7 @@
      60.01457777777778
     ]
    },
-   "lark-mapasync": {
+   "surefold-mapasync": {
     "slopes": [
      85.11102222222222,
      85.07324444444444,
@@ -241,7 +241,7 @@
      85.14426666666667
     ]
    },
-   "lark-mappar": {
+   "surefold-mappar": {
     "slopes": [
      117.072,
      116.93626666666667,
