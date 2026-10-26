@@ -41,7 +41,7 @@ fun handOffThreads() {
             Flux.fromIterable(recording(p)).publishOn(single, 256).doOnNext(c::take).then().block()
             single.dispose()
         },
-        "lark buffer" to { p, c ->
+        "surefold buffer" to { p, c ->
             Stream.from(recording(p)).buffer(256).runFold(0L) { n, x -> c.take(x); n + 1 }.run(Forks()).await()
         },
         "pekko async boundary" to { p, c ->

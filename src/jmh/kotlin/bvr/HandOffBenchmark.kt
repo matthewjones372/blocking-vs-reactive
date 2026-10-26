@@ -61,7 +61,7 @@ open class HandOffBenchmark {
     }
 
     @Benchmark
-    fun lark(): Long {
+    fun surefold(): Long {
         val exit = Stream.from(0 until n).buffer(256).runFold(0L) { s, x -> s + x }.run(Forks()).toCompletableFuture().join()
         return (exit as Exit.Done).value
     }

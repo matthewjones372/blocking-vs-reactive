@@ -10,7 +10,7 @@ mkdir -p "$out"
 pkill -f KotlinCompileDaemon || true
 {
   echo "{\"commit\": \"$(git rev-parse HEAD)\", \"dirty\": $([[ -n $(git status --porcelain --untracked-files=no) ]] && echo true || echo false),"
-  echo " \"larkCommit\": \"$(cat lark.commit)\", \"cpus\": $(nproc), \"kernel\": \"$(uname -r)\","
+  echo " \"surefoldCommit\": \"$(cat surefold.commit)\", \"cpus\": $(nproc), \"kernel\": \"$(uname -r)\","
   echo " \"cpu\": \"$(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | sed 's/^ //')\","
   echo " \"java\": \"$(env -u JAVA_TOOL_OPTIONS "$JAVA_HOME"/bin/java -version 2>&1 | head -1 | sed 's/"/\\"/g')\", \"started\": \"$(date -u +%FT%TZ)\"}"
 } > "$out/metadata.json"

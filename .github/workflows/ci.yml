@@ -16,14 +16,14 @@ jobs:
           distribution: temurin
           java-version: 25
       - uses: gradle/actions/setup-gradle@v4
-      - name: Cache the Lark build
+      - name: Cache the Surefold build
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository/io/github/matthewjones372
-          key: lark-${{ hashFiles('lark.commit') }}
-      - name: Build Lark at the pinned commit
+          key: surefold-${{ hashFiles('surefold.commit') }}
+      - name: Build Surefold at the pinned commit
         run: |
-          test -d ~/.m2/repository/io/github/matthewjones372/lark-stream-forks/0.0.0-cand-SNAPSHOT || scripts/build-lark.sh
+          test -d ~/.m2/repository/io/github/matthewjones372/lark-stream-forks/0.0.0-cand-SNAPSHOT || scripts/build-surefold.sh
       - name: Compile, test, and build the JMH jar
         run: ./gradlew test installDist jmhJar
       - name: Smoke-run each suite's harness
@@ -31,7 +31,7 @@ jobs:
           mkdir -p build/ci
           scripts/run-suite.py smoke --forks 2 --warmups 1 --iterations 1 --no-build --out build/ci/smoke
           scripts/run-suite.py net-smoke --forks 1 --warmups 0 --iterations 1 --no-build --out build/ci/net-smoke
-          scripts/run-suite.py memory --forks 1 --no-build --only "pending lark-mapasync" --out build/ci/memory
+          scripts/run-suite.py memory --forks 1 --no-build --only "pending surefold-mapasync" --out build/ci/memory
           scripts/run-suite.py overload --forks 1 --no-build --only "sudden reactor-adaptive-port" --out build/ci/overload
           build/install/blocking-vs-reactive/bin/blocking-vs-reactive stacktraces > build/ci/stacktraces.txt
           java -jar build/libs/blocking-vs-reactive-jmh.jar PerElementBenchmark -p contestant=vt-plain,reactor-flatmap \

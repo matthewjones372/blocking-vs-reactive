@@ -23,10 +23,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * The minimal reproductions behind docs/lark-issues.md, with nothing of the harness in them. Each asserts what Lark
- * does at the commit in lark.commit; if Lark changes, the test fails and the document is out of date.
+ * The minimal reproductions behind docs/surefold-issues.md, with nothing of the harness in them. Each asserts what Surefold
+ * does at the commit in surefold.commit; if Surefold changes, the test fails and the document is out of date.
  */
-class LarkIssuesTest {
+class SurefoldIssuesTest {
     /** Four bodies blocked on a latch inside `mapPar(4)`, counted while they are inside. */
     private class Blocked {
         val inside = AtomicInteger()

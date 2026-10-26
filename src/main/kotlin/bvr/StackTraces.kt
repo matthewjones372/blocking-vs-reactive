@@ -81,11 +81,11 @@ private fun <R : Any> Exit<*, R>.value(): R = when (this) {
     is Exit.Failed -> error(error.toString())
 }
 
-fun handleRequestLark(): Long =
+fun handleRequestSurefold(): Long =
     Stream.from(1..10).mapPar(4) { id -> fetchOrderBlocking(id) }.runFold(0L) { s, x -> s + x }
         .run(Forks()).toCompletableFuture().join().value()
 
-fun handleRequestLarkAsync(): Long =
+fun handleRequestSurefoldAsync(): Long =
     Stream.from(1..10).mapAsync(4) { id -> fetchOrderAsync(id) }.runFold(0L) { s, x -> s + x }
         .run(Forks()).toCompletableFuture().join().value()
 
@@ -128,8 +128,8 @@ fun stackTraces() {
     val handlers = linkedMapOf<String, () -> Long>(
         "vt-plain" to ::handleRequestVt,
         "vt-structured" to ::handleRequestStructured,
-        "lark-mappar" to ::handleRequestLark,
-        "lark-mapasync" to ::handleRequestLarkAsync,
+        "surefold-mappar" to ::handleRequestSurefold,
+        "surefold-mapasync" to ::handleRequestSurefoldAsync,
         "cf-plain" to ::handleRequestCf,
         "reactor-flatmap" to ::handleRequestReactor,
         "reactor-flatmap + checkpoint()" to ::handleRequestReactorCheckpoint,

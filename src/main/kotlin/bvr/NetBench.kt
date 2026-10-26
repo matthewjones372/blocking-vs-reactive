@@ -28,12 +28,12 @@ data class NetScenario(
     val jvmOpts: String = "",
 )
 
-// All unordered, Lark's operators included. results/net was measured with Lark's ordered operators against the rest
-// unordered (docs/AUDIT.md A16); net-diag sets each Lark operator beside its other order.
-val netContestants = listOf("vt-plain", "lark-mappar-unordered", "cf-plain", "lark-mapasync-unordered", "reactor-flatmap", "pekko-mapasync-unordered")
+// All unordered, Surefold's operators included. results/net was measured with Surefold's ordered operators against the rest
+// unordered (docs/AUDIT.md A16); net-diag sets each Surefold operator beside its other order.
+val netContestants = listOf("vt-plain", "surefold-mappar-unordered", "cf-plain", "surefold-mapasync-unordered", "reactor-flatmap", "pekko-mapasync-unordered")
 
 private val reactorOnly = listOf("reactor-flatmap", "reactor-flatmapsequential")
-private val blockingOnly = listOf("vt-plain", "lark-mappar-unordered")
+private val blockingOnly = listOf("vt-plain", "surefold-mappar-unordered")
 
 val netScenarios: Map<String, NetScenario> = buildList {
     for (client in listOf("raw", "jdk", "netty")) {
@@ -63,11 +63,11 @@ val netScenarios: Map<String, NetScenario> = buildList {
 val netSuites: Map<String, List<Pair<String, String>>> = mapOf(
     "net" to netScenarios.values.filter { "smoke" !in it.name }.flatMap { s -> s.contestants.map { s.name to it } },
     "net-smoke" to netScenarios.values.filter { "smoke" in it.name }.flatMap { s -> s.contestants.map { s.name to it } },
-    // Why Lark trails on raw sockets: each Lark contestant beside its other order, ordered contestants of the other
-    // models, and vt-batched, which refills its bound in batches as Lark's window does and nothing else.
+    // Why Surefold trails on raw sockets: each Surefold contestant beside its other order, ordered contestants of the other
+    // models, and vt-batched, which refills its bound in batches as Surefold's window does and nothing else.
     "net-diag" to listOf("n-fast-raw", "n-wide-raw", "n-large-raw", "n-10k-raw").flatMap { s ->
         listOf(
-            "lark-mappar", "lark-mappar-unordered", "lark-mapasync", "lark-mapasync-unordered",
+            "surefold-mappar", "surefold-mappar-unordered", "surefold-mapasync", "surefold-mapasync-unordered",
             "vt-plain", "vt-batched", "reactor-flatmap",
             "vt-ordered", "reactor-flatmapsequential", "pekko-mapasync",
         ).map { s to it }

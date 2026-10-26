@@ -15,10 +15,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -34,10 +34,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -51,10 +51,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -74,10 +74,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -97,10 +97,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -117,10 +117,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -135,10 +135,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -153,10 +153,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -170,10 +170,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -190,10 +190,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "vt-ordered": {
@@ -211,10 +211,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -230,10 +230,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -247,10 +247,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -270,10 +270,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -293,10 +293,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -313,10 +313,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -331,10 +331,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -349,10 +349,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -366,10 +366,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -386,10 +386,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "vt-structured": {
@@ -407,10 +407,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -426,10 +426,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -443,10 +443,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -466,10 +466,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -489,10 +489,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -509,10 +509,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -527,10 +527,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -545,10 +545,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -562,10 +562,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -582,17 +582,17 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
-  "lark-mappar": {
+  "surefold-mappar": {
    "answers": {
     "kind": "semantics",
     "check": "answers",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "finished": true,
     "failure": null,
@@ -603,15 +603,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
     "check": "bound",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "settled": true,
     "pending": 32,
@@ -622,15 +622,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
     "check": "mostInFlight",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "most": 33,
     "bound": 32,
@@ -639,15 +639,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
     "check": "take",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "returned": true,
     "ms": 6,
@@ -662,15 +662,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
     "check": "failure",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "returnedWhileHeld": false,
     "ms": 3000,
@@ -685,15 +685,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
     "check": "timeouts",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "finished": true,
     "failure": null,
@@ -705,15 +705,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
     "check": "slowConsumer",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "finished": true,
     "mostAheadOfConsumer": 33,
@@ -723,15 +723,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
     "check": "demandPause",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "readDuringPause": 0,
     "aheadAtPause": 28,
@@ -741,15 +741,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
     "check": "slowProducer",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "finished": true,
     "worstProducedToConsumedMs": 1.596465,
@@ -758,15 +758,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
     "check": "interrupt",
-    "contestant": "lark-mappar",
+    "contestant": "surefold-mappar",
     "model": "blocking",
     "callerReturned": true,
     "heldCancelled": 0,
@@ -778,17 +778,17 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
-  "lark-mappar-unordered": {
+  "surefold-mappar-unordered": {
    "answers": {
     "kind": "semantics",
     "check": "answers",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "finished": true,
     "failure": null,
@@ -799,15 +799,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
     "check": "bound",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "settled": true,
     "pending": 32,
@@ -818,15 +818,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
     "check": "mostInFlight",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "most": 33,
     "bound": 32,
@@ -835,15 +835,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
     "check": "take",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "returned": true,
     "ms": 2,
@@ -858,15 +858,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
     "check": "failure",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "returnedWhileHeld": true,
     "ms": 3,
@@ -881,15 +881,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
     "check": "timeouts",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "finished": true,
     "failure": null,
@@ -901,15 +901,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
     "check": "slowConsumer",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "finished": true,
     "mostAheadOfConsumer": 33,
@@ -919,15 +919,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
     "check": "demandPause",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "readDuringPause": 0,
     "aheadAtPause": 28,
@@ -937,15 +937,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
     "check": "slowProducer",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "finished": true,
     "worstProducedToConsumedMs": 1.717604,
@@ -954,15 +954,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
     "check": "interrupt",
-    "contestant": "lark-mappar-unordered",
+    "contestant": "surefold-mappar-unordered",
     "model": "blocking",
     "callerReturned": true,
     "heldCancelled": 0,
@@ -974,10 +974,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "cf-plain": {
@@ -995,10 +995,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -1014,10 +1014,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -1031,10 +1031,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -1054,10 +1054,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -1077,10 +1077,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -1097,10 +1097,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -1115,10 +1115,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -1133,10 +1133,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -1150,10 +1150,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -1170,17 +1170,17 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
-  "lark-mapasync": {
+  "surefold-mapasync": {
    "answers": {
     "kind": "semantics",
     "check": "answers",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "finished": true,
     "failure": null,
@@ -1191,15 +1191,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
     "check": "bound",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "settled": true,
     "pending": 32,
@@ -1210,15 +1210,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
     "check": "mostInFlight",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "most": 33,
     "bound": 32,
@@ -1227,15 +1227,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
     "check": "take",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "returned": true,
     "ms": 0,
@@ -1250,15 +1250,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
     "check": "failure",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "returnedWhileHeld": false,
     "ms": 3000,
@@ -1273,15 +1273,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
     "check": "timeouts",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "finished": true,
     "failure": null,
@@ -1293,15 +1293,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
     "check": "slowConsumer",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "finished": true,
     "mostAheadOfConsumer": 33,
@@ -1311,15 +1311,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
     "check": "demandPause",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "readDuringPause": 0,
     "aheadAtPause": 28,
@@ -1329,15 +1329,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
     "check": "slowProducer",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "finished": true,
     "worstProducedToConsumedMs": 1.579082,
@@ -1346,15 +1346,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
     "check": "interrupt",
-    "contestant": "lark-mapasync",
+    "contestant": "surefold-mapasync",
     "model": "async",
     "callerReturned": true,
     "heldCancelled": 0,
@@ -1366,17 +1366,17 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
-  "lark-mapasync-unordered": {
+  "surefold-mapasync-unordered": {
    "answers": {
     "kind": "semantics",
     "check": "answers",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "finished": true,
     "failure": null,
@@ -1387,15 +1387,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
     "check": "bound",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "settled": true,
     "pending": 32,
@@ -1406,15 +1406,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
     "check": "mostInFlight",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "most": 33,
     "bound": 32,
@@ -1423,15 +1423,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
     "check": "take",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "returned": true,
     "ms": 0,
@@ -1446,15 +1446,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
     "check": "failure",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "returnedWhileHeld": true,
     "ms": 1,
@@ -1469,15 +1469,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
     "check": "timeouts",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "finished": true,
     "failure": null,
@@ -1489,15 +1489,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
     "check": "slowConsumer",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "finished": true,
     "mostAheadOfConsumer": 33,
@@ -1507,15 +1507,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
     "check": "demandPause",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "readDuringPause": 0,
     "aheadAtPause": 28,
@@ -1525,15 +1525,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
     "check": "slowProducer",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "finished": true,
     "worstProducedToConsumedMs": 1.651923,
@@ -1542,15 +1542,15 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
     "check": "interrupt",
-    "contestant": "lark-mapasync-unordered",
+    "contestant": "surefold-mapasync-unordered",
     "model": "async",
     "callerReturned": true,
     "heldCancelled": 0,
@@ -1562,10 +1562,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "reactor-flatmap": {
@@ -1583,10 +1583,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -1602,10 +1602,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -1619,10 +1619,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -1642,10 +1642,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -1665,10 +1665,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -1685,10 +1685,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -1703,10 +1703,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -1721,10 +1721,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -1738,10 +1738,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -1758,10 +1758,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "reactor-flatmapsequential": {
@@ -1779,10 +1779,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -1798,10 +1798,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -1815,10 +1815,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -1838,10 +1838,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -1861,10 +1861,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -1881,10 +1881,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -1899,10 +1899,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -1917,10 +1917,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -1934,10 +1934,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -1954,10 +1954,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "pekko-mapasync": {
@@ -1975,10 +1975,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -1994,10 +1994,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -2011,10 +2011,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -2034,10 +2034,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -2057,10 +2057,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -2077,10 +2077,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -2095,10 +2095,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -2113,10 +2113,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -2130,10 +2130,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -2150,10 +2150,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "pekko-mapasync-unordered": {
@@ -2171,10 +2171,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "bound": {
     "kind": "semantics",
@@ -2190,10 +2190,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "mostInFlight": {
     "kind": "semantics",
@@ -2207,10 +2207,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "take": {
     "kind": "semantics",
@@ -2230,10 +2230,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "failure": {
     "kind": "semantics",
@@ -2253,10 +2253,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "timeouts": {
     "kind": "semantics",
@@ -2273,10 +2273,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowConsumer": {
     "kind": "semantics",
@@ -2291,10 +2291,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "demandPause": {
     "kind": "semantics",
@@ -2309,10 +2309,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "slowProducer": {
     "kind": "semantics",
@@ -2326,10 +2326,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    },
    "interrupt": {
     "kind": "semantics",
@@ -2346,10 +2346,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   },
   "vt-naive": {
@@ -2367,10 +2367,10 @@
     "maxHeapMb": 2048,
     "jvmArgs": "-Xmx2g",
     "commit": null,
-    "larkVersion": null,
     "run": null,
     "fork": null,
-    "order": null
+    "order": null,
+    "surefoldVersion": null
    }
   }
  }

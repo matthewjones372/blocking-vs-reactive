@@ -252,17 +252,17 @@ fun overloadVt(run: OverloadRun, bound: Int, inner: ((() -> Unit) -> Unit)?) {
 }
 // endregion
 
-// region overload-lark
+// region overload-surefold
 /**
- * `mapParUnordered(limit)` written out as Lark defines it (`mapParUnordered(limit.max) { limit.withPermit { … } }`),
+ * `mapParUnordered(limit)` written out as Surefold defines it (`mapParUnordered(limit.max) { limit.withPermit { … } }`),
  * so that an expired element can be caught outside the permit instead of failing the stream.
  */
-fun overloadLark(run: OverloadRun, limit: Limit) {
+fun overloadSurefold(run: OverloadRun, limit: Limit) {
     val exit = Stream.from(Iterable { run.source })
         .mapParUnordered(limit.max) { i -> run.serveBlocking(i) { call -> limit.withPermit(call) } }
         .runFold(0L) { n, _ -> n + 1 }
         .run(Forks()).toCompletableFuture().join()
-    check(exit is Exit.Done) { "lark overload run ended with $exit" }
+    check(exit is Exit.Done) { "surefold overload run ended with $exit" }
 }
 // endregion
 
@@ -284,22 +284,22 @@ fun overloadReactor(run: OverloadRun, bound: Int, limit: AsyncLimit?) {
 
 private const val MAX_BOUND = 1_000
 
-private fun adaptiveLark(run: OverloadRun) =
+private fun adaptiveSurefold(run: OverloadRun) =
     Limit.adaptive("dependency", initial = 20, max = MAX_BOUND).also { l -> run.limitNow = { l.current } }
 
 private fun adaptivePort(run: OverloadRun) =
     AsyncLimit.adaptive(initial = 20, max = MAX_BOUND).also { l -> run.limitNow = { l.current } }
 
-/** Model × control policy. `fixed-N` is a bound somebody picked; `adaptive` is Lark's Vegas, `adaptive-port` the port. */
+/** Model × control policy. `fixed-N` is a bound somebody picked; `adaptive` is Surefold's Vegas, `adaptive-port` the port. */
 val overloadContestants: Map<String, (OverloadRun) -> Unit> = linkedMapOf(
     "vt-fixed-1000" to { r -> overloadVt(r, 1_000, null) },
     "vt-fixed-500" to { r -> overloadVt(r, 500, null) },
     "vt-fixed-100" to { r -> overloadVt(r, 100, null) },
-    "vt-adaptive" to { r -> val l = adaptiveLark(r); overloadVt(r, l.max) { call -> l.withPermit(call) } },
+    "vt-adaptive" to { r -> val l = adaptiveSurefold(r); overloadVt(r, l.max) { call -> l.withPermit(call) } },
     "vt-adaptive-port" to { r -> val l = adaptivePort(r); overloadVt(r, l.max) { call -> l.withPermit(call) } },
-    "lark-fixed-1000" to { r -> overloadLark(r, Limit.fixed(1_000)) },
-    "lark-fixed-500" to { r -> overloadLark(r, Limit.fixed(500)) },
-    "lark-adaptive" to { r -> overloadLark(r, adaptiveLark(r)) },
+    "surefold-fixed-1000" to { r -> overloadSurefold(r, Limit.fixed(1_000)) },
+    "surefold-fixed-500" to { r -> overloadSurefold(r, Limit.fixed(500)) },
+    "surefold-adaptive" to { r -> overloadSurefold(r, adaptiveSurefold(r)) },
     "reactor-fixed-1000" to { r -> overloadReactor(r, 1_000, null) },
     "reactor-fixed-500" to { r -> overloadReactor(r, 500, null) },
     "reactor-adaptive-port" to { r -> overloadReactor(r, MAX_BOUND, adaptivePort(r)) },

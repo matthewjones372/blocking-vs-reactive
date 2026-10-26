@@ -133,7 +133,7 @@ class DeviceIo(private val device: Device, override val workload: Workload, over
 
 /**
  * Mode C: each model waits on its own timer. A virtual thread sleeps; Reactor uses `Mono.delay` on its parallel
- * scheduler; Pekko uses its scheduler, which ticks every millisecond; the plain `CompletableFuture` and Lark
+ * scheduler; Pekko uses its scheduler, which ticks every millisecond; the plain `CompletableFuture` and Surefold
  * `mapAsync` forms, which have no timer of their own, use a JDK [ScheduledExecutorService] with a thread per core.
  * The answers are the same as on a device, but where continuations run differs by model, which is the point.
  * [lag] is measured at the moment each timer fires.

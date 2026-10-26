@@ -4,19 +4,19 @@ plugins {
     application
 }
 
-// mavenLocal for a Lark snapshot under test: `-PlarkVersion=0.0.0-cand-SNAPSHOT` after `publishToMavenLocal`.
+// mavenLocal for a Surefold snapshot under test: `-PsurefoldVersion=0.0.0-cand-SNAPSHOT` after `publishToMavenLocal`.
 repositories {
     mavenLocal()
     mavenCentral()
 }
 
-// Lark is built from the commit in lark.commit by scripts/build-lark.sh: the overload experiment needs `Limit`,
+// Surefold is built from the commit in surefold.commit by scripts/build-surefold.sh: the overload experiment needs `Limit`,
 // which no release has yet.
-val larkVersion = providers.gradleProperty("larkVersion").getOrElse("0.0.0-cand-SNAPSHOT")
+val surefoldVersion = providers.gradleProperty("surefoldVersion").getOrElse("0.0.0-cand-SNAPSHOT")
 
 dependencies {
     // The contestants. Each is the latest stable release on the day the hypotheses were written.
-    implementation("io.github.matthewjones372:lark-stream-forks:$larkVersion")
+    implementation("io.github.matthewjones372:lark-stream-forks:$surefoldVersion")
     implementation("io.projectreactor:reactor-core:3.8.8")
     implementation("org.apache.pekko:pekko-stream_2.13:1.2.1")
     // The socket suite's Reactor Netty client, and the Netty its second server runs on (ported from main).

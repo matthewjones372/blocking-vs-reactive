@@ -26,8 +26,8 @@ import java.util.concurrent.atomic.LongAdder
 @Measurement(iterations = 8, time = 1)
 open class PerElementBenchmark {
     @Param(
-        "vt-plain", "vt-ordered", "vt-structured", "lark-mappar", "lark-mappar-unordered", "cf-plain", "lark-mapasync",
-        "lark-mapasync-unordered", "reactor-flatmap", "reactor-flatmapsequential", "pekko-mapasync", "pekko-mapasync-unordered",
+        "vt-plain", "vt-ordered", "vt-structured", "surefold-mappar", "surefold-mappar-unordered", "cf-plain", "surefold-mapasync",
+        "surefold-mapasync-unordered", "reactor-flatmap", "reactor-flatmapsequential", "pekko-mapasync", "pekko-mapasync-unordered",
     )
     lateinit var contestant: String
 

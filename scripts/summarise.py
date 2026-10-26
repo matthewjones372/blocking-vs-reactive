@@ -31,11 +31,36 @@ BOOT = 2000
 rng = random.Random(7)
 
 
+# Surefold was called Lark until its commit f128f96a. Results recorded before then carry the old names (`lark-mappar`,
+# `CpuChainBenchmark.lark`, `larkCommit`): they are read under the new ones, and the raw files stay as measured.
+OLD_NAME = re.compile(r"(?<![A-Za-z0-9_])lark(?![A-Za-z0-9_])")
+
+
+def renamed(r):
+    if isinstance(r, list):
+        return [renamed(x) for x in r]
+    if not isinstance(r, dict):
+        return r
+    for key in ("contestant", "benchmark"):
+        if isinstance(r.get(key), str):
+            r[key] = OLD_NAME.sub("surefold", r[key])
+    if isinstance(r.get("params"), dict):
+        r["params"] = {k: OLD_NAME.sub("surefold", v) if isinstance(v, str) else v for k, v in r["params"].items()}
+    for old, new in (("larkCommit", "surefoldCommit"), ("larkVersion", "surefoldVersion")):
+        if old in r:
+            r.setdefault(new, r.pop(old))
+    return r
+
+
+def loads(text):
+    return renamed(json.loads(text))
+
+
 def load(suite):
     d = results / suite
-    meta = json.loads((d / "metadata.json").read_text())
-    records = [json.loads(l) for l in (d / "results.jsonl").read_text().splitlines() if l.strip()]
-    runs = [json.loads(l) for l in (d / "runs.jsonl").read_text().splitlines() if l.strip()] if (d / "runs.jsonl").exists() else []
+    meta = loads((d / "metadata.json").read_text())
+    records = [loads(l) for l in (d / "results.jsonl").read_text().splitlines() if l.strip()]
+    runs = [loads(l) for l in (d / "runs.jsonl").read_text().splitlines() if l.strip()] if (d / "runs.jsonl").exists() else []
     check_consistent(suite, meta, records)
     return meta, records, runs
 
@@ -94,7 +119,7 @@ def per_fork(records, key, metric):
 
 
 def header(meta):
-    return (f"Commit `{meta['commit'][:10]}`{' (dirty tree)' if meta['dirty'] else ''}, Lark `{meta['larkCommit'][:10]}`, "
+    return (f"Commit `{meta['commit'][:10]}`{' (dirty tree)' if meta['dirty'] else ''}, Surefold `{meta['surefoldCommit'][:10]}`, "
             f"{meta['java'].splitlines()[0]}, {meta['cpu']}, {meta['cpus']} CPUs, kernel {meta['kernel']}, "
             f"governor {meta['governor']}. JVM: `{meta['jvmOptions']}`. {meta['forks']} forks"
             + (f" × {meta['warmups']} warm-up + {meta['iterations']} measured iterations" if meta['suite'] in ('io', 'workload', 'smoke') or meta['suite'].startswith('net') else "")
@@ -120,7 +145,7 @@ def io_summary(suite, meta, records, runs, out, js):
     if suite.startswith("net"):
         cols = [c for c in cols if c[0] != "lagP99Us"] + [("serverLagP99Us", "server lag p99 µs", 0), ("serverUtil", "server CPU", 2)]
         for r in good:
-            s = json.loads(r["serverStats"]) if r.get("serverStats") else {}
+            s = loads(r["serverStats"]) if r.get("serverStats") else {}
             r["serverLagP99Us"] = s.get("lagP99Us")
             r["serverUtil"] = s.get("cpuUtilisation")
     values = {m: per_fork(good, key, m) for m, _, _ in cols + [("steadyOpsPerSec", "", 0)]}
@@ -335,8 +360,8 @@ def overload_summary(suite, meta, records, runs, out, js):
 
 def jmh_summary(out, js):
     d = results / "jmh"
-    meta = json.loads((d / "metadata.json").read_text())
-    rows = json.loads((d / "jmh.json").read_text())
+    meta = loads((d / "metadata.json").read_text())
+    rows = loads((d / "jmh.json").read_text())
     out.append(f"Commit `{meta['commit'][:10]}`{' (dirty tree)' if meta.get('dirty') else ''}, {meta['java']}, {meta['cpu']}, "
                f"{meta['cpus']} CPUs.\n")
     out.append("Score is JMH's mean with its 99.9% error. *Fork means* is each JVM's own mean, the spread between JVMs.\n")
@@ -356,7 +381,7 @@ def jmh_summary(out, js):
 # ---- semantics ------------------------------------------------------------------------------------------------------
 
 def semantics_summary(out, js):
-    rows = [json.loads(l) for l in (results / "semantics/semantics.jsonl").read_text().splitlines() if l.strip()]
+    rows = [loads(l) for l in (results / "semantics/semantics.jsonl").read_text().splitlines() if l.strip()]
     by = defaultdict(dict)
     for r in rows:
         by[r["contestant"]][r["check"]] = r
@@ -381,19 +406,19 @@ def operational_tables(out):
         out.append("\n### Thread dump with 100 calls pending\n")
         out.append("| contestant | model | threads in dump | threads at the call site |")
         out.append("|---|---|--:|--:|")
-        for r in (json.loads(l) for l in (d / "threaddump.jsonl").read_text().splitlines() if l.strip()):
+        for r in (loads(l) for l in (d / "threaddump.jsonl").read_text().splitlines() if l.strip()):
             out.append(f"| {r['contestant']} | {r['model']} | {r['threads']} | {r['threadsAtCallSite']} |")
     if (d / "handoff.jsonl").exists():
         out.append("\n### Does the JMH hand-off cross threads?\n")
         out.append("| contestant | elements | produced on the consumer's thread | fraction |")
         out.append("|---|--:|--:|--:|")
-        for r in (json.loads(l) for l in (d / "handoff.jsonl").read_text().splitlines() if l.strip()):
+        for r in (loads(l) for l in (d / "handoff.jsonl").read_text().splitlines() if l.strip()):
             out.append(f"| {r['contestant']} | {r['elements']:,} | {r['producedOnConsumerThread']:,} | {r['fraction']:.2f} |")
     if (d / "stacktraces.jsonl").exists():
         out.append("\n### Stack trace of a failed fetch, as the handler catches it\n")
         out.append("| contestant | exception caught | names `handleRequest` | names `fetchOrder` | lines |")
         out.append("|---|---|---|---|--:|")
-        for r in (json.loads(l) for l in (d / "stacktraces.jsonl").read_text().splitlines() if l.strip()):
+        for r in (loads(l) for l in (d / "stacktraces.jsonl").read_text().splitlines() if l.strip()):
             yn = lambda x: "yes" if x else "no"
             out.append(f"| {r['contestant']} | `{r['exception']}` | {yn(r['namesHandleRequest'])} | {yn(r['namesFetchOrder'])} | {r['lines']} |")
 

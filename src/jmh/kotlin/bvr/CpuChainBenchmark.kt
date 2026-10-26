@@ -48,7 +48,7 @@ open class CpuChainBenchmark {
     fun sequence(): Long = (0 until n).asSequence().map { it * 3 }.filter { it % 2 == 0 }.map { it + 1L }.sum()
 
     @Benchmark
-    fun lark(): Long {
+    fun surefold(): Long {
         val exit = Stream.from(0 until n).map { it * 3 }.filter { it % 2 == 0 }.map { it + 1L }
             .runFold(0L) { s, x -> s + x }.run(Forks()).toCompletableFuture().join()
         return (exit as Exit.Done).value
