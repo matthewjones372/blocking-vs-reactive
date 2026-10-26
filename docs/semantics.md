@@ -105,8 +105,10 @@ on a behaviour (`docs/surefold-issues.md`).
   the failed call; an asynchronous one carries the stack of the thread that completed the future, so Surefold
   `mapAsync`, `cf-plain` and Pekko name neither. Reactor names the handler through `block()`, and the failing call
   only with `checkpoint()`; `Hooks.onOperatorDebug()` adds the assembly site (here a lambda in the handler) but
-  not `fetchOrder`. Surefold logs a failed stage with the operator, the element and the line that built it, which is
-  in the log rather than the exception's own frames.
+  not `fetchOrder`. Surefold `mapAsync` does attach a suppressed `Defect` to the exception naming the operator, the
+  element and the line that built the stage (`mapAsync died on 3, built at StackTraces.kt:89`); what it lacks is the
+  waiting caller's own frames, which Reactor's `block()` adds
+  ([surefold#654](https://github.com/matthewjones372/lark/issues/654)).
 - **Code.** The stream libraries express each contestant in seven lines; the plain JDK versions take 32–40 once
   they handle failure, stop and interrupt as the tests require (`scripts/loc.py`). Which is easier to read is a
   judgement this document does not make.

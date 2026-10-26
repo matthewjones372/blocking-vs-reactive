@@ -250,7 +250,8 @@ future on `take`, on a failure and on an interrupt; blocking contestants interru
 a Surefold run with Surefold's `await()` returns control but leaves the run going ([`docs/surefold-issues.md`](docs/surefold-issues.md)).
 Ordered Surefold and `vt-ordered` report a failure only after earlier calls answer; Reactor and Pekko fail at once. A
 blocking failure names the handler and the failed fetch in its stack trace; Surefold `mapAsync`, `cf-plain` and Pekko
-name neither; Reactor names the handler through `block()`, and the fetch only with `checkpoint()`.
+name neither, though Surefold attaches the failed element and the line that built the stage; Reactor names the handler
+through `block()`, and the fetch only with `checkpoint()`.
 
 **13. Without I/O, per-element machinery separates the models by an order of magnitude, and Reactor leads the
 CPU-only cases.** JMH, five forks, 99.9% intervals in [`results/jmh/summary.md`](results/jmh/summary.md):
