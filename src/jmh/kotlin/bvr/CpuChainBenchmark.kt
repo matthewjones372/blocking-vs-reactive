@@ -1,13 +1,13 @@
 package bvr
 
-import io.github.matthewjones372.lark.stream.Exit
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.filter
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.map
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
+import io.github.matthewjones372.surefold.stream.Exit
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.filter
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.map
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import org.openjdk.jmh.annotations.Benchmark
@@ -48,7 +48,7 @@ open class CpuChainBenchmark {
     fun sequence(): Long = (0 until n).asSequence().map { it * 3 }.filter { it % 2 == 0 }.map { it + 1L }.sum()
 
     @Benchmark
-    fun lark(): Long {
+    fun surefold(): Long {
         val exit = Stream.from(0 until n).map { it * 3 }.filter { it % 2 == 0 }.map { it + 1L }
             .runFold(0L) { s, x -> s + x }.run(Forks()).toCompletableFuture().join()
         return (exit as Exit.Done).value

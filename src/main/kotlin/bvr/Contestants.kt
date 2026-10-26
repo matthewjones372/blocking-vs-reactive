@@ -1,18 +1,18 @@
 package bvr
 
 import com.typesafe.config.ConfigFactory
-import io.github.matthewjones372.lark.await
-import io.github.matthewjones372.lark.stream.Exit
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.mapAsync
-import io.github.matthewjones372.lark.stream.mapAsyncUnordered
-import io.github.matthewjones372.lark.stream.mapPar
-import io.github.matthewjones372.lark.stream.mapParUnordered
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
-import io.github.matthewjones372.lark.stream.take
+import io.github.matthewjones372.surefold.await
+import io.github.matthewjones372.surefold.stream.Exit
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.mapAsync
+import io.github.matthewjones372.surefold.stream.mapAsyncUnordered
+import io.github.matthewjones372.surefold.stream.mapPar
+import io.github.matthewjones372.surefold.stream.mapParUnordered
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
+import io.github.matthewjones372.surefold.stream.take
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
@@ -164,8 +164,8 @@ fun vtPlain(job: Job) {
 // region vt-batched (diagnostic)
 /**
  * [vtPlain], but a finished call's permit is handed back only once a batch of them has finished: a quarter of the
- * bound, at most 64, a power of two, as Lark's window wakes its parked feeder (`Ring`, `Arrivals`). Not a contestant:
- * it isolates what refilling in batches costs over a real socket, apart from everything else Lark does.
+ * bound, at most 64, a power of two, as Surefold's window wakes its parked feeder (`Ring`, `Arrivals`). Not a contestant:
+ * it isolates what refilling in batches costs over a real socket, apart from everything else Surefold does.
  */
 fun vtBatched(job: Job) {
     val batch = Integer.highestOneBit(maxOf(1, minOf(job.concurrency / 4, 64)))
@@ -325,8 +325,8 @@ fun vtNaive(job: Job) {
 }
 // endregion
 
-// region lark-mappar
-fun larkMapPar(job: Job) {
+// region surefold-mappar
+fun surefoldMapPar(job: Job) {
     Stream.from(Iterable { job.source })
         .mapPar(job.concurrency) { x -> job.callBlocking(x) }
         .let { if (job.take < Long.MAX_VALUE) it.take(job.take) else it }
@@ -335,8 +335,8 @@ fun larkMapPar(job: Job) {
 }
 // endregion
 
-// region lark-mappar-unordered
-fun larkMapParUnordered(job: Job) {
+// region surefold-mappar-unordered
+fun surefoldMapParUnordered(job: Job) {
     Stream.from(Iterable { job.source })
         .mapParUnordered(job.concurrency) { x -> job.callBlocking(x) }
         .let { if (job.take < Long.MAX_VALUE) it.take(job.take) else it }
@@ -385,8 +385,8 @@ fun cfPlain(job: Job) {
 }
 // endregion
 
-// region lark-mapasync
-fun larkMapAsync(job: Job) {
+// region surefold-mapasync
+fun surefoldMapAsync(job: Job) {
     Stream.from(Iterable { job.source })
         .mapAsync(job.concurrency) { x -> job.callAsync(x) }
         .let { if (job.take < Long.MAX_VALUE) it.take(job.take) else it }
@@ -395,8 +395,8 @@ fun larkMapAsync(job: Job) {
 }
 // endregion
 
-// region lark-mapasync-unordered
-fun larkMapAsyncUnordered(job: Job) {
+// region surefold-mapasync-unordered
+fun surefoldMapAsyncUnordered(job: Job) {
     Stream.from(Iterable { job.source })
         .mapAsyncUnordered(job.concurrency) { x -> job.callAsync(x) }
         .let { if (job.take < Long.MAX_VALUE) it.take(job.take) else it }
@@ -471,11 +471,11 @@ val contestants: Map<String, Contestant> = listOf(
     Contestant("vt-plain", Model.BLOCKING, ordered = false, "JDK", ::vtPlain),
     Contestant("vt-ordered", Model.BLOCKING, ordered = true, "JDK", ::vtOrdered),
     Contestant("vt-structured", Model.STRUCTURED, ordered = false, "JDK (preview)", ::vtStructured),
-    Contestant("lark-mappar", Model.BLOCKING, ordered = true, "Lark", ::larkMapPar),
-    Contestant("lark-mappar-unordered", Model.BLOCKING, ordered = false, "Lark", ::larkMapParUnordered),
+    Contestant("surefold-mappar", Model.BLOCKING, ordered = true, "Surefold", ::surefoldMapPar),
+    Contestant("surefold-mappar-unordered", Model.BLOCKING, ordered = false, "Surefold", ::surefoldMapParUnordered),
     Contestant("cf-plain", Model.ASYNC, ordered = false, "JDK", ::cfPlain),
-    Contestant("lark-mapasync", Model.ASYNC, ordered = true, "Lark", ::larkMapAsync),
-    Contestant("lark-mapasync-unordered", Model.ASYNC, ordered = false, "Lark", ::larkMapAsyncUnordered),
+    Contestant("surefold-mapasync", Model.ASYNC, ordered = true, "Surefold", ::surefoldMapAsync),
+    Contestant("surefold-mapasync-unordered", Model.ASYNC, ordered = false, "Surefold", ::surefoldMapAsyncUnordered),
     Contestant("reactor-flatmap", Model.REACTIVE, ordered = false, "Reactor", ::reactorFlatMap),
     Contestant("reactor-flatmapsequential", Model.REACTIVE, ordered = true, "Reactor", ::reactorFlatMapSequential),
     Contestant("pekko-mapasync", Model.REACTIVE, ordered = true, "Pekko", ::pekkoMapAsync),

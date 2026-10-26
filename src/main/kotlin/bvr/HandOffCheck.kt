@@ -1,12 +1,12 @@
 package bvr
 
-import io.github.matthewjones372.lark.await
-import io.github.matthewjones372.lark.stream.Forks
-import io.github.matthewjones372.lark.stream.Stream
-import io.github.matthewjones372.lark.stream.buffer
-import io.github.matthewjones372.lark.stream.from
-import io.github.matthewjones372.lark.stream.run
-import io.github.matthewjones372.lark.stream.runFold
+import io.github.matthewjones372.surefold.await
+import io.github.matthewjones372.surefold.stream.Forks
+import io.github.matthewjones372.surefold.stream.Stream
+import io.github.matthewjones372.surefold.stream.buffer
+import io.github.matthewjones372.surefold.stream.from
+import io.github.matthewjones372.surefold.stream.run
+import io.github.matthewjones372.surefold.stream.runFold
 import org.apache.pekko.stream.javadsl.Sink
 import org.apache.pekko.stream.javadsl.Source
 import reactor.core.publisher.Flux
@@ -41,7 +41,7 @@ fun handOffThreads() {
             Flux.fromIterable(recording(p)).publishOn(single, 256).doOnNext(c::take).then().block()
             single.dispose()
         },
-        "lark buffer" to { p, c ->
+        "surefold buffer" to { p, c ->
             Stream.from(recording(p)).buffer(256).runFold(0L) { n, x -> c.take(x); n + 1 }.run(Forks()).await()
         },
         "pekko async boundary" to { p, c ->

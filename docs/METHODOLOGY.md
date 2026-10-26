@@ -8,12 +8,12 @@ results; this document is what a reviewer needs to check them.
 | | Question | Experiment | What it cannot answer |
 |---|---|---|---|
 | Q1 | Does Loom remove the *need* for asynchronous or reactive code? | None directly. Q2–Q4 and the semantics checks give evidence on the parts of the question that are measurable. | Team skills, ecosystem, existing code, libraries that only offer one style. |
-| Q2 | What does waiting by parking a virtual thread cost, against composing a future, for the same I/O? | `io`, `workload`, `net`, `memory`, `PerElementBenchmark`: blocking contestants against async ones *with the library held fixed* where possible (plain JDK against plain JDK, Lark `mapPar` against Lark `mapAsync`). | Costs inside a real client library's own event loop, beyond the two client families in `net`. |
-| Q3 | How do Lark, Reactor and Pekko compare at the same job? | The same suites, comparing libraries within one model (async against async, ordered against ordered). | Workloads the operators here do not represent (fan-in, windows, joins, hot sources). |
+| Q2 | What does waiting by parking a virtual thread cost, against composing a future, for the same I/O? | `io`, `workload`, `net`, `memory`, `PerElementBenchmark`: blocking contestants against async ones *with the library held fixed* where possible (plain JDK against plain JDK, Surefold `mapPar` against Surefold `mapAsync`). | Costs inside a real client library's own event loop, beyond the two client families in `net`. |
+| Q3 | How do Surefold, Reactor and Pekko compare at the same job? | The same suites, comparing libraries within one model (async against async, ordered against ordered). | Workloads the operators here do not represent (fan-in, windows, joins, hot sources). |
 | Q4 | How do fixed and adaptive concurrency limits behave when a dependency loses capacity? | `overload`: a factorial of model × policy. | Policies other than Vegas; dependencies whose latency does not rise with load. |
 
-Lark appears on both sides of Q2: `mapPar` blocks a virtual thread per element, `mapAsync` composes a
-`CompletionStage` and parks nothing per element. A result in which Lark `mapAsync` beats Reactor is evidence about
+Surefold appears on both sides of Q2: `mapPar` blocks a virtual thread per element, `mapAsync` composes a
+`CompletionStage` and parks nothing per element. A result in which Surefold `mapAsync` beats Reactor is evidence about
 two asynchronous implementations (Q3), not about blocking against reactive (Q2).
 
 ## 2. The models
@@ -22,8 +22,8 @@ two asynchronous implementations (Q3), not about blocking against reactive (Q2).
 |---|---|---|---|---|
 | Plain blocking (`vt-plain`, `vt-ordered`) | parking a virtual thread on `Future.get` or a socket read | a `Semaphore` | completion order, or the caller taking futures in start order | the parked thread, once its carrier picks it up |
 | Structured blocking (`vt-structured`) | the same | a `Semaphore`, inside a `StructuredTaskScope` (JDK 25 preview) | completion | the same; the scope owns every fork, cancels the rest on failure, and outlives none |
-| Blocking in a stream (`lark-mappar*`) | the same, one virtual thread per element in a window | the window | ordered, or unordered | the same; Lark's pull loop takes answers from the window |
-| Async composition (`cf-plain`, `lark-mapasync*`) | registering on a `CompletableFuture` (or, for ordered Lark, polling the head stage) | a `Semaphore` released by the callback, or Lark's window | completion, or ordered | the thread that completes the future (callbacks), or Lark's pull loop (ordered `mapAsync`) |
+| Blocking in a stream (`surefold-mappar*`) | the same, one virtual thread per element in a window | the window | ordered, or unordered | the same; Surefold's pull loop takes answers from the window |
+| Async composition (`cf-plain`, `surefold-mapasync*`) | registering on a `CompletableFuture` (or, for ordered Surefold, polling the head stage) | a `Semaphore` released by the callback, or Surefold's window | completion, or ordered | the thread that completes the future (callbacks), or Surefold's pull loop (ordered `mapAsync`) |
 | Reactive streams (`reactor-*`, `pekko-*`) | `Mono.fromFuture` / Pekko's async callback | `flatMap`'s `maxConcurrency`, Pekko's `parallelism` | `flatMap`, `mapAsyncUnordered`: completion; `flatMapSequential`, `mapAsync`: source order | Reactor: the completing thread runs the drain; Pekko: the stream's actor on its dispatcher |
 | Unbounded (`vt-naive`) | parking | nothing | completion | control only |
 
@@ -68,11 +68,11 @@ Choices made for every contestant alike:
   `Semaphore`: parking a platform thread costs more than parking a virtual one.
 - **Reactor's inner prefetch is 1**, as its documentation advises for `Mono` inners; with the default of 32,
   `flatMapSequential` allocates a queue of 32 per inner.
-- **Pekko waits with `get()`** on the materialised stage, and Lark with Lark's own `await()`, both interruptible.
+- **Pekko waits with `get()`** on the materialised stage, and Surefold with Surefold's own `await()`, both interruptible.
 - **Blocking calls use `Future.get`**, not `join`, so an interrupt can stop them (AUDIT A11).
 
 What is not equal, and cannot be made so: Reactor's `flatMap` drain runs on whichever thread completes an inner;
-Pekko processes completions on its stream actor; Lark's ordered `mapAsync` polls rather than registering a callback;
+Pekko processes completions on its stream actor; Surefold's ordered `mapAsync` polls rather than registering a callback;
 a virtual thread is resumed by its carrier pool. These are the models, and the device experiments (section 4) exist
 to show how much results depend on them.
 
@@ -89,7 +89,7 @@ threads run whatever contestants compose on its futures. Four are used, all in `
 | `shared` | `ScheduledThreadPoolExecutor(2)` | its two timer threads | the original, kept for comparison; saturates near 550k calls/s |
 | `wheel` | one-thread timing wheel, 100 µs ticks, lock-free submission | the wheel thread | the original's placement of continuations, without its capacity limit |
 | `dispatched` | the same wheel | a separate pool of one platform thread per core, batches of up to 64 | the default: the timer's work per call is the same for every contestant |
-| `native` | each model's own: `Thread.sleep`, `Mono.delay` on Reactor's parallel scheduler, Pekko's scheduler (1 ms ticks), a JDK `ScheduledExecutorService` with a thread per core for `CompletableFuture` and Lark `mapAsync` | the model's own timer threads | what each model does with its own primitives |
+| `native` | each model's own: `Thread.sleep`, `Mono.delay` on Reactor's parallel scheduler, Pekko's scheduler (1 ms ticks), a JDK `ScheduledExecutorService` with a thread per core for `CompletableFuture` and Surefold `mapAsync` | the model's own timer threads | what each model does with its own primitives |
 
 Every iteration records the device's lag: how late each call fired against its deadline. A healthy wheel fires
 within a tick or two; a lag that grows means the device, or the CPU it shares, is the bottleneck, and the
@@ -130,11 +130,11 @@ loop, several `SO_REUSEPORT` listeners), and two settings the JDK offers a virtu
 threads (`-Djdk.pollerMode=1`) and two scheduler carriers (`-Djdk.virtualThreadScheduler.parallelism=2`), for the
 blocking contestants at 1,000 and 10,000 in flight. Pekko HTTP and Kotlin coroutines are not covered.
 
-The contestants are all unordered. An earlier version ran Lark's ordered operators against unordered contestants
-(AUDIT A16), so a diagnostic suite, `net-diag`, runs the four raw-client scenarios with each Lark
+The contestants are all unordered. An earlier version ran Surefold's ordered operators against unordered contestants
+(AUDIT A16), so a diagnostic suite, `net-diag`, runs the four raw-client scenarios with each Surefold
 operator in both orders, the ordered contestants of the other models, and `vt-batched`: `vt-plain` with permits
-handed back in batches the size Lark's window uses to wake its feeder (a quarter of the bound, at most 64). It
-separates what ordering costs from what Lark's refill costs. `vt-batched` is in the tests but in no published
+handed back in batches the size Surefold's window uses to wake its feeder (a quarter of the bound, at most 64). It
+separates what ordering costs from what Surefold's refill costs. `vt-batched` is in the tests but in no published
 suite.
 
 ## 6. What is counted, and when
@@ -212,18 +212,18 @@ it serves 90% of capacity for 200 ms).
 
 The factorial:
 
-| | fixed 1,000 | fixed 500 | fixed 100 | adaptive (Lark `Limit`) | adaptive (port) |
+| | fixed 1,000 | fixed 500 | fixed 100 | adaptive (Surefold `Limit`) | adaptive (port) |
 |---|---|---|---|---|---|
 | plain virtual threads | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Lark `mapParUnordered(limit)` | ✓ | ✓ | | ✓ | |
+| Surefold `mapParUnordered(limit)` | ✓ | ✓ | | ✓ | |
 | Reactor `flatMap` | ✓ | ✓ | | | ✓ |
 
-Adaptive is TCP Vegas as Lark implements it (initial 20, max 1,000). Lark's `Vegas` is internal, and its `Limit`
+Adaptive is TCP Vegas as Surefold implements it (initial 20, max 1,000). Surefold's `Vegas` is internal, and its `Limit`
 only offers a blocking `withPermit`, so `AsyncLimit` ports the same arithmetic under the same lock and adds a
 non-blocking acquire for Reactor. Running plain virtual threads on both is the check that the port behaves as the
-original. Lark's `mapParUnordered(limit)` is written out as Lark defines it (`mapParUnordered(limit.max) {
+original. Surefold's `mapParUnordered(limit)` is written out as Surefold defines it (`mapParUnordered(limit.max) {
 limit.withPermit { … } }`) so an expired element can be caught outside the permit rather than fail the stream.
-Under every adaptive policy the outer bound is 1,000, as Lark's window is `limit.max`. As in Lark's `Limit`, a
+Under every adaptive policy the outer bound is 1,000, as Surefold's window is `limit.max`. As in Surefold's `Limit`, a
 caller that finds a free place takes it even if others are waiting. Reactor's open-loop source, which parks until
 each arrival is due, is pulled on a `boundedElastic` worker (`subscribeOn`), as Reactor's documentation does for a
 blocking source.
@@ -236,7 +236,7 @@ stops Gradle's and Kotlin's daemons. Each JVM has a fixed, pre-touched heap; I/O
 measured iterations, each of a few hundred thousand to a million elements, with a full GC before each measured
 iteration. A single-threaded calibration loop at the start of every JVM records how much the machine drifted.
 Everything the summary needs to reproduce a number is in `results/<suite>/`: `results.jsonl` (every measurement,
-with commit, Lark commit, JDK, JVM options, fork and order), `runs.jsonl` (start, end, exit, load average, stderr
+with commit, Surefold commit, JDK, JVM options, fork and order), `runs.jsonl` (start, end, exit, load average, stderr
 tail of each JVM), and `metadata.json` (machine, kernel, CPU, seed, schedule).
 
 `scripts/summarise.py` treats a fork as one sample (the median of its measured iterations), and reports the median
@@ -256,7 +256,7 @@ provide, and their iterations are seconds long.
 
 All results come from one cloud VM: 4 vCPUs (Intel Xeon @ 2.1 GHz), 15 GiB, Linux 6.18, no CPU frequency control
 (`scaling_governor` is not exposed), shared physical hardware. JDK 25.0.5 (Temurin), Kotlin 2.4.10, reactor-core
-3.8.8, pekko-stream 1.2.1, Lark at `lark.commit`.
+3.8.8, pekko-stream 1.2.1, Surefold at `surefold.commit`.
 
 - Neighbours and frequency are not controlled; the randomised order and the calibration loop make drift visible and
   spread it across contestants, but do not remove it.

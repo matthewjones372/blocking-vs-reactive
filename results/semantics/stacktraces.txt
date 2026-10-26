@@ -21,21 +21,21 @@ java.io.IOException: connection reset fetching order 3
 	at java.base/java.util.concurrent.StructuredTaskScopeImpl$SubtaskImpl.run(StructuredTaskScopeImpl.java:325)
 	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
 
-===== lark-mappar
+===== surefold-mappar
 java.io.IOException: connection reset fetching order 3
 	at bvr.StackTracesKt.fetchOrderBlocking(StackTraces.kt:43)
-	at bvr.StackTracesKt.handleRequestLark$lambda$0(StackTraces.kt:85)
-	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0$0(Window.kt:209)
-	at io.github.matthewjones372.lark.fail.FailKt.attempt(Fail.kt:49)
-	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$0(Window.kt:209)
-	at io.github.matthewjones372.lark.stream.DefectKt.guard(Defect.kt:46)
-	at io.github.matthewjones372.lark.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
-	at io.github.matthewjones372.lark.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:214)
-	at io.github.matthewjones372.lark.stream.InFlight.run(Window.kt:117)
+	at bvr.StackTracesKt.handleRequestSurefold$lambda$0(StackTraces.kt:85)
+	at io.github.matthewjones372.surefold.stream.WindowKt.window$lambda$0$0(Window.kt:209)
+	at io.github.matthewjones372.surefold.fail.FailKt.attempt(Fail.kt:49)
+	at io.github.matthewjones372.surefold.stream.WindowKt.window$lambda$0(Window.kt:209)
+	at io.github.matthewjones372.surefold.stream.DefectKt.guard(Defect.kt:46)
+	at io.github.matthewjones372.surefold.stream.DefectKt.guarded$lambda$0(Defect.kt:29)
+	at io.github.matthewjones372.surefold.stream.WindowKt.window$lambda$1$0$0$0(Window.kt:214)
+	at io.github.matthewjones372.surefold.stream.InFlight.run(Window.kt:117)
 	at java.base/java.lang.VirtualThread.run(VirtualThread.java:460)
-	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapPar died on 3, built at StackTraces.kt:85
+	Suppressed: io.github.matthewjones372.surefold.stream.Defect: mapPar died on 3, built at StackTraces.kt:85
 
-===== lark-mapasync
+===== surefold-mapasync
 bvr.IoFailure: connection reset on call 3
 	at bvr.DeviceKt.fire(Device.kt:46)
 	at bvr.WheelDevice.fireAll$lambda$0(Device.kt:171)
@@ -46,7 +46,7 @@ bvr.IoFailure: connection reset on call 3
 	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
-	Suppressed: io.github.matthewjones372.lark.stream.Defect: mapAsync died on 3, built at StackTraces.kt:89
+	Suppressed: io.github.matthewjones372.surefold.stream.Defect: mapAsync died on 3, built at StackTraces.kt:89
 
 ===== cf-plain
 bvr.IoFailure: connection reset on call 3

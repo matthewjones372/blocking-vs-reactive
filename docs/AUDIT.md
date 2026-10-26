@@ -1,6 +1,6 @@
 # Audit of the original benchmark
 
-What was wrong with the benchmark as it stood at commit `ab038bf` ("Native rows: Lark's mapAsync waits on a JDK
+What was wrong with the benchmark as it stood at commit `ab038bf` ("Native rows: Surefold's mapAsync waits on a JDK
 timer, not Pekko's"), what each problem did to the published numbers, and what replaced it. File references are
 to that commit (`git show ab038bf:<path>`). Measurements quoted here as *exploratory* were single JVMs taken while
 diagnosing, on the same 4-core VM as the final suites; they explain a finding and are not results. Results are in
@@ -27,7 +27,7 @@ median 4 ms (p99 15 ms) after its deadline. At 100k in flight it managed about 5
 waited on the same lock. Throughput was therefore set by the device, and by how much each contestant contended
 with it, not by the contestant.
 
-*Consequence.* The README's "from 10,000 calls in flight up, Lark's `mapAsync` beats Reactor by 1.6–1.9×" and
+*Consequence.* The README's "from 10,000 calls in flight up, Surefold's `mapAsync` beats Reactor by 1.6–1.9×" and
 the 100k rows measured the device's saturation. On a device that keeps up (A2), every contestant reaches 87–95%
 of the 1M ops/s ceiling at 10k in flight in the same exploratory runs, and the differences that remain are CPU
 per call.
@@ -47,11 +47,11 @@ per call.
 
 A `CompletableFuture`'s dependent stages run on the thread that completes it. With the shared device, Reactor's
 `flatMap` drain, Pekko's async callback, `cf-plain`'s permit release, and the unpark of every blocked virtual
-thread all ran on the two `fake-io` threads, while Lark's ordered `mapAsync` registers no callback at all: its pull
-loop polls the head stage (`Awaited.kt` in lark-stream-forks). So the contestant that does least on the completing
+thread all ran on the two `fake-io` threads, while Surefold's ordered `mapAsync` registers no callback at all: its pull
+loop polls the head stage (`Awaited.kt` in surefold-stream-forks). So the contestant that does least on the completing
 thread looked fastest, because it left the device free to fire other calls on time.
 
-Exploratory, c10k on `shared`: lag p50 1.5 ms for Lark `mapAsync`, 3.6 ms for Reactor `flatMap`, 17 ms for
+Exploratory, c10k on `shared`: lag p50 1.5 ms for Surefold `mapAsync`, 3.6 ms for Reactor `flatMap`, 17 ms for
 plain virtual threads, 0.1 ms for Pekko (whose callback only enqueues to an actor). The `wheel` against
 `dispatched` comparison in `results/io/summary.md` measures how much of each contestant's result depends on this.
 
@@ -73,10 +73,10 @@ Two variants a Reactor or Pekko user might reach for were tried and dropped beca
 `Balance` over four `mapAsyncUnordered(n/4).async()` branches was slower than one `mapAsyncUnordered` on every
 device tried (571k against 598k, 416k against 780k, 486k against 774k).
 
-### A4. Ordered Lark was compared with unordered Reactor (distorting)
+### A4. Ordered Surefold was compared with unordered Reactor (distorting)
 
-The headline compared Lark `mapAsync` (ordered) with Reactor `flatMap` (unordered) and Pekko `mapAsyncUnordered`.
-Ordering usually costs, so this did not flatter Lark, but it is not like for like, and there was no ordered Reactor
+The headline compared Surefold `mapAsync` (ordered) with Reactor `flatMap` (unordered) and Pekko `mapAsyncUnordered`.
+Ordering usually costs, so this did not flatter Surefold, but it is not like for like, and there was no ordered Reactor
 or Pekko contestant. *Resolution:* every model now has both: `reactor-flatmapsequential` and `pekko-mapasync`
 are added, and every table marks each contestant ordered or unordered.
 
@@ -116,7 +116,7 @@ calls finished, and split "before" and "after" by finish index (`percentiles(0, 
 Two consequences:
 
 - *The caller's latency was not measured.* An adaptive limit keeps the dependency's queue short by keeping the
-  waiting elements in the caller instead. Exploratory, closed loop: after the drop, Lark's adaptive limit held the
+  waiting elements in the caller instead. Exploratory, closed loop: after the drop, Surefold's adaptive limit held the
   dependency's own p99 at 9–18 ms, as the README said, but the end-to-end p99 from an element's pull to its answer
   was 160–234 ms, against 28 ms for a fixed bound of 500. The README's "p99 after the drop is 10 ms, against 27 ms
   for Reactor at its best fixed concurrency" compared the dependency-side figure of one with what is end-to-end
@@ -124,16 +124,16 @@ Two consequences:
 - *Calls were classified by when they finished*, so calls submitted before the drop and answered after it counted
   as "after", and the boundary shifted with each contestant's speed.
 
-It also compared policies (fixed against adaptive) across models (Reactor against Lark) at once, and Lark's
+It also compared policies (fixed against adaptive) across models (Reactor against Surefold) at once, and Surefold's
 `mapPar(limit)` is ordered while Reactor's `flatMap` is not.
 
 *Resolution* (`Overload.kt`, `AsyncLimit.kt`): capacity follows wall-clock time (sudden loss, gradual loss, loss
 and recovery, a rejecting dependency, and an open-loop arrival rate with 50 ms and 500 ms deadlines); every
 element's arrival time, outcome, end-to-end latency and time inside the dependency are recorded by element index,
-and phases are by arrival time. The comparison is a factorial: {plain virtual threads, Lark `mapParUnordered`,
-Reactor `flatMap`} × {fixed 1,000, fixed 500, fixed 100 (virtual threads only), adaptive}. Lark's Vegas algorithm is
+and phases are by arrival time. The comparison is a factorial: {plain virtual threads, Surefold `mapParUnordered`,
+Reactor `flatMap`} × {fixed 1,000, fixed 500, fixed 100 (virtual threads only), adaptive}. Surefold's Vegas algorithm is
 `internal`, so it is ported verbatim into `AsyncLimit` for Reactor, which may not block; plain virtual threads run
-on both the port and Lark's own `Limit`, which checks the port against the original. Recovery is measured from a
+on both the port and Surefold's own `Limit`, which checks the port against the original. Recovery is measured from a
 10 ms series: how long until the dependency's queue stays under half its capacity after a drop, and how long until
 it serves 90% of capacity after a rise.
 
@@ -156,26 +156,26 @@ back, so any drift during a suite (a noisy neighbour, a slow minute) fell on whi
 *Resolution:* `scripts/run-suite.py` runs every cell once per round, in an order shuffled afresh each round with a
 recorded seed, and logs the load average before each JVM and a single-threaded calibration loop inside it.
 
-### A10. The default build did not compile, and the Lark under test was not identified (weakening)
+### A10. The default build did not compile, and the Surefold under test was not identified (weakening)
 
-`build.gradle.kts` defaulted to Lark 0.10.0, which has no `Limit`, so `Overload.kt` did not compile; the results
-came from an unrecorded `0.0.0-cand-SNAPSHOT`. *Resolution:* `lark.commit` pins the Lark commit,
-`scripts/build-lark.sh` builds it, every result line carries the commit of this repository and of Lark, and the
+`build.gradle.kts` defaulted to Surefold 0.10.0, which has no `Limit`, so `Overload.kt` did not compile; the results
+came from an unrecorded `0.0.0-cand-SNAPSHOT`. *Resolution:* `surefold.commit` pins the Surefold commit,
+`scripts/build-surefold.sh` builds it, every result line carries the commit of this repository and of Surefold, and the
 summary refuses to combine records from different commits, JDKs, CPU counts or JVM options.
 
 ### A11. Blocking contestants could not be interrupted (distorting, for the semantics claims)
 
-The blocking I/O call used `CompletableFuture.join()`, which ignores interrupts, so Lark `mapPar`'s teardown could
+The blocking I/O call used `CompletableFuture.join()`, which ignores interrupts, so Surefold `mapPar`'s teardown could
 not stop a body waiting on the device. *Resolution:* blocking calls use `get()`. The semantics tests also found
 that plain virtual threads with a `Semaphore` and an executor did not stop on the caller's interrupt (the
 interrupt is consumed by `acquire()`, and the executor's `close()` then waits for every task); `vtPlain` and
 `vtOrdered` now stop their tasks on interrupt, as a careful hand-written version would.
 
-### A12. Lark's asynchronous path was missing from the stack-trace comparison (distorting)
+### A12. Surefold's asynchronous path was missing from the stack-trace comparison (distorting)
 
-`StackTraces.kt` showed Lark only with `mapPar` and a blocking fetch, so "Lark names the handler and the fetch"
-described Lark's blocking path; Reactor was shown only without its debugging aids. *Resolution:* the experiment
-now shows Lark `mapAsync`, plain `CompletableFuture`s, structured concurrency, and Reactor with `checkpoint()` and
+`StackTraces.kt` showed Surefold only with `mapPar` and a blocking fetch, so "Surefold names the handler and the fetch"
+described Surefold's blocking path; Reactor was shown only without its debugging aids. *Resolution:* the experiment
+now shows Surefold `mapAsync`, plain `CompletableFuture`s, structured concurrency, and Reactor with `checkpoint()` and
 with `Hooks.onOperatorDebug()`.
 
 ### A13. JMH warm-up was short for the slow benchmarks (weakening)
@@ -209,7 +209,7 @@ tests that guard them make sense:
   could take the connection and replace the answer before it was completed. `cf-plain` and Pekko, which issue the
   next call from the completing thread, hung on it. The answer is now read before the connection goes back.
 
-- The ported limit first granted places strictly in arrival order. Lark's `Limit` waits on a condition, so a
+- The ported limit first granted places strictly in arrival order. Surefold's `Limit` waits on a condition, so a
   caller arriving when a place is free takes it ahead of signalled waiters. The port now does the same. Under a
   deadline, strict order hands every place to the oldest waiter, the one most likely to have expired.
 - The structured-concurrency stack-trace demo kept forking into a scope already cancelled by the failure; those
@@ -224,7 +224,7 @@ the process is not CPU-bound. The row is reported, and kept out of every conclus
 
 ## Provenance of the published results
 
-Every suite ran in one pass against Lark `575a944e` (Lark main, specs up to 0187), each at the commit current when
+Every suite ran in one pass against Surefold `575a944e` (Surefold main, specs up to 0187), each at the commit current when
 it started:
 
 | suite | commit |
@@ -243,18 +243,18 @@ same throughout. `85f2f13` adds the diagnostic contestant `vt-batched` and the `
 suite runs. Each summary names its own commit, and the summary script refuses to mix records from different
 commits within one suite.
 
-The machine's speed was not constant across runs. In the I/O suite, contestants that do not involve Lark ran at
-0.71–0.78 of their speed in the previous run (at Lark `3ccde44`), with CPU per call up by a similar factor, while
+The machine's speed was not constant across runs. In the I/O suite, contestants that do not involve Surefold ran at
+0.71–0.78 of their speed in the previous run (at Surefold `3ccde44`), with CPU per call up by a similar factor, while
 the single-threaded calibration loop moved by 1.6%: it does not detect a slowdown of multi-threaded work, such as
 contention for the host's shared caches and memory bandwidth. The README therefore compares only contestants
-measured in the same run; differences between the Lark versions are stated only where same-run controls anchor
+measured in the same run; differences between the Surefold versions are stated only where same-run controls anchor
 them (the fixed bounds in the overload suite).
 
 ## Work merged from main
 
 While this rework was under way, main gained five commits (`3416fa3`..`7de18eb`) built on the original harness:
 
-- *A rerun against Lark main* with a JDK timer for Lark `mapAsync` on the native rows. Its numbers were measured on
+- *A rerun against Surefold main* with a JDK timer for Surefold `mapAsync` on the native rows. Its numbers were measured on
   the shared device (A1, A2) and are superseded by `results/io`; the fairer timer is what the `native` device already
   does here.
 - *A real-network scenario*: a Netty server whose delayed answers are tasks on its event loop, Reactor Netty's client,
@@ -269,20 +269,20 @@ While this rework was under way, main gained five commits (`3416fa3`..`7de18eb`)
   `Flux.range` emits on whichever thread requests, so after the first batch almost every element is produced on the
   consumer's own thread. HandOffBenchmark's Reactor score therefore measures little cross-thread hand-off; see A15.
 
-main then gained two more reruns (`7b22d6d`, `5e01f93`) of the original harness against a newer Lark: Lark main
+main then gained two more reruns (`7b22d6d`, `5e01f93`) of the original harness against a newer Surefold: Surefold main
 with specs up to 0187, which adds fused CPU chains, a faster `merge`, and a retuned adaptive `Limit` ("an adaptive
 limit that keeps up"). They change main's README and results only, and were merged here keeping this branch's.
-Their numbers rest on the shared device (A1, A2) and are not carried forward. Their Lark is, though, newer than the
+Their numbers rest on the shared device (A1, A2) and are not carried forward. Their Surefold is, though, newer than the
 one then pinned here (`3ccde44`, specs up to 0178), so:
 
 - the overload results then measured the adaptive `Limit` *before* spec 0187's retuning; main reports the retuned
   limit costing 7% of throughput, against 13–27% before;
-- the CPU-chain and per-element JMH figures for Lark predated the fused chains.
+- the CPU-chain and per-element JMH figures for Surefold predated the fused chains.
 
-The pin was then moved to Lark main (`575a944e`) and every suite rerun at it; the published results are that
+The pin was then moved to Surefold main (`575a944e`) and every suite rerun at it; the published results are that
 rerun. Against same-run controls, spec 0187 cut the adaptive limit's cost before a capacity drop from 15–18% to
 4–7% and its end-to-end p99 after the drop from 173–247 ms to 111–239 ms; the finding that it moves the queue to
-the caller stands. Lark's CPU-only chain went from 1.18× to 1.11× Reactor's time.
+the caller stands. Surefold's CPU-only chain went from 1.18× to 1.11× Reactor's time.
 
 ### A15. Reactor's hand-off barely hands off (distorting, found on main)
 
@@ -298,7 +298,7 @@ records the thread that produced each element and counts those produced on the c
 | contestant | elements produced on the consumer's thread |
 |---|--:|
 | Reactor `publishOn` | 999,999 of 1,000,000 (1.00) |
-| Lark `buffer` | 0 (0.00) |
+| Surefold `buffer` | 0 (0.00) |
 | Pekko async boundary | 326,650 (0.33) |
 | virtual threads + `ArrayBlockingQueue` | 0 (0.00) |
 
@@ -308,23 +308,23 @@ original's, and is relabelled: its Reactor and Pekko rows are not a measure of c
 version would give Reactor an asynchronous source (`subscribeOn` on another scheduler); that was not run. Raw
 records: `results/semantics/handoff.jsonl`.
 
-### A16. The socket suite repeated A4: ordered Lark against unordered contestants (distorting, this rework's own)
+### A16. The socket suite repeated A4: ordered Surefold against unordered contestants (distorting, this rework's own)
 
-`NetBench.kt` ran Lark's ordered `mapPar` and `mapAsync` against `vt-plain`, `cf-plain`, Reactor `flatMap` and
+`NetBench.kt` ran Surefold's ordered `mapPar` and `mapAsync` against `vt-plain`, `cf-plain`, Reactor `flatMap` and
 Pekko `mapAsyncUnordered`, all unordered: the comparison A4 faults in the original, rebuilt in new code. Over real
 sockets it matters, because latency varies (the server's p99 lag was 8–15 ms on a 20 ms call) and an ordered
-window keeps an answered call's slot until every earlier call answers. Lark kept fewer calls in flight than the
+window keeps an answered call's slot until every earlier call answers. Surefold kept fewer calls in flight than the
 others (for example 920 of 1,000 against 998) and held 51–2,018 answered-but-waiting elements against 0–4, and
 the README reported it as 17–26% behind.
 
-*Resolution.* A diagnostic suite (`net-diag`, `results/net-diag`) runs the four raw-client scenarios with each Lark
+*Resolution.* A diagnostic suite (`net-diag`, `results/net-diag`) runs the four raw-client scenarios with each Surefold
 operator in both orders, ordered Reactor, Pekko and `vt-ordered`, and `vt-batched`, which is `vt-plain` with permits
-returned in Lark's batch size. At 1,000 in flight every ordered contestant, of every library, is 0.79–0.84 of the
-best, and Lark's unordered `mapAsync` is the best: the deficit there was ordering. At 64 in flight every Lark
+returned in Surefold's batch size. At 1,000 in flight every ordered contestant, of every library, is 0.79–0.84 of the
+best, and Surefold's unordered `mapAsync` is the best: the deficit there was ordering. At 64 in flight every Surefold
 operator, ordered or not, is 0.83–0.85, and `vt-batched` loses 10% against `vt-plain` with the same shortfall of
-calls in flight: a cost of Lark's batched refill, recorded in `docs/lark-issues.md`. The suite's contestants are now
-all unordered (`netContestants`), and `results/net` was rerun that way (at `34651ca`, Lark `575a944e`). In the rerun
-Lark's unordered operators tie with the rest on every client, and the collapse of ordered Lark on the JDK client at
+calls in flight: a cost of Surefold's batched refill, recorded in `docs/surefold-issues.md`. The suite's contestants are now
+all unordered (`netContestants`), and `results/net` was rerun that way (at `34651ca`, Surefold `575a944e`). In the rerun
+Surefold's unordered operators tie with the rest on every client, and the collapse of ordered Surefold on the JDK client at
 10,000 connections (0.28–0.34 of the best) is gone, so it was the ordered window too.
 
 ## What was not changed
@@ -332,8 +332,8 @@ Lark's unordered operators tie with the rest on every client, and the collapse o
 - The original's fake I/O is kept as the `shared` device, and its native-timer rows as `native`, so the original
   comparison can be rerun beside the new ones.
 - The CPU-only chain and hand-off JMH benchmarks are kept, with longer warm-up.
-- Lark itself was not changed. Two behaviours of Lark that the semantics checks exposed are written up, with
-  reproductions, in `docs/lark-issues.md`.
+- Surefold itself was not changed. Two behaviours of Surefold that the semantics checks exposed are written up, with
+  reproductions, in `docs/surefold-issues.md`.
 - `HYPOTHESES.md` was removed: its predictions assumed that the shared device cost every contestant the same,
   which A1 and A2 show it did not. No new predictions were registered before the final runs; the exploratory runs
   quoted above preceded them, and the final suites were run without changing the harness in between.

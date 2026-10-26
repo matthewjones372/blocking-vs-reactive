@@ -25,21 +25,21 @@ class ContestantSemanticsTest {
          * A failure reaches the caller in source order, after every earlier answer: with the head held, it waits.
          * Reactor's `flatMapSequential` and Pekko's `mapAsync` fail as soon as any call fails.
          */
-        val failsInOrder = setOf("vt-ordered", "lark-mappar", "lark-mapasync")
+        val failsInOrder = setOf("vt-ordered", "surefold-mappar", "surefold-mapasync")
 
         /**
          * After a stop, calls in flight keep a callback registered until they complete: they are not cancelled. For
          * blocking contestants the waiting threads are interrupted, and Reactor cancels each future.
          */
-        val leavesCallbacksOnStop = setOf("lark-mapasync-unordered", "pekko-mapasync", "pekko-mapasync-unordered", "cf-plain")
+        val leavesCallbacksOnStop = setOf("surefold-mapasync-unordered", "pekko-mapasync", "pekko-mapasync-unordered", "cf-plain")
 
         /**
-         * Interrupting the caller returns control, but the run goes on and its calls stay awaited: Lark's `await()`
-         * cancels the exit future, which does not stop a Forks run (docs/lark-issues.md); Pekko's stream is not tied
+         * Interrupting the caller returns control, but the run goes on and its calls stay awaited: Surefold's `await()`
+         * cancels the exit future, which does not stop a Forks run (docs/surefold-issues.md); Pekko's stream is not tied
          * to the thread that waits for it; cf-plain has nothing to cancel.
          */
         val abandonedOnInterrupt = setOf(
-            "lark-mappar", "lark-mappar-unordered", "lark-mapasync", "lark-mapasync-unordered",
+            "surefold-mappar", "surefold-mappar-unordered", "surefold-mapasync", "surefold-mapasync-unordered",
             "pekko-mapasync", "pekko-mapasync-unordered", "cf-plain",
         )
 

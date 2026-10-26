@@ -8,7 +8,7 @@
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: bvr.CpuChainBenchmark.lark
+# Benchmark: bvr.CpuChainBenchmark.surefold
 
 # Run progress: 0.00% complete, ETA 00:40:00
 # Fork: 1 of 5
@@ -336,27 +336,27 @@ Iteration   8: 17.736 ms/op
 
 
 
-Result "bvr.CpuChainBenchmark.lark":
+Result "bvr.CpuChainBenchmark.surefold":
   17.788 ±(99.9%) 0.526 ms/op [Average]
   (min, avg, max) = (16.420, 17.788, 20.284), stdev = 0.936
   CI (99.9%): [17.261, 18.314] (assumes normal distribution)
 
-Secondary result "bvr.CpuChainBenchmark.lark:·gc.alloc.rate":
+Secondary result "bvr.CpuChainBenchmark.surefold:·gc.alloc.rate":
   3009.901 ±(99.9%) 87.045 MB/sec [Average]
   (min, avg, max) = (2632.652, 3009.901, 3252.324), stdev = 154.722
   CI (99.9%): [2922.856, 3096.946] (assumes normal distribution)
 
-Secondary result "bvr.CpuChainBenchmark.lark:·gc.alloc.rate.norm":
+Secondary result "bvr.CpuChainBenchmark.surefold:·gc.alloc.rate.norm":
   56007274.341 ±(99.9%) 58.486 B/op [Average]
   (min, avg, max) = (56007057.058, 56007274.341, 56007395.855), stdev = 103.960
   CI (99.9%): [56007215.855, 56007332.828] (assumes normal distribution)
 
-Secondary result "bvr.CpuChainBenchmark.lark:·gc.count":
+Secondary result "bvr.CpuChainBenchmark.surefold:·gc.count":
   197.000 ±(99.9%) 0.001 counts [Sum]
   (min, avg, max) = (4.000, 4.925, 6.000), stdev = 0.417
   CI (99.9%): [197.000, 197.000] (assumes normal distribution)
 
-Secondary result "bvr.CpuChainBenchmark.lark:·gc.time":
+Secondary result "bvr.CpuChainBenchmark.surefold:·gc.time":
   452.000 ±(99.9%) 0.001 ms [Sum]
   (min, avg, max) = (8.000, 11.300, 16.000), stdev = 1.652
   CI (99.9%): [452.000, 452.000] (assumes normal distribution)
@@ -3885,7 +3885,7 @@ Secondary result "bvr.CpuChainBenchmark.sequence:·gc.time":
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: bvr.HandOffBenchmark.lark
+# Benchmark: bvr.HandOffBenchmark.surefold
 
 # Run progress: 37.50% complete, ETA 00:29:41
 # Fork: 1 of 5
@@ -4213,27 +4213,27 @@ Iteration   8: 47.926 ms/op
 
 
 
-Result "bvr.HandOffBenchmark.lark":
+Result "bvr.HandOffBenchmark.surefold":
   46.177 ±(99.9%) 1.294 ms/op [Average]
   (min, avg, max) = (40.759, 46.177, 49.093), stdev = 2.299
   CI (99.9%): [44.883, 47.470] (assumes normal distribution)
 
-Secondary result "bvr.HandOffBenchmark.lark:·gc.alloc.rate":
+Secondary result "bvr.HandOffBenchmark.surefold:·gc.alloc.rate":
   829.502 ±(99.9%) 24.601 MB/sec [Average]
   (min, avg, max) = (764.072, 829.502, 939.289), stdev = 43.728
   CI (99.9%): [804.901, 854.103] (assumes normal distribution)
 
-Secondary result "bvr.HandOffBenchmark.lark:·gc.alloc.rate.norm":
+Secondary result "bvr.HandOffBenchmark.surefold:·gc.alloc.rate.norm":
   40202729.250 ±(99.9%) 16133.034 B/op [Average]
   (min, avg, max) = (40152265.280, 40202729.250, 40282120.571), stdev = 28676.453
   CI (99.9%): [40186596.216, 40218862.283] (assumes normal distribution)
 
-Secondary result "bvr.HandOffBenchmark.lark:·gc.count":
+Secondary result "bvr.HandOffBenchmark.surefold:·gc.count":
   55.000 ±(99.9%) 0.001 counts [Sum]
   (min, avg, max) = (1.000, 1.375, 2.000), stdev = 0.490
   CI (99.9%): [55.000, 55.000] (assumes normal distribution)
 
-Secondary result "bvr.HandOffBenchmark.lark:·gc.time":
+Secondary result "bvr.HandOffBenchmark.surefold:·gc.time":
   104.000 ±(99.9%) 0.001 ms [Sum]
   (min, avg, max) = (1.000, 2.600, 6.000), stdev = 1.150
   CI (99.9%): [104.000, 104.000] (assumes normal distribution)
@@ -8666,7 +8666,7 @@ Secondary result "bvr.PerElementBenchmark.element:·gc.time":
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
 # Benchmark: bvr.PerElementBenchmark.element
-# Parameters: (contestant = lark-mappar)
+# Parameters: (contestant = surefold-mappar)
 
 # Run progress: 75.63% complete, ETA 00:12:10
 # Fork: 1 of 5
@@ -8981,7 +8981,7 @@ Secondary result "bvr.PerElementBenchmark.element:·gc.time":
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
 # Benchmark: bvr.PerElementBenchmark.element
-# Parameters: (contestant = lark-mappar-unordered)
+# Parameters: (contestant = surefold-mappar-unordered)
 
 # Run progress: 78.33% complete, ETA 00:10:46
 # Fork: 1 of 5
@@ -9621,7 +9621,7 @@ Secondary result "bvr.PerElementBenchmark.element:·gc.time":
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
 # Benchmark: bvr.PerElementBenchmark.element
-# Parameters: (contestant = lark-mapasync)
+# Parameters: (contestant = surefold-mapasync)
 
 # Run progress: 83.75% complete, ETA 00:08:00
 # Fork: 1 of 5
@@ -9936,7 +9936,7 @@ Secondary result "bvr.PerElementBenchmark.element:·gc.time":
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
 # Benchmark: bvr.PerElementBenchmark.element
-# Parameters: (contestant = lark-mapasync-unordered)
+# Parameters: (contestant = surefold-mapasync-unordered)
 
 # Run progress: 86.46% complete, ETA 00:06:38
 # Fork: 1 of 5
@@ -15797,11 +15797,11 @@ different JVMs are already problematic, the performance difference caused by dif
 modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
 
 Benchmark                                                     (contestant)  Mode  Cnt          Score         Error   Units
-CpuChainBenchmark.lark                                                 N/A  avgt   40         17.788 ±       0.526   ms/op
-CpuChainBenchmark.lark:·gc.alloc.rate                                  N/A  avgt   40       3009.901 ±      87.045  MB/sec
-CpuChainBenchmark.lark:·gc.alloc.rate.norm                             N/A  avgt   40   56007274.341 ±      58.486    B/op
-CpuChainBenchmark.lark:·gc.count                                       N/A  avgt   40        197.000                counts
-CpuChainBenchmark.lark:·gc.time                                        N/A  avgt   40        452.000                    ms
+CpuChainBenchmark.surefold                                                 N/A  avgt   40         17.788 ±       0.526   ms/op
+CpuChainBenchmark.surefold:·gc.alloc.rate                                  N/A  avgt   40       3009.901 ±      87.045  MB/sec
+CpuChainBenchmark.surefold:·gc.alloc.rate.norm                             N/A  avgt   40   56007274.341 ±      58.486    B/op
+CpuChainBenchmark.surefold:·gc.count                                       N/A  avgt   40        197.000                counts
+CpuChainBenchmark.surefold:·gc.time                                        N/A  avgt   40        452.000                    ms
 CpuChainBenchmark.loop                                                 N/A  avgt   40          0.870 ±       0.041   ms/op
 CpuChainBenchmark.loop:·gc.alloc.rate                                  N/A  avgt   40         ≈ 10⁻⁴                MB/sec
 CpuChainBenchmark.loop:·gc.alloc.rate.norm                             N/A  avgt   40          0.178 ±       0.008    B/op
@@ -15821,11 +15821,11 @@ CpuChainBenchmark.sequence:·gc.alloc.rate                              N/A  avg
 CpuChainBenchmark.sequence:·gc.alloc.rate.norm                         N/A  avgt   40   43996938.357 ±       0.076    B/op
 CpuChainBenchmark.sequence:·gc.count                                   N/A  avgt   40        238.000                counts
 CpuChainBenchmark.sequence:·gc.time                                    N/A  avgt   40        520.000                    ms
-HandOffBenchmark.lark                                                  N/A  avgt   40         46.177 ±       1.294   ms/op
-HandOffBenchmark.lark:·gc.alloc.rate                                   N/A  avgt   40        829.502 ±      24.601  MB/sec
-HandOffBenchmark.lark:·gc.alloc.rate.norm                              N/A  avgt   40   40202729.250 ±   16133.034    B/op
-HandOffBenchmark.lark:·gc.count                                        N/A  avgt   40         55.000                counts
-HandOffBenchmark.lark:·gc.time                                         N/A  avgt   40        104.000                    ms
+HandOffBenchmark.surefold                                                  N/A  avgt   40         46.177 ±       1.294   ms/op
+HandOffBenchmark.surefold:·gc.alloc.rate                                   N/A  avgt   40        829.502 ±      24.601  MB/sec
+HandOffBenchmark.surefold:·gc.alloc.rate.norm                              N/A  avgt   40   40202729.250 ±   16133.034    B/op
+HandOffBenchmark.surefold:·gc.count                                        N/A  avgt   40         55.000                counts
+HandOffBenchmark.surefold:·gc.time                                         N/A  avgt   40        104.000                    ms
 HandOffBenchmark.pekko                                                 N/A  avgt   40       1150.441 ±      46.426   ms/op
 HandOffBenchmark.pekko:·gc.alloc.rate                                  N/A  avgt   40        100.597 ±       4.087  MB/sec
 HandOffBenchmark.pekko:·gc.alloc.rate.norm                             N/A  avgt   40  121167360.800 ±  233120.808    B/op
@@ -15856,31 +15856,31 @@ PerElementBenchmark.element:·gc.alloc.rate                   vt-structured  avg
 PerElementBenchmark.element:·gc.alloc.rate.norm              vt-structured  avgt   40        384.718 ±       0.175    B/op
 PerElementBenchmark.element:·gc.count                        vt-structured  avgt   40          7.000                counts
 PerElementBenchmark.element:·gc.time                         vt-structured  avgt   40         24.000                    ms
-PerElementBenchmark.element                                    lark-mappar  avgt   40       1125.157 ±     136.890   ns/op
-PerElementBenchmark.element:·gc.alloc.rate                     lark-mappar  avgt   40        459.528 ±      68.231  MB/sec
-PerElementBenchmark.element:·gc.alloc.rate.norm                lark-mappar  avgt   40        513.902 ±       9.786    B/op
-PerElementBenchmark.element:·gc.count                          lark-mappar  avgt   40         15.000                counts
-PerElementBenchmark.element:·gc.time                           lark-mappar  avgt   40         52.000                    ms
-PerElementBenchmark.element                          lark-mappar-unordered  avgt   40       1582.296 ±     117.360   ns/op
-PerElementBenchmark.element:·gc.alloc.rate           lark-mappar-unordered  avgt   40        452.072 ±      38.538  MB/sec
-PerElementBenchmark.element:·gc.alloc.rate.norm      lark-mappar-unordered  avgt   40        736.063 ±       8.896    B/op
-PerElementBenchmark.element:·gc.count                lark-mappar-unordered  avgt   40         15.000                counts
-PerElementBenchmark.element:·gc.time                 lark-mappar-unordered  avgt   40         49.000                    ms
+PerElementBenchmark.element                                    surefold-mappar  avgt   40       1125.157 ±     136.890   ns/op
+PerElementBenchmark.element:·gc.alloc.rate                     surefold-mappar  avgt   40        459.528 ±      68.231  MB/sec
+PerElementBenchmark.element:·gc.alloc.rate.norm                surefold-mappar  avgt   40        513.902 ±       9.786    B/op
+PerElementBenchmark.element:·gc.count                          surefold-mappar  avgt   40         15.000                counts
+PerElementBenchmark.element:·gc.time                           surefold-mappar  avgt   40         52.000                    ms
+PerElementBenchmark.element                          surefold-mappar-unordered  avgt   40       1582.296 ±     117.360   ns/op
+PerElementBenchmark.element:·gc.alloc.rate           surefold-mappar-unordered  avgt   40        452.072 ±      38.538  MB/sec
+PerElementBenchmark.element:·gc.alloc.rate.norm      surefold-mappar-unordered  avgt   40        736.063 ±       8.896    B/op
+PerElementBenchmark.element:·gc.count                surefold-mappar-unordered  avgt   40         15.000                counts
+PerElementBenchmark.element:·gc.time                 surefold-mappar-unordered  avgt   40         49.000                    ms
 PerElementBenchmark.element                                       cf-plain  avgt   40         48.677 ±       0.739   ns/op
 PerElementBenchmark.element:·gc.alloc.rate                        cf-plain  avgt   40        783.679 ±      11.709  MB/sec
 PerElementBenchmark.element:·gc.alloc.rate.norm                   cf-plain  avgt   40         39.989 ±       0.001    B/op
 PerElementBenchmark.element:·gc.count                             cf-plain  avgt   40         25.000                counts
 PerElementBenchmark.element:·gc.time                              cf-plain  avgt   40         83.000                    ms
-PerElementBenchmark.element                                  lark-mapasync  avgt   40        265.557 ±      14.128   ns/op
-PerElementBenchmark.element:·gc.alloc.rate                   lark-mapasync  avgt   40        379.827 ±      19.760  MB/sec
-PerElementBenchmark.element:·gc.alloc.rate.norm              lark-mapasync  avgt   40        104.904 ±       0.030    B/op
-PerElementBenchmark.element:·gc.count                        lark-mapasync  avgt   40         15.000                counts
-PerElementBenchmark.element:·gc.time                         lark-mapasync  avgt   40         50.000                    ms
-PerElementBenchmark.element                        lark-mapasync-unordered  avgt   40        415.287 ±      15.012   ns/op
-PerElementBenchmark.element:·gc.alloc.rate         lark-mapasync-unordered  avgt   40        352.579 ±      12.771  MB/sec
-PerElementBenchmark.element:·gc.alloc.rate.norm    lark-mapasync-unordered  avgt   40        152.970 ±       0.045    B/op
-PerElementBenchmark.element:·gc.count              lark-mapasync-unordered  avgt   40         15.000                counts
-PerElementBenchmark.element:·gc.time               lark-mapasync-unordered  avgt   40         51.000                    ms
+PerElementBenchmark.element                                  surefold-mapasync  avgt   40        265.557 ±      14.128   ns/op
+PerElementBenchmark.element:·gc.alloc.rate                   surefold-mapasync  avgt   40        379.827 ±      19.760  MB/sec
+PerElementBenchmark.element:·gc.alloc.rate.norm              surefold-mapasync  avgt   40        104.904 ±       0.030    B/op
+PerElementBenchmark.element:·gc.count                        surefold-mapasync  avgt   40         15.000                counts
+PerElementBenchmark.element:·gc.time                         surefold-mapasync  avgt   40         50.000                    ms
+PerElementBenchmark.element                        surefold-mapasync-unordered  avgt   40        415.287 ±      15.012   ns/op
+PerElementBenchmark.element:·gc.alloc.rate         surefold-mapasync-unordered  avgt   40        352.579 ±      12.771  MB/sec
+PerElementBenchmark.element:·gc.alloc.rate.norm    surefold-mapasync-unordered  avgt   40        152.970 ±       0.045    B/op
+PerElementBenchmark.element:·gc.count              surefold-mapasync-unordered  avgt   40         15.000                counts
+PerElementBenchmark.element:·gc.time               surefold-mapasync-unordered  avgt   40         51.000                    ms
 PerElementBenchmark.element                                reactor-flatmap  avgt   40        152.431 ±       3.555   ns/op
 PerElementBenchmark.element:·gc.alloc.rate                 reactor-flatmap  avgt   40       1110.607 ±      33.336  MB/sec
 PerElementBenchmark.element:·gc.alloc.rate.norm            reactor-flatmap  avgt   40        177.574 ±       6.699    B/op

@@ -6,7 +6,7 @@ a slow minute) lands on every contestant alike rather than on whichever ran last
 Writes into results/<suite>/ (or --out):
   results.jsonl   every RESULT line, with the run it came from
   runs.jsonl      one line per JVM: cell, round, order, start, end, exit code, load average, stderr tail
-  metadata.json   the build, Lark, JDK, machine, JVM options, seed and schedule
+  metadata.json   the build, Surefold, JDK, machine, JVM options, seed and schedule
 
     scripts/run-suite.py io --forks 5
     scripts/run-suite.py smoke --forks 1 --warmups 1 --iterations 1
@@ -48,7 +48,7 @@ def sh(*cmd, cwd=root):
 
 
 def metadata(args, cells, schedule):
-    lark_commit = (root / "lark.commit").read_text().strip()
+    surefold_commit = (root / "surefold.commit").read_text().strip()
     cpu = next((l.split(":", 1)[1].strip() for l in Path("/proc/cpuinfo").read_text().splitlines()
                 if l.startswith("model name")), platform.processor()) if Path("/proc/cpuinfo").exists() else platform.processor()
     governor = Path("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor")
@@ -57,8 +57,8 @@ def metadata(args, cells, schedule):
         "suite": args.suite,
         "commit": sh("git", "rev-parse", "HEAD"),
         "dirty": bool(sh("git", "status", "--porcelain", "--untracked-files=no")),
-        "larkCommit": lark_commit,
-        "larkVersion": "0.0.0-cand-SNAPSHOT",
+        "surefoldCommit": surefold_commit,
+        "surefoldVersion": "0.0.0-cand-SNAPSHOT",
         "java": "\n".join(l for l in subprocess.run([str(java) if java.exists() else "java", "-version"], capture_output=True,
                                                     text=True).stderr.splitlines() if not l.startswith("Picked up")),
         "cpu": cpu,
@@ -145,8 +145,11 @@ def main():
     ap.add_argument("--no-build", action="store_true")
     ap.add_argument("--only", help="run only cells whose 'scenario contestant' contains this")
     ap.add_argument("--port", type=int, default=18080)
-    ap.add_argument("--server-cpus", default="3" if (os.cpu_count() or 1) >= 4 else None)
-    ap.add_argument("--client-cpus", default=f"0-{(os.cpu_count() or 1) - 2}" if (os.cpu_count() or 1) >= 4 else None)
+    # The socket suites' server gets the last CPU and the clients the rest, so the two never share a core. (Before,
+    # the server was CPU 3 whatever the machine, which overlapped the clients on anything larger than 4 CPUs.)
+    cpus = os.cpu_count() or 1
+    ap.add_argument("--server-cpus", default=str(cpus - 1) if cpus >= 4 else None)
+    ap.add_argument("--client-cpus", default=f"0-{cpus - 2}" if cpus >= 4 else None)
     args = ap.parse_args()
     args.out = args.out or root / "results" / args.suite
     args.out.mkdir(parents=True, exist_ok=True)
@@ -188,7 +191,7 @@ def main():
                 p.terminate(); p.wait()
             server = start_servers(args, env)
             current_round = cell["round"]
-        props = (f"-Dbvr.commit={meta['commit']} -Dbvr.larkVersion={meta['larkCommit']} -Dbvr.run={run_id} "
+        props = (f"-Dbvr.commit={meta['commit']} -Dbvr.surefoldVersion={meta['surefoldCommit']} -Dbvr.run={run_id} "
                  f"-Dbvr.fork={cell['round']} -Dbvr.order={cell['order']} -Dbvr.netPort={args.port}")
         run_env = dict(env, JAVA_OPTS=f"{JVM[args.suite]} {cell['jvmOpts']} {props}".replace("  ", " "))
         cmd = [str(binary)] + command(args.suite, cell["scenario"], cell["contestant"], args)
